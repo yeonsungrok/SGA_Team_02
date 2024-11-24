@@ -1,8 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
 #include "Base/MyGameInstance.h"
+#include "Components/CapsuleComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "Component/StatComponent.h"
 #include "Component/InventoryComponent.h"
+#include "Player/MyPlayer.h"
 #include "Item/BaseItem.h"
 #include "Item/Equip/EquipItem.h"
 #include "Item/Consumes/ConsumeItem.h"
@@ -180,6 +182,49 @@ void UMyGameInstance::LoadInventory(class UInventoryComponent *InventoryComponen
 			}
 		}
 	}
+}
+
+void UMyGameInstance::SavePlayerSkeletal(class AMyPlayer* player)
+{
+    if (player)
+    {
+        _savedBodyMesh = player->GetMesh() ? player->GetMesh()->SkeletalMesh : nullptr;
+        _savedLowerBodyMesh = player->_lowerBodyMesh ? player->_lowerBodyMesh->SkeletalMesh : nullptr;
+        _savedShoulderBodyMesh = player->_shoulderBodyMesh ? player->_shoulderBodyMesh->SkeletalMesh : nullptr;
+        _savedSwordBodyMesh = player->_swordBodyMesh ? player->_swordBodyMesh->SkeletalMesh : nullptr;
+        _savedShieldBodyMesh = player->_shieldBodyMesh ? player->_shieldBodyMesh->SkeletalMesh : nullptr;
+    }
+}
+
+void UMyGameInstance::LoadPlayerSkeletal(class AMyPlayer* player)
+{
+    if (player)
+    {
+        if (_savedBodyMesh && player->GetMesh())
+        {
+            player->GetMesh()->SetSkeletalMesh(_savedBodyMesh);
+        }
+
+        if (_savedLowerBodyMesh && player->_lowerBodyMesh)
+        {
+            player->_lowerBodyMesh->SetSkeletalMesh(_savedLowerBodyMesh);
+        }
+
+        if (_savedShoulderBodyMesh && player->_shoulderBodyMesh)
+        {
+            player->_shoulderBodyMesh->SetSkeletalMesh(_savedShoulderBodyMesh);
+        }
+
+        if (_savedSwordBodyMesh && player->_swordBodyMesh)
+        {
+            player->_swordBodyMesh->SetSkeletalMesh(_savedSwordBodyMesh);
+        }
+
+        if (_savedShieldBodyMesh && player->_shieldBodyMesh)
+        {
+            player->_shieldBodyMesh->SetSkeletalMesh(_savedShieldBodyMesh);
+        }
+    }
 }
 
 void UMyGameInstance::Init()

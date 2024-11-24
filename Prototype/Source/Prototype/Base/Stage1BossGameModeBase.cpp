@@ -27,7 +27,6 @@ AStage1BossGameModeBase::AStage1BossGameModeBase()
 void AStage1BossGameModeBase::BeginPlay()
 {
 	AMyPlayer *player = Cast<AMyPlayer>(UGameplayStatics::GetPlayerCharacter(this, 0));
-	player->LoadPlayerState();
 	if (player)
 	{
 		UMyGameInstance *GameInstance = Cast<UMyGameInstance>(GetGameInstance());
@@ -45,6 +44,7 @@ void AStage1BossGameModeBase::BeginPlay()
 			{
 				GameInstance->LoadInventory(InvenComponent);
 			}
+			GameInstance->LoadPlayerSkeletal(player);
 		}
 	}
 
