@@ -5,7 +5,7 @@
 #include "TimerManager.h"
 
 void USkillWidget_test::NativeConstruct()
-{    
+{
     SkillImages.Add(SkillImage1);
     SkillImages.Add(SkillImage2);
     SkillImages.Add(SkillImage3);
@@ -25,9 +25,9 @@ void USkillWidget_test::NativeConstruct()
     MaxCooldownTimes.Init(0.0f, 4);
     CooldownTimerHandles.Init(FTimerHandle(), 4);
 
-    for(UImage* cd : CooldownOverlays)
+    for (UImage *cd : CooldownOverlays)
     {
-        if(cd)
+        if (cd)
         {
             cd->SetOpacity(0.0f);
         }
@@ -52,7 +52,8 @@ void USkillWidget_test::UpdateCooldownText(int32 SkillIndex, float RemainingTime
 
 void USkillWidget_test::StartCooldown(int32 SkillIndex, float InMaxCooldownTime)
 {
-    /*if (SkillIndex < 0 || SkillIndex >= CooldownOverlays.Num()) return;
+    if (SkillIndex < 0 || SkillIndex >= CooldownOverlays.Num())
+        return;
 
     MaxCooldownTimes[SkillIndex] = InMaxCooldownTime;
     CooldownTimes[SkillIndex] = MaxCooldownTimes[SkillIndex];
@@ -63,35 +64,34 @@ void USkillWidget_test::StartCooldown(int32 SkillIndex, float InMaxCooldownTime)
     }
 
     GetWorld()->GetTimerManager().SetTimer(CooldownTimerHandles[SkillIndex], [this, SkillIndex]()
+                                           {
+    float DeltaTime = GetWorld()->GetDeltaSeconds(); 
+    CooldownTimes[SkillIndex] -= DeltaTime;
+
+    UpdateCooldown(SkillIndex);
+
+    if (CooldownTimes[SkillIndex] <= 0.0f)
     {
-        float DeltaTime = GetWorld()->GetDeltaSeconds();
-        CooldownTimes[SkillIndex] -= DeltaTime;
+        CooldownTimes[SkillIndex] = 0.0f;
+        GetWorld()->GetTimerManager().ClearTimer(CooldownTimerHandles[SkillIndex]);
 
-        UpdateCooldown(SkillIndex);
-
-        if (CooldownTimes[SkillIndex] <= 0.0f)
+        if (CooldownOverlays[SkillIndex])
         {
-            CooldownTimes[SkillIndex] = 0.0f;
-            GetWorld()->GetTimerManager().ClearTimer(CooldownTimerHandles[SkillIndex]);
-
-            if (CooldownOverlays[SkillIndex])
-            {
-                CooldownOverlays[SkillIndex]->SetOpacity(0.0f);
-            }
-
-            AMyPlayer* Player = Cast<AMyPlayer>(GetWorld()->GetFirstPlayerController()->GetPawn());
-            if (Player)
-            {
-                Player->SetSkillOnCooldown(SkillIndex,false);
-            }
+            CooldownOverlays[SkillIndex]->SetOpacity(0.0f);
         }
-    }, 0.1f, true);*/
-}
 
+        AMyPlayer* Player = Cast<AMyPlayer>(GetWorld()->GetFirstPlayerController()->GetPawn());
+        if (Player)
+        {
+            Player->SetSkillOnCooldown(SkillIndex, false);
+        }
+    } }, GetWorld()->GetDeltaSeconds(), true); 
+}
 
 void USkillWidget_test::UpdateCooldown(int32 SkillIndex)
 {
-    if (SkillIndex < 0 || SkillIndex >= CooldownTimes.Num()) return;
+    if (SkillIndex < 0 || SkillIndex >= CooldownTimes.Num())
+        return;
 
     CooldownTimes[SkillIndex] -= GetWorld()->DeltaTimeSeconds;
 
@@ -118,7 +118,7 @@ void USkillWidget_test::UpdateCooldown(int32 SkillIndex)
             Brush.ImageSize = FVector2D(Brush.ImageSize.X, SkillImage1->GetDesiredSize().Y * Percent);
             CooldownOverlays[SkillIndex]->SetBrush(Brush);
 
-            CooldownOverlays[SkillIndex]->SetOpacity(0.5f); 
+            CooldownOverlays[SkillIndex]->SetOpacity(0.5f);
         }
     }
 
