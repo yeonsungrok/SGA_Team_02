@@ -31,6 +31,9 @@ public:
 	void SaveInventory(class UInventoryComponent* InventoryComponent);
 	void LoadInventory(class UInventoryComponent* InventoryComponent);
 
+	void SavePlayerSkeletal(class AMyPlayer* player);
+	void LoadPlayerSkeletal(class AMyPlayer* player);
+
     UPROPERTY()
     TArray<FItemData> SavedInventoryData;
 
@@ -102,6 +105,18 @@ private:
 	int32 _savedExp;
 	UPROPERTY()
 	int32 _savedBonus;
+
+	UPROPERTY()
+	class USkeletalMesh* _savedBodyMesh;
+	UPROPERTY()
+	class USkeletalMesh* _savedLowerBodyMesh;
+	UPROPERTY()
+	class USkeletalMesh* _savedShoulderBodyMesh;
+	UPROPERTY()
+	class USkeletalMesh*_savedSwordBodyMesh;
+	UPROPERTY()
+	class USkeletalMesh* _savedShieldBodyMesh;
+	
 	UPROPERTY()
 	bool _firstIn = true;
 
