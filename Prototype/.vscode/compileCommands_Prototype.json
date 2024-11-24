@@ -1,0 +1,1234 @@
+[
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Animation/BaseAnimInstance.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Animation/BaseAnimInstance.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Animation/DragonAnimInstance.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Animation/DragonAnimInstance.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Animation/Monster_Boss01_AnimInstance.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Animation/Monster_Boss01_AnimInstance.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Animation/Monster_Epic01_Anim.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Animation/Monster_Epic01_Anim.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Animation/Monster_N_AnimInstance.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Animation/Monster_N_AnimInstance.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Animation/PlayerAnimInstance.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Animation/PlayerAnimInstance.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Base/Managers/EffectManager.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Base/Managers/EffectManager.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Base/Managers/SoundManager.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Base/Managers/SoundManager.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Base/Managers/UIManager.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Base/Managers/UIManager.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Base/MyGameInstance.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Base/MyGameInstance.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Base/MyGameModeBase.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Base/MyGameModeBase.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Base/MyPlayerSaveGame.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Base/MyPlayerSaveGame.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Base/SaveGame_Test.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Base/SaveGame_Test.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Base/Stage1BossGameModeBase.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Base/Stage1BossGameModeBase.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Component/InventoryComponent.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Component/InventoryComponent.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Component/ParkourComponent_Test.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Component/ParkourComponent_Test.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Component/StatComponent.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Component/StatComponent.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/BaseItem.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/BaseItem.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Consumes/ConsumeItem.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Consumes/ConsumeItem.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Consumes/HP_Postion.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Consumes/HP_Postion.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Equip/EquipItem.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Equip/EquipItem.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Equip/Helmet.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Equip/Helmet.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Equip/LowerArmor.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Equip/LowerArmor.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Equip/Shield.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Equip/Shield.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Equip/ShoulderGuard.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Equip/ShoulderGuard.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Equip/Sword.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Equip/Sword.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Equip/UpperArmor.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Item/Equip/UpperArmor.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/AIController_BossMonster.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/AIController_BossMonster.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/AIController_Epic.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/AIController_Epic.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/AIController_NormalMonster.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/AIController_NormalMonster.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTDecorator_CanAttack.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTDecorator_CanAttack.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTDecorator_Stun.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTDecorator_Stun.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTService_CheckHP.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTService_CheckHP.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTService_FindTarget.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTService_FindTarget.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTService_LongFindTarget.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTService_LongFindTarget.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTService_PlayerDistance.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTService_PlayerDistance.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTTaskNode_FlyAttack.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTTaskNode_FlyAttack.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTTaskNode_LookTarget.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTTaskNode_LookTarget.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTTaskNode_MagicBall.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTTaskNode_MagicBall.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTTaskNode_Summoning.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTTaskNode_Summoning.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTTask_Attack.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTTask_Attack.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTTask_BossDash.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTTask_BossDash.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTTask_FindRandPos.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTTask_FindRandPos.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTTask_JumpToTarget.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/AI/BTTask_JumpToTarget.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/BossMonster.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/BossMonster.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/BossObstacle.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/BossObstacle.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/EpicMonster_witch.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/EpicMonster_witch.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/EpicProjectile.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/EpicProjectile.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/LandDecal.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/LandDecal.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/MagicDecal.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/MagicDecal.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/Monster.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/Monster.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/NormalMonster.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/NormalMonster.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/test_monster.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/Creature.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/Creature.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/Dragon.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/Dragon.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/Fireball.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/Fireball.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/MeteorDecal.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/MeteorDecal.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/MeteorDecalPool.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/MeteorDecalPool.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/MyDecal.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/MyDecal.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/MyPlayer.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/MyPlayer.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/MyPlayerController.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/MyPlayerController.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/Portal/Portal.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/Portal/Portal.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/Portal/Portal_Stage1.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/Portal/Portal_Stage1.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Prototype.Build.cs",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Prototype.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Prototype.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/PrototypeCharacter.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/PrototypeCharacter.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/TriggerBox_StageSequnce/StageSequence_Trigger.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/TriggerBox_StageSequnce/StageSequence_Trigger.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/Boss1Widget.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/Boss1Widget.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/Elements/IndexedButton.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/Elements/IndexedButton.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/InventoryWidget.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/InventoryWidget.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/MiniMapActor.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/MiniMapActor.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/MiniMapWidget.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/MiniMapWidget.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/PlayerBarWidget.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/PlayerBarWidget.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/ShopWidget.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/ShopWidget.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/SkillWidget_test.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/SkillWidget_test.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/StatWidget.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/UI/StatWidget.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/VFX/ParticleEffect.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/VFX/ParticleEffect.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/VFX/SoundEffect.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/VFX/SoundEffect.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	}
+]
