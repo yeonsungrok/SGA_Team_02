@@ -48,6 +48,8 @@ public:
 	void UpdateModStat(int32 statType, int32 amount);
 	void RefreshModStat();
 
+	void UpdateGold(int32 amount);
+
 private:
 	void SetTargetItem(int32 slotIndex);
 	void SetTargetEquip(EItemType equip);
@@ -158,5 +160,8 @@ private:
 	
 	UPROPERTY(meta = (BindWidget))
 	TArray<class UTextBlock*> _modStat;
+
+	UPROPERTY(meta = (BindWidget))
+	class UTextBlock* GoldAmount;
 
 };

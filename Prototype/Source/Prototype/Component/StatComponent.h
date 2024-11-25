@@ -23,7 +23,8 @@ enum class StatType
 	DEX,
 	INT,
 	CurHP,
-	CurMP
+	CurMP,
+	Other
 };
 
 USTRUCT()

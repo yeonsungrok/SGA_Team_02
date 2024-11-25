@@ -370,6 +370,11 @@ void UInventoryWidget::RefreshModStat()
 	}
 }
 
+void UInventoryWidget::UpdateGold(int32 amount)
+{
+	GoldAmount->SetText(FText::FromString(FString::FromInt(amount)));
+}
+
 void UInventoryWidget::SetTargetItem(int32 slotIndex)
 {
 	if (Button_[slotIndex] == nullptr)
