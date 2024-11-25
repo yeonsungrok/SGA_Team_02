@@ -73,7 +73,9 @@ void AUIManager::OpenUI(UI_LIST ui)
 		pauseGame.Broadcast();
 
 	_uiList[UIindex]->SetVisibility(ESlateVisibility::Visible);
-	_uiList[UIindex]->AddToViewport(UIindex);
+	int32 ZOrder = (ui == UI_LIST::Inventory) ? 10 : 0;
+	_uiList[UIindex]->AddToViewport(ZOrder);
+
 	_uiIsOpen[UIindex] = true;
 }
 

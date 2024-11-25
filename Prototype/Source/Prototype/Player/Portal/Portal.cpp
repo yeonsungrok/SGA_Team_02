@@ -42,6 +42,7 @@ void APortal::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherA
         UMyGameInstance* GameInstance = Cast<UMyGameInstance>(GetGameInstance());
         if (GameInstance)
         {
+            UE_LOG(LogTemp,Warning,TEXT("Portal Save"));
             GameInstance->SavePlayerStats(player->_StatCom);
             GameInstance->SaveInventory(player->_inventoryComponent);
             GameInstance->SavePlayerSkeletal(player);

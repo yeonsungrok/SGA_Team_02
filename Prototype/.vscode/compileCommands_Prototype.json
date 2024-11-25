@@ -984,6 +984,22 @@
 		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
 	},
 	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/Portal/Portal_Home.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
+		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/Portal/Portal_Home.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
+	},
+	{
 		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Player/Portal/Portal_Stage1.cpp",
 		"arguments": [
 			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
