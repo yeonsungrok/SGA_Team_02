@@ -11,6 +11,9 @@
 /**
  * 
  */
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FMonsterDelegate);
+
 UCLASS()
 class PROTOTYPE_API AMonster : public ACreature
 {
@@ -27,6 +30,9 @@ public:
 
 	virtual void Attack_AI(){};
 	
+
+	UPROPERTY(BlueprintAssignable, Category = "Events")
+	FMonsterDelegate MonsterEvent;
 
 protected:
 	virtual void DropReword();
@@ -48,8 +54,7 @@ public:
 	//virtual void OnDeath() {};
 
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Minimap, meta = (AllowPrivateAccess = "true"))
-	class UPaperSpriteComponent* _MonsterMinimapSprite;
+
 protected:
 	UPROPERTY(VisibleAnywhere)
 	int32 _exp;
