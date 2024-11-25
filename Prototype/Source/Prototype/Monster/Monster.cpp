@@ -56,10 +56,9 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent,
 	{
 		SetActorEnableCollision(false);
 		auto controller = GetController();
-		if (controller) // epic 여기서 못들어옴 ? 
+		if (controller) 
 			GetController()->UnPossess();
 		MonsterEvent.Broadcast();
-		EpicMonsterEvent.Broadcast();
 
 		player->_StatCom->AddExp(GetExp());
 

@@ -13,7 +13,6 @@
  */
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FMonsterDelegate);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEpicMonsterDelegate);
 
 
 UCLASS()
@@ -36,8 +35,7 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Events")
 	FMonsterDelegate MonsterEvent;
 
-	UPROPERTY(BlueprintAssignable, Category = "Events")
-	FEpicMonsterDelegate EpicMonsterEvent;
+
 
 protected:
 	virtual void DropReword();
