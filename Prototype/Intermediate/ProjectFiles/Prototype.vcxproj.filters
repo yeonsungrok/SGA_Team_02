@@ -157,6 +157,12 @@
     <ClInclude Include="..\..\Source\Prototype\Component\ParkourComponent_Test.h">
       <Filter>Source\Prototype\Component</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Component\ShopComponent.cpp">
+      <Filter>Source\Prototype\Component</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Component\ShopComponent.h">
+      <Filter>Source\Prototype\Component</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Prototype\Component\StatComponent.cpp">
       <Filter>Source\Prototype\Component</Filter>
     </ClCompile>
@@ -179,6 +185,12 @@
       <Filter>Source\Prototype\Item\Consumes</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Prototype\Item\Consumes\ConsumeItem.h">
+      <Filter>Source\Prototype\Item\Consumes</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Item\Consumes\Gold.cpp">
+      <Filter>Source\Prototype\Item\Consumes</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Item\Consumes\Gold.h">
       <Filter>Source\Prototype\Item\Consumes</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Prototype\Item\Consumes\HP_Postion.cpp">
@@ -391,6 +403,15 @@
     <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTTask_JumpToTarget.h">
       <Filter>Source\Prototype\Monster\AI</Filter>
     </ClInclude>
+    <Filter Include="Source\Prototype\NPC">
+      <UniqueIdentifier>{B9B5EE17-1657-3B44-A508-843E47DE10D5}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Prototype\NPC\MyNPC.cpp">
+      <Filter>Source\Prototype\NPC</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\NPC\MyNPC.h">
+      <Filter>Source\Prototype\NPC</Filter>
+    </ClInclude>
     <Filter Include="Source\Prototype\Player">
       <UniqueIdentifier>{83517824-5C32-3E62-8E44-C9D524CEF97F}</UniqueIdentifier>
     </Filter>
@@ -449,6 +470,12 @@
       <Filter>Source\Prototype\Player\Portal</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Prototype\Player\Portal\Portal.h">
+      <Filter>Source\Prototype\Player\Portal</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Player\Portal\Portal_Home.cpp">
+      <Filter>Source\Prototype\Player\Portal</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Player\Portal\Portal_Home.h">
       <Filter>Source\Prototype\Player\Portal</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Prototype\Player\Portal\Portal_Stage1.cpp">
