@@ -16,12 +16,7 @@ AMonster::AMonster()
 	_capsuleComponent = GetCapsuleComponent();
     _capsuleComponent->OnComponentHit.AddDynamic(this, &AMonster::OnHit);
 
-	_MonsterMinimapSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("MonsterMinimapSprite"));
-	_MonsterMinimapSprite->SetupAttachment(RootComponent);
-	_MonsterMinimapSprite->SetWorldRotation(FRotator::MakeFromEuler(FVector(90.f, 0.f, -90.f)));
-	_MonsterMinimapSprite->SetWorldScale3D(FVector(0.5f));
-	_MonsterMinimapSprite->SetWorldLocation(FVector(0.f, 0.f, 300.f));
-	_MonsterMinimapSprite->bVisibleInSceneCaptureOnly = true;
+	
 
 }
 
@@ -63,7 +58,9 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent,
 		auto controller = GetController();
 		if (controller)
 			GetController()->UnPossess();
+		MonsterEvent.Broadcast();
 		player->_StatCom->AddExp(GetExp());
+
 	}
 	return 0.0f;
 }
