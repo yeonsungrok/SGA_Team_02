@@ -3,6 +3,7 @@
 #include "Base/Stage1BossGameModeBase.h"
 #include "../Component/StatComponent.h"
 #include "../Component/InventoryComponent.h"
+#include "../Player/Portal/Portal_Home.h"
 #include "MyGameInstance.h"
 #include "../Player/MyPlayer.h"
 #include "../Base/Managers/UIManager.h"
@@ -20,6 +21,12 @@ AStage1BossGameModeBase::AStage1BossGameModeBase()
     if (BM.Succeeded())
     {
         _boss = BM.Class;
+    }
+
+	static ConstructorHelpers::FClassFinder<APortal_Home> PH(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/Player/Portal/HomePortal_BP.HomePortal_BP_C'"));
+    if (PH.Succeeded())
+    {
+        _portal = PH.Class;
     }
 
 }
@@ -63,6 +70,7 @@ void AStage1BossGameModeBase::BeginPlay()
 		UIManager->OpenUI(UI_LIST::Boss);
 
 		Boss->_StatCom->_PlHPDelegate.AddUObject(UIManager->GetBossUI(), &UBoss1Widget::UpdateBossHPBar);
+		Boss->_StatCom->_deathDelegate.AddUObject(this,&AStage1BossGameModeBase::BossClear);
 	}
 
 }
@@ -71,6 +79,34 @@ void AStage1BossGameModeBase::BeginPlay()
 void AStage1BossGameModeBase::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
+}
+
+void AStage1BossGameModeBase::BossClear()
+{
+	UE_LOG(LogTemp,Warning,TEXT("BossClear"));
+	if (_portal)
+    {
+        FActorSpawnParameters SpawnParams;
+        SpawnParams.Name = TEXT("PortalHome");
+
+        FVector PortalLocation = FVector(-8270.0f, 210.0f, 100.0f);
+        FRotator PortalRotation = FRotator::ZeroRotator; 
+
+        APortal_Home* Portal = GetWorld()->SpawnActor<APortal_Home>(_portal, PortalLocation, PortalRotation, SpawnParams);
+    }
+}
+
+void AStage1BossGameModeBase::BossStart()
+{
+	AMyPlayer* player = Cast<AMyPlayer>(UGameplayStatics::GetPlayerCharacter(this, 0));
+	if(player)
+	{
+		FVector NewLocation = FVector(-8000.0f, 0.0f, 200.0f); 
+        FRotator NewRotation = FRotator::ZeroRotator;
+
+		player->SetActorLocationAndRotation(NewLocation,NewRotation);
+	}
+
 }
 
 

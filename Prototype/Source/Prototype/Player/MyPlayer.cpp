@@ -251,7 +251,6 @@ void AMyPlayer::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
 
-	//_StatCom->SetLevelInit(1);
 
 	if (_Widget)
 	{
@@ -280,6 +279,7 @@ void AMyPlayer::PostInitializeComponents()
 		_KnightanimInstance->_attackDelegate.AddUObject(this, &ACreature::AttackHit);
 		_KnightanimInstance->_deathDelegate_Knight.AddUObject(this, &AMyPlayer::Disable);
 	}
+
 }
 
 // Called every frame
