@@ -12,6 +12,7 @@
 #include "NormalMonster.h"
 #include "../Animation/Monster_N_AnimInstance.h"
 #include "Monster/AI/AIController_NormalMonster.h"
+#include "../Player/MyPlayer.h"
 
 #include "Monster/MagicDecal.h"
 

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Monster/Monster.h"
 #include "GameFramework/Character.h"
+#include "Monster.h"
 
 #include "EpicMonster_witch.generated.h"
 

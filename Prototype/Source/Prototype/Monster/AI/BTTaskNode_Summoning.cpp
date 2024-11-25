@@ -21,10 +21,10 @@ EBTNodeResult::Type UBTTaskNode_Summoning::ExecuteTask(UBehaviorTreeComponent& O
 	if (character == nullptr)
 		return EBTNodeResult::Failed;
 
-	if (_SuMonster == false)
-	{
-		character->SumonedMonster();
-	}
+	//if (_SuMonster == false)
+	//{
+	//	character->SumonedMonster();
+	//}
 
 	_SuMonster = true;
 	//_isAttacking = true;
