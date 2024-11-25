@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\Prototype.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Prototype.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\PrototypeEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.ignore" />
+    <None Include="..\..\.vsconfig" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\Prototype">
+      <UniqueIdentifier>{14F936D4-3928-33B3-B9F8-8AE6BBA85935}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Prototype\Prototype.Build.cs">
+      <Filter>Source\Prototype</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\Prototype\Prototype.cpp">
+      <Filter>Source\Prototype</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Prototype.h">
+      <Filter>Source\Prototype</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\PrototypeCharacter.cpp">
+      <Filter>Source\Prototype</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\PrototypeCharacter.h">
+      <Filter>Source\Prototype</Filter>
+    </ClInclude>
+    <Filter Include="Source\Prototype\Animation">
+      <UniqueIdentifier>{60E94C24-58DA-3740-B1C1-AC5A17E86A1D}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Prototype\Animation\BaseAnimInstance.cpp">
+      <Filter>Source\Prototype\Animation</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Animation\BaseAnimInstance.h">
+      <Filter>Source\Prototype\Animation</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Animation\DragonAnimInstance.cpp">
+      <Filter>Source\Prototype\Animation</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Animation\DragonAnimInstance.h">
+      <Filter>Source\Prototype\Animation</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Animation\Monster_Boss01_AnimInstance.cpp">
+      <Filter>Source\Prototype\Animation</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Animation\Monster_Boss01_AnimInstance.h">
+      <Filter>Source\Prototype\Animation</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Animation\Monster_Epic01_Anim.cpp">
+      <Filter>Source\Prototype\Animation</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Animation\Monster_Epic01_Anim.h">
+      <Filter>Source\Prototype\Animation</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Animation\Monster_N_AnimInstance.cpp">
+      <Filter>Source\Prototype\Animation</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Animation\Monster_N_AnimInstance.h">
+      <Filter>Source\Prototype\Animation</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Animation\PlayerAnimInstance.cpp">
+      <Filter>Source\Prototype\Animation</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Animation\PlayerAnimInstance.h">
+      <Filter>Source\Prototype\Animation</Filter>
+    </ClInclude>
+    <Filter Include="Source\Prototype\Base">
+      <UniqueIdentifier>{E6B37418-3C39-3D12-8144-7B04CCC92D7B}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Prototype\Base\MyGameInstance.cpp">
+      <Filter>Source\Prototype\Base</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Base\MyGameInstance.h">
+      <Filter>Source\Prototype\Base</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Base\MyGameModeBase.cpp">
+      <Filter>Source\Prototype\Base</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Base\MyGameModeBase.h">
+      <Filter>Source\Prototype\Base</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Base\MyPlayerSaveGame.cpp">
+      <Filter>Source\Prototype\Base</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Base\MyPlayerSaveGame.h">
+      <Filter>Source\Prototype\Base</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Base\SaveGame_Test.cpp">
+      <Filter>Source\Prototype\Base</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Base\SaveGame_Test.h">
+      <Filter>Source\Prototype\Base</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Base\Stage1BossGameModeBase.cpp">
+      <Filter>Source\Prototype\Base</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Base\Stage1BossGameModeBase.h">
+      <Filter>Source\Prototype\Base</Filter>
+    </ClInclude>
+    <Filter Include="Source\Prototype\Base\Managers">
+      <UniqueIdentifier>{C4B05F69-C8B5-3C14-B67D-C8ED062C64A6}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Prototype\Base\Managers\EffectManager.cpp">
+      <Filter>Source\Prototype\Base\Managers</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Base\Managers\EffectManager.h">
+      <Filter>Source\Prototype\Base\Managers</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Base\Managers\SoundManager.cpp">
+      <Filter>Source\Prototype\Base\Managers</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Base\Managers\SoundManager.h">
+      <Filter>Source\Prototype\Base\Managers</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Base\Managers\UIManager.cpp">
+      <Filter>Source\Prototype\Base\Managers</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Base\Managers\UIManager.h">
+      <Filter>Source\Prototype\Base\Managers</Filter>
+    </ClInclude>
+    <Filter Include="Source\Prototype\Component">
+      <UniqueIdentifier>{D8F75376-B795-358A-BC0B-73A0C5A48480}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Prototype\Component\InventoryComponent.cpp">
+      <Filter>Source\Prototype\Component</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Component\InventoryComponent.h">
+      <Filter>Source\Prototype\Component</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Component\ParkourComponent_Test.cpp">
+      <Filter>Source\Prototype\Component</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Component\ParkourComponent_Test.h">
+      <Filter>Source\Prototype\Component</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Component\StatComponent.cpp">
+      <Filter>Source\Prototype\Component</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Component\StatComponent.h">
+      <Filter>Source\Prototype\Component</Filter>
+    </ClInclude>
+    <Filter Include="Source\Prototype\Item">
+      <UniqueIdentifier>{57500544-17D2-3D11-936C-D031CDD464C7}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Prototype\Item\BaseItem.cpp">
+      <Filter>Source\Prototype\Item</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Item\BaseItem.h">
+      <Filter>Source\Prototype\Item</Filter>
+    </ClInclude>
+    <Filter Include="Source\Prototype\Item\Consumes">
+      <UniqueIdentifier>{E67E6670-916C-35C8-AFC4-16C93FB48464}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Prototype\Item\Consumes\ConsumeItem.cpp">
+      <Filter>Source\Prototype\Item\Consumes</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Item\Consumes\ConsumeItem.h">
+      <Filter>Source\Prototype\Item\Consumes</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Item\Consumes\HP_Postion.cpp">
+      <Filter>Source\Prototype\Item\Consumes</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Item\Consumes\HP_Postion.h">
+      <Filter>Source\Prototype\Item\Consumes</Filter>
+    </ClInclude>
+    <Filter Include="Source\Prototype\Item\Equip">
+      <UniqueIdentifier>{ED7E9353-12CF-3FC6-99E7-65652FECD905}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Prototype\Item\Equip\EquipItem.cpp">
+      <Filter>Source\Prototype\Item\Equip</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Item\Equip\EquipItem.h">
+      <Filter>Source\Prototype\Item\Equip</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Item\Equip\Helmet.cpp">
+      <Filter>Source\Prototype\Item\Equip</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Item\Equip\Helmet.h">
+      <Filter>Source\Prototype\Item\Equip</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Item\Equip\LowerArmor.cpp">
+      <Filter>Source\Prototype\Item\Equip</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Item\Equip\LowerArmor.h">
+      <Filter>Source\Prototype\Item\Equip</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Item\Equip\Shield.cpp">
+      <Filter>Source\Prototype\Item\Equip</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Item\Equip\Shield.h">
+      <Filter>Source\Prototype\Item\Equip</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Item\Equip\ShoulderGuard.cpp">
+      <Filter>Source\Prototype\Item\Equip</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Item\Equip\ShoulderGuard.h">
+      <Filter>Source\Prototype\Item\Equip</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Item\Equip\Sword.cpp">
+      <Filter>Source\Prototype\Item\Equip</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Item\Equip\Sword.h">
+      <Filter>Source\Prototype\Item\Equip</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Item\Equip\UpperArmor.cpp">
+      <Filter>Source\Prototype\Item\Equip</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Item\Equip\UpperArmor.h">
+      <Filter>Source\Prototype\Item\Equip</Filter>
+    </ClInclude>
+    <Filter Include="Source\Prototype\Monster">
+      <UniqueIdentifier>{881315DA-BC1F-383B-9D63-C6C450E5BF53}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Prototype\Monster\BossMonster.cpp">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\BossMonster.h">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\BossObstacle.cpp">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\BossObstacle.h">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\EpicMonster_witch.cpp">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\EpicMonster_witch.h">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\EpicProjectile.cpp">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\EpicProjectile.h">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\LandDecal.cpp">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\LandDecal.h">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\MagicDecal.cpp">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\MagicDecal.h">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\Monster.cpp">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\Monster.h">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\NormalMonster.cpp">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\NormalMonster.h">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Prototype\Monster\test_monster.h">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClInclude>
+    <Filter Include="Source\Prototype\Monster\AI">
+      <UniqueIdentifier>{96682966-B8D5-318C-91C7-3B405372E76E}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\AIController_BossMonster.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\AIController_BossMonster.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\AIController_Epic.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\AIController_Epic.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\AIController_NormalMonster.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\AIController_NormalMonster.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTDecorator_CanAttack.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTDecorator_CanAttack.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTDecorator_Stun.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTDecorator_Stun.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTService_CheckHP.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTService_CheckHP.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTService_FindTarget.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTService_FindTarget.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTService_LongFindTarget.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTService_LongFindTarget.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTService_PlayerDistance.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTService_PlayerDistance.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTTaskNode_FlyAttack.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTTaskNode_FlyAttack.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTTaskNode_LookTarget.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTTaskNode_LookTarget.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTTaskNode_MagicBall.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTTaskNode_MagicBall.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTTaskNode_Summoning.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTTaskNode_Summoning.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTTask_Attack.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTTask_Attack.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTTask_BossDash.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTTask_BossDash.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTTask_FindRandPos.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTTask_FindRandPos.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTTask_JumpToTarget.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTTask_JumpToTarget.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <Filter Include="Source\Prototype\Player">
+      <UniqueIdentifier>{83517824-5C32-3E62-8E44-C9D524CEF97F}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Prototype\Player\Creature.cpp">
+      <Filter>Source\Prototype\Player</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Player\Creature.h">
+      <Filter>Source\Prototype\Player</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Player\Dragon.cpp">
+      <Filter>Source\Prototype\Player</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Player\Dragon.h">
+      <Filter>Source\Prototype\Player</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Player\Fireball.cpp">
+      <Filter>Source\Prototype\Player</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Player\Fireball.h">
+      <Filter>Source\Prototype\Player</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Player\MeteorDecal.cpp">
+      <Filter>Source\Prototype\Player</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Player\MeteorDecal.h">
+      <Filter>Source\Prototype\Player</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Player\MeteorDecalPool.cpp">
+      <Filter>Source\Prototype\Player</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Player\MeteorDecalPool.h">
+      <Filter>Source\Prototype\Player</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Player\MyDecal.cpp">
+      <Filter>Source\Prototype\Player</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Player\MyDecal.h">
+      <Filter>Source\Prototype\Player</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Player\MyPlayer.cpp">
+      <Filter>Source\Prototype\Player</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Player\MyPlayer.h">
+      <Filter>Source\Prototype\Player</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Player\MyPlayerController.cpp">
+      <Filter>Source\Prototype\Player</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Player\MyPlayerController.h">
+      <Filter>Source\Prototype\Player</Filter>
+    </ClInclude>
+    <Filter Include="Source\Prototype\Player\Portal">
+      <UniqueIdentifier>{A733512B-8586-30B7-822D-8DACDEC8DE1B}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Prototype\Player\Portal\Portal.cpp">
+      <Filter>Source\Prototype\Player\Portal</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Player\Portal\Portal.h">
+      <Filter>Source\Prototype\Player\Portal</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Player\Portal\Portal_Stage1.cpp">
+      <Filter>Source\Prototype\Player\Portal</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Player\Portal\Portal_Stage1.h">
+      <Filter>Source\Prototype\Player\Portal</Filter>
+    </ClInclude>
+    <Filter Include="Source\Prototype\TriggerBox_StageSequnce">
+      <UniqueIdentifier>{12C4424A-1C5B-338C-A606-4653F08DF755}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Prototype\TriggerBox_StageSequnce\StageSequence_Trigger.cpp">
+      <Filter>Source\Prototype\TriggerBox_StageSequnce</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\TriggerBox_StageSequnce\StageSequence_Trigger.h">
+      <Filter>Source\Prototype\TriggerBox_StageSequnce</Filter>
+    </ClInclude>
+    <Filter Include="Source\Prototype\UI">
+      <UniqueIdentifier>{827D1D71-97A9-33A2-80BE-8FD75D929603}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Prototype\UI\Boss1Widget.cpp">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\UI\Boss1Widget.h">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\UI\InventoryWidget.cpp">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\UI\InventoryWidget.h">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\UI\MiniMapActor.cpp">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\UI\MiniMapActor.h">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\UI\MiniMapWidget.cpp">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\UI\MiniMapWidget.h">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\UI\PlayerBarWidget.cpp">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\UI\PlayerBarWidget.h">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\UI\ShopWidget.cpp">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\UI\ShopWidget.h">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\UI\SkillWidget_test.cpp">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\UI\SkillWidget_test.h">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\UI\StatWidget.cpp">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\UI\StatWidget.h">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClInclude>
+    <Filter Include="Source\Prototype\UI\Elements">
+      <UniqueIdentifier>{22D54B75-DC4D-36CE-90C7-A0A25369634D}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Prototype\UI\Elements\IndexedButton.cpp">
+      <Filter>Source\Prototype\UI\Elements</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\UI\Elements\IndexedButton.h">
+      <Filter>Source\Prototype\UI\Elements</Filter>
+    </ClInclude>
+    <Filter Include="Source\Prototype\VFX">
+      <UniqueIdentifier>{E3288CC8-109C-322A-965C-9F3F89045649}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Prototype\VFX\ParticleEffect.cpp">
+      <Filter>Source\Prototype\VFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\VFX\ParticleEffect.h">
+      <Filter>Source\Prototype\VFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\VFX\SoundEffect.cpp">
+      <Filter>Source\Prototype\VFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\VFX\SoundEffect.h">
+      <Filter>Source\Prototype\VFX</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
