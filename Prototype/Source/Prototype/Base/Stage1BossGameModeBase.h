@@ -24,6 +24,10 @@ public:
 
 	virtual void PostInitializeComponents() override;
 
+	void BossClear();
+
+	void BossStart();
+
 
 
 
@@ -31,5 +35,8 @@ public:
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class ABossMonster> _boss;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<class APortal_Home> _portal;
 	
 };
