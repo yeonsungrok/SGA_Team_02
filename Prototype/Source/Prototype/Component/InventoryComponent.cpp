@@ -332,6 +332,13 @@ void UInventoryComponent::ShowItemSlots()
 	}
 }
 
+void UInventoryComponent::GettingMoney(int32 amount)
+{
+	_Wallet += amount;
+
+	UIManager->GetInventoryUI()->UpdateGold(_Wallet);
+}
+
 void UInventoryComponent::UpdateUI()
 {
 	for (int32 i = 0; i < _itemSlotMax; i++)

@@ -39,7 +39,7 @@ UMyGameInstance::UMyGameInstance()
 		_BossstatTable = BossStatData.Object;
 	}
 
-	static ConstructorHelpers::FObjectFinder<UDataTable> ConsumItemData(TEXT("/Script/Engine.DataTable'/Game/Data/Item/ConsumeItemDataTable.ConsumeItemDataTable'"));
+	static ConstructorHelpers::FObjectFinder<UDataTable> ConsumItemData(TEXT("/Script/Engine.DataTable'/Game/Data/Item/ConsumeItemTable.ConsumeItemTable'"));
 
 	if (ConsumItemData.Succeeded())
 	{
