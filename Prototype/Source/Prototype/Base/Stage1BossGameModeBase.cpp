@@ -58,7 +58,7 @@ void AStage1BossGameModeBase::BeginPlay()
 	FActorSpawnParameters SpawnParams;
     SpawnParams.Name = TEXT("Boss");
 
-	ABossMonster* Boss = GetWorld()->SpawnActor<ABossMonster>(_boss, FVector(-7935.8f,-264.5f,174.1f), FRotator::ZeroRotator, SpawnParams);
+	ABossMonster* Boss = GetWorld()->SpawnActor<ABossMonster>(_boss, FVector(-7787.8f,-191.5f,171.1f), FRotator::ZeroRotator, SpawnParams);
 	if(Boss)
 	{
 		AAIController_BossMonster* BossAI = GetWorld()->SpawnActor<AAIController_BossMonster>(AAIController_BossMonster::StaticClass());

@@ -105,6 +105,12 @@ void ABossMonster::Attack_AI()
 float ABossMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent, AController *EventInstigator, AActor *DamageCauser)
 {
 	UBaseAnimInstance *AnimInstance = Cast<UBaseAnimInstance>(GetMesh()->GetAnimInstance());
+
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+    if (!PlayerController) return 0.0f;
+
+    AMyPlayer* player = Cast<AMyPlayer>(PlayerController->GetPawn());
+
 	if (AnimInstance)
 	{
 		AnimInstance->PlayHitReactionMontage();
@@ -130,6 +136,8 @@ float ABossMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEv
 		auto controller = GetController();
 		if (controller)
 			GetController()->UnPossess();
+		UE_LOG(LogTemp, Warning, TEXT("Boss exp : %d"),_StatCom->GetExp());
+		player->_StatCom->AddExp(_StatCom->GetExp());
 
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle_Destroy, this, &ACreature::DelayedDestroy, 2.0f, false);
 	}

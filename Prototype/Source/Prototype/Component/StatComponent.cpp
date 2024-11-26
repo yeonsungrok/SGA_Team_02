@@ -153,7 +153,7 @@ void UStatComponent::SetBossLevelInit(int level)
 		_int = Data->INT;
 		_ogInt = _int;
 
-		_nextExp = Data->EXP;
+		_curExp = Data->EXP;
 		SetHp(_maxHp);
 		SetMp(_maxMp);
 		_bonusPoint = Data->BonusPoint;
@@ -455,6 +455,7 @@ void UStatComponent::AddExp(int32 amount)
 	while (_curExp >= _nextExp)
 	{
 		_curExp -= _nextExp;
+		UE_LOG(LogTemp, Warning, TEXT("exp : %d level up"),amount);
 		_level++;
 		_nextExp = 100 + (_level * 50); 
 		_PILevelDelegate.Broadcast(_level);
