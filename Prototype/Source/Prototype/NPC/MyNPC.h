@@ -43,4 +43,8 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Collision", meta = (AllowPrivateAccess = "true"))
 	class USphereComponent* _trigger;
+
+	bool _isOverlapped;
+
+	class UShopComponent* _shopComp;
 };

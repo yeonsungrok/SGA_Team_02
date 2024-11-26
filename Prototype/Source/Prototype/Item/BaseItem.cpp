@@ -7,6 +7,7 @@
 #include "Player/MyPlayer.h"
 
 #include "Base/MyGameInstance.h"
+#include "Base/Managers/EffectManager.h"
 #include "Component/InventoryComponent.h"
 
 #include "Components/StaticMeshComponent.h"
@@ -63,6 +64,7 @@ void ABaseItem::Init()
 	SetActorHiddenInGame(false);
 	SetActorEnableCollision(true);
 	PrimaryActorTick.bCanEverTick = true;
+	//EffectManager->Play(TEXT("I_ItemAura"), GetActorLocation(), FRotator::ZeroRotator);
 }
 
 void ABaseItem::Disable()

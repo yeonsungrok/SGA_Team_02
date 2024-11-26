@@ -281,3 +281,34 @@ FItemData *UMyGameInstance::GetEquipItemData(int code)
 	auto EquipData = _EquipItemTable->FindRow<FItemData>(*FString::FromInt(code), TEXT(""));
 	return EquipData;
 }
+
+TArray<FSellings*> UMyGameInstance::GetSellingData()
+{
+	TArray<FSellings*> sellingList;
+	FSellings* sellingData = nullptr;
+	
+	for (int i = 0; i < SHOP_LIST_MAX; i++)
+	{
+		sellingData = _ShopList->FindRow<FSellings>(*FString::FromInt(i), TEXT(""));
+		sellingList.Add(sellingData);
+	}
+
+	return sellingList;
+}
+
+ABaseItem* UMyGameInstance::SellDataToItemData(FSellings* data)
+{
+	if (data->Type == ItemType::Equipment)
+	{
+		AEquipItem* equip = GetWorld()->SpawnActor<AEquipItem>(ABaseItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+		equip->SetItemWithCode(data->Code);
+		return equip;
+	}
+	else
+	{
+		ABaseItem* consume = GetWorld()->SpawnActor<ABaseItem>(ABaseItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+		consume->SetItemWithCode(data->Code);
+		return consume;
+	}
+
+}

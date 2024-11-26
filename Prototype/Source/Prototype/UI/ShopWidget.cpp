@@ -3,3 +3,6 @@
 
 #include "UI/ShopWidget.h"
 
+void UShopWidget::UpdateShopList(TArray<ABaseItem*> list)
+{
+}

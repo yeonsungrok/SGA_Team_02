@@ -10,6 +10,7 @@
 #include "Component/InventoryComponent.h"
 #include "../Item/BaseItem.h"
 #include "Item/Equip/EquipItem.h"
+#include "../Component/ShopComponent.h"
 #include "MyGameInstance.generated.h"
 
 #define GAMEINSTANCE Cast<UMyGameInstance>(GetWorld()->GetGameInstance())
@@ -59,6 +60,10 @@ public:
 	FItemData* GetConsumeItemData(int code);
 	FItemData* GetEquipItemData(int code);
 
+	TArray<FSellings*> GetSellingData();
+
+	ABaseItem* SellDataToItemData(FSellings* data);
+
 	ASoundManager* GetSoundManager() { return _soundManager; }
 	AEffectManager* GetEffectManager() { return _effectManager; }
 
@@ -79,6 +84,9 @@ private:
 	UDataTable* _ConsItemTable;
 	UPROPERTY()
 	UDataTable* _EquipItemTable;
+
+	UPROPERTY()
+	UDataTable* _ShopList;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	ASoundManager* _soundManager;

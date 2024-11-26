@@ -6,6 +6,8 @@
 #include "Blueprint/UserWidget.h"
 #include "ShopWidget.generated.h"
 
+class ABaseItem;
+
 /**
  * 
  */
@@ -14,4 +16,6 @@ class PROTOTYPE_API UShopWidget : public UUserWidget
 {
 	GENERATED_BODY()
 	
+public:
+	void UpdateShopList(TArray<ABaseItem*> list);
 };

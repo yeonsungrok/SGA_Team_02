@@ -43,6 +43,8 @@ AEffectManager::AEffectManager()
 	// BossMonster : Obstacle Break
 	CreateNiagaraClass(TEXT("NS_LightningSlash"), TEXT("/Script/Engine.Blueprint'/Game/Blueprint/VFX/Niagara/NS_Obstacle_Break_BP.NS_Obstacle_Break_BP_C'"));
 
+	// Item
+	CreateNiagaraClass(TEXT("I_ItemAura"), TEXT("/Script/Niagara.NiagaraSystem'/Game/MixedVFX/Particles/Mix/NS_Mix_03.NS_Mix_03'"));
 }
 
 void AEffectManager::CreateNiagaraClass(FString name, FString path)
