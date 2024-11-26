@@ -2,6 +2,7 @@
 
 
 #include "UI/ShopWidget.h"
+#include "InventoryWidget.h"
 
 void UShopWidget::UpdateShopList(TArray<ABaseItem*> list)
 {

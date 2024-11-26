@@ -9,7 +9,7 @@
 
 class AMyPlayer;
 
-#define SHOP_LIST_MAX 6
+#define SHOP_LIST_MAX 5
 
 USTRUCT()
 struct FSellings : public FTableRowBase
