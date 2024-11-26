@@ -312,6 +312,10 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\Prototype\Base\Stage1BossGameModeBase.h"/>
+    <ClCompile Include="..\..\Source\Prototype\Base\Stage1NormalGameModeBase.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Base\Stage1NormalGameModeBase.h"/>
     <ClCompile Include="..\..\Source\Prototype\Base\Managers\EffectManager.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -533,6 +537,10 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\Prototype\Player\Portal\Portal_Stage1.h"/>
+    <ClCompile Include="..\..\Source\Prototype\Player\Portal\Portal_Stage1_Normal.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Player\Portal\Portal_Stage1_Normal.h"/>
     <ClCompile Include="..\..\Source\Prototype\TriggerBox_StageSequnce\StageSequence_Trigger.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>

@@ -448,7 +448,7 @@ void UStatComponent::AddAttackDamage(float amount)
 
 void UStatComponent::AddExp(int32 amount)
 {
-	if (_level == 3)
+	if (_level == 100)
 		return;
 	_curExp += amount;
 
