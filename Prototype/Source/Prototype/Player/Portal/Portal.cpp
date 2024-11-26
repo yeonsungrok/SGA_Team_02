@@ -35,14 +35,13 @@ void APortal::BeginPlay()
 
 void APortal::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult &SweepResult)
 {
-
 	AMyPlayer* player = Cast<AMyPlayer>(OtherActor);
     if (player)
     {
+        player->ClearSkillTimer();
         UMyGameInstance* GameInstance = Cast<UMyGameInstance>(GetGameInstance());
         if (GameInstance)
         {
-            UE_LOG(LogTemp,Warning,TEXT("Portal Save"));
             GameInstance->SavePlayerStats(player->_StatCom);
             GameInstance->SaveInventory(player->_inventoryComponent);
             GameInstance->SavePlayerSkeletal(player);

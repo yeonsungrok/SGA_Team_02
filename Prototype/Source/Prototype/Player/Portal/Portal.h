@@ -14,6 +14,7 @@ class PROTOTYPE_API APortal : public AActor
 public:	
 	// Sets default values for this actor's properties
 	APortal();
+	
 
 protected:
 	// Called when the game starts or when spawned

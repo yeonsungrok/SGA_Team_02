@@ -1,6 +1,5 @@
 #include "SkillWidget_test.h"
 #include "Components/Image.h"
-#include "Components/TextBlock.h"
 #include "../Player/MyPlayer.h"
 #include "TimerManager.h"
 
@@ -16,11 +15,6 @@ void USkillWidget_test::NativeConstruct()
     CooldownOverlays.Add(Cooldown3);
     CooldownOverlays.Add(Cooldown4);
 
-    CooldownTexts.Add(Cooltext1);
-    CooldownTexts.Add(Cooltext2);
-    CooldownTexts.Add(Cooltext3);
-    CooldownTexts.Add(Cooltext4);
-
     CooldownTimes.Init(0.0f, 4);
     MaxCooldownTimes.Init(0.0f, 4);
     CooldownTimerHandles.Init(FTimerHandle(), 4);
@@ -34,21 +28,7 @@ void USkillWidget_test::NativeConstruct()
     }
 }
 
-void USkillWidget_test::UpdateCooldownText(int32 SkillIndex, float RemainingTime)
-{
-    if (CooldownTexts[SkillIndex])
-    {
-        if (RemainingTime <= 0.0f)
-        {
-            CooldownTexts[SkillIndex]->SetText(FText::FromString(TEXT("")));
-        }
-        else
-        {
-            FString CooldownText = FString::Printf(TEXT("%.1f"), RemainingTime);
-            CooldownTexts[SkillIndex]->SetText(FText::FromString(CooldownText));
-        }
-    }
-}
+
 
 void USkillWidget_test::StartCooldown(int32 SkillIndex, float InMaxCooldownTime)
 {
@@ -88,6 +68,17 @@ void USkillWidget_test::StartCooldown(int32 SkillIndex, float InMaxCooldownTime)
     } }, GetWorld()->GetDeltaSeconds(), true); 
 }
 
+void USkillWidget_test::ClearAll()
+{
+     for (int32 i = 0; i < CooldownTimerHandles.Num(); ++i)
+    {
+        if (GetWorld() && GetWorld()->GetTimerManager().IsTimerActive(CooldownTimerHandles[i]))
+        {
+            GetWorld()->GetTimerManager().ClearTimer(CooldownTimerHandles[i]);
+        }
+    }
+}
+
 void USkillWidget_test::UpdateCooldown(int32 SkillIndex)
 {
     if (SkillIndex < 0 || SkillIndex >= CooldownTimes.Num())
@@ -122,5 +113,4 @@ void USkillWidget_test::UpdateCooldown(int32 SkillIndex)
         }
     }
 
-    UpdateCooldownText(SkillIndex, CooldownTimes[SkillIndex]);
 }
