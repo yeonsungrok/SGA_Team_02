@@ -4,6 +4,7 @@
 #include "Monster/Monster.h"
 #include "Components/CapsuleComponent.h"
 #include "../Player/MyPlayer.h"
+#include "../Player/MyPlayerController.h"
 #include "Component/StatComponent.h"
 
 
@@ -45,22 +46,24 @@ void AMonster::DropReword()
 
 float AMonster::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
-	Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser); // 노멀몬스터 타겟모션 나타남
+	Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser); 
 
-	AMyPlayer* player = Cast<AMyPlayer>(DamageCauser);
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+    if (!PlayerController) return 0.0f;
+
+    AMyPlayer* Player = Cast<AMyPlayer>(PlayerController->GetPawn());
 
 	float damaged = -_StatCom->AddCurHp(-Damage);
 	UE_LOG(LogTemp, Warning, TEXT("Take Damaged: %f"),Damage);
 
-	if (this->_StatCom->IsDead() && player != nullptr)
+	if (this->_StatCom->IsDead() && Player != nullptr)
 	{
 		SetActorEnableCollision(false);
 		auto controller = GetController();
 		if (controller)
 			GetController()->UnPossess();
 		MonsterEvent.Broadcast();
-		player->_StatCom->AddExp(GetExp());
-
+		Player->_StatCom->AddExp(GetExp());
 	}
 	return 0.0f;
 }
