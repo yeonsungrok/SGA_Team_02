@@ -52,6 +52,13 @@ UMyGameInstance::UMyGameInstance()
 	{
 		_EquipItemTable = EquipItemData.Object;
 	}
+
+	static ConstructorHelpers::FObjectFinder<UDataTable> DragonStat(TEXT("/Script/Engine.DataTable'/Game/Data/DragonStatDataTable.DragonStatDataTable'"));
+
+	if (DragonStat.Succeeded())
+	{
+		_DragonStatTable = DragonStat.Object;
+	}
 }
 
 void UMyGameInstance::SavePlayerStats(class UStatComponent *StatComponent)
@@ -268,6 +275,12 @@ FMyStatData *UMyGameInstance::GetBossDataByLevel(int level)
 {
 	auto BossStatData = _BossstatTable->FindRow<FMyStatData>(*FString::FromInt(level), TEXT(""));
 	return BossStatData;
+}
+
+FMyStatData* UMyGameInstance::GetDragonDataByLevel(int level)
+{
+	auto DragonStatData = _DragonStatTable->FindRow<FMyStatData>(*FString::FromInt(level), TEXT(""));
+	return DragonStatData;
 }
 
 FItemData *UMyGameInstance::GetConsumeItemData(int code)

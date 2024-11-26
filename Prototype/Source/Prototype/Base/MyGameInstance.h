@@ -56,6 +56,7 @@ public:
 	FMyStatData* GetStatDataByLevel(int level);
 	FMyStatData* GetEpicDataByLevel(int level);
 	FMyStatData* GetBossDataByLevel(int level);
+	FMyStatData* GetDragonDataByLevel(int level);
 
 	FItemData* GetConsumeItemData(int code);
 	FItemData* GetEquipItemData(int code);
@@ -87,6 +88,9 @@ private:
 
 	UPROPERTY()
 	UDataTable* _ShopList;
+
+	UPROPERTY()
+	UDataTable* _DragonStatTable;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	ASoundManager* _soundManager;
