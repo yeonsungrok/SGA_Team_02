@@ -6,5 +6,5 @@
 
 APortal_Home::APortal_Home()
 {
-    _mapName = TEXT("Home");
+    _mapName = TEXT("NewMap");
 }
