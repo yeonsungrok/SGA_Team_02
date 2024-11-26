@@ -102,7 +102,7 @@ void AStage1BossGameModeBase::BossStart()
 	AMyPlayer* player = Cast<AMyPlayer>(UGameplayStatics::GetPlayerCharacter(this, 0));
 	if(player)
 	{
-		FVector NewLocation = FVector(-4515.0f, -239.0f, 105.0f); 
+		FVector NewLocation = FVector(-5202.5f, 12.0f, 150.f); 
         FRotator NewRotation = FRotator::ZeroRotator;
 
 		player->SetActorLocationAndRotation(NewLocation,NewRotation);
