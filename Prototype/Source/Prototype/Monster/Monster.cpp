@@ -8,16 +8,12 @@
 #include "Component/StatComponent.h"
 
 
-
-
 AMonster::AMonster()
 {
     GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
 
 	_capsuleComponent = GetCapsuleComponent();
     _capsuleComponent->OnComponentHit.AddDynamic(this, &AMonster::OnHit);
-
-	
 
 }
 

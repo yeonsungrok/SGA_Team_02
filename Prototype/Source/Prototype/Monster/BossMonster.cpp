@@ -226,7 +226,7 @@ void ABossMonster::Dash(FVector TargetLocation)
 		}
 
 		float CharacterWidth = GetCapsuleComponent()->GetScaledCapsuleRadius();
-		float DecalScaleX = DashDistance / 200.0f;
+		float DecalScaleX = DashDistance / 250.0f;
 		float DecalScaleY = CharacterWidth / 200.0f;
 		_dashDecal->SetWorldScale3D(FVector(DecalScaleX, DecalScaleY, 0.01f));
 	}
