@@ -121,6 +121,12 @@
     <ClInclude Include="..\..\Source\Prototype\Base\Stage1BossGameModeBase.h">
       <Filter>Source\Prototype\Base</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Base\Stage1NormalGameModeBase.cpp">
+      <Filter>Source\Prototype\Base</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Base\Stage1NormalGameModeBase.h">
+      <Filter>Source\Prototype\Base</Filter>
+    </ClInclude>
     <Filter Include="Source\Prototype\Base\Managers">
       <UniqueIdentifier>{C4B05F69-C8B5-3C14-B67D-C8ED062C64A6}</UniqueIdentifier>
     </Filter>
@@ -482,6 +488,12 @@
       <Filter>Source\Prototype\Player\Portal</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Prototype\Player\Portal\Portal_Stage1.h">
+      <Filter>Source\Prototype\Player\Portal</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Player\Portal\Portal_Stage1_Normal.cpp">
+      <Filter>Source\Prototype\Player\Portal</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Player\Portal\Portal_Stage1_Normal.h">
       <Filter>Source\Prototype\Player\Portal</Filter>
     </ClInclude>
     <Filter Include="Source\Prototype\TriggerBox_StageSequnce">
