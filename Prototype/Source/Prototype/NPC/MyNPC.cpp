@@ -4,6 +4,7 @@
 #include "MyNPC.h"
 #include "Components/SphereComponent.h"
 #include "Player/MyPlayer.h"
+#include "Component/ShopComponent.h"
 
 // Sets default values
 AMyNPC::AMyNPC()
@@ -11,6 +12,10 @@ AMyNPC::AMyNPC()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	_trigger = CreateDefaultSubobject<USphereComponent>(TEXT("Trigger"));
+	_trigger->SetupAttachment(RootComponent);
+	_trigger->SetCollisionProfileName(TEXT("NPC"));
+	_trigger->SetSphereRadius(100.0f);
 }
 
 // Called when the game starts or when spawned
@@ -32,12 +37,16 @@ void AMyNPC::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherAc
 	if (_target == nullptr)
 		return;
 
-	//Look Player
+	_isOverlapped = true;
+	_shopComp->SetCustomer(_target);
+	//Optional : Look Player
 }
 
 void AMyNPC::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
 	_target = nullptr;
+	_isOverlapped = false;
+	_shopComp->SetCustomer(_target);
 }
 
 // Called every frame

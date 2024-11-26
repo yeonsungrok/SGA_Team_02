@@ -2,6 +2,9 @@
 
 
 #include "Component/ShopComponent.h"
+#include "Base/MyGameInstance.h"
+#include "Base/Managers/UIManager.h"
+#include "UI/ShopWidget.h"
 
 // Sets default values for this component's properties
 UShopComponent::UShopComponent()
@@ -23,8 +26,22 @@ void UShopComponent::BeginPlay()
 	
 }
 
-void UShopComponent::SetSalesWithCode(int32 code)
+void UShopComponent::SetCustomer(AMyPlayer* target)
 {
+	_customer = target;
+}
+
+void UShopComponent::SetSales()
+{
+	auto data = GAMEINSTANCE->GetSellingData();
+	ABaseItem* item;
+	for (auto it : data)
+	{
+		item = GAMEINSTANCE->SellDataToItemData(it);
+		_sallings.Add(item);
+	}
+
+	UIManager->GetShopUI()->UpdateShopList(_sallings);
 }
 
 void UShopComponent::Sale(int32 index)
