@@ -83,27 +83,6 @@ AMyPlayer::AMyPlayer()
 	_springArm->TargetArmLength = 500.0f;
 	_springArm->SetRelativeRotation(FRotator(-35.0f, 0.0f, 0.0f));
 
-	// MiniMap test
-	_MiniMapspringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("MiniSpringArm"));
-	_MiniMapspringArm->SetupAttachment(RootComponent);
-	_MiniMapspringArm->SetWorldRotation(FRotator::MakeFromEuler(FVector(0.0f, -90.0f, 0.0f)));
-	_MiniMapspringArm->bUsePawnControlRotation = false;
-	_MiniMapspringArm->bInheritPitch = false;
-	_MiniMapspringArm->bInheritRoll = false;
-	_MiniMapspringArm->bInheritYaw = false;
-
-	_MiniMapCapture = CreateDefaultSubobject<USceneCaptureComponent2D>(TEXT("MiniCapture"));
-	_MiniMapCapture->SetupAttachment(_MiniMapspringArm);
-
-	_MiniMapCapture->ProjectionType = ECameraProjectionMode::Orthographic;
-	_MiniMapCapture->OrthoWidth = 1024;
-
-	_MinimapSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("MinimapSprite"));
-	_MinimapSprite->SetupAttachment(RootComponent);
-	_MinimapSprite->SetWorldRotation(FRotator::MakeFromEuler(FVector(90.f, 0.f, -90.f)));
-	//_MinimapSprite->SetWorldScale3D(FVector(0.5f));
-	//_MinimapSprite->SetWorldLocation(FVector(0.f, 0.f, 300.f));
-	_MinimapSprite->bVisibleInSceneCaptureOnly = true;
 
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> USM(TEXT("/Script/Engine.SkeletalMesh'/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/Free_WhiteTiger_Detach/Free_Body_Face_Pos.Free_Body_Face_Pos'"));
 	if (USM.Succeeded())
@@ -151,14 +130,7 @@ AMyPlayer::AMyPlayer()
 		_statWidget = CreateWidget<UStatWidget>(GetWorld(), StatClass.Class);
 	}
 
-	// MiniMap
-	static ConstructorHelpers::FClassFinder<UMiniMapWidget> MinuMap(
-		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/MiniMap_UI.MiniMap_UI_C'"));
-
-	if (MinuMap.Succeeded())
-	{
-		_MiniMap = CreateWidget<UMiniMapWidget>(GetWorld(), MinuMap.Class);
-	}
+	
 
 	static ConstructorHelpers::FClassFinder<UCameraShakeBase> CS(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/Player/CamerShake_BP.CamerShake_BP_C'"));
 	if (CS.Succeeded())
@@ -213,14 +185,12 @@ void AMyPlayer::BeginPlay()
 
 	if (_statWidget)
 	{
-		_statWidget->AddToViewport();
+		_statWidget->AddToViewport(10);
+		
 		_statWidget->SetVisibility(ESlateVisibility::Hidden);
 	}
 
-	if (_MiniMap)
-	{
-		_MiniMap->AddToViewport();
-	}
+	
 
 	AMyPlayerController *MyController = Cast<AMyPlayerController>(GetController());
 	if (MyController != nullptr)
