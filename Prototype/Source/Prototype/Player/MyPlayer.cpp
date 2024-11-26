@@ -1025,6 +1025,11 @@ void AMyPlayer::StartScreenShake()
 	}
 }
 
+void AMyPlayer::ClearSkillTimer()
+{
+	_skillWidgetInstance->ClearAll();
+}
+
 void AMyPlayer::TransformToDragon()
 {
 	if (!_dragonInstance)
