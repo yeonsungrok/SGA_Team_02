@@ -93,6 +93,7 @@ public:
 
 	void SavePlayerState();
 	void LoadPlayerState();
+	void ClearSkillTimer();
 
 private:
 	void Move(const FInputActionValue &value);
@@ -148,6 +149,7 @@ private:
 
 	void PerformDash(float DeltaTime);
 	void StartScreenShake();
+
 
 	
 

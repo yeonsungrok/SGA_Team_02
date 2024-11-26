@@ -17,26 +17,13 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Skill")
     void StartCooldown(int32 SkillIndex, float InMaxCooldownTime);
 
+    void ClearAll();
+
 protected:
     virtual void NativeConstruct() override;
 
-    UFUNCTION(BlueprintCallable, Category = "Cooldown")
-    void UpdateCooldownText(int32 SkillIndex, float RemainingTime);
-
 	UFUNCTION()
     void UpdateCooldown(int32 SkillIndex);
-
-    UPROPERTY(meta = (BindWidget))
-    class UTextBlock* Cooltext1;
-
-    UPROPERTY(meta = (BindWidget))
-    class UTextBlock* Cooltext2;
-
-    UPROPERTY(meta = (BindWidget))
-    class UTextBlock* Cooltext3;
-
-    UPROPERTY(meta = (BindWidget))
-    class UTextBlock* Cooltext4;
 
     UPROPERTY(meta = (BindWidget))
     class UImage* SkillImage1;
@@ -68,5 +55,4 @@ protected:
 
     TArray<UImage*> SkillImages;
     TArray<UImage*> CooldownOverlays;
-    TArray<UTextBlock*> CooldownTexts;
 };
