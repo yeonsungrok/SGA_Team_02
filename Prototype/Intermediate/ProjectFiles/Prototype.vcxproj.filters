@@ -277,6 +277,12 @@
     <ClInclude Include="..\..\Source\Prototype\Monster\BossObstacle.h">
       <Filter>Source\Prototype\Monster</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\EpicMonster2.cpp">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\EpicMonster2.h">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Prototype\Monster\EpicMonster_witch.cpp">
       <Filter>Source\Prototype\Monster</Filter>
     </ClCompile>
