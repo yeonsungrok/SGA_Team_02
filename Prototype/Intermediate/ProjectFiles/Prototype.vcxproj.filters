@@ -253,6 +253,18 @@
     <Filter Include="Source\Prototype\Monster">
       <UniqueIdentifier>{881315DA-BC1F-383B-9D63-C6C450E5BF53}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Prototype\Monster\Boss2Monster.cpp">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\Boss2Monster.h">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\BossFireball.cpp">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\BossFireball.h">
+      <Filter>Source\Prototype\Monster</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Prototype\Monster\BossMonster.cpp">
       <Filter>Source\Prototype\Monster</Filter>
     </ClCompile>
