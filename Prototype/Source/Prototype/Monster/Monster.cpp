@@ -59,7 +59,7 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent,
 		if (controller)
 			GetController()->UnPossess();
 		MonsterEvent.Broadcast();
-		Player->_StatCom->AddExp(GetExp());
+		Player->_StatCom->AddExp(_StatCom->GetNextExp());
 	}
 	return 0.0f;
 }
