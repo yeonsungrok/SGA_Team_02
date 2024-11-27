@@ -5,7 +5,9 @@
 
 #include "../Player/Creature.h"
 #include "../Player/MyPlayer.h"
+#include "../Player/Dragon.h"
 #include "GameFramework/PawnMovementComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 UBaseAnimInstance::UBaseAnimInstance()
 {
@@ -25,6 +27,24 @@ void UBaseAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	if (myCharacter != nullptr)
 	{
 		_speed = myCharacter->GetVelocity().Size();
+
+		if(ADragon* Dragon = Cast<ADragon>(myCharacter))
+		{
+			if (Dragon->GetCharacterMovement()->IsFalling())
+			{
+				// 점프 상태에서의 비행 속도 동기화
+				Dragon->GetCharacterMovement()->MaxFlySpeed = _speed;
+			}
+			else
+			{
+				// 지상에서는 MaxSpeed를 기존 값으로 설정
+				Dragon->GetCharacterMovement()->MaxFlySpeed = 600.0f; // 기본 속도
+			}
+		}
+
+
+
+
 
 		_isFalling = myCharacter->GetMovementComponent()->IsFalling();
 		_Direction = CalculateDirection(myCharacter->GetVelocity(), myCharacter->GetActorRotation());
