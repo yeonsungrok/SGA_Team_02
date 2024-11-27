@@ -17,12 +17,6 @@ class PROTOTYPE_API UMonster_Epic01_Anim : public UBaseAnimInstance
 public:
 	UMonster_Epic01_Anim();
 
-	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
-
-	virtual void PlayAttackMontage()override;
-
-	virtual void JumpToSection(int32 sectionIndex) override;
-
 
 	virtual void PlayAttackFarMontage() override;
 

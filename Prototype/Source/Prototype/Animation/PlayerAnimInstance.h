@@ -19,10 +19,6 @@ class PROTOTYPE_API UPlayerAnimInstance : public UBaseAnimInstance
 	
 public:
 	UPlayerAnimInstance();
-	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
-	virtual void JumpToSection(int32 sectionIndex) override;
-	virtual void PlayAttackMontage() override;
-
 
 	// 방어 애니메이션 재생 함수 (시작/해제)
 	void PlayGuardMontage(bool bIsGuarding);

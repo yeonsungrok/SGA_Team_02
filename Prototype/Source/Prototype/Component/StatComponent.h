@@ -94,6 +94,7 @@ public:
 	int32 GetExp() { return _curExp; }
 	int32 GetCurMp() { return _curMp; }
 	int32 GetMaxMp() { return _maxMp; }
+	int32 GetNextExp() { return _nextExp; }
 	//test
 	int32 GetStr()  { return _str; }
 	int32 GetDex()  { return _dex; }

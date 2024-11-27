@@ -51,10 +51,6 @@ void ABossMonster::BeginPlay()
 void ABossMonster::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
-	if (_StatCom)
-	{
-		_StatCom->SetBossLevelInit(1);
-	}
 
 	_bossMonster01_AnimInstance = Cast<UMonster_Boss01_AnimInstance>(GetMesh()->GetAnimInstance());
 	if (_bossMonster01_AnimInstance->IsValidLowLevelFast())

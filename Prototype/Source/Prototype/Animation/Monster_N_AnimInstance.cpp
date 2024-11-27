@@ -22,21 +22,6 @@ UMonster_N_AnimInstance::UMonster_N_AnimInstance()
 
 }
 
-void UMonster_N_AnimInstance::NativeUpdateAnimation(float DeltaSeconds)
-{
-	Super::NativeUpdateAnimation(DeltaSeconds);
-}
-
-void UMonster_N_AnimInstance::PlayAttackMontage()
-{
-	Super::PlayAttackMontage();
-}
-
-
-void UMonster_N_AnimInstance::JumpToSection(int32 sectionIndex)
-{
-	Super::JumpToSection(sectionIndex);
-}
 
 void UMonster_N_AnimInstance::AnimNotify_Attackhit()
 {

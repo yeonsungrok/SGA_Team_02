@@ -6,6 +6,13 @@
 
 UDragonAnimInstance::UDragonAnimInstance()
 {
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> Dragon
+	(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Player/Dragon_GroundAttkack_AnimMontage.Dragon_GroundAttkack_AnimMontage'"));
+
+	if (Dragon.Succeeded())
+	{
+		_myAnimMontage = Dragon.Object;
+	}
 
 }
 
@@ -21,15 +28,12 @@ void UDragonAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 
 }
 
-void UDragonAnimInstance::JumpToSection(int32 sectionIndex)
-{
-	Super::JumpToSection(sectionIndex);
-}
 
-//void UDragonAnimInstance::SetSpeed(float NewSpeed)
-//{
-//	_speed = NewSpeed;
-//}
+
+void UDragonAnimInstance::AnimNotify_Attackhit()
+{
+	_attackDelegate_Dragon.Broadcast();
+}
 
 void UDragonAnimInstance::AnimNotify_Death()
 {

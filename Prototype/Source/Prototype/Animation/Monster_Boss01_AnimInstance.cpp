@@ -47,25 +47,6 @@ UMonster_Boss01_AnimInstance::UMonster_Boss01_AnimInstance()
 
 }
 
-void UMonster_Boss01_AnimInstance::NativeUpdateAnimation(float DeltaSeconds)
-{
-	Super::NativeUpdateAnimation(DeltaSeconds);
-}
-
-void UMonster_Boss01_AnimInstance::PlayAttackMontage()
-{
-	Super::PlayAttackMontage();
-}
-
-void UMonster_Boss01_AnimInstance::PlayStunMontage()
-{
-	Super::PlayStunMontage();
-}
-
-void UMonster_Boss01_AnimInstance::PlayDashMontage()
-{
-	Super::PlayDashMontage();
-}
 
 void UMonster_Boss01_AnimInstance::PlayUpAttackMontage()
 {
