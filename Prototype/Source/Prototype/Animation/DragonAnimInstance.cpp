@@ -28,15 +28,6 @@ void UDragonAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 
 }
 
-void UDragonAnimInstance::JumpToSection(int32 sectionIndex)
-{
-	Super::JumpToSection(sectionIndex);
-}
-
-void UDragonAnimInstance::PlayAttackMontage()
-{
-	Super::PlayAttackMontage();
-}
 
 
 void UDragonAnimInstance::AnimNotify_Attackhit()

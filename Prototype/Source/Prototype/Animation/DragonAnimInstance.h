@@ -19,8 +19,6 @@ public:
 	UDragonAnimInstance();
 
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
-	virtual void JumpToSection(int32 sectionIndex) override;
-	virtual void PlayAttackMontage() override;
 	/*void SetSpeed(float NewSpeed);*/
 
 	AttackDelegate _attackDelegate_Dragon;

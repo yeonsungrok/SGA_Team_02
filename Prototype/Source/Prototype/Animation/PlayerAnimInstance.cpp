@@ -62,21 +62,6 @@ UPlayerAnimInstance::UPlayerAnimInstance()
 
 }
 
-void UPlayerAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
-{
-	Super::NativeUpdateAnimation(DeltaSeconds);
-}
-
-void UPlayerAnimInstance::JumpToSection(int32 sectionIndex)
-{
-	Super::JumpToSection(sectionIndex);
-}
-
-void UPlayerAnimInstance::PlayAttackMontage()
-{
-	Super::PlayAttackMontage();
-}
-
 void UPlayerAnimInstance::PlayGuardMontage(bool bIsGuarding)
 {
 	if(bIsGuarding)
