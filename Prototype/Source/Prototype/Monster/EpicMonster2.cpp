@@ -11,3 +11,4 @@ AEpicMonster2::AEpicMonster2()
 	{
 		GetMesh()->SetSkeletalMesh(EP.Object);
 	}
+}
