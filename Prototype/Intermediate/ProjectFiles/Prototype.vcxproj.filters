@@ -70,6 +70,12 @@
     <ClInclude Include="..\..\Source\Prototype\Animation\Monster_Boss01_AnimInstance.h">
       <Filter>Source\Prototype\Animation</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Animation\Monster_Boss2_AnimInstance.cpp">
+      <Filter>Source\Prototype\Animation</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Animation\Monster_Boss2_AnimInstance.h">
+      <Filter>Source\Prototype\Animation</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Prototype\Animation\Monster_Epic01_Anim.cpp">
       <Filter>Source\Prototype\Animation</Filter>
     </ClCompile>
@@ -325,6 +331,12 @@
     <Filter Include="Source\Prototype\Monster\AI">
       <UniqueIdentifier>{96682966-B8D5-318C-91C7-3B405372E76E}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\AIController_Boss2.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\AIController_Boss2.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Prototype\Monster\AI\AIController_BossMonster.cpp">
       <Filter>Source\Prototype\Monster\AI</Filter>
     </ClCompile>
@@ -377,6 +389,12 @@
       <Filter>Source\Prototype\Monster\AI</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTService_PlayerDistance.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTTaskNode_Fireball.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTTaskNode_Fireball.h">
       <Filter>Source\Prototype\Monster\AI</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTTaskNode_FlyAttack.cpp">
