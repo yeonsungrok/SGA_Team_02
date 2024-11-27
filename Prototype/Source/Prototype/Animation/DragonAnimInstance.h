@@ -20,10 +20,15 @@ public:
 
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
 	virtual void JumpToSection(int32 sectionIndex) override;
+	virtual void PlayAttackMontage() override;
 	/*void SetSpeed(float NewSpeed);*/
 
-	AttackDelegate _attackDelegate;
+	AttackDelegate _attackDelegate_Dragon;
 	DeathDelegate _deathDelegate_Dragon;
+
+
+	UFUNCTION()
+	virtual void AnimNotify_Attackhit();
 
 	UFUNCTION()
 	virtual void AnimNotify_Death();
