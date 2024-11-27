@@ -4,6 +4,7 @@
 #include "Components/CapsuleComponent.h"
 #include "TimerManager.h"
 #include "AI/AIController_Boss2.h"
+#include "BehaviorTree/BlackboardComponent.h"
 #include "../Animation/Monster_Boss2_AnimInstance.h"
 #include "BossFireball.h"
 
@@ -22,7 +23,7 @@ ABoss2Monster::ABoss2Monster()
 		_fireball = BF.Class;
 	}
 
-	GetCapsuleComponent()->SetCapsuleHalfHeight(300.0f);
+	GetCapsuleComponent()->SetCapsuleHalfHeight(250.0f);
 	GetCapsuleComponent()->SetCapsuleRadius(100.0f);
 
 	AIControllerClass = AAIController_Boss2::StaticClass();
@@ -31,6 +32,7 @@ ABoss2Monster::ABoss2Monster()
 
 void ABoss2Monster::FireballAttack(FVector Location)
 {
+	Isfire = true;
 	float FireballSpacing = 200.0f;
 	FVector InitialLocation = GetActorLocation() + FVector(0, 0, 300.0f);
 	FRotator SpawnRotation = FRotator::ZeroRotator;
@@ -42,6 +44,7 @@ void ABoss2Monster::FireballAttack(FVector Location)
 
 	FVector ForwardVector = GetActorForwardVector();
 	FVector RightVector = GetActorRightVector();
+
 
 	for (int i = 0; i < FireballCount; i++)
 	{
@@ -69,9 +72,24 @@ void ABoss2Monster::FireballAttack(FVector Location)
 										{
             if (Fireballs.IsValidIndex(i) && Fireballs[i])
             {
-                Fireballs[i]->LaunchTowards(Location);
+                Fireballs[i]->LaunchTowards(UpdatedLocation());
             } }, i * 0.5f, false);
 	}
+	Isfire = false;
+}
+
+FVector ABoss2Monster::UpdatedLocation()
+{
+	 auto AIController = Cast<AAIController_Boss2>(GetController());
+    if (AIController && AIController->GetBlackboardComponent())
+    {
+        AActor* TargetActor = Cast<AActor>(AIController->GetBlackboardComponent()->GetValueAsObject("Target"));
+        if (TargetActor)
+        {
+            return TargetActor->GetActorLocation();
+        }
+    }
+    return FVector::ZeroVector;
 }
 
 void ABoss2Monster::BeginPlay()
@@ -89,6 +107,7 @@ void ABoss2Monster::PostInitializeComponents()
 		_bossMonster02_AnimInstance->OnMontageEnded.AddDynamic(this, &ACreature::OnAttackEnded);
 		_bossMonster02_AnimInstance->_attackDelegate.AddUObject(this, &ACreature::AttackHit);
 		_bossMonster02_AnimInstance->_deathDelegate.AddUObject(this, &AMonster::Disable);
+		_bossMonster02_AnimInstance->_skillDelegate.AddDynamic(this, &ABoss2Monster::FireballAttack);
 	}
 }
 
@@ -100,5 +119,13 @@ void ABoss2Monster::Attack_AI()
 		_bossMonster02_AnimInstance->PlayAttackMontage();
 	}
 
-	FireballAttack(FVector::ZeroVector);
+}
+
+void ABoss2Monster::Skill_AI(FVector location)
+{
+	if (_bossMonster02_AnimInstance != nullptr)
+	{
+		_bossMonster02_AnimInstance->PlaySkillMontage();
+		_bossMonster02_AnimInstance->SetTarget(location);
+	}
 }

@@ -15,16 +15,25 @@ class PROTOTYPE_API ABoss2Monster : public AMonster
 	GENERATED_BODY()
 public:
 	ABoss2Monster();
+	virtual void Skill_AI(FVector location);
 
-	void FireballAttack(FVector Location);
+	bool GetIsfire(){return Isfire;}
 
 private:
 	virtual void BeginPlay() override;
 	virtual void PostInitializeComponents() override;
 	virtual void Attack_AI() override;
 
+	UFUNCTION()
+	void FireballAttack(FVector Location);
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Animation", meta = (AllowPrivateAccess = "true"))
 	class UMonster_Boss2_AnimInstance* _bossMonster02_AnimInstance;
 
+	FVector UpdatedLocation();
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Fireball", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class ABossFireball> _fireball;	
+
+	bool Isfire;
 };

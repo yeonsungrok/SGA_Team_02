@@ -23,7 +23,7 @@ ABossFireball::ABossFireball()
 
     ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovement"));
     ProjectileMovement->InitialSpeed = 0.0f;
-    ProjectileMovement->MaxSpeed = 1200.0f;
+    ProjectileMovement->MaxSpeed = 5000.0f;
     ProjectileMovement->bRotationFollowsVelocity = true;
     ProjectileMovement->bShouldBounce = false;
     ProjectileMovement->ProjectileGravityScale = 0.0f;
@@ -49,7 +49,7 @@ void ABossFireball::Tick(float DeltaTime)
 void ABossFireball::LaunchTowards(FVector TargetLocation)
 {
 	FVector Direction = (TargetLocation - GetActorLocation()).GetSafeNormal();
-    ProjectileMovement->Velocity = Direction * 800.f;
+    ProjectileMovement->Velocity = Direction * 2000.f;
 }
 
 void ABossFireball::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, 
