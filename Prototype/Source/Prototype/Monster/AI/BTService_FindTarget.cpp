@@ -7,6 +7,7 @@
 #include "AIController_NormalMonster.h"
 #include "../Monster.h"
 #include "../BossMonster.h"
+#include "../Boss2Monster.h"
 #include "../../Player/MyPlayer.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/OverlapResult.h"
@@ -23,14 +24,19 @@ void UBTService_FindTarget::TickNode(UBehaviorTreeComponent &OwnerComp, uint8 *N
 
     auto currentPawn = OwnerComp.GetAIOwner()->GetPawn();
     if (currentPawn == nullptr)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("NO currentPawn"));
         return;
+    }
+        
 
     auto world = GetWorld();
     FVector center = currentPawn->GetActorLocation();
     float searchRadius = 500.0f;
 
     ABossMonster* boss = Cast<ABossMonster>(currentPawn);
-    if(boss!=nullptr)
+    ABoss2Monster* boss2 = Cast<ABoss2Monster>(currentPawn);
+    if(boss!=nullptr || boss2 != nullptr)
     {
         searchRadius = 3000.f;
     }

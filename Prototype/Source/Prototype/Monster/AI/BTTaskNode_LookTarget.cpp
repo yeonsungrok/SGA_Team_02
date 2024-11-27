@@ -5,6 +5,8 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "AIController_BossMonster.h"
 #include "../BossMonster.h"
+#include "../Monster.h"
+
 
 UBTTaskNode_LookTarget::UBTTaskNode_LookTarget()
 {
@@ -15,7 +17,7 @@ UBTTaskNode_LookTarget::UBTTaskNode_LookTarget()
 EBTNodeResult::Type UBTTaskNode_LookTarget::ExecuteTask(UBehaviorTreeComponent &OwnerComp, uint8 *NodeMemory)
 {
     auto CurrentPawn = OwnerComp.GetAIOwner()->GetPawn();
-    ABossMonster *Boss = Cast<ABossMonster>(CurrentPawn);
+    AMonster *Boss = Cast<AMonster>(CurrentPawn);
     if (Boss == nullptr)
     {
         return EBTNodeResult::Failed;
@@ -48,7 +50,7 @@ void UBTTaskNode_LookTarget::TickTask(UBehaviorTreeComponent &OwnerComp, uint8 *
     }
     
     auto CurrentPawn = OwnerComp.GetAIOwner()->GetPawn();
-    ABossMonster *Boss = Cast<ABossMonster>(CurrentPawn);
+    AMonster *Boss = Cast<AMonster>(CurrentPawn);
     if (Boss == nullptr)
     {
         return;

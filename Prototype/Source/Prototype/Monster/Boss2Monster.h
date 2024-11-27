@@ -21,6 +21,10 @@ public:
 private:
 	virtual void BeginPlay() override;
 	virtual void PostInitializeComponents() override;
+	virtual void Attack_AI() override;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Animation", meta = (AllowPrivateAccess = "true"))
+	class UMonster_Boss2_AnimInstance* _bossMonster02_AnimInstance;
 
 	TSubclassOf<class ABossFireball> _fireball;	
 };
