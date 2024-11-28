@@ -39,14 +39,14 @@ UMyGameInstance::UMyGameInstance()
 		_BossstatTable = BossStatData.Object;
 	}
 
-	static ConstructorHelpers::FObjectFinder<UDataTable> ConsumItemData(TEXT("/Script/Engine.DataTable'/Game/Data/Item/ConsumeItemTable.ConsumeItemTable'"));
+	static ConstructorHelpers::FObjectFinder<UDataTable> ConsumItemData(TEXT("/Script/Engine.DataTable'/Game/Data/Item/ConsumeItem.ConsumeItem'"));
 
 	if (ConsumItemData.Succeeded())
 	{
 		_ConsItemTable = ConsumItemData.Object;
 	}
 
-	static ConstructorHelpers::FObjectFinder<UDataTable> EquipItemData(TEXT("/Script/Engine.DataTable'/Game/Data/Item/EquipItemDataTable.EquipItemDataTable'"));
+	static ConstructorHelpers::FObjectFinder<UDataTable> EquipItemData(TEXT("/Script/Engine.DataTable'/Game/Data/Item/Equipitem.Equipitem'"));
 
 	if (EquipItemData.Succeeded())
 	{
@@ -102,6 +102,7 @@ void UMyGameInstance::LoadPlayerStats(class UStatComponent *StatComponent)
 	}
 }
 
+
 void UMyGameInstance::SaveInventory(class UInventoryComponent *InventoryComponent)
 {
 	if (InventoryComponent)
@@ -123,6 +124,7 @@ void UMyGameInstance::SaveInventory(class UInventoryComponent *InventoryComponen
 				ItemData._Value = Item->GetValue();
 				ItemData._Mesh = Item->GetSkeletalMesh();
 				ItemData._Texture = Item->GetTexture();
+				ItemData._Equip = Item->GetEquip();
 
 				SavedInventoryData.Add(ItemData);
 			}
@@ -142,7 +144,8 @@ void UMyGameInstance::SaveInventory(class UInventoryComponent *InventoryComponen
 				ItemData._Value = Item.Value->GetValue();
 				ItemData._Mesh = Item.Value->GetSkeletalMesh();
 				ItemData._Texture = Item.Value->GetTexture();
-
+				ItemData._Equip = static_cast<int>(Item.Value->GetEquipType());
+				
 				SavedEquipData.Add(Item.Key, ItemData);
 			}
 		}
@@ -168,6 +171,7 @@ void UMyGameInstance::LoadInventory(class UInventoryComponent *InventoryComponen
 			{
 				AEquipItem *EquipItem = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
 				EquipItem->SetItemWithCode(ItemData._Code);
+				EquipItem->SetEquipType(ItemData._Equip);
 				NewItem = EquipItem;
 			}
 
@@ -189,6 +193,7 @@ void UMyGameInstance::LoadInventory(class UInventoryComponent *InventoryComponen
 				if (EquipItem)
 				{
 					EquipItem->SetItemWithCode(ItemData._Code);
+					EquipItem->SetEquipType(ItemData._Equip);
 					NewItem = EquipItem;
 
                     InventoryComponent->AddItemToEquip(EquipType,NewItem);

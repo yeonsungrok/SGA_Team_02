@@ -39,8 +39,21 @@ void AEquipItem::SetItemWithCode(int32 itemCode)
         _Type = data->_Type;
         _ModStatType = data->_ModTarget;
         _Description = data->_Description;
+        _Equip = data->_Equip;
 
         _meshComponent->SetStaticMesh(_Mesh);
+    }
+}
+
+void AEquipItem::SetEquipType(int num)
+{
+     if (num >= 0 && num < static_cast<int32>(EItemType::Shield) + 1)
+    {
+        _equipItemType = static_cast<EItemType>(num); 
+    }
+    else
+    {
+        _equipItemType = EItemType::Helmet;
     }
 }
 

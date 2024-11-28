@@ -52,6 +52,7 @@ void ABaseItem::SetItemWithCode(int32 itemCode)
 		_Type = data->_Type;
 		_ModStatType = data->_ModTarget;
 		_Description = data->_Description;
+		_Equip = data->_Equip;
 
 		_meshComponent->SetStaticMesh(_Mesh);
 	}

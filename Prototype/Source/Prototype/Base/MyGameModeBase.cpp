@@ -49,8 +49,6 @@ void AMyGameModeBase::BeginPlay()
 					GameInstance->LoadInventory(InvenComponent);
 				}
 				GameInstance->LoadPlayerSkeletal(player);
-				
-			
 			}
 		}
 	}
