@@ -71,7 +71,6 @@ void UBTService_FindTarget::TickNode(UBehaviorTreeComponent &OwnerComp, uint8 *N
                 {
                     OwnerComp.GetBlackboardComponent()->SetValueAsObject(FName(TEXT("Target")), myCharacter);
                     DrawDebugSphere(world, center, searchRadius, 32, FColor::Red, false, 0.3f);
-                    CurrentPawn -> playsound();
                 }
 
                 return;
