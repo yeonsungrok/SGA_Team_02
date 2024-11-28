@@ -11,8 +11,8 @@ enum class UI_LIST
 {
 	Inventory,
 	Boss,
-	Status,
 	Shop,
+	Status,
 };
 
 DECLARE_MULTICAST_DELEGATE(PAUSE_GAME);
