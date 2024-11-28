@@ -15,14 +15,18 @@ class PROTOTYPE_API ABoss2Monster : public AMonster
 	GENERATED_BODY()
 public:
 	ABoss2Monster();
-	virtual void Skill_AI(FVector location);
+	void Skill_AI(FVector location);
+	void Teleport(FVector location);
 
 	bool GetIsfire(){return Isfire;}
 
 private:
 	virtual void BeginPlay() override;
+	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser);
 	virtual void PostInitializeComponents() override;
 	virtual void Attack_AI() override;
+	virtual void AttackHit() override;
+	
 
 	UFUNCTION()
 	void FireballAttack(FVector Location);

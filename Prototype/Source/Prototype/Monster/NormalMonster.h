@@ -30,7 +30,6 @@ protected:
 	virtual void PostInitializeComponents() override;
 	virtual void Attack_AI() override;
 
-
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Animation", meta = (AllowPrivateAccess = "true"))
 	class UMonster_N_AnimInstance* _monster_N_AnimInstance;
