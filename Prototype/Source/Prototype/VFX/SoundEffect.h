@@ -24,6 +24,7 @@ public:
 	bool IsPlaying() const;
 	void Stop();
 
+	float GetDuration() const;
 
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
