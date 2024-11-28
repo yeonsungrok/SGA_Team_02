@@ -223,11 +223,13 @@ void ABoss2Monster::Skill_AI(FVector location)
 
 void ABoss2Monster::Teleport(FVector location)
 {
-	FVector TeleportLocation = location+FMath::VRand() * FMath::FRandRange(500.0f, 0.0f);
 
+	float OriginalZ = location.Z;
+	FVector TeleportLocation = location+FMath::VRand() * FMath::FRandRange(100.0f, 600.0f);
+	TeleportLocation.Z = OriginalZ;
 	SetActorLocation(TeleportLocation, false, nullptr, ETeleportType::TeleportPhysics);
-	FRotator CurrentRotation = GetActorRotation();
 
+	FRotator CurrentRotation = GetActorRotation();
     FVector DirectionToLocation = location - TeleportLocation;
     FRotator LookAtRotation = DirectionToLocation.Rotation();
     FRotator NewRotation = FRotator(CurrentRotation.Pitch, LookAtRotation.Yaw, CurrentRotation.Roll);

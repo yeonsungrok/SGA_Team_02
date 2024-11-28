@@ -22,6 +22,7 @@ void UBTService_FindTarget::TickNode(UBehaviorTreeComponent &OwnerComp, uint8 *N
 {
     Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
 
+    //몬스터
     auto currentPawn = OwnerComp.GetAIOwner()->GetPawn();
     if (currentPawn == nullptr)
     {
@@ -59,7 +60,8 @@ void UBTService_FindTarget::TickNode(UBehaviorTreeComponent &OwnerComp, uint8 *N
     if (bResult)
     {
         for (auto &result : overLapResult)
-        {
+        {   
+            // target // 플레이어
             auto myCharacter = Cast<AMyPlayer>(result.GetActor());
 
             if (myCharacter != nullptr)
@@ -69,6 +71,7 @@ void UBTService_FindTarget::TickNode(UBehaviorTreeComponent &OwnerComp, uint8 *N
                 {
                     OwnerComp.GetBlackboardComponent()->SetValueAsObject(FName(TEXT("Target")), myCharacter);
                     DrawDebugSphere(world, center, searchRadius, 32, FColor::Red, false, 0.3f);
+                    CurrentPawn -> playsound();
                 }
 
                 return;
