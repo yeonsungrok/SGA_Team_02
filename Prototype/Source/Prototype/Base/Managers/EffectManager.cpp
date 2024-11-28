@@ -45,6 +45,9 @@ AEffectManager::AEffectManager()
 
 	// Item
 	CreateNiagaraClass(TEXT("I_ItemAura"), TEXT("/Script/Niagara.NiagaraSystem'/Game/MixedVFX/Particles/Mix/NS_Mix_03.NS_Mix_03'"));
+
+	// Find Target
+	CreateNiagaraClass(TEXT("NS_FindTarget"), TEXT("/Script/Engine.Blueprint'/Game/Blueprint/VFX/Niagara/NS_FindTarget_BP.NS_FindTarget_BP_C'"));
 }
 
 void AEffectManager::CreateNiagaraClass(FString name, FString path)
