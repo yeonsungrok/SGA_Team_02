@@ -48,7 +48,9 @@ void ANormalMonster::PlayFindEffect()
 {
 	if (!first)
 		return;
-	EffectManager->Play("NS_FindTarget", GetActorLocation());
+	FVector ActorLocation = GetActorLocation();
+	ActorLocation.Z += 150.0f;
+	EffectManager->Play("NS_FindTarget", ActorLocation);
 	SoundManager->PlaySoundOnce("FindTarget_03_Cue", GetActorLocation());
 	first = false;
 }
