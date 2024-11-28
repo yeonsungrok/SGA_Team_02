@@ -45,7 +45,7 @@ private:
 	class USphereComponent* _trigger;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh", meta = (AllowPrivateAccess = "true"))
-	class UStaticMeshComponent* _staticMesh;
+	class USkeletalMeshComponent* _skeletalMesh;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Overlap", meta = (AllowPrivateAccess = "true"))
 	bool _isOverlapped;

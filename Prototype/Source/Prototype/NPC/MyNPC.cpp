@@ -3,6 +3,7 @@
 
 #include "MyNPC.h"
 #include "Components/SphereComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "Player/MyPlayer.h"
 #include "Component/ShopComponent.h"
 
@@ -17,12 +18,15 @@ AMyNPC::AMyNPC()
 	_trigger->SetCollisionProfileName(TEXT("NPC"));
 	_trigger->SetSphereRadius(100.0f);
 
-	ConstructorHelpers::FObjectFinder<UStaticMesh> sm(
-		TEXT("/Script/Engine.SkeletalMesh'/Game/Characters/Mannequins/Meshes/SKM_Quinn.SKM_Quinn'")
+	_skeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMesh"));
+	_skeletalMesh->SetupAttachment(RootComponent);
+
+	ConstructorHelpers::FObjectFinder<USkeletalMesh> sm(
+		TEXT("/Script/Engine.SkeletalMesh'/Game/Scanned3DPeoplePack/RP_Character/rp_sophia_rigged_003_Mobile_ue4/rp_sophia_rigged_003_Mobile_ue4.rp_sophia_rigged_003_Mobile_ue4'")
 	);
 	if (sm.Succeeded())
 	{
-		_staticMesh->SetStaticMesh(sm.Object);
+		_skeletalMesh->SetSkeletalMesh(sm.Object);
 	}
 }
 
@@ -35,6 +39,8 @@ void AMyNPC::BeginPlay()
 
 void AMyNPC::PostInitializeComponents()
 {
+	Super::PostInitializeComponents();
+
 	_trigger->OnComponentBeginOverlap.AddDynamic(this, &AMyNPC::OnOverlapBegin);
 	_trigger->OnComponentEndOverlap.AddDynamic(this, &AMyNPC::OnOverlapEnd);
 }
