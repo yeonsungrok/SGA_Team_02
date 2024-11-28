@@ -16,6 +16,14 @@ AMyNPC::AMyNPC()
 	_trigger->SetupAttachment(RootComponent);
 	_trigger->SetCollisionProfileName(TEXT("NPC"));
 	_trigger->SetSphereRadius(100.0f);
+
+	ConstructorHelpers::FObjectFinder<UStaticMesh> sm(
+		TEXT("/Script/Engine.SkeletalMesh'/Game/Characters/Mannequins/Meshes/SKM_Quinn.SKM_Quinn'")
+	);
+	if (sm.Succeeded())
+	{
+		_staticMesh->SetStaticMesh(sm.Object);
+	}
 }
 
 // Called when the game starts or when spawned
