@@ -325,6 +325,7 @@ void AMyPlayer::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 		EnhancedInputComponent->BindAction(_guardAction, ETriggerEvent::Started, this, &AMyPlayer::GuardStart);
 		EnhancedInputComponent->BindAction(_guardAction, ETriggerEvent::Completed, this, &AMyPlayer::GuardEnd);
 		EnhancedInputComponent->BindAction(_LockOnAction, ETriggerEvent::Started, this, &AMyPlayer::LockOn);
+		EnhancedInputComponent->BindAction(_InteractAction, ETriggerEvent::Started, this, &AMyPlayer::Interect);
 
 		EnhancedInputComponent->BindAction(_Change, ETriggerEvent::Started, this, &AMyPlayer::ToggleTransformation);
 	}
@@ -948,6 +949,19 @@ void AMyPlayer::InvenUIOpen(const FInputActionValue &value)
 	if (isPressed && invenUI != nullptr)
 	{
 		UIManager->ToggleUI(UI_LIST::Inventory);
+	}
+}
+
+void AMyPlayer::Interect(const FInputActionValue& value)
+{
+	bool isPressed = value.Get<bool>();
+
+	auto invenUI = UIManager->GetInventoryUI();
+
+	//TODO : Dummy Function
+	if (isPressed && invenUI != nullptr)
+	{
+		UIManager->ToggleUI(UI_LIST::Shop);
 	}
 }
 
