@@ -81,6 +81,7 @@ void UBTService_FindTarget::TickNode(UBehaviorTreeComponent &OwnerComp, uint8 *N
                     DrawDebugSphere(world, center, searchRadius, 32, FColor::Red, false, 0.3f);
 
                     ANormalMonster* NMonster = Cast<ANormalMonster>(currentPawn);
+                    if (NMonster == nullptr)  return;
                     NMonster->PlayFindEffect();
                 }
 
