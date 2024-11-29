@@ -50,6 +50,8 @@ public:
 
 	void UpdateGold(int32 amount);
 
+	TArray<ABaseItem*> GetInvenContents();
+
 private:
 	void SetTargetItem(int32 slotIndex);
 	void SetTargetEquip(EItemType equip);
