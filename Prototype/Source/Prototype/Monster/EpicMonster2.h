@@ -18,4 +18,8 @@ public:
 	AEpicMonster2();
 
 	
+
+protected:
+	virtual void BeginPlay() override;
+	virtual void PostInitializeComponents() override;
 };

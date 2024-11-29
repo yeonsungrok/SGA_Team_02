@@ -12,3 +12,13 @@ AEpicMonster2::AEpicMonster2()
 		GetMesh()->SetSkeletalMesh(EP.Object);
 	}
 }
+
+void AEpicMonster2::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
+void AEpicMonster2::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+}

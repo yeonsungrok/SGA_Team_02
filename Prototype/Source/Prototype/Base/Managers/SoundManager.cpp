@@ -62,6 +62,9 @@ ASoundManager::ASoundManager()
 	
 	CreateSound("FindTarget_03_Cue", "/Script/Engine.Blueprint'/Game/Blueprint/Sound/FindTarget_BP.FindTarget_BP_C'");
 
+
+	// test 
+	_soundEffectTable = TMap<FString, TArray<ASoundEffect*>>();
 }
 
 void ASoundManager::BeginPlay()
@@ -87,6 +90,8 @@ void ASoundManager::Destroy()
 
 void ASoundManager::PlaySound(FString name, FVector location)
 {
+
+
 	if (_soundEffectTable.Contains(name) == false)
 		return;
 

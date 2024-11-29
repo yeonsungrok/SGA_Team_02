@@ -133,6 +133,12 @@
     <ClInclude Include="..\..\Source\Prototype\Base\Stage1NormalGameModeBase.h">
       <Filter>Source\Prototype\Base</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Base\StartGameModeBase.cpp">
+      <Filter>Source\Prototype\Base</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Base\StartGameModeBase.h">
+      <Filter>Source\Prototype\Base</Filter>
+    </ClInclude>
     <Filter Include="Source\Prototype\Base\Managers">
       <UniqueIdentifier>{C4B05F69-C8B5-3C14-B67D-C8ED062C64A6}</UniqueIdentifier>
     </Filter>
@@ -560,6 +566,12 @@
       <Filter>Source\Prototype\UI</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Prototype\UI\InventoryWidget.h">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\UI\MainStartWidget.cpp">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\UI\MainStartWidget.h">
       <Filter>Source\Prototype\UI</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Prototype\UI\MiniMapActor.cpp">

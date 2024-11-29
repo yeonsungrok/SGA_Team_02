@@ -34,6 +34,7 @@ void ASoundEffect::Tick(float DeltaTime)
 
 void ASoundEffect::Play(FVector location)
 {
+
 	if (_audioComponent && _soundCom)
 	{
 		SetActorLocation(location);
