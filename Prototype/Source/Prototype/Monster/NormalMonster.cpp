@@ -44,6 +44,17 @@ FString ANormalMonster::GetDeadSoundName() const
 	return "NormalMonster_DeathSound";
 }
 
+void ANormalMonster::PlayFindEffect()
+{
+	if (!first)
+		return;
+	FVector ActorLocation = GetActorLocation();
+	ActorLocation.Z += 150.0f;
+	EffectManager->Play("NS_FindTarget", ActorLocation);
+	SoundManager->PlaySoundOnce("FindTarget_03_Cue", GetActorLocation());
+	first = false;
+}
+
 // Called when the game starts or when spawned
 void ANormalMonster::BeginPlay()
 {

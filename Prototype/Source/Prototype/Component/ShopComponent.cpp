@@ -23,7 +23,7 @@ void UShopComponent::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
-	
+	SetSales();
 }
 
 void UShopComponent::SetCustomer(AMyPlayer* target)

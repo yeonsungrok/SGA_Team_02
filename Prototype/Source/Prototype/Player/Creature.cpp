@@ -54,7 +54,6 @@ void ACreature::Disable()
 
 void ACreature::AttackHit()
 {
-	
 	TArray<FHitResult> hitResults;
 	FCollisionQueryParams params(NAME_None, false, this);
 

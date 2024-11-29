@@ -6,6 +6,8 @@
 #include "Components/SphereComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/DamageType.h"
+#include "Engine/DamageEvents.h"
+#include "../Player/MyPlayer.h"
 
 
 
@@ -27,16 +29,14 @@ ABossFireball::ABossFireball()
     ProjectileMovement->bRotationFollowsVelocity = true;
     ProjectileMovement->bShouldBounce = false;
     ProjectileMovement->ProjectileGravityScale = 0.0f;
-
-    CollisionComponent->OnComponentHit.AddDynamic(this, &ABossFireball::OnHit);
-
 }
 
 // Called when the game starts or when spawned
 void ABossFireball::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+    CollisionComponent->OnComponentBeginOverlap.AddDynamic(this, &ABossFireball::OnMyCharacterOverlap);	
 }
 
 // Called every frame
@@ -52,11 +52,13 @@ void ABossFireball::LaunchTowards(FVector TargetLocation)
     ProjectileMovement->Velocity = Direction * 2000.f;
 }
 
-void ABossFireball::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, 
-			   UPrimitiveComponent* OtherComponent, FVector NormalImpulse, 
-			   const FHitResult& Hit)
+void ABossFireball::OnMyCharacterOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UGameplayStatics::ApplyDamage(OtherActor, DamageAmount, nullptr, this, UDamageType::StaticClass());
-    Destroy();
+    auto player = Cast<AMyPlayer>(OtherActor);
+    if (player)
+    {
+        player->TakeDamage(_damageAmount, FDamageEvent(), nullptr, this);
+        Destroy();
+    }
 }
 

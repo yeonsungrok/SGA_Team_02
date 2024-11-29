@@ -12,6 +12,14 @@
 #include "DrawDebugHelpers.h"
 #include "Engine/OverlapResult.h"
 
+#include "../NormalMonster.h"
+#include "Base/MyGameInstance.h"
+#include "Base/Managers/SoundManager.h"
+#include "Base/Managers/EffectManager.h"
+#include "NiagaraSystem.h"
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraComponent.h"
+
 UBTService_FindTarget::UBTService_FindTarget()
 {
     NodeName = TEXT("FindTarget");
@@ -22,6 +30,7 @@ void UBTService_FindTarget::TickNode(UBehaviorTreeComponent &OwnerComp, uint8 *N
 {
     Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
 
+    //몬스터
     auto currentPawn = OwnerComp.GetAIOwner()->GetPawn();
     if (currentPawn == nullptr)
     {
@@ -59,7 +68,8 @@ void UBTService_FindTarget::TickNode(UBehaviorTreeComponent &OwnerComp, uint8 *N
     if (bResult)
     {
         for (auto &result : overLapResult)
-        {
+        {   
+            // target // 플레이어
             auto myCharacter = Cast<AMyPlayer>(result.GetActor());
 
             if (myCharacter != nullptr)
@@ -69,6 +79,10 @@ void UBTService_FindTarget::TickNode(UBehaviorTreeComponent &OwnerComp, uint8 *N
                 {
                     OwnerComp.GetBlackboardComponent()->SetValueAsObject(FName(TEXT("Target")), myCharacter);
                     DrawDebugSphere(world, center, searchRadius, 32, FColor::Red, false, 0.3f);
+
+                    ANormalMonster* NMonster = Cast<ANormalMonster>(currentPawn);
+                    if (NMonster == nullptr)  return;
+                    NMonster->PlayFindEffect();
                 }
 
                 return;
@@ -83,3 +97,4 @@ void UBTService_FindTarget::TickNode(UBehaviorTreeComponent &OwnerComp, uint8 *N
          DrawDebugSphere(world, center, searchRadius, 32, FColor::Green, false, 0.3f);
      }*/
 }
+

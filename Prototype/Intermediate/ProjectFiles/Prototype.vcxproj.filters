@@ -421,6 +421,12 @@
     <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTTaskNode_Summoning.h">
       <Filter>Source\Prototype\Monster\AI</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTTaskNode_Teleport.cpp">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\AI\BTTaskNode_Teleport.h">
+      <Filter>Source\Prototype\Monster\AI</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Prototype\Monster\AI\BTTask_Attack.cpp">
       <Filter>Source\Prototype\Monster\AI</Filter>
     </ClCompile>

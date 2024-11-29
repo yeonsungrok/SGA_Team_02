@@ -3,6 +3,7 @@
 
 #include "MyNPC.h"
 #include "Components/SphereComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "Player/MyPlayer.h"
 #include "Component/ShopComponent.h"
 
@@ -16,6 +17,17 @@ AMyNPC::AMyNPC()
 	_trigger->SetupAttachment(RootComponent);
 	_trigger->SetCollisionProfileName(TEXT("NPC"));
 	_trigger->SetSphereRadius(100.0f);
+
+	_skeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMesh"));
+	_skeletalMesh->SetupAttachment(RootComponent);
+
+	ConstructorHelpers::FObjectFinder<USkeletalMesh> sm(
+		TEXT("/Script/Engine.SkeletalMesh'/Game/Scanned3DPeoplePack/RP_Character/rp_sophia_rigged_003_Mobile_ue4/rp_sophia_rigged_003_Mobile_ue4.rp_sophia_rigged_003_Mobile_ue4'")
+	);
+	if (sm.Succeeded())
+	{
+		_skeletalMesh->SetSkeletalMesh(sm.Object);
+	}
 }
 
 // Called when the game starts or when spawned
@@ -27,6 +39,8 @@ void AMyNPC::BeginPlay()
 
 void AMyNPC::PostInitializeComponents()
 {
+	Super::PostInitializeComponents();
+
 	_trigger->OnComponentBeginOverlap.AddDynamic(this, &AMyNPC::OnOverlapBegin);
 	_trigger->OnComponentEndOverlap.AddDynamic(this, &AMyNPC::OnOverlapEnd);
 }

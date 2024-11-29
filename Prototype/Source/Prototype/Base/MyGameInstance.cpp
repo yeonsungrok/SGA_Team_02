@@ -59,6 +59,13 @@ UMyGameInstance::UMyGameInstance()
 	{
 		_DragonStatTable = DragonStat.Object;
 	}
+	
+	static ConstructorHelpers::FObjectFinder<UDataTable> shopList(TEXT("/Script/Engine.DataTable'/Game/Data/ShopListDataTable.ShopListDataTable'"));
+
+	if (shopList.Succeeded())
+	{
+		_ShopList = shopList.Object;
+	}
 }
 
 void UMyGameInstance::SavePlayerStats(class UStatComponent *StatComponent)
