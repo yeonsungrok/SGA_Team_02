@@ -62,6 +62,8 @@ void UStatComponent::Reset()
 
 void UStatComponent::SetLevelInit(int level)
 {
+
+
 	FMyStatData* Data = nullptr;
 
 	if (GAMEINSTANCE)

@@ -49,6 +49,12 @@
     <ClInclude Include="..\..\Source\Prototype\PrototypeCharacter.h">
       <Filter>Source\Prototype</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\StartGameModeBase.cpp">
+      <Filter>Source\Prototype</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\StartGameModeBase.h">
+      <Filter>Source\Prototype</Filter>
+    </ClInclude>
     <Filter Include="Source\Prototype\Animation">
       <UniqueIdentifier>{60E94C24-58DA-3740-B1C1-AC5A17E86A1D}</UniqueIdentifier>
     </Filter>
@@ -560,6 +566,12 @@
       <Filter>Source\Prototype\UI</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Prototype\UI\InventoryWidget.h">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\UI\MianScreenWidget.cpp">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\UI\MianScreenWidget.h">
       <Filter>Source\Prototype\UI</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Prototype\UI\MiniMapActor.cpp">
