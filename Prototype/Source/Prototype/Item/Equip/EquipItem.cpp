@@ -47,13 +47,21 @@ void AEquipItem::SetItemWithCode(int32 itemCode)
 
 void AEquipItem::SetEquipType(int num)
 {
-     if (num >= 0 && num < static_cast<int32>(EItemType::Shield) + 1)
+    if (num >= 0 && num < static_cast<int32>(EItemType::Shield) + 1)
     {
         _equipItemType = static_cast<EItemType>(num); 
+
+        FString EnumValueAsString = UEnum::GetValueAsString(_equipItemType);
+
+        UE_LOG(LogTemp, Warning, TEXT("SetEquipType = %d, %s"), num, *EnumValueAsString);
+
     }
     else
     {
         _equipItemType = EItemType::Helmet;
+
+        FString EnumValueAsString = UEnum::GetValueAsString(_equipItemType);
+        UE_LOG(LogTemp, Warning, TEXT("Invalid num. Defaulting to Helmet. SetEquipType = %d, %s"), num, *EnumValueAsString);
     }
 }
 

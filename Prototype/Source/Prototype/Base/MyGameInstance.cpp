@@ -251,7 +251,8 @@ void UMyGameInstance::Init()
 	Super::Init();
 
 	auto statData = GetStatDataByLevel(1);
-	//auto EpicData = GetEpicDataByLevel(1);
+	auto EpicData = GetEpicDataByLevel(1);
+	auto BossData = GetBossDataByLevel(1);
 
 	InitializeManagers();
 }

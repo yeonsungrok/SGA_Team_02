@@ -15,14 +15,15 @@ void AMyGameModeBase::BeginPlay()
 	AMyPlayer *player = Cast<AMyPlayer>(UGameplayStatics::GetPlayerCharacter(this, 0));
 	if (player)
 	{
+		UStatComponent *StatComponent = player->FindComponentByClass<UStatComponent>();
+		UInventoryComponent *InvenComponent = player->FindComponentByClass<UInventoryComponent>();
 		UMyGameInstance *GameInstance = Cast<UMyGameInstance>(GetGameInstance());
 		if (GameInstance)
 		{
 			if (GameInstance->GetFirst())
 			{
 				UE_LOG(LogTemp,Warning,TEXT("First GamemOde"));
-				UStatComponent *StatComponent = player->FindComponentByClass<UStatComponent>();
-				UInventoryComponent *InvenComponent = player->FindComponentByClass<UInventoryComponent>();
+				
 				if(StatComponent)
 				{
 					player->_StatCom->SetLevelInit(1);
@@ -36,10 +37,8 @@ void AMyGameModeBase::BeginPlay()
 			else
 			{
 				UE_LOG(LogTemp,Warning,TEXT("no first GamemOde"));
-				GameInstance->Init();
+				GameInstance->InitializeManagers();
 				
-				UStatComponent *StatComponent = player->FindComponentByClass<UStatComponent>();
-				UInventoryComponent *InvenComponent = player->FindComponentByClass<UInventoryComponent>();
 				if(StatComponent)
 				{
 					GameInstance->LoadPlayerStats(StatComponent);
@@ -47,7 +46,6 @@ void AMyGameModeBase::BeginPlay()
 				if(InvenComponent)
 				{
 					player->_inventoryComponent->InitSlot();
-					GameInstance->LoadInventory(InvenComponent);
 				}
 				GameInstance->LoadPlayerSkeletal(player);
 			}
