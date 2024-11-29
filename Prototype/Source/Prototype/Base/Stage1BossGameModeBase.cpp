@@ -39,7 +39,7 @@ void AStage1BossGameModeBase::BeginPlay()
 		UMyGameInstance *GameInstance = Cast<UMyGameInstance>(GetGameInstance());
 		if (GameInstance)
 		{
-			GameInstance->Init();
+			GameInstance->InitializeManagers();
 			UStatComponent *StatComponent = player->FindComponentByClass<UStatComponent>();
 			if (StatComponent)
 			{
@@ -70,7 +70,7 @@ void AStage1BossGameModeBase::BeginPlay()
 		UIManager->OpenUI(UI_LIST::Boss);
 
 		Boss->_StatCom->_PlHPDelegate.AddUObject(UIManager->GetBossUI(), &UBoss1Widget::UpdateBossHPBar);
-		Boss->_StatCom->_deathDelegate.AddUObject(this,&AStage1BossGameModeBase::BossClear);
+	 	Boss->_StatCom->_deathDelegate.AddUObject(this,&AStage1BossGameModeBase::BossClear);
 	}
 
 }
