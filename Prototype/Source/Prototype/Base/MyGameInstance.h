@@ -99,20 +99,47 @@ private:
 
 	UPROPERTY()
 	int32 _savedLevel;
+
 	UPROPERTY()
 	int32 _savedMaxHp;
 	UPROPERTY()
+	int32 _savedCurHp;
+	UPROPERTY()
+	int32 _savedOgHp;
+	UPROPERTY()
+	int32 _savedModHp;
+
+	UPROPERTY()
 	int32 _savedMaxMp;
+	UPROPERTY()
+	int32 _savedCurMp;
+	UPROPERTY()
+	int32 _savedOgMp;
+	UPROPERTY()
+	int32 _savedModMp;
+
+
 	UPROPERTY()
 	int32 _savedStr;
 	UPROPERTY()
+	int32 _savedOgStr;
+	UPROPERTY()
+	int32 _savedModStr;
+
+	UPROPERTY()
 	int32 _savedDex;
+	UPROPERTY()
+	int32 _savedOgDex;
+	UPROPERTY()
+	int32 _savedModDex;
+
 	UPROPERTY()
 	int32 _savedInt;
 	UPROPERTY()
-	int32 _savedCurHp;
+	int32 _savedOgInt;
 	UPROPERTY()
-	int32 _savedCurMp;
+	int32 _savedModInt;
+
 	UPROPERTY()
 	int32 _savedExp;
 	UPROPERTY()
