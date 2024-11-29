@@ -22,6 +22,8 @@ void AMyGameModeBase::BeginPlay()
 		{
 			if (GameInstance->GetFirst())
 			{			
+				//GAMEINSTANCE->InitializeManagers();
+
 				if(StatComponent)
 				{
 					player->_StatCom->SetLevelInit(1);
