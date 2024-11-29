@@ -320,9 +320,9 @@ ABaseItem* UMyGameInstance::SellDataToItemData(FSellings* data)
 {
 	if (data->Type == ItemType::Equipment)
 	{
-		AEquipItem* equip = GetWorld()->SpawnActor<AEquipItem>(ABaseItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+		AEquipItem* equip = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
 		equip->SetItemWithCode(data->Code);
-		return equip;
+		return Cast<ABaseItem>(equip);
 	}
 	else
 	{

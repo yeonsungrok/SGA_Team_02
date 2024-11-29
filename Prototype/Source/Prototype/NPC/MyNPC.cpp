@@ -28,6 +28,8 @@ AMyNPC::AMyNPC()
 	{
 		_skeletalMesh->SetSkeletalMesh(sm.Object);
 	}
+
+	_shopComp = CreateDefaultSubobject<UShopComponent>(TEXT("Shop Component"));
 }
 
 // Called when the game starts or when spawned
