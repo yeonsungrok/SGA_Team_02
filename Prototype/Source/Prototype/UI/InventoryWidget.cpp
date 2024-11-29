@@ -382,6 +382,17 @@ void UInventoryWidget::UpdateGold(int32 amount)
 	GoldAmount->SetText(FText::FromString(FString::FromInt(amount)));
 }
 
+TArray<ABaseItem*> UInventoryWidget::GetInvenContents()
+{
+	TArray<ABaseItem*> ItemList;
+
+	for (auto itemBTN : Button_)
+	{
+		ItemList.Add(itemBTN->GetItem());
+	}
+	return ItemList;
+}
+
 void UInventoryWidget::SetTargetItem(int32 slotIndex)
 {
 	if (Button_[slotIndex] == nullptr)
