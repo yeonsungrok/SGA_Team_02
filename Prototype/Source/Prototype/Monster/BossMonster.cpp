@@ -132,8 +132,8 @@ float ABossMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEv
 		auto controller = GetController();
 		if (controller)
 			GetController()->UnPossess();
-		UE_LOG(LogTemp, Warning, TEXT("Boss exp : %d"),_StatCom->GetExp());
-		player->_StatCom->AddExp(_StatCom->GetExp());
+		UE_LOG(LogTemp, Warning, TEXT("Boss exp : %d"),_StatCom->GetNextExp());
+		player->_StatCom->AddExp(_StatCom->GetNextExp());
 
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle_Destroy, this, &ACreature::DelayedDestroy, 2.0f, false);
 	}

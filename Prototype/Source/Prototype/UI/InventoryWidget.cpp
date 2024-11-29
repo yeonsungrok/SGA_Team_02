@@ -250,24 +250,31 @@ void UInventoryWidget::UseItem()
 			switch (target->GetEquipType())
 			{
 			case EItemType::Helmet:
+				UE_LOG(LogTemp, Warning, TEXT("Inventory widget UseItem Halmet"));
 				part = TEXT("Helmet");
 				break;
 			case EItemType::UpperArmor:
+				UE_LOG(LogTemp, Warning, TEXT("Inventory widget UseItem Upper"));
 				part = TEXT("UpperArmor");
 				break;
 			case EItemType::LowerArmor:
+				UE_LOG(LogTemp, Warning, TEXT("Inventory widget UseItem Lower"));
 				part = TEXT("LowerArmor");
 				break;
 			case EItemType::ShoulderArmor:
+				UE_LOG(LogTemp, Warning, TEXT("Inventory widget UseItem Shoulder"));
 				part = TEXT("ShoulderArmor");
 				break;
 			case EItemType::Sword:
+				UE_LOG(LogTemp, Warning, TEXT("Inventory widget UseItem Sword"));
 				part = TEXT("Sword");
 				break;
 			case EItemType::Shield:
+				UE_LOG(LogTemp, Warning, TEXT("Inventory widget UseItem Shield"));
 				part = TEXT("Shield");
 				break;
 			default:
+				UE_LOG(LogTemp, Warning, TEXT("Inventory widget default"));
 				break;
 			}
 			if (!part.IsEmpty())

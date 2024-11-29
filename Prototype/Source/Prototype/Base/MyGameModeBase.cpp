@@ -36,7 +36,7 @@ void AMyGameModeBase::BeginPlay()
 			else
 			{
 				UE_LOG(LogTemp,Warning,TEXT("no first GamemOde"));
-				GAMEINSTANCE->InitializeManagers();
+				GameInstance->Init();
 				
 				UStatComponent *StatComponent = player->FindComponentByClass<UStatComponent>();
 				UInventoryComponent *InvenComponent = player->FindComponentByClass<UInventoryComponent>();
@@ -46,6 +46,7 @@ void AMyGameModeBase::BeginPlay()
 				}
 				if(InvenComponent)
 				{
+					player->_inventoryComponent->InitSlot();
 					GameInstance->LoadInventory(InvenComponent);
 				}
 				GameInstance->LoadPlayerSkeletal(player);
