@@ -92,7 +92,6 @@ void ABossMonster::Attack_AI()
 			FTimerHandle TimerHandle;
 			GetWorld()->GetTimerManager().SetTimer(TimerHandle, [this, soundKey]()
 												   {
-					UE_LOG(LogTemp, Warning, TEXT("Playing sound key: %s"), *soundKey);
 					SoundManager->PlaySound(soundKey, GetActorLocation()); }, 0.1f, false);
 		}
 	}
@@ -120,7 +119,6 @@ float ABossMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEv
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Boss Takedamage : %f"), Damage / (5 - ObstacleDestroyCount));
 		_StatCom->AddCurHp(-Damage / (5 - ObstacleDestroyCount));
 	}
 
@@ -321,7 +319,6 @@ void ABossMonster::DestroyObstacle()
 	ObstacleDestroyCount++;
 	if(UIManager->GetBossUI())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("DestroyObstacle : %d"),ObstacleDestroyCount);
 		UIManager->GetBossUI()->UpdateObstacleIcons(ObstacleDestroyCount);
 		UIManager->GetBossUI()->UpdateHPBarColor(ObstacleDestroyCount);
 	}

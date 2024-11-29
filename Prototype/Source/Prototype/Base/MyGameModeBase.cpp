@@ -21,9 +21,7 @@ void AMyGameModeBase::BeginPlay()
 		if (GameInstance)
 		{
 			if (GameInstance->GetFirst())
-			{
-				UE_LOG(LogTemp,Warning,TEXT("First GamemOde"));
-				
+			{			
 				if(StatComponent)
 				{
 					player->_StatCom->SetLevelInit(1);
@@ -36,7 +34,6 @@ void AMyGameModeBase::BeginPlay()
 			}
 			else
 			{
-				UE_LOG(LogTemp,Warning,TEXT("no first GamemOde"));
 				GameInstance->InitializeManagers();
 				
 				if(StatComponent)
@@ -45,7 +42,7 @@ void AMyGameModeBase::BeginPlay()
 				}
 				if(InvenComponent)
 				{
-					player->_inventoryComponent->InitSlot();
+					GameInstance->LoadInventory(InvenComponent);
 				}
 				GameInstance->LoadPlayerSkeletal(player);
 			}
