@@ -249,6 +249,11 @@ void UMyGameInstance::LoadPlayerSkeletal(class AMyPlayer* player)
     }
 }
 
+TArray<ABaseItem*> UMyGameInstance::GetInvenItemList()
+{
+	return UIManager->GetInventoryUI()->GetInvenContents();
+}
+
 void UMyGameInstance::Init()
 {
 	Super::Init();

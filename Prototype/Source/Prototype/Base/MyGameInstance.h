@@ -45,6 +45,8 @@ public:
 	bool GetFirst(){return _firstIn;}
 	void SetFirst(bool first){_firstIn = first;}
 
+	TArray<ABaseItem*> GetInvenItemList();
+
 public:
 	virtual void Init() override;
 
