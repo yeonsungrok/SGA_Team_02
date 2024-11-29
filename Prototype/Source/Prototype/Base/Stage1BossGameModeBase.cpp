@@ -39,7 +39,7 @@ void AStage1BossGameModeBase::BeginPlay()
 		UMyGameInstance *GameInstance = Cast<UMyGameInstance>(GetGameInstance());
 		if (GameInstance)
 		{
-			GameInstance->InitializeManagers();
+			GameInstance->Init();
 			UStatComponent *StatComponent = player->FindComponentByClass<UStatComponent>();
 			if (StatComponent)
 			{

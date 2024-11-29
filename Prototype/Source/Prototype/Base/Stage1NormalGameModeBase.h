@@ -21,9 +21,4 @@ public:
 
 	virtual void PostInitializeComponents() override;
 
-private:
-
-
-
-
 };
