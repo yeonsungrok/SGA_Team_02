@@ -1,23 +1,25 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "UI/MianScreenWidget.h"
+#include "UI/MainStartWidget.h"
 #include "Kismet/GameplayStatics.h"
 #include "Components/Button.h"
 
-void UMianScreenWidget::NativeConstruct()
+void UMainStartWidget::NativeConstruct()
 {
+
 	Super::NativeConstruct();
 
 
 
-	if (TestButton)
+	if (StartButton)
 	{
-		TestButton->OnClicked.AddDynamic(this, &UMianScreenWidget::TestButtonClick);
+		StartButton->OnClicked.AddDynamic(this, &UMainStartWidget::StartButtonClick);
 	}
 }
 
-void UMianScreenWidget::TestButtonClick()
+void UMainStartWidget::StartButtonClick()
 {
+
 	UGameplayStatics::OpenLevel(GetWorld(), TEXT("NewMap"));
 }

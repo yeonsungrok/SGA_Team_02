@@ -4,21 +4,21 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "MianScreenWidget.generated.h"
+#include "MainStartWidget.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class PROTOTYPE_API UMianScreenWidget : public UUserWidget
+class PROTOTYPE_API UMainStartWidget : public UUserWidget
 {
 	GENERATED_BODY()
-
+	
 public:
 	virtual void NativeConstruct() override;
 
 	UPROPERTY(meta = (BindWidget))
-	class UButton* TestButton;
+	class UButton* StartButton;
 	UFUNCTION()
-	void TestButtonClick();
+	void StartButtonClick();
 };

@@ -268,10 +268,6 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\Prototype\PrototypeCharacter.h"/>
-    <ClCompile Include="..\..\Source\Prototype\StartGameModeBase.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Prototype\StartGameModeBase.h"/>
     <ClCompile Include="..\..\Source\Prototype\Animation\BaseAnimInstance.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -324,6 +320,10 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\Prototype\Base\Stage1NormalGameModeBase.h"/>
+    <ClCompile Include="..\..\Source\Prototype\Base\StartGameModeBase.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Base\StartGameModeBase.h"/>
     <ClCompile Include="..\..\Source\Prototype\Base\Managers\EffectManager.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -585,10 +585,10 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\Prototype\UI\InventoryWidget.h"/>
-    <ClCompile Include="..\..\Source\Prototype\UI\MianScreenWidget.cpp">
+    <ClCompile Include="..\..\Source\Prototype\UI\MainStartWidget.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Prototype\UI\MianScreenWidget.h"/>
+    <ClInclude Include="..\..\Source\Prototype\UI\MainStartWidget.h"/>
     <ClCompile Include="..\..\Source\Prototype\UI\MiniMapActor.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>

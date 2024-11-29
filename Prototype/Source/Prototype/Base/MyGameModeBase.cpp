@@ -20,6 +20,7 @@ void AMyGameModeBase::BeginPlay()
 		{
 			if (GameInstance->GetFirst())
 			{
+				GAMEINSTANCE->InitializeManagers(); 
 				UE_LOG(LogTemp,Warning,TEXT("First GamemOde"));
 				UStatComponent *StatComponent = player->FindComponentByClass<UStatComponent>();
 				UInventoryComponent *InvenComponent = player->FindComponentByClass<UInventoryComponent>();
