@@ -2,9 +2,11 @@
 #include "Base/MyGameInstance.h"
 #include "Item/BaseItem.h"
 #include "../../Player/MyPlayer.h"
+#include "GameFramework/PlayerController.h"
 #include "Component/StatComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/SphereComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AEquipItem::AEquipItem()
@@ -90,7 +92,17 @@ void AEquipItem::EquipPlayer()
 void AEquipItem::UnEquip()
 {
     if (_player == nullptr)
-        return;
+    {
+        APlayerController* playerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+        if (playerController)
+        {
+            AMyPlayer* currentPlayer = Cast<AMyPlayer>(playerController->GetPawn());
+            if (currentPlayer)
+                _player = currentPlayer;
+            else
+                return;
+        }
+    }
 
     //TODO : if put DEFAULT, recover to default skeletal mesh
     switch (_equipItemType)
