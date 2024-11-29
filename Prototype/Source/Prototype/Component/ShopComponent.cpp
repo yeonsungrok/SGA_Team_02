@@ -31,6 +31,11 @@ void UShopComponent::SetCustomer(AMyPlayer* target)
 	_customer = target;
 }
 
+void UShopComponent::Init()
+{
+	SetSales();
+}
+
 void UShopComponent::SetSales()
 {
 	auto data = GAMEINSTANCE->GetSellingData();
