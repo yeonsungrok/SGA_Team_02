@@ -82,6 +82,8 @@ public:
 	virtual void GetItem();
 	virtual void UseItem();
 	virtual void DropItem(FVector location, FRotator rotation = FRotator::ZeroRotator);
+
+	virtual void SetPlayer(); 
 	
 
 	//Item Data Getter

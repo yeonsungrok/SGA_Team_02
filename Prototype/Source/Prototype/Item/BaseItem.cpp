@@ -5,13 +5,17 @@
 #include "Item/BaseItem.h"
 
 #include "Player/MyPlayer.h"
+#include "Player/MyPlayerController.h"
 
 #include "Base/MyGameInstance.h"
 #include "Base/Managers/EffectManager.h"
 #include "Component/InventoryComponent.h"
 
+
 #include "Components/StaticMeshComponent.h"
 #include "Components/SphereComponent.h"
+
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ABaseItem::ABaseItem()
@@ -79,6 +83,7 @@ void ABaseItem::Disable()
  void ABaseItem::BeginPlay()
  {
 	Super::BeginPlay();
+	SetPlayer();
  }
 
  void ABaseItem::PostInitializeComponents()
@@ -119,4 +124,22 @@ void ABaseItem::DropItem(FVector location, FRotator rotation)
 {
 	SetActorLocationAndRotation(location, rotation);
 	Init();
+}
+
+void ABaseItem::SetPlayer()
+{
+	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+    if (PlayerController)
+    {
+        AMyPlayer* CurrentPlayer = Cast<AMyPlayer>(PlayerController->GetPawn());
+        if (CurrentPlayer)
+        {
+            _player = CurrentPlayer;
+            UE_LOG(LogTemp, Warning, TEXT("Player set to: %s"), *_player->GetName());
+        }
+        else
+        {
+            UE_LOG(LogTemp, Warning, TEXT("Failed to find the current player."));
+        }
+    }
 }
