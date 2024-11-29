@@ -61,6 +61,7 @@ void AStage1BossGameModeBase::BeginPlay()
 	ABossMonster* Boss = GetWorld()->SpawnActor<ABossMonster>(_boss, FVector(-7787.8f,-191.5f,171.1f), FRotator::ZeroRotator, SpawnParams);
 	if(Boss)
 	{
+		Boss->_StatCom->SetBossLevelInit(1);
 		AAIController_BossMonster* BossAI = GetWorld()->SpawnActor<AAIController_BossMonster>(AAIController_BossMonster::StaticClass());
         if (BossAI)
         {
@@ -83,7 +84,6 @@ void AStage1BossGameModeBase::PostInitializeComponents()
 
 void AStage1BossGameModeBase::BossClear()
 {
-	UE_LOG(LogTemp,Warning,TEXT("BossClear"));
 	if (_portal)
     {
         FActorSpawnParameters SpawnParams;

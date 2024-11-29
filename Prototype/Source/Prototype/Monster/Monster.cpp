@@ -50,7 +50,6 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent,
     AMyPlayer* Player = Cast<AMyPlayer>(PlayerController->GetPawn());
 
 	float damaged = -_StatCom->AddCurHp(-Damage);
-	UE_LOG(LogTemp, Warning, TEXT("Take Damaged: %f"),Damage);
 
 	if (this->_StatCom->IsDead() && Player != nullptr)
 	{

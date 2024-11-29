@@ -107,6 +107,9 @@ void UMyGameInstance::SaveInventory(class UInventoryComponent *InventoryComponen
 {
 	if (InventoryComponent)
 	{
+		SavedInventoryData.Empty();
+		SavedEquipData.Empty();
+		
 		TArray<ABaseItem *> Items = InventoryComponent->GetItemSlots();
 		TMap<FString, AEquipItem *> EquipItems = InventoryComponent->GetEquipSlots();
 
@@ -180,7 +183,7 @@ void UMyGameInstance::LoadInventory(class UInventoryComponent *InventoryComponen
 				InventoryComponent->AddItemToSlot(NewItem);
 			}
 		}
-
+		
 		for (const auto &Item : SavedEquipData)
 		{
 			AEquipItem *NewItem = nullptr;
@@ -326,9 +329,9 @@ ABaseItem* UMyGameInstance::SellDataToItemData(FSellings* data)
 {
 	if (data->Type == ItemType::Equipment)
 	{
-		AEquipItem* equip = GetWorld()->SpawnActor<AEquipItem>(ABaseItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+		AEquipItem* equip = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
 		equip->SetItemWithCode(data->Code);
-		return equip;
+		return Cast<ABaseItem>(equip);
 	}
 	else
 	{

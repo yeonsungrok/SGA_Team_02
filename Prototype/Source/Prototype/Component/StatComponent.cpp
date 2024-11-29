@@ -443,7 +443,6 @@ int UStatComponent::AddCurMp(int32 amount)
 void UStatComponent::AddAttackDamage(float amount)
 {
 	_attackDamage += amount;
-	UE_LOG(LogTemp, Warning, TEXT("Attack Damage: %d"), _attackDamage);
 }
 
 void UStatComponent::AddExp(int32 amount)
