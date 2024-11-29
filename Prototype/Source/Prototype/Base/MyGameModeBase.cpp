@@ -22,7 +22,7 @@ void AMyGameModeBase::BeginPlay()
 		{
 			if (GameInstance->GetFirst())
 			{			
-				//GAMEINSTANCE->InitializeManagers();
+				GAMEINSTANCE->InitializeManagers();
 
 				if(StatComponent)
 				{
