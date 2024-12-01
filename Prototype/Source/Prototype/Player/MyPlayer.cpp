@@ -39,7 +39,6 @@
 #include "../Animation/PlayerAnimInstance.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
-
 // hp
 #include "Components/ProgressBar.h"
 
@@ -53,7 +52,6 @@
 #include "Components/DecalComponent.h"
 
 #include "Player/Dragon.h"
-
 
 #include "UI/StatWidget.h"
 #include "UI/PlayerBarWidget.h"
@@ -82,7 +80,6 @@ AMyPlayer::AMyPlayer()
 
 	_springArm->TargetArmLength = 500.0f;
 	_springArm->SetRelativeRotation(FRotator(-35.0f, 0.0f, 0.0f));
-
 
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> USM(TEXT("/Script/Engine.SkeletalMesh'/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/Free_WhiteTiger_Detach/Free_Body_Face_Pos.Free_Body_Face_Pos'"));
 	if (USM.Succeeded())
@@ -130,8 +127,6 @@ AMyPlayer::AMyPlayer()
 		_statWidget = CreateWidget<UStatWidget>(GetWorld(), StatClass.Class);
 	}
 
-	
-
 	static ConstructorHelpers::FClassFinder<UCameraShakeBase> CS(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/Player/CamerShake_BP.CamerShake_BP_C'"));
 	if (CS.Succeeded())
 	{
@@ -162,6 +157,12 @@ AMyPlayer::AMyPlayer()
 		SkillDecalActor = DA.Class;
 	}
 
+	static ConstructorHelpers::FClassFinder<ADecalActor> TA(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/VFX/TeleportDecal_BP.TeleportDecal_BP_C'"));
+	if (TA.Succeeded())
+	{
+		_teleportDecal = TA.Class;
+	}
+
 	if (WidgetClass)
 	{
 		_Widget = CreateWidget<UPlayerBarWidget>(GetWorld(), WidgetClass);
@@ -186,11 +187,9 @@ void AMyPlayer::BeginPlay()
 	if (_statWidget)
 	{
 		_statWidget->AddToViewport(10);
-		
+
 		_statWidget->SetVisibility(ESlateVisibility::Hidden);
 	}
-
-	
 
 	AMyPlayerController *MyController = Cast<AMyPlayerController>(GetController());
 	if (MyController != nullptr)
@@ -198,10 +197,6 @@ void AMyPlayer::BeginPlay()
 		_skillWidgetInstance = MyController->SkillWidgetInstance;
 	}
 	SkillOnCooldown.Init(false, 4);
-
-
-
-
 
 	if (DragonClass)
 	{
@@ -214,13 +209,11 @@ void AMyPlayer::BeginPlay()
 		// 드래곤 인스턴스 스폰
 		_dragonInstance = GetWorld()->SpawnActor<ADragon>(DragonClass, SpawnLocation, SpawnRotation, SpawnParams);
 	}
-
 }
 
 void AMyPlayer::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
-
 
 	if (_Widget)
 	{
@@ -249,7 +242,6 @@ void AMyPlayer::PostInitializeComponents()
 		_KnightanimInstance->_attackDelegate.AddUObject(this, &ACreature::AttackHit);
 		_KnightanimInstance->_deathDelegate_Knight.AddUObject(this, &AMyPlayer::Disable);
 	}
-
 }
 
 // Called every frame
@@ -257,7 +249,7 @@ void AMyPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if(_StatCom->IsDead())
+	if (_StatCom->IsDead())
 		return;
 
 	UpdateCamera(DeltaTime);
@@ -389,32 +381,29 @@ void AMyPlayer::SetEquipItem(EItemType equiptype, AEquipItem *equipitem)
 
 void AMyPlayer::EquipBaseBody()
 {
-	USkeletalMesh* LoadedMesh = Cast<USkeletalMesh>(StaticLoadObject(USkeletalMesh::StaticClass(), nullptr, TEXT("/Script/Engine.SkeletalMesh'/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/Free_WhiteTiger_Detach/Free_Body_Face_Pos.Free_Body_Face_Pos'")));
-    if (LoadedMesh)
-    {
-       GetMesh()->SetSkeletalMesh(LoadedMesh);
-    }	 
+	USkeletalMesh *LoadedMesh = Cast<USkeletalMesh>(StaticLoadObject(USkeletalMesh::StaticClass(), nullptr, TEXT("/Script/Engine.SkeletalMesh'/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/Free_WhiteTiger_Detach/Free_Body_Face_Pos.Free_Body_Face_Pos'")));
+	if (LoadedMesh)
+	{
+		GetMesh()->SetSkeletalMesh(LoadedMesh);
+	}
 }
 
 void AMyPlayer::EquipBaseLower()
 {
-	USkeletalMesh* LoadedMesh = Cast<USkeletalMesh>(StaticLoadObject(USkeletalMesh::StaticClass(), nullptr, TEXT("/Script/Engine.SkeletalMesh'/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/Free_WhiteTiger_Detach/Free_Body_Bottom_Pos.Free_Body_Bottom_Pos'")));
-    if (LoadedMesh)
-    {
-       _lowerBodyMesh->SetSkeletalMesh(LoadedMesh);
-    }
-
-	
+	USkeletalMesh *LoadedMesh = Cast<USkeletalMesh>(StaticLoadObject(USkeletalMesh::StaticClass(), nullptr, TEXT("/Script/Engine.SkeletalMesh'/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/Free_WhiteTiger_Detach/Free_Body_Bottom_Pos.Free_Body_Bottom_Pos'")));
+	if (LoadedMesh)
+	{
+		_lowerBodyMesh->SetSkeletalMesh(LoadedMesh);
+	}
 }
 
 void AMyPlayer::EquipBaseShoulder()
 {
-	USkeletalMesh* LoadedMesh = Cast<USkeletalMesh>(StaticLoadObject(USkeletalMesh::StaticClass(), nullptr, TEXT("/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/Free_WhiteTiger_Detach/Free_Body_Arms_Pos.Free_Body_Arms_Pos")));
-    if (LoadedMesh)
-    {
-        _shoulderBodyMesh->SetSkeletalMesh(LoadedMesh);
-    }
-
+	USkeletalMesh *LoadedMesh = Cast<USkeletalMesh>(StaticLoadObject(USkeletalMesh::StaticClass(), nullptr, TEXT("/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/Free_WhiteTiger_Detach/Free_Body_Arms_Pos.Free_Body_Arms_Pos")));
+	if (LoadedMesh)
+	{
+		_shoulderBodyMesh->SetSkeletalMesh(LoadedMesh);
+	}
 }
 
 FString AMyPlayer::GetSwingSoundName() const
@@ -497,9 +486,6 @@ FString AMyPlayer::GetLevelUpSound() const
 	return "LevelupSound_Cue";
 }
 
-
-
-
 void AMyPlayer::Move(const FInputActionValue &value)
 {
 	if (bIsGuarding)
@@ -539,21 +525,21 @@ void AMyPlayer::AttackA(const FInputActionValue &value)
 
 	if (isPressed && _isAttacking == false && _KnightanimInstance != nullptr)
 	{
-		 if (bIsSkillReadyToCast) 
-        {
-            bIsSkillReadyToCast = false;
+		if (bIsSkillReadyToCast)
+		{
+			bIsSkillReadyToCast = false;
 
-            GetWorld()->GetTimerManager().ClearTimer(TimerHandle_UpdateDecal);
-			
-            if (SpawnedDecalActor)
-            {
-                SpawnedDecalActor->Destroy();
-                SpawnedDecalActor = nullptr;
-            }
+			GetWorld()->GetTimerManager().ClearTimer(TimerHandle_UpdateDecal);
 
-            ConfirmSkillLocation();
+			if (SpawnedDecalActor)
+			{
+				SpawnedDecalActor->Destroy();
+				SpawnedDecalActor = nullptr;
+			}
+
+			ConfirmSkillLocation();
 			return;
-        }
+		}
 
 		if (bIsGuarding)
 			bIsGuarding = false;
@@ -617,135 +603,128 @@ void AMyPlayer::Skill1(const FInputActionValue &value)
 
 void AMyPlayer::Skill2(const FInputActionValue &value)
 {
-    bool isPressed = value.Get<bool>();
+	bool isPressed = value.Get<bool>();
 
-    if (isPressed)
-    {
-        if (_skillWidgetInstance != nullptr && !SkillOnCooldown[1]) 
-        {
+	if (isPressed)
+	{
+		if (_skillWidgetInstance != nullptr && !SkillOnCooldown[1])
+		{
 			APlayerController *PlayerController = Cast<APlayerController>(GetController());
-			
-			if(SpawnedDecalActor)
+
+			if (SpawnedDecalActor)
 			{
 				bIsSkillReadyToCast = false;
 				SpawnedDecalActor->Destroy();
-				SpawnedDecalActor =  nullptr;
+				SpawnedDecalActor = nullptr;
 				PlayerController->bShowMouseCursor = false;
 				PlayerController->SetInputMode(FInputModeGameOnly());
 				return;
 			}
 
-            if (SkillDecalActor && !SpawnedDecalActor)
-            {
-                SpawnedDecalActor = GetWorld()->SpawnActor<ADecalActor>(SkillDecalActor);
-                if (SpawnedDecalActor)
-                {
-                    SpawnedDecalActor->SetLifeSpan(0);
-                }
-            }
+			if (SkillDecalActor && !SpawnedDecalActor)
+			{
+				SpawnedDecalActor = GetWorld()->SpawnActor<ADecalActor>(SkillDecalActor);
+				if (SpawnedDecalActor)
+				{
+					SpawnedDecalActor->SetLifeSpan(0);
+				}
+			}
 
+			if (PlayerController)
+			{
+				bool bIsCursorVisible = PlayerController->bShowMouseCursor;
+				PlayerController->bShowMouseCursor = true;
+				PlayerController->SetInputMode(FInputModeGameAndUI().SetHideCursorDuringCapture(false));
+			}
 
-            if (PlayerController)
-            {
-                bool bIsCursorVisible = PlayerController->bShowMouseCursor;
-                PlayerController->bShowMouseCursor = true;
-                PlayerController->SetInputMode(FInputModeGameAndUI().SetHideCursorDuringCapture(false));
-            }
+			bIsSkillReadyToCast = true;
 
-            bIsSkillReadyToCast = true;
-
-            GetWorld()->GetTimerManager().SetTimer(TimerHandle_UpdateDecal, this, &AMyPlayer::UpdateDecalLocation, 0.01f, true);
-        }
-    }
+			GetWorld()->GetTimerManager().SetTimer(TimerHandle_UpdateDecal, this, &AMyPlayer::UpdateDecalLocation, 0.01f, true);
+		}
+	}
 }
 
 void AMyPlayer::UpdateDecalLocation()
 {
-    AMyPlayerController *PlayerController = Cast<AMyPlayerController>(GetController());
-    if (PlayerController && SpawnedDecalActor)
-    {
-        FHitResult HitResult;
-        PlayerController->GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
+	AMyPlayerController *PlayerController = Cast<AMyPlayerController>(GetController());
+	if (PlayerController && SpawnedDecalActor)
+	{
+		FHitResult HitResult;
+		PlayerController->GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
 
-        if (HitResult.bBlockingHit)
-        {
-			if(HitResult.ImpactNormal.Z > 0.5f)
+		if (HitResult.bBlockingHit)
+		{
+			if (HitResult.ImpactNormal.Z > 0.5f)
 			{
 				FVector NewLocation = HitResult.ImpactPoint;
-            	TargetSkillLocation = NewLocation;
+				TargetSkillLocation = NewLocation;
 				TargetSkillLocation.Z += 1.0f;
 
-            	SkillRotation = HitResult.ImpactNormal.Rotation();
-        		SpawnedDecalActor->SetActorLocation(TargetSkillLocation);
-        		SpawnedDecalActor->SetActorRotation( SkillRotation);
+				SkillRotation = HitResult.ImpactNormal.Rotation();
+				SpawnedDecalActor->SetActorLocation(TargetSkillLocation);
+				SpawnedDecalActor->SetActorRotation(SkillRotation);
 			}
-        }
-    }
+		}
+	}
 }
 
 void AMyPlayer::ConfirmSkillLocation()
 {
-    if (SkillOnCooldown[1])
-        return;
+	if (SkillOnCooldown[1])
+		return;
 
-    SkillOnCooldown[1] = true;
+	SkillOnCooldown[1] = true;
 
-    FActorSpawnParameters SpawnParams;
-    SpawnParams.Owner = this;
-    SpawnParams.Instigator = GetInstigator();
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.Owner = this;
+	SpawnParams.Instigator = GetInstigator();
 
-    AMyPlayerController *PlayerController = Cast<AMyPlayerController>(GetController());
-    if (PlayerController)
-    {
-        PlayerController->bShowMouseCursor = false;
-        PlayerController->SetInputMode(FInputModeGameOnly());
-    }
+	AMyPlayerController *PlayerController = Cast<AMyPlayerController>(GetController());
+	if (PlayerController)
+	{
+		PlayerController->bShowMouseCursor = false;
+		PlayerController->SetInputMode(FInputModeGameOnly());
+	}
 
-    FVector MeteorStartLocation = GetActorLocation() + FVector(0, 0, 5000.0f);
-    FVector DecalLocation = TargetSkillLocation;
-	FRotator DecalRotation =  SkillRotation;
+	FVector MeteorStartLocation = GetActorLocation() + FVector(0, 0, 5000.0f);
+	FVector DecalLocation = TargetSkillLocation;
+	FRotator DecalRotation = SkillRotation;
 	DecalRotation.Pitch -= 90.0f;
 
+	int MeteorCount = (_StatCom->GetInt()) / 10;
 
-    int MeteorCount = (_StatCom->GetInt()) / 10;
+	AMeteorDecal *CenterMeteorDecal = GetWorld()->SpawnActor<AMeteorDecal>(_decal, DecalLocation, DecalRotation, SpawnParams);
+	if (CenterMeteorDecal)
+	{
+		CenterMeteorDecal->StartMeteor(MeteorStartLocation, DecalLocation, 3.0f);
+	}
 
-    AMeteorDecal *CenterMeteorDecal = GetWorld()->SpawnActor<AMeteorDecal>(_decal, DecalLocation, DecalRotation, SpawnParams);
-    if (CenterMeteorDecal)
-    {
-        CenterMeteorDecal->StartMeteor(MeteorStartLocation, DecalLocation, 3.0f);
-    }
+	for (int i = 0; i < MeteorCount - 1; i++)
+	{
+		float Angle = (i * (360.0f / (MeteorCount - 1))) * (PI / 180.0f);
+		float Radius = 900.0f;
 
-    for (int i = 0; i < MeteorCount - 1; i++)
-    {
-        float Angle = (i * (360.0f / (MeteorCount - 1))) * (PI / 180.0f);
-        float Radius = 900.0f;
+		FVector SpawnLocation = DecalLocation;
+		SpawnLocation.X += FMath::Cos(Angle) * Radius;
+		SpawnLocation.Y += FMath::Sin(Angle) * Radius;
 
-        FVector SpawnLocation = DecalLocation;
-        SpawnLocation.X += FMath::Cos(Angle) * Radius;
-        SpawnLocation.Y += FMath::Sin(Angle) * Radius;
+		AMeteorDecal *MeteorDecal = GetWorld()->SpawnActor<AMeteorDecal>(_decal, SpawnLocation, FRotator::ZeroRotator, SpawnParams);
+		if (MeteorDecal)
+		{
+			MeteorDecal->StartMeteor(MeteorStartLocation, SpawnLocation, 3.0f);
+		}
+	}
 
-        AMeteorDecal *MeteorDecal = GetWorld()->SpawnActor<AMeteorDecal>(_decal, SpawnLocation, FRotator::ZeroRotator, SpawnParams);
-        if (MeteorDecal)
-        {
-            MeteorDecal->StartMeteor(MeteorStartLocation, SpawnLocation, 3.0f);
-        }
-    }
+	_skillWidgetInstance->StartCooldown(1, 5.0f);
 
-    _skillWidgetInstance->StartCooldown(1, 5.0f);
+	UPlayerAnimInstance *PlayerAnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
+	if (PlayerAnimInstance)
+	{
+		PlayerAnimInstance->PlaySkill02Montage();
+	}
 
-    UPlayerAnimInstance *PlayerAnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
-    if (PlayerAnimInstance)
-    {
-        PlayerAnimInstance->PlaySkill02Montage();
-    }
-
-    SoundManager->PlaySound(*GetSkillSound02(), _hitPoint);
+	SoundManager->PlaySound(*GetSkillSound02(), _hitPoint);
 }
-
-
-
-
-
 
 void AMyPlayer::Skill3(const FInputActionValue &value)
 {
@@ -764,13 +743,11 @@ void AMyPlayer::Skill3(const FInputActionValue &value)
 				SoundManager->PlaySound(*GetSkillSound03(), this->GetActorLocation());
 				SoundManager->PlaySound(*GetSkillSound03Shout(), this->GetActorLocation());
 
-				UPlayerAnimInstance* PlayerAnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
+				UPlayerAnimInstance *PlayerAnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 				if (PlayerAnimInstance)
 				{
 					PlayerAnimInstance->PlaySkill03Montage();
 				}
-
-
 
 				int FireballCount = _StatCom->GetInt() / 10;
 				FRotator spawnRotation = GetActorRotation();
@@ -812,14 +789,11 @@ void AMyPlayer::Skill4(const FInputActionValue &value)
 
 			EffectManager->Play(*GetPlayerSkillEffect04_Start(), GetActorLocation());
 			SoundManager->PlaySound(*GetSkillSound04Start(), GetActorLocation());
-				
 
 			EffectManager->PlayOnSkeletalMesh(*GetPlayerSkillEffect04_Durring(), _lowerBodyMesh, "root");
-			//SoundManager->PlaySound(*GetSkillSound04Durring(), GetActorLocation());
-			//SoundManager->StopSound(*GetSkillSound04Durring());
+			// SoundManager->PlaySound(*GetSkillSound04Durring(), GetActorLocation());
+			// SoundManager->StopSound(*GetSkillSound04Durring());
 			SoundManager->PlaySoundWithDuration(*GetSkillSound04Durring(), GetActorLocation(), 17.9f);
-
-		
 		}
 	}
 }
@@ -920,18 +894,30 @@ void AMyPlayer::StatUIOpen(const FInputActionValue &value)
 {
 	bool isPressed = value.Get<bool>();
 
-	UE_LOG(LogTemp, Error, TEXT("StatUI Errow"));
-
 	SoundManager->PlaySound(*GetUIBaseSound(), GetActorLocation());
+
+	APlayerController *PlayerController = Cast<APlayerController>(GetController());
 
 	if (isPressed && _statWidget != nullptr)
 	{
 		if (_statWidget->IsVisible())
 		{
+			if (PlayerController)
+			{
+				PlayerController->bShowMouseCursor = false;
+				PlayerController->SetInputMode(FInputModeGameOnly());
+			}
 			_statWidget->SetVisibility(ESlateVisibility::Hidden);
 		}
 		else
 		{
+			if (PlayerController)
+			{
+				bool bIsCursorVisible = PlayerController->bShowMouseCursor;
+				PlayerController->bShowMouseCursor = true;
+				PlayerController->SetInputMode(FInputModeGameAndUI().SetHideCursorDuringCapture(false));
+			}
+
 			_statWidget->UpdateStatDisplay();
 			_statWidget->SetVisibility(ESlateVisibility::Visible);
 		}
@@ -943,7 +929,6 @@ void AMyPlayer::InvenUIOpen(const FInputActionValue &value)
 	bool isPressed = value.Get<bool>();
 
 	auto invenUI = UIManager->GetInventoryUI();
-
 	SoundManager->PlaySound(*GetUIBaseSound(), GetActorLocation());
 
 	if (isPressed && invenUI != nullptr)
@@ -952,13 +937,13 @@ void AMyPlayer::InvenUIOpen(const FInputActionValue &value)
 	}
 }
 
-void AMyPlayer::Interect(const FInputActionValue& value)
+void AMyPlayer::Interect(const FInputActionValue &value)
 {
 	bool isPressed = value.Get<bool>();
 
 	auto invenUI = UIManager->GetInventoryUI();
 
-	//TODO : Dummy Function
+	// TODO : Dummy Function
 	if (isPressed && invenUI != nullptr)
 	{
 		UIManager->ToggleUI(UI_LIST::Shop);
@@ -1034,16 +1019,15 @@ void AMyPlayer::TransformToDragon()
 	}
 
 	// 상태 저장 및 변환 로직
-	if (APlayerController* PC = Cast<APlayerController>(GetController()))
+	if (APlayerController *PC = Cast<APlayerController>(GetController()))
 	{
 
 		// Dragon 활성화
 		_dragonInstance->SetActorHiddenInGame(false);
 		_dragonInstance->SetActorEnableCollision(true);
 
-		_dragonInstance->SetActorLocation(GetActorLocation());  // 동일한 위치
-		_dragonInstance->SetActorRotation(GetActorRotation());  // 동일한 회전
-
+		_dragonInstance->SetActorLocation(GetActorLocation()); // 동일한 위치
+		_dragonInstance->SetActorRotation(GetActorRotation()); // 동일한 회전
 
 		// MyPlayer 비활성화
 		SetActorHiddenInGame(true);
@@ -1079,7 +1063,7 @@ void AMyPlayer::ToggleTransformation()
 
 void AMyPlayer::SavePlayerState()
 {
-	UMyPlayerSaveGame* SaveGameInstance = Cast<UMyPlayerSaveGame>(UGameplayStatics::CreateSaveGameObject(UMyPlayerSaveGame::StaticClass()));
+	UMyPlayerSaveGame *SaveGameInstance = Cast<UMyPlayerSaveGame>(UGameplayStatics::CreateSaveGameObject(UMyPlayerSaveGame::StaticClass()));
 
 	if (GetMesh() && GetMesh()->GetSkeletalMeshAsset())
 	{
@@ -1108,7 +1092,7 @@ void AMyPlayer::SavePlayerState()
 
 void AMyPlayer::LoadPlayerState()
 {
-	UMyPlayerSaveGame* LoadGameInstance = Cast<UMyPlayerSaveGame>(UGameplayStatics::LoadGameFromSlot(TEXT("PlayerSaveSlot"), 0));
+	UMyPlayerSaveGame *LoadGameInstance = Cast<UMyPlayerSaveGame>(UGameplayStatics::LoadGameFromSlot(TEXT("PlayerSaveSlot"), 0));
 	if (LoadGameInstance)
 	{
 		if (!LoadGameInstance->BodyMeshName.IsEmpty())

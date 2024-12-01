@@ -206,7 +206,6 @@ void ABoss2Monster::AttackHit()
 	else
 	{
 		FVector missLocation = GetActorLocation();
-		
 		SoundManager->PlaySound(*GetSwingSoundName(), missLocation);
 	}
 	DrawDebugSphere(GetWorld(), center, attackRadius, 32, drawColor, false, 0.3f);

@@ -90,15 +90,31 @@ public:
 
 	int32 GetCurHp() { return _curHp; }
 	int32 GetMaxHp() { return _maxHp; }
+	int32 GetOgHp()  { return _ogHp; }
+	int32 GetModHp()  { return _modHp; }
+
 	int32 GetLevel() { return _level; }
 	int32 GetExp() { return _curExp; }
+
 	int32 GetCurMp() { return _curMp; }
 	int32 GetMaxMp() { return _maxMp; }
+	int32 GetOhMp()  { return _ogMp; }
+	int32 GetModMp()  { return _modMp; }
+
 	int32 GetNextExp() { return _nextExp; }
 	//test
 	int32 GetStr()  { return _str; }
+	int32 GetOgStr()  { return _ogStr; }
+	int32 GetModStr()  { return _modStr; }
+
 	int32 GetDex()  { return _dex; }
+	int32 GetOgDex()  { return _ogDex; }
+	int32 GetModDex()  { return _modDex; }
+
 	int32 GetInt()  { return _int; }
+	int32 GetOgInt()  { return _ogInt; }
+	int32 GetModInt()  { return _modInt; }
+
 	int32 GetBonusPoint() { return _bonusPoint; }
 
 	void SetLevel(int32 newLevel);
@@ -106,8 +122,14 @@ public:
 	void SetMaxMp(int32 newMaxMp);
 	void SetBonusPoint(int32 newBp);
 	void SetStr(int32 newstr);
+	void SetOgStr(int32 newstr);
+	void SetModStr(int32 newstr);
 	void SetDex(int32 newdex);
+	void SetOgDex(int32 newdex);
+	void SetModDex(int32 newdex);
 	void SetInt(int32 newint);
+	void SetOgInt(int32 newint);
+	void SetModInt(int32 newint);
 	void SetExp(int32 newexp);
 	
 	void AddStat(StatType type, int32 amount = 1);

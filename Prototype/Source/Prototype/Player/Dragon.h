@@ -42,6 +42,8 @@ public:
     virtual void PostInitializeComponents() override;
     virtual void Tick(float DeltaTime) override;
 
+    virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)override;
+
     UStatComponent* GetStatComponent() { return _StatCom; }
 
 

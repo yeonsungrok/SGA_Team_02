@@ -76,8 +76,17 @@ void UMyGameInstance::SavePlayerStats(class UStatComponent *StatComponent)
 		_savedMaxHp = StatComponent->GetMaxHp();
 		_savedMaxMp = StatComponent->GetMaxMp();
 		_savedStr = StatComponent->GetStr();
+		_savedOgStr = StatComponent->GetOgStr();
+		_savedModStr = StatComponent->GetModStr();
+		
 		_savedDex = StatComponent->GetDex();
+		_savedOgDex = StatComponent->GetOgDex();
+		_savedModDex = StatComponent->GetModDex();
+
 		_savedInt = StatComponent->GetInt();
+		_savedOgInt = StatComponent->GetOgInt();
+		_savedModInt = StatComponent->GetModInt();
+
 		_savedCurHp = StatComponent->GetCurHp();
 		_savedCurMp = StatComponent->GetCurMp();
 		_savedExp = StatComponent->GetExp();
@@ -93,8 +102,17 @@ void UMyGameInstance::LoadPlayerStats(class UStatComponent *StatComponent)
 		StatComponent->SetMaxHp(_savedMaxHp);
 		StatComponent->SetMaxMp(_savedMaxMp);
 		StatComponent->SetStr(_savedStr);
+		StatComponent->SetOgStr(_savedOgStr);
+		StatComponent->SetModStr(_savedModStr);
+
 		StatComponent->SetDex(_savedDex);
+		StatComponent->SetOgDex(_savedOgDex);
+		StatComponent->SetModDex(_savedModDex);
+
 		StatComponent->SetInt(_savedInt);
+		StatComponent->SetOgInt(_savedOgInt);
+		StatComponent->SetModInt(_savedModInt);
+
 		StatComponent->SetHp(_savedCurHp);
 		StatComponent->SetMp(_savedCurMp);
 		StatComponent->SetExp(_savedExp);
