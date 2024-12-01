@@ -18,6 +18,9 @@ public:
     void StartCooldown(int32 SkillIndex, float InMaxCooldownTime);
 
     void ClearAll();
+    void LockAllSkill();
+    void UnLockAllSkill();
+    bool IsSkillLocked(int32 index);
 
 protected:
     virtual void NativeConstruct() override;
@@ -48,6 +51,8 @@ protected:
 
     UPROPERTY(meta = (BindWidget))
     class UImage* Cooldown4;
+
+    TArray<bool> SkillLocked;
 
     TArray<float> CooldownTimes;
     TArray<float> MaxCooldownTimes;

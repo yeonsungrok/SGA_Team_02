@@ -20,5 +20,7 @@ public:
 	virtual void BeginPlay() override;
 
 	virtual void PostInitializeComponents() override;
+
+	void LockSkill();
 	
 };

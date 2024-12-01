@@ -20,8 +20,6 @@ public:
 
 	UPROPERTY()
     class USkillWidget_test* SkillWidgetInstance;
-	
-
 
 protected:
 	UPROPERTY(EditAnyWhere, BlueprintReadOnly, Category = Input)
