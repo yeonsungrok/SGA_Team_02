@@ -93,6 +93,7 @@ public:
 
 	void SavePlayerState();
 	void LoadPlayerState();
+	void ClearSkillTimer();
 
 private:
 	void Move(const FInputActionValue &value);
@@ -110,6 +111,7 @@ private:
 	// cheol
 	void StatUIOpen(const FInputActionValue &value);
 	void InvenUIOpen(const FInputActionValue &value);
+	void Interect(const FInputActionValue &value);
 
 
 	//TODO : FIX
@@ -148,6 +150,7 @@ private:
 
 	void PerformDash(float DeltaTime);
 	void StartScreenShake();
+
 
 	
 
@@ -190,6 +193,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction *_LockOnAction;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction *_InteractAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent *_springArm;
@@ -235,18 +241,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = UI, meta = (AllowPrivateAccess = "true"))
 	class UStatWidget *_statWidget;
 
-	// MiniMap
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MiniMap, meta = (AllowPrivateAccess = "true"))
-	class USpringArmComponent* _MiniMapspringArm;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MiniMap, meta = (AllowPrivateAccess = "true"))
-	class USceneCaptureComponent2D* _MiniMapCapture;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Minimap, meta = (AllowPrivateAccess = "true"))
-	class UPaperSpriteComponent* _MinimapSprite;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = UI, meta = (AllowPrivateAccess = "true"))
-	class UMiniMapWidget* _MiniMap;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dash")
 	float _dashDistance;

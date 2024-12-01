@@ -2,9 +2,11 @@
 #include "Base/MyGameInstance.h"
 #include "Item/BaseItem.h"
 #include "../../Player/MyPlayer.h"
+#include "GameFramework/PlayerController.h"
 #include "Component/StatComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/SphereComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AEquipItem::AEquipItem()
@@ -39,8 +41,29 @@ void AEquipItem::SetItemWithCode(int32 itemCode)
         _Type = data->_Type;
         _ModStatType = data->_ModTarget;
         _Description = data->_Description;
+        _Equip = data->_Equip;
 
         _meshComponent->SetStaticMesh(_Mesh);
+    }
+}
+
+void AEquipItem::SetEquipType(int num)
+{
+    if (num >= 0 && num < static_cast<int32>(EItemType::Shield) + 1)
+    {
+        _equipItemType = static_cast<EItemType>(num); 
+
+        FString EnumValueAsString = UEnum::GetValueAsString(_equipItemType);
+
+        UE_LOG(LogTemp, Warning, TEXT("SetEquipType = %d, %s"), num, *EnumValueAsString);
+
+    }
+    else
+    {
+        _equipItemType = EItemType::Helmet;
+
+        FString EnumValueAsString = UEnum::GetValueAsString(_equipItemType);
+        UE_LOG(LogTemp, Warning, TEXT("Invalid num. Defaulting to Helmet. SetEquipType = %d, %s"), num, *EnumValueAsString);
     }
 }
 
@@ -59,25 +82,34 @@ void AEquipItem::Tick(float DeltaTime)
 void AEquipItem::EquipPlayer()
 {
     if (_player == nullptr)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer = nullptr"));
         return;
+    }
+    UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer"));
 
     if (_equipItem)
     {
         switch (_equipItemType)
         {
         case EItemType::UpperArmor:
+            UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer :: UPPER"));
             _player->GetMesh()->SetSkeletalMesh(_equipItem);
             break;
         case EItemType::LowerArmor:
+            UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer :: Lower"));
             _player->_lowerBodyMesh->SetSkeletalMesh(_equipItem);
             break;
         case EItemType::ShoulderArmor:
+            UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer :: Shoulder"));
             _player->_shoulderBodyMesh->SetSkeletalMesh(_equipItem);
             break;
         case EItemType::Sword:
+            UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer :: Sword"));
             _player->_swordBodyMesh->SetSkeletalMesh(_equipItem);
             break;
         case EItemType::Shield:
+            UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer :: Shield"));
             _player->_shieldBodyMesh->SetSkeletalMesh(_equipItem);
             break;
         default:
@@ -90,7 +122,17 @@ void AEquipItem::EquipPlayer()
 void AEquipItem::UnEquip()
 {
     if (_player == nullptr)
-        return;
+    {
+        APlayerController* playerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+        if (playerController)
+        {
+            AMyPlayer* currentPlayer = Cast<AMyPlayer>(playerController->GetPawn());
+            if (currentPlayer)
+                _player = currentPlayer;
+            else
+                return;
+        }
+    }
 
     //TODO : if put DEFAULT, recover to default skeletal mesh
     switch (_equipItemType)

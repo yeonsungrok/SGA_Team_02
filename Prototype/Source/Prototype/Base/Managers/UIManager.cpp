@@ -5,6 +5,7 @@
 
 #include "UI/InventoryWidget.h"
 #include "UI/Boss1Widget.h"
+#include "UI/ShopWidget.h"
 #include "Kismet/GameplayStatics.h"
 
 #include  "TriggerBox_StageSequnce/StageSequence_Trigger.h"
@@ -30,6 +31,14 @@ AUIManager::AUIManager()
 	{
 		_bossUI = CreateWidget<UBoss1Widget>(GetWorld(), boss1widget.Class);
 	}
+	
+	static ConstructorHelpers::FClassFinder<UUserWidget> shopUI(
+		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Shop_UI.Shop_UI_C'")
+	);
+	if (shopUI.Succeeded())
+	{
+		_shopUI = CreateWidget<UShopWidget>(GetWorld(), shopUI.Class);
+	}
 
 
 	static ConstructorHelpers::FObjectFinder<UTexture2D> defaultTexture(
@@ -47,6 +56,10 @@ AUIManager::AUIManager()
 	_uiList.Add(_bossUI);
 	_uiIsOpen.Add(false);
 	_isPauseWhenOpen.Add(false);
+
+	_uiList.Add(_shopUI);
+	_uiIsOpen.Add(false);
+	_isPauseWhenOpen.Add(true);
 }
 
 // Called when the game starts or when spawned
@@ -73,7 +86,9 @@ void AUIManager::OpenUI(UI_LIST ui)
 		pauseGame.Broadcast();
 
 	_uiList[UIindex]->SetVisibility(ESlateVisibility::Visible);
-	_uiList[UIindex]->AddToViewport(UIindex);
+	int32 ZOrder = (ui == UI_LIST::Inventory) ? 10 : 0;
+	_uiList[UIindex]->AddToViewport(ZOrder);
+
 	_uiIsOpen[UIindex] = true;
 }
 

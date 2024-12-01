@@ -10,6 +10,7 @@
 #include "Component/InventoryComponent.h"
 #include "../Item/BaseItem.h"
 #include "Item/Equip/EquipItem.h"
+#include "../Component/ShopComponent.h"
 #include "MyGameInstance.generated.h"
 
 #define GAMEINSTANCE Cast<UMyGameInstance>(GetWorld()->GetGameInstance())
@@ -44,6 +45,8 @@ public:
 	bool GetFirst(){return _firstIn;}
 	void SetFirst(bool first){_firstIn = first;}
 
+	TArray<ABaseItem*> GetInvenItemList();
+
 public:
 	virtual void Init() override;
 
@@ -55,9 +58,14 @@ public:
 	FMyStatData* GetStatDataByLevel(int level);
 	FMyStatData* GetEpicDataByLevel(int level);
 	FMyStatData* GetBossDataByLevel(int level);
+	FMyStatData* GetDragonDataByLevel(int level);
 
 	FItemData* GetConsumeItemData(int code);
 	FItemData* GetEquipItemData(int code);
+
+	TArray<FSellings*> GetSellingData();
+
+	ABaseItem* SellDataToItemData(FSellings* data);
 
 	ASoundManager* GetSoundManager() { return _soundManager; }
 	AEffectManager* GetEffectManager() { return _effectManager; }
@@ -79,6 +87,12 @@ private:
 	UDataTable* _ConsItemTable;
 	UPROPERTY()
 	UDataTable* _EquipItemTable;
+
+	UPROPERTY()
+	UDataTable* _ShopList;
+
+	UPROPERTY()
+	UDataTable* _DragonStatTable;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	ASoundManager* _soundManager;

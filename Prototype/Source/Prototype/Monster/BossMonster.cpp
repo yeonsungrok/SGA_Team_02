@@ -51,10 +51,6 @@ void ABossMonster::BeginPlay()
 void ABossMonster::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
-	if (_StatCom)
-	{
-		_StatCom->SetBossLevelInit(1);
-	}
 
 	_bossMonster01_AnimInstance = Cast<UMonster_Boss01_AnimInstance>(GetMesh()->GetAnimInstance());
 	if (_bossMonster01_AnimInstance->IsValidLowLevelFast())
@@ -96,7 +92,6 @@ void ABossMonster::Attack_AI()
 			FTimerHandle TimerHandle;
 			GetWorld()->GetTimerManager().SetTimer(TimerHandle, [this, soundKey]()
 												   {
-					UE_LOG(LogTemp, Warning, TEXT("Playing sound key: %s"), *soundKey);
 					SoundManager->PlaySound(soundKey, GetActorLocation()); }, 0.1f, false);
 		}
 	}
@@ -105,6 +100,12 @@ void ABossMonster::Attack_AI()
 float ABossMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent, AController *EventInstigator, AActor *DamageCauser)
 {
 	UBaseAnimInstance *AnimInstance = Cast<UBaseAnimInstance>(GetMesh()->GetAnimInstance());
+
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+    if (!PlayerController) return 0.0f;
+
+    AMyPlayer* player = Cast<AMyPlayer>(PlayerController->GetPawn());
+
 	if (AnimInstance)
 	{
 		AnimInstance->PlayHitReactionMontage();
@@ -118,7 +119,6 @@ float ABossMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEv
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Boss Takedamage : %f"), Damage / (5 - ObstacleDestroyCount));
 		_StatCom->AddCurHp(-Damage / (5 - ObstacleDestroyCount));
 	}
 
@@ -130,6 +130,8 @@ float ABossMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEv
 		auto controller = GetController();
 		if (controller)
 			GetController()->UnPossess();
+		UE_LOG(LogTemp, Warning, TEXT("Boss exp : %d"),_StatCom->GetNextExp());
+		player->_StatCom->AddExp(_StatCom->GetNextExp());
 
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle_Destroy, this, &ACreature::DelayedDestroy, 2.0f, false);
 	}
@@ -218,7 +220,7 @@ void ABossMonster::Dash(FVector TargetLocation)
 		}
 
 		float CharacterWidth = GetCapsuleComponent()->GetScaledCapsuleRadius();
-		float DecalScaleX = DashDistance / 200.0f;
+		float DecalScaleX = DashDistance / 250.0f;
 		float DecalScaleY = CharacterWidth / 200.0f;
 		_dashDecal->SetWorldScale3D(FVector(DecalScaleX, DecalScaleY, 0.01f));
 	}
@@ -317,7 +319,6 @@ void ABossMonster::DestroyObstacle()
 	ObstacleDestroyCount++;
 	if(UIManager->GetBossUI())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("DestroyObstacle : %d"),ObstacleDestroyCount);
 		UIManager->GetBossUI()->UpdateObstacleIcons(ObstacleDestroyCount);
 		UIManager->GetBossUI()->UpdateHPBarColor(ObstacleDestroyCount);
 	}

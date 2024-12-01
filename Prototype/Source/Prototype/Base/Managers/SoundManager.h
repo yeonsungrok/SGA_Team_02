@@ -27,8 +27,10 @@ protected:
 public:	
 	virtual void Tick(float DeltaTime) override;
 	void PlaySound(FString name, FVector location);
-
 	void PlaySoundWithDuration(FString name, FVector location, float duration);
+	void PlaySoundOnce(FString name, FVector location);
+	void HandleAudioFinished(UAudioComponent* AudioComponent);
+
 private:
 	FTimerHandle SoundDurationTimerHandle;
 
@@ -43,4 +45,9 @@ private:
 	TMap<FString, TArray<ASoundEffect*>> _soundEffectTable;
 
 	void CreateSoundEffect();
+
+	FTimerHandle SoundEffectTimerHandle;
+
+	TMap<FString, ASoundEffect*> ActiveSounds;
+
 };

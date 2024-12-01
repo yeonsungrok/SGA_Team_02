@@ -62,6 +62,8 @@ void UStatComponent::Reset()
 
 void UStatComponent::SetLevelInit(int level)
 {
+
+
 	FMyStatData* Data = nullptr;
 
 	if (GAMEINSTANCE)
@@ -153,7 +155,7 @@ void UStatComponent::SetBossLevelInit(int level)
 		_int = Data->INT;
 		_ogInt = _int;
 
-		_nextExp = Data->EXP;
+		_curExp = Data->EXP;
 		SetHp(_maxHp);
 		SetMp(_maxMp);
 		_bonusPoint = Data->BonusPoint;
@@ -443,18 +445,18 @@ int UStatComponent::AddCurMp(int32 amount)
 void UStatComponent::AddAttackDamage(float amount)
 {
 	_attackDamage += amount;
-	UE_LOG(LogTemp, Warning, TEXT("Attack Damage: %d"), _attackDamage);
 }
 
 void UStatComponent::AddExp(int32 amount)
 {
-	if (_level == 3)
+	if (_level == 100)
 		return;
 	_curExp += amount;
 
 	while (_curExp >= _nextExp)
 	{
 		_curExp -= _nextExp;
+		UE_LOG(LogTemp, Warning, TEXT("exp : %d level up"),amount);
 		_level++;
 		_nextExp = 100 + (_level * 50); 
 		_PILevelDelegate.Broadcast(_level);

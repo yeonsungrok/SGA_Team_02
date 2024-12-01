@@ -314,7 +314,6 @@ void UInventoryComponent::ShowItemSlots()
 		}
 		else
 		{
-			// 슬롯에 아이템이 없을 경우
 			UE_LOG(LogTemp, Warning, TEXT("Slot %d: Empty"), i);
 		}
 	}
@@ -330,6 +329,13 @@ void UInventoryComponent::ShowItemSlots()
 			UE_LOG(LogTemp, Warning, TEXT("EquipSlot %s: Empty"), *Item.Key);
 		}
 	}
+}
+
+void UInventoryComponent::GettingMoney(int32 amount)
+{
+	_Wallet += amount;
+
+	UIManager->GetInventoryUI()->UpdateGold(_Wallet);
 }
 
 void UInventoryComponent::UpdateUI()

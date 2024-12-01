@@ -13,5 +13,5 @@ void AHP_Postion::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetItemWithCode(1);
+	SetItemWithCode(2);
 }

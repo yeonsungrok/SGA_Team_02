@@ -30,6 +30,7 @@ public:
 
     ItemType GetArmorType(){return _Type;}
     EItemType GetEquipType(){return _equipItemType;}
+    void SetEquipType(int num);
 
 public:
     // Called when the game starts or when spawned

@@ -35,10 +35,10 @@ void APortal::BeginPlay()
 
 void APortal::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult &SweepResult)
 {
-
 	AMyPlayer* player = Cast<AMyPlayer>(OtherActor);
     if (player)
     {
+        player->ClearSkillTimer();
         UMyGameInstance* GameInstance = Cast<UMyGameInstance>(GetGameInstance());
         if (GameInstance)
         {

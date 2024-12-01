@@ -34,21 +34,6 @@ UMonster_Epic01_Anim::UMonster_Epic01_Anim()
 
 }
 
-void UMonster_Epic01_Anim::NativeUpdateAnimation(float DeltaSeconds)
-{
-	Super::NativeUpdateAnimation(DeltaSeconds);
-}
-
-void UMonster_Epic01_Anim::PlayAttackMontage()
-{
-	Super::PlayAttackMontage();
-}
-
-void UMonster_Epic01_Anim::JumpToSection(int32 sectionIndex)
-{
-	Super::JumpToSection(sectionIndex);
-}
-
 
 void UMonster_Epic01_Anim::AnimNotify_Attackhit()
 {
@@ -57,7 +42,6 @@ void UMonster_Epic01_Anim::AnimNotify_Attackhit()
 
 void UMonster_Epic01_Anim::AnimNotify_Death()
 {
-	UE_LOG(LogTemp, Error, TEXT("Death"));
 	_death_Epic_MonsterDelegate.Broadcast();
 }
 

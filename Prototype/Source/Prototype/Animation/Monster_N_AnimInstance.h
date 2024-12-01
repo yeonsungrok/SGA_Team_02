@@ -18,12 +18,6 @@ class PROTOTYPE_API UMonster_N_AnimInstance : public UBaseAnimInstance
 public:
 	UMonster_N_AnimInstance();
 
-	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
-
-	virtual void PlayAttackMontage()override;
-
-	virtual void JumpToSection(int32 sectionIndex) override;
-
 	AttackDelegate _attackDelegate;
 
 	DeathDelegate _death_N_MonsterDelegate;

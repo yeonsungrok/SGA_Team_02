@@ -23,7 +23,8 @@ enum class StatType
 	DEX,
 	INT,
 	CurHP,
-	CurMP
+	CurMP,
+	Other
 };
 
 USTRUCT()
@@ -85,6 +86,7 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	void Reset();
+	void SetUI();
 
 	int32 GetCurHp() { return _curHp; }
 	int32 GetMaxHp() { return _maxHp; }
@@ -92,6 +94,7 @@ public:
 	int32 GetExp() { return _curExp; }
 	int32 GetCurMp() { return _curMp; }
 	int32 GetMaxMp() { return _maxMp; }
+	int32 GetNextExp() { return _nextExp; }
 	//test
 	int32 GetStr()  { return _str; }
 	int32 GetDex()  { return _dex; }

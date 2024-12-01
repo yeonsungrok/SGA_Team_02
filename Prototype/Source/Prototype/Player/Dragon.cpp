@@ -170,8 +170,9 @@ void ADragon::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
     {
         EnhancedInputComponent->BindAction(_moveAction, ETriggerEvent::Triggered, this, &ADragon::Move);
         EnhancedInputComponent->BindAction(_lookAction, ETriggerEvent::Triggered, this, &ADragon::Look);
-        EnhancedInputComponent->BindAction(_jumpAction, ETriggerEvent::Started, this, &ADragon::JumpA);     
+        EnhancedInputComponent->BindAction(_jumpAction, ETriggerEvent::Triggered, this, &ADragon::JumpA);
         EnhancedInputComponent->BindAction(_Change, ETriggerEvent::Started, this, &ADragon::ToggleTransformation);
+        EnhancedInputComponent->BindAction(_attackAction, ETriggerEvent::Started, this, &ADragon::AttackA);
     
     }
 }
@@ -218,13 +219,6 @@ void ADragon::JumpA(const FInputActionValue& value)
             FVector JumpImpulse = ForwardInput * 300.0f + RightInput * 300.0f + FVector(0.0f, 0.0f, 500.0f);
 
             LaunchCharacter(JumpImpulse, true, true);
-
-    /*        if (_dragonAnimInstance)
-            {
-                _dragonAnimInstance->SetSpeed(GetVelocity().Size());
-            }*/
-
-            UE_LOG(LogTemp, Warning, TEXT("Dragon flapped its wings!"));
         }
         else
         {
@@ -235,17 +229,7 @@ void ADragon::JumpA(const FInputActionValue& value)
             GetCharacterMovement()->GravityScale = 0.5f; // 느린 하강
             GetCharacterMovement()->AirControl = 0.8f;    // 공중 제어 강화
             GetCharacterMovement()->MaxFlySpeed = 800.0f; // 공중 속도 증가
-
-            UE_LOG(LogTemp, Warning, TEXT("Dragon jumped!"));
-
-   /*         if (_dragonAnimInstance)
-            {
-                _dragonAnimInstance->SetSpeed(GetVelocity().Size());
-            }*/
-
-        }
-
-
+         }
 
         // 애니메이션 상태 업데이트: 점프 시작
         _dragonAnimInstance->SetJumping(true);
@@ -261,16 +245,31 @@ void ADragon::JumpA(const FInputActionValue& value)
             
             // 애니메이션 상태 업데이트: 착지
             _dragonAnimInstance->SetJumping(false);
-
-       /*     if (_dragonAnimInstance)
-            {
-                _dragonAnimInstance->SetSpeed(GetVelocity().Size());
-            }*/
-
-            UE_LOG(LogTemp, Warning, TEXT("Dragon landed!"));
         }
     }
+}
 
+void ADragon::AttackA(const FInputActionValue& value)
+{
+    bool isPressed = value.Get<bool>();
+    if (isPressed && _isAttacking == false && _dragonAnimInstance != nullptr)
+    {
+        _dragonAnimInstance->PlayAttackMontage();
+        _isAttacking = true;
+
+        _curAttackIndex %= 2;
+       // _curAttackIndex++;
+
+
+        if (GetCharacterMovement()->IsFalling())  // 점프 중이면 IsFalling()이 true를 반환
+        {
+            _dragonAnimInstance->JumpToSection(2);  // 점프 상태일 때 섹션 2
+        }
+        else
+        {
+            _dragonAnimInstance->JumpToSection(1);  // 점프 상태가 아닐 때 섹션 1
+        }
+    }
 
 
 }

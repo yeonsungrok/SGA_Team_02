@@ -45,7 +45,6 @@ public:
 	void TryEquip(FString part, int32 slot);
 	void StripEquip(FString part);
 
-	//TODO : UI업데이트를 인벤에서만 호출해서 업데이트 되도록 하기
 	void UIupdate_Add(int32 slot, ABaseItem* item);
 	void UIupdate_Pop(int32 slot);
 	void UIupdate_Pop(FString part);
@@ -54,6 +53,8 @@ public:
 	TArray<ABaseItem*> GetItemSlots(){return _ItemSlots;}
 	TMap<FString, class AEquipItem*> GetEquipSlots(){return _EquipSlots;}
 
+	int32 GetHowMuchIHave() { return _Wallet; }
+	void GettingMoney(int32 amount);
 
 	void UpdateUI();
 
@@ -73,6 +74,5 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Inventory, meta = (AllowPrivateAccess = "true"))
 	TMap<FString, class AEquipItem*> _EquipSlots;
 
-	//Property
-	
+	int32 _Wallet = 0;
 };

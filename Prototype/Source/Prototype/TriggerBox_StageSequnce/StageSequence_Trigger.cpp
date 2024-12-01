@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "TriggerBox_StageSequnce/StageSequence_Trigger.h"
 
 #include "Components/BoxComponent.h"
@@ -13,17 +12,14 @@
 #include "LevelSequenceActor.h"
 #include "MovieSceneSequencePlayer.h"
 
-
 #include "UI/Boss1Widget.h"
 #include "../Base/Managers/UIManager.h"
-
 
 #include "UI/PlayerBarWidget.h"
 #include "UI/SkillWidget_test.h"
 #include "UI/MiniMapWidget.h"
 #include "UI/StatWidget.h"
 #include "Component/StatComponent.h"
-
 
 #include "Base/Stage1BossGameModeBase.h"
 #include <Base/MyGameInstance.h>
@@ -33,34 +29,31 @@
 #include "GameFramework/PlayerController.h"
 #include "Player/MyPlayerController.h"
 
-
 // Sets default values
 AStageSequence_Trigger::AStageSequence_Trigger()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = false;
+    // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+    PrimaryActorTick.bCanEverTick = false;
 
-	TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerBox"));
-	RootComponent = TriggerBox;
+    TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerBox"));
+    RootComponent = TriggerBox;
 
-	TriggerBox->SetBoxExtent(FVector(200.0f, 200.0f, 100.0f)); // 크기 설정
-	TriggerBox->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
-	TriggerBox->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
-	TriggerBox->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
-	TriggerBox->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap);
-
+    TriggerBox->SetBoxExtent(FVector(200.0f, 200.0f, 100.0f)); // 크기 설정
+    TriggerBox->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+    TriggerBox->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
+    TriggerBox->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
+    TriggerBox->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap);
 }
-
 
 // Called when the game starts or when spawned
 void AStageSequence_Trigger::BeginPlay()
 {
-	Super::BeginPlay();
+    Super::BeginPlay();
 
     TriggerBox->OnComponentBeginOverlap.AddDynamic(this, &AStageSequence_Trigger::OnTriggerEnter);
 
     // 시퀀스 로드
-    ULevelSequence* LoadedSequence = LevelSequenceAsset.LoadSynchronous();
+    ULevelSequence *LoadedSequence = LevelSequenceAsset.LoadSynchronous();
     if (LoadedSequence)
     {
         UE_LOG(LogTemp, Log, TEXT("LevelSequence loaded successfully."));
@@ -69,13 +62,12 @@ void AStageSequence_Trigger::BeginPlay()
         PlaybackSettings.bPauseAtEnd = true;
 
         // 시퀀스 플레이어 및 액터 생성
-        ALevelSequenceActor* OutActor = nullptr;
-        ULevelSequencePlayer* Player = ULevelSequencePlayer::CreateLevelSequencePlayer(
+        ALevelSequenceActor *OutActor = nullptr;
+        ULevelSequencePlayer *Player = ULevelSequencePlayer::CreateLevelSequencePlayer(
             GetWorld(),
             LoadedSequence,
             PlaybackSettings,
-            OutActor
-        );
+            OutActor);
 
         if (Player && OutActor)
         {
@@ -85,30 +77,25 @@ void AStageSequence_Trigger::BeginPlay()
             Player->OnFinished.AddDynamic(this, &AStageSequence_Trigger::OnSequenceFinished);
         }
     }
- 
-
-
-
 }
 
 // Called every frame
 void AStageSequence_Trigger::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
-
+    Super::Tick(DeltaTime);
 }
 
-void AStageSequence_Trigger::OnTriggerEnter(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AStageSequence_Trigger::OnTriggerEnter(UPrimitiveComponent *OverlappedComponent, AActor *OtherActor, UPrimitiveComponent *OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult &SweepResult)
 {
     // 보스 체력바 위젯
     UIManager->CloseUI(UI_LIST::Boss);
-  
+
     // 기사 체력바 위젯
-    ACreature* Creature = Cast<ACreature>(OtherActor);
+    ACreature *Creature = Cast<ACreature>(OtherActor);
     if (Creature)
     {
         // 트리거된 액터의 위젯 숨기기
-        UUserWidget* Widget = Creature->GetWidget();
+        UUserWidget *Widget = Creature->GetWidget();
         if (Widget)
         {
             Widget->SetVisibility(ESlateVisibility::Hidden);
@@ -124,7 +111,6 @@ void AStageSequence_Trigger::OnTriggerEnter(UPrimitiveComponent* OverlappedCompo
         UE_LOG(LogTemp, Error, TEXT("Broadcasting OnHideMinimap Delegate"));
         OnHideMinimap.Broadcast();
 
-
         if (OtherActor && OtherActor->IsA(ACharacter::StaticClass()))
         {
             PlaySequence();
@@ -136,7 +122,7 @@ void AStageSequence_Trigger::PlaySequence()
 {
     if (SequenceActor)
     {
-        ULevelSequencePlayer* Player = SequenceActor->GetSequencePlayer();
+        ULevelSequencePlayer *Player = SequenceActor->GetSequencePlayer();
         if (Player)
         {
             Player->Play();
@@ -150,15 +136,15 @@ void AStageSequence_Trigger::OnSequenceFinished()
     UIManager->OpenUI(UI_LIST::Boss);
 
     // 기사 체력바 위젯
-    if(TriggeredActor && TriggeredActor->IsA(ACreature::StaticClass()))
+    if (TriggeredActor && TriggeredActor->IsA(ACreature::StaticClass()))
     {
-        ACreature* Creature = Cast<ACreature>(TriggeredActor);
+        ACreature *Creature = Cast<ACreature>(TriggeredActor);
         if (Creature && Creature->_Widget)
         {
             Creature->_Widget->SetVisibility(ESlateVisibility::Visible);
         }
     }
- 
+
     // 스킬 위젯
     ShowSkillWidget();
 
@@ -166,7 +152,11 @@ void AStageSequence_Trigger::OnSequenceFinished()
     UE_LOG(LogTemp, Error, TEXT("Broadcasting OnShowMinimap Delegate"));
     OnShowMinimap.Broadcast();
 
-
+    AStage1BossGameModeBase *GameMode = Cast<AStage1BossGameModeBase>(GetWorld()->GetAuthGameMode());
+    if (GameMode)
+    {
+       GameMode->BossStart();
+    }
 
 
     Destroy();
@@ -174,10 +164,10 @@ void AStageSequence_Trigger::OnSequenceFinished()
 
 void AStageSequence_Trigger::HideSkillWidget()
 {
-    APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+    APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
     if (PlayerController)
     {
-        AMyPlayerController* MyPlayerController = Cast<AMyPlayerController>(PlayerController);
+        AMyPlayerController *MyPlayerController = Cast<AMyPlayerController>(PlayerController);
         if (MyPlayerController && MyPlayerController->SkillWidgetInstance)
         {
             MyPlayerController->SkillWidgetInstance->SetVisibility(ESlateVisibility::Hidden);
@@ -187,19 +177,13 @@ void AStageSequence_Trigger::HideSkillWidget()
 
 void AStageSequence_Trigger::ShowSkillWidget()
 {
-    APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+    APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
     if (PlayerController)
     {
-        AMyPlayerController* MyPlayerController = Cast<AMyPlayerController>(PlayerController);
+        AMyPlayerController *MyPlayerController = Cast<AMyPlayerController>(PlayerController);
         if (MyPlayerController && MyPlayerController->SkillWidgetInstance)
         {
             MyPlayerController->SkillWidgetInstance->SetVisibility(ESlateVisibility::Visible);
         }
     }
 }
-
-
-
-
-
-
