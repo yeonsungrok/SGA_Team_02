@@ -11,6 +11,7 @@
 #include "../Monster/BossMonster.h"
 #include "../Monster/AI/AIController_BossMonster.h"
 #include "UI/Boss1Widget.h"
+#include "UI/SkillWidget_test.h"
 #include "Kismet/GameplayStatics.h"
 
 
@@ -22,6 +23,8 @@ AStage1NormalGameModeBase::AStage1NormalGameModeBase()
 
 void AStage1NormalGameModeBase::BeginPlay()
 {
+	Super::BeginPlay();
+
 	AMyPlayer* player = Cast<AMyPlayer>(UGameplayStatics::GetPlayerCharacter(this, 0));
 	if (player)
 	{

@@ -19,6 +19,8 @@ void USkillWidget_test::NativeConstruct()
     MaxCooldownTimes.Init(0.0f, 4);
     CooldownTimerHandles.Init(FTimerHandle(), 4);
 
+    SkillLocked.Init(false, 4);
+
     for (UImage *cd : CooldownOverlays)
     {
         if (cd)
@@ -32,7 +34,7 @@ void USkillWidget_test::NativeConstruct()
 
 void USkillWidget_test::StartCooldown(int32 SkillIndex, float InMaxCooldownTime)
 {
-    if (SkillIndex < 0 || SkillIndex >= CooldownOverlays.Num())
+    if (SkillIndex < 0 || SkillIndex >= CooldownOverlays.Num()|| SkillLocked[SkillIndex])
         return;
 
     MaxCooldownTimes[SkillIndex] = InMaxCooldownTime;
@@ -77,6 +79,46 @@ void USkillWidget_test::ClearAll()
             GetWorld()->GetTimerManager().ClearTimer(CooldownTimerHandles[i]);
         }
     }
+}
+
+void USkillWidget_test::LockAllSkill()
+{
+    for (int32 i = 0; i < SkillLocked.Num(); ++i)
+    {
+        SkillLocked[i] = true;
+
+        if (CooldownOverlays.IsValidIndex(i) && CooldownOverlays[i])
+        {
+            CooldownOverlays[i]->SetOpacity(0.8f);
+        }
+        else
+        {
+            UE_LOG(LogTemp, Warning, TEXT("CooldownOverlay[%d] is invalid!"), i);
+        }
+    }
+
+}
+
+void USkillWidget_test::UnLockAllSkill()
+{
+    for (int32 i = 0; i < SkillLocked.Num(); ++i)
+    {
+        SkillLocked[i] = false;
+
+        if (CooldownOverlays[i])
+        {
+            CooldownOverlays[i]->SetOpacity(0.0f);
+        }
+    }
+}
+
+bool USkillWidget_test::IsSkillLocked(int32 index)
+{
+    if (SkillLocked.IsValidIndex(index))
+    {
+        return SkillLocked[index];
+    }
+    return true;
 }
 
 void USkillWidget_test::UpdateCooldown(int32 SkillIndex)

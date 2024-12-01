@@ -379,6 +379,16 @@ void AMyPlayer::SetEquipItem(EItemType equiptype, AEquipItem *equipitem)
 	// TODO:Update UI
 }
 
+void AMyPlayer::LockAllSkill()
+{
+	_skillWidgetInstance->LockAllSkill();
+}
+
+void AMyPlayer::UnLockAllSkill()
+{
+	_skillWidgetInstance->UnLockAllSkill();
+}
+
 void AMyPlayer::EquipBaseBody()
 {
 	USkeletalMesh *LoadedMesh = Cast<USkeletalMesh>(StaticLoadObject(USkeletalMesh::StaticClass(), nullptr, TEXT("/Script/Engine.SkeletalMesh'/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/Free_WhiteTiger_Detach/Free_Body_Face_Pos.Free_Body_Face_Pos'")));
@@ -541,6 +551,22 @@ void AMyPlayer::AttackA(const FInputActionValue &value)
 			return;
 		}
 
+		if (bIsTeleportReadyToCast)
+		{
+			bIsTeleportReadyToCast = false;
+
+			GetWorld()->GetTimerManager().ClearTimer(TimerHandle_UpdateDecal);
+
+			if (SpawnedDecalTeleport)
+			{
+				SpawnedDecalTeleport->Destroy();
+				SpawnedDecalTeleport = nullptr;
+			}
+			ConfirmTeleportLocation();
+			return;
+		}
+
+
 		if (bIsGuarding)
 			bIsGuarding = false;
 		_KnightanimInstance->PlayAttackMontage();
@@ -559,47 +585,126 @@ void AMyPlayer::Skill1(const FInputActionValue &value)
 
 	if (isPressed && _skillWidgetInstance != nullptr)
 	{
-		if (SkillOnCooldown[0])
+		if (SkillOnCooldown[0]|| _skillWidgetInstance->IsSkillLocked(0))
 			return;
 		else
 		{
 			SkillOnCooldown[0] = true;
-			bIsDashing = true;
-
-			FVector2D MovementInput = _moveVector;
-			UE_LOG(LogTemp, Warning, TEXT("%f"), GetVelocity().Size());
-
-			if (GetVelocity().Size() > 300.f)
+			if (_StatCom->GetInt() >= 40)
 			{
-				FVector Forward = GetActorForwardVector() * MovementInput.Y;
-				FVector Right = GetActorRightVector() * MovementInput.X;
-				DashDirection = (Forward + Right).GetSafeNormal();
+				APlayerController *PlayerController = Cast<APlayerController>(GetController());
+
+				if (SpawnedDecalTeleport)
+				{
+					bIsTeleportReadyToCast = false;
+					SpawnedDecalTeleport->Destroy();
+					SpawnedDecalTeleport = nullptr;
+					PlayerController->bShowMouseCursor = false;
+					PlayerController->SetInputMode(FInputModeGameOnly());
+					return;
+				}
+
+				if (_teleportDecal && !SpawnedDecalTeleport)
+				{
+					SpawnedDecalTeleport = GetWorld()->SpawnActor<ADecalActor>(_teleportDecal);
+					if (SpawnedDecalActor)
+					{
+						SpawnedDecalActor->SetLifeSpan(0);
+					}
+				}
+
+				if (PlayerController)
+				{
+					bool bIsCursorVisible = PlayerController->bShowMouseCursor;
+					PlayerController->bShowMouseCursor = true;
+					PlayerController->SetInputMode(FInputModeGameAndUI().SetHideCursorDuringCapture(false));
+				}
+
+				bIsTeleportReadyToCast = true;
+
+				GetWorld()->GetTimerManager().SetTimer(TimerHandle_UpdateDecal, this, &AMyPlayer::UpdateTeleportLocation, 0.01f, true);
 			}
 			else
 			{
-				DashDirection = GetActorForwardVector();
-			}
+				bIsDashing = true;
 
-			DashTimeElapsed = 0.f;
-			_skillWidgetInstance->StartCooldown(0, 5.0f);
+				FVector2D MovementInput = _moveVector;
+				UE_LOG(LogTemp, Warning, TEXT("%f"), GetVelocity().Size());
 
-			UPlayerAnimInstance *PlayerAnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
-			if (PlayerAnimInstance)
-			{
-				PlayerAnimInstance->PlaySkill01Montage();
-			}
-			SoundManager->PlaySound(*GetSkillSound01(), _hitPoint);
+				if (GetVelocity().Size() > 300.f)
+				{
+					FVector Forward = GetActorForwardVector() * MovementInput.Y;
+					FVector Right = GetActorRightVector() * MovementInput.X;
+					DashDirection = (Forward + Right).GetSafeNormal();
+				}
+				else
+				{
+					DashDirection = GetActorForwardVector();
+				}
 
-			if (_StatCom->GetInt() >= 40)
-			{
-				FVector TeleportLocation = GetActorLocation() + DashDirection * _dashSpeed * 1.0f;
-				SetActorLocation(TeleportLocation, true);
+				DashTimeElapsed = 0.f;
+				_skillWidgetInstance->StartCooldown(0, 5.0f);
 
-				bIsDashing = false;
+				UPlayerAnimInstance *PlayerAnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
+				if (PlayerAnimInstance)
+				{
+					PlayerAnimInstance->PlaySkill01Montage();
+				}
+				SoundManager->PlaySound(*GetSkillSound01(), _hitPoint);
 			}
 		}
 	}
 }
+
+
+void AMyPlayer::UpdateTeleportLocation()
+{
+	AMyPlayerController *PlayerController = Cast<AMyPlayerController>(GetController());
+	if (PlayerController && SpawnedDecalTeleport)
+	{
+		FHitResult HitResult;
+		PlayerController->GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
+
+		if (HitResult.bBlockingHit)
+		{
+			if (HitResult.ImpactNormal.Z > 0.5f)
+			{
+				FVector NewLocation = HitResult.ImpactPoint;
+				TargetSkillLocation = NewLocation;
+				TargetSkillLocation.Z += 1.0f;
+
+				SkillRotation = HitResult.ImpactNormal.Rotation();
+				SpawnedDecalTeleport->SetActorLocation(TargetSkillLocation);
+				SpawnedDecalTeleport->SetActorRotation(SkillRotation);
+			}
+		}
+	}
+}
+
+void AMyPlayer::ConfirmTeleportLocation()
+{
+	 AMyPlayerController* PlayerController = Cast<AMyPlayerController>(GetController());
+    if (PlayerController)
+    {
+		TargetSkillLocation.Z += 50.f;
+        SetActorLocation(TargetSkillLocation);
+
+        UE_LOG(LogTemp, Warning, TEXT("Teleported to: %s"), *TargetSkillLocation.ToString());
+
+        bIsTeleportReadyToCast = false;
+
+        PlayerController->bShowMouseCursor = false;
+        PlayerController->SetInputMode(FInputModeGameOnly());
+
+        GetWorld()->GetTimerManager().ClearTimer(TimerHandle_UpdateTeleprotDecal);
+
+        if (_skillWidgetInstance)
+        {
+            _skillWidgetInstance->StartCooldown(0, 5.0f); 
+        }
+	}
+}
+
 
 void AMyPlayer::Skill2(const FInputActionValue &value)
 {
@@ -607,7 +712,10 @@ void AMyPlayer::Skill2(const FInputActionValue &value)
 
 	if (isPressed)
 	{
-		if (_skillWidgetInstance != nullptr && !SkillOnCooldown[1])
+		if (SkillOnCooldown[1]|| _skillWidgetInstance->IsSkillLocked(1))
+			return;
+
+		if (_skillWidgetInstance != nullptr)
 		{
 			APlayerController *PlayerController = Cast<APlayerController>(GetController());
 
@@ -732,7 +840,7 @@ void AMyPlayer::Skill3(const FInputActionValue &value)
 
 	if (isPressed && _skillWidgetInstance != nullptr)
 	{
-		if (SkillOnCooldown[2])
+		if (SkillOnCooldown[2] || _skillWidgetInstance->IsSkillLocked(2))
 			return;
 		else
 		{
@@ -778,7 +886,7 @@ void AMyPlayer::Skill4(const FInputActionValue &value)
 
 	if (isPressed && _skillWidgetInstance != nullptr)
 	{
-		if (SkillOnCooldown[3])
+		if (SkillOnCooldown[3]|| _skillWidgetInstance->IsSkillLocked(3))
 			return;
 		else
 		{

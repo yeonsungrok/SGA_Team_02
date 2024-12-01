@@ -65,6 +65,9 @@ public:
 
 	void SetEquipItem(EItemType equiptype, AEquipItem* equipitem);
 
+	void LockAllSkill();
+	void UnLockAllSkill();
+
 	
 	void EquipBaseBody();
 	void EquipBaseLower();
@@ -119,18 +122,28 @@ private:
 
     void ConfirmSkillLocation();
 
+	void UpdateTeleportLocation();
+
+	void ConfirmTeleportLocation();
+
 	FVector TargetSkillLocation;
 
 	FRotator SkillRotation;
 
     bool bIsSkillReadyToCast;
+	bool bIsTeleportReadyToCast;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Decal, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class ADecalActor> SkillDecalActor;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Decal, meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<class ADecalActor> _teleportDecal;
 
 	class ADecalActor* SpawnedDecalActor = nullptr;
+	class ADecalActor* SpawnedDecalTeleport = nullptr;
 
     FTimerHandle TimerHandle_UpdateDecal;
+ 	FTimerHandle TimerHandle_UpdateTeleprotDecal;
 
 
 	// void CheckForClimbableWall();
@@ -237,9 +250,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Decal, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class AMyDecal> _decal;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Decal, meta = (AllowPrivateAccess = "true"))
-	TSubclassOf<class AMyDecal> _teleportDecal;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = UI, meta = (AllowPrivateAccess = "true"))
 	class UStatWidget *_statWidget;
