@@ -238,6 +238,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Decal, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class AMyDecal> _decal;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Decal, meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<class AMyDecal> _teleportDecal;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = UI, meta = (AllowPrivateAccess = "true"))
 	class UStatWidget *_statWidget;
 

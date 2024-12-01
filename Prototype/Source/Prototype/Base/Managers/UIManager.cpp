@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Base/Managers/UIManager.h"
 
 #include "UI/InventoryWidget.h"
@@ -8,42 +7,37 @@
 #include "UI/ShopWidget.h"
 #include "Kismet/GameplayStatics.h"
 
-#include  "TriggerBox_StageSequnce/StageSequence_Trigger.h"
+#include "TriggerBox_StageSequnce/StageSequence_Trigger.h"
 
 // Sets default values
 AUIManager::AUIManager()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
 	static ConstructorHelpers::FClassFinder<UUserWidget> inventory(
-		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Inventory_UI.Inventory_UI_C'")
-	);
+		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Inventory_UI.Inventory_UI_C'"));
 	if (inventory.Succeeded())
 	{
 		_inventoryUI = CreateWidget<UInventoryWidget>(GetWorld(), inventory.Class);
 	}
 
 	static ConstructorHelpers::FClassFinder<UUserWidget> boss1widget(
-		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Boss_UI.Boss_UI_C'")
-	);
+		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Boss_UI.Boss_UI_C'"));
 	if (boss1widget.Succeeded())
 	{
 		_bossUI = CreateWidget<UBoss1Widget>(GetWorld(), boss1widget.Class);
 	}
-	
+
 	static ConstructorHelpers::FClassFinder<UUserWidget> shopUI(
-		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Shop_UI.Shop_UI_C'")
-	);
+		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Shop_UI.Shop_UI_C'"));
 	if (shopUI.Succeeded())
 	{
 		_shopUI = CreateWidget<UShopWidget>(GetWorld(), shopUI.Class);
 	}
 
-
 	static ConstructorHelpers::FObjectFinder<UTexture2D> defaultTexture(
-		TEXT("/Script/Engine.Texture2D'/Game/CraftResourcesIcons/Textures/T_Default.T_Default'")
-	);
+		TEXT("/Script/Engine.Texture2D'/Game/CraftResourcesIcons/Textures/T_Default.T_Default'"));
 	if (defaultTexture.Succeeded())
 	{
 		_defaultTexture = defaultTexture.Object;
@@ -66,14 +60,12 @@ AUIManager::AUIManager()
 void AUIManager::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
 void AUIManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void AUIManager::OpenUI(UI_LIST ui)
@@ -84,6 +76,14 @@ void AUIManager::OpenUI(UI_LIST ui)
 
 	if (_isPauseWhenOpen[UIindex])
 		pauseGame.Broadcast();
+
+	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
+	if (PlayerController)
+	{
+		bool bIsCursorVisible = PlayerController->bShowMouseCursor;
+		PlayerController->bShowMouseCursor = true;
+		PlayerController->SetInputMode(FInputModeGameAndUI().SetHideCursorDuringCapture(false));
+	}
 
 	_uiList[UIindex]->SetVisibility(ESlateVisibility::Visible);
 	int32 ZOrder = (ui == UI_LIST::Inventory) ? 10 : 0;
@@ -104,6 +104,13 @@ void AUIManager::CloseUI(UI_LIST ui)
 	_uiList[UIindex]->SetVisibility(ESlateVisibility::Hidden);
 	_uiList[UIindex]->RemoveFromParent();
 	_uiIsOpen[UIindex] = false;
+
+	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
+	if (PlayerController)
+	{
+		PlayerController->bShowMouseCursor = false;
+		PlayerController->SetInputMode(FInputModeGameOnly());
+	}
 }
 
 void AUIManager::CloseAll()
@@ -130,4 +137,3 @@ void AUIManager::ToggleUI(UI_LIST ui)
 	else
 		OpenUI(ui);
 }
-
