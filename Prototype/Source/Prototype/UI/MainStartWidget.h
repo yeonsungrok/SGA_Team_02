@@ -19,6 +19,13 @@ public:
 
 	UPROPERTY(meta = (BindWidget))
 	class UButton* StartButton;
+
+	UPROPERTY(meta = (BindWidget))
+	class UButton* QuitButton;
+
 	UFUNCTION()
 	void StartButtonClick();
+
+	UFUNCTION()
+	void QuitButtonClick();
 };
