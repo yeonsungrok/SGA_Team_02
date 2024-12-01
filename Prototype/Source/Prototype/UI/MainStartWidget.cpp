@@ -5,6 +5,23 @@
 #include "Kismet/GameplayStatics.h"
 #include "Components/Button.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Blueprint/UserWidget.h"
+#include "UObject/ConstructorHelpers.h"
+
+
+
+UMainStartWidget::UMainStartWidget(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+{
+	static ConstructorHelpers::FClassFinder<UUserWidget> KeyUI(
+		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Widget_Info.Widget_Info_C'")
+	);
+
+	if (KeyUI.Succeeded())
+	{
+		_Keyimage = KeyUI.Class;
+	}
+}
 
 void UMainStartWidget::NativeConstruct()
 {
@@ -21,12 +38,22 @@ void UMainStartWidget::NativeConstruct()
 	{
 		QuitButton->OnClicked.AddDynamic(this, &UMainStartWidget::QuitButtonClick);
 	}
+
+
 }
 
 void UMainStartWidget::StartButtonClick()
 {
 
-	UGameplayStatics::OpenLevel(GetWorld(), TEXT("NewMap"));
+	if (_Keyimage) 
+	{
+		UUserWidget* ControlInfoWidget = CreateWidget<UUserWidget>(GetWorld(), _Keyimage);
+		if (ControlInfoWidget)
+		{
+			ControlInfoWidget->AddToViewport();
+		}
+	}
+	//UGameplayStatics::OpenLevel(GetWorld(), TEXT("NewMap"));
 }
 
 void UMainStartWidget::QuitButtonClick()

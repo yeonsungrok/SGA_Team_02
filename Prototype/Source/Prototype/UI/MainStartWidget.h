@@ -15,6 +15,8 @@ class PROTOTYPE_API UMainStartWidget : public UUserWidget
 	GENERATED_BODY()
 	
 public:
+	UMainStartWidget(const FObjectInitializer& ObjectInitializer);
+
 	virtual void NativeConstruct() override;
 
 	UPROPERTY(meta = (BindWidget))
@@ -28,4 +30,8 @@ public:
 
 	UFUNCTION()
 	void QuitButtonClick();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+	TSubclassOf<UUserWidget> _Keyimage;
+
 };
