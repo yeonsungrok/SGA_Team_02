@@ -16,7 +16,7 @@ UMainStartWidget::UMainStartWidget(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
 	static ConstructorHelpers::FClassFinder<UUserWidget> SoundTest
-	(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Sound_UI.Sound_UI_C'"));
+	(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/options_UITEST.options_UITEST_C'"));
 	if (SoundTest.Succeeded())
 	{
 		_Sound = SoundTest.Class;
