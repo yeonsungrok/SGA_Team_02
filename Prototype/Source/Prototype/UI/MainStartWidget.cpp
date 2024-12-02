@@ -21,6 +21,14 @@ UMainStartWidget::UMainStartWidget(const FObjectInitializer& ObjectInitializer)
 	{
 		_Keyimage = KeyUI.Class;
 	}
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> SoundTest
+	(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Sound_UI.Sound_UI_C'"));
+	if (SoundTest.Succeeded())
+	{
+		_Sound = SoundTest.Class;
+	}
+	
 }
 
 void UMainStartWidget::NativeConstruct()
@@ -39,6 +47,10 @@ void UMainStartWidget::NativeConstruct()
 		QuitButton->OnClicked.AddDynamic(this, &UMainStartWidget::QuitButtonClick);
 	}
 
+	if (SoundButton)
+	{
+		SoundButton->OnClicked.AddDynamic(this, &UMainStartWidget::SoundButtonClick);
+	}
 
 }
 
@@ -59,4 +71,17 @@ void UMainStartWidget::StartButtonClick()
 void UMainStartWidget::QuitButtonClick()
 {
 	UKismetSystemLibrary::QuitGame(GetWorld(), GetWorld()->GetFirstPlayerController(), EQuitPreference::Quit, true);
+}
+
+void UMainStartWidget::SoundButtonClick()
+{
+
+	if (_Sound)
+	{
+		UUserWidget* SoundTestrr = CreateWidget<UUserWidget>(GetWorld(), _Sound);
+		if (SoundTestrr)
+		{
+			SoundTestrr->AddToViewport();
+		}
+	}
 }
