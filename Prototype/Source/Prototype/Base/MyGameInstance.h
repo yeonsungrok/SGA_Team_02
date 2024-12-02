@@ -148,6 +148,9 @@ private:
 	int32 _savedBonus;
 
 	UPROPERTY()
+	int32 _savedMoney;
+
+	UPROPERTY()
 	class USkeletalMesh* _savedBodyMesh;
 	UPROPERTY()
 	class USkeletalMesh* _savedLowerBodyMesh;

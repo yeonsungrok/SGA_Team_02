@@ -9,6 +9,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "../../Component/InventoryComponent.h"
 #include "../../Base/MyGameInstance.h"
+#include "../../Base/Managers/UIManager.h"
 #include "../MyPlayer.h"
 
 // Sets default values
@@ -42,6 +43,8 @@ void APortal::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherA
         UMyGameInstance* GameInstance = Cast<UMyGameInstance>(GetGameInstance());
         if (GameInstance)
         {
+            UIManager->CloseAll();
+            UIManager->OpenUI(UI_LIST::Load);
             GameInstance->SavePlayerStats(player->_StatCom);
             GameInstance->SaveInventory(player->_inventoryComponent);
             GameInstance->SavePlayerSkeletal(player);
