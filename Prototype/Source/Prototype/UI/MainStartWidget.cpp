@@ -58,7 +58,6 @@ void UMainStartWidget::QuitButtonClick()
 
 void UMainStartWidget::SoundButtonClick()
 {
-
 	if (_Sound)
 	{
 		UUserWidget* SoundTestrr = CreateWidget<UUserWidget>(GetWorld(), _Sound);
