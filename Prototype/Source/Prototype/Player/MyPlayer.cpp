@@ -389,6 +389,12 @@ void AMyPlayer::UnLockAllSkill()
 	_skillWidgetInstance->UnLockAllSkill();
 }
 
+void AMyPlayer::OnAttackEnded(UAnimMontage* Montage, bool bInterrupted)
+{
+	_isAttacking = false;  // 공격 중 상태 해제
+	_curAttackIndex = 1;
+}
+
 void AMyPlayer::EquipBaseBody()
 {
 	USkeletalMesh *LoadedMesh = Cast<USkeletalMesh>(StaticLoadObject(USkeletalMesh::StaticClass(), nullptr, TEXT("/Script/Engine.SkeletalMesh'/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/Free_WhiteTiger_Detach/Free_Body_Face_Pos.Free_Body_Face_Pos'")));
@@ -569,14 +575,39 @@ void AMyPlayer::AttackA(const FInputActionValue &value)
 
 		if (bIsGuarding)
 			bIsGuarding = false;
+
+
 		_KnightanimInstance->PlayAttackMontage();
 		_isAttacking = true;
 
-		_curAttackIndex %= 4;
-		_curAttackIndex++;
-
+		_curAttackIndex = 1;  // 첫 번째 섹션으로 돌아감
+		
 		_KnightanimInstance->JumpToSection(_curAttackIndex);
 	}
+	else if (!isPressed && _isAttacking)
+	{
+		// 공격이 끝났을 때 기본 섹션으로 리셋
+		_isAttacking = false;
+		_curAttackIndex = 1;
+
+		// 공격이 끝났을 때 기본 섹션으로 돌아가기 위해 JumpToSection 호출
+		_KnightanimInstance->JumpToSection(_curAttackIndex);
+	}
+	else if (isPressed && _isAttacking)
+	{
+		if (_curAttackIndex < 4)
+		{
+			_curAttackIndex++;  // 다음 섹션으로 이동
+			_KnightanimInstance->JumpToSection(_curAttackIndex);
+		}
+		// 마지막 섹션이 끝났을 때 첫 번째 섹션으로 돌아가도록 처리
+		else if (_curAttackIndex == 4)
+		{
+			_curAttackIndex = 1; // 첫 번째 섹션으로 돌아가기
+			_KnightanimInstance->JumpToSection(_curAttackIndex);
+		}
+	}
+
 }
 
 void AMyPlayer::Skill1(const FInputActionValue &value)

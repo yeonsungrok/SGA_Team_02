@@ -68,6 +68,9 @@ public:
 	void LockAllSkill();
 	void UnLockAllSkill();
 
+
+
+	void OnAttackEnded(class UAnimMontage* Montage, bool bInterrupted);
 	
 	void EquipBaseBody();
 	void EquipBaseLower();
