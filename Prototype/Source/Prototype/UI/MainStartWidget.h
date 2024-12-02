@@ -37,6 +37,8 @@ public:
 	UFUNCTION()
 	void OptionsButtonClick();
 
+	void OpenLevel();
+
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<UUserWidget> _Keyimage;
