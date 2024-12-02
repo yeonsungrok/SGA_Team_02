@@ -13,6 +13,7 @@ enum class UI_LIST
 	Boss,
 	Shop,
 	StartUI,
+	Load,
 	Status
 };
 
@@ -83,4 +84,7 @@ private:
 
 	UPROPERTY()
 	UMainStartWidget* _startUI;
+
+	UPROPERTY()
+	UUserWidget* _loadUI;
 };

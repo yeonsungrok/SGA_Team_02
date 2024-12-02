@@ -44,6 +44,13 @@ AUIManager::AUIManager()
 		_startUI = CreateWidget<UMainStartWidget>(GetWorld(), StartWidget.Class);
 	}
 
+	static ConstructorHelpers::FClassFinder<UUserWidget> LoadWidget(
+		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Widget_Info.Widget_Info_C'"));
+	if (LoadWidget.Succeeded())
+	{
+		_loadUI = CreateWidget<UUserWidget>(GetWorld(), LoadWidget.Class);
+	}
+
 	static ConstructorHelpers::FObjectFinder<UTexture2D> defaultTexture(
 		TEXT("/Script/Engine.Texture2D'/Game/CraftResourcesIcons/Textures/T_Default.T_Default'"));
 	if (defaultTexture.Succeeded())
