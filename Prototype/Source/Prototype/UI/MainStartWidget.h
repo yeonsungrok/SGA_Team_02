@@ -26,7 +26,7 @@ public:
 	class UButton* QuitButton;
 
 	UPROPERTY(meta = (BindWidget))
-	class UButton* SoundButton;
+	class UButton* OptionsButton;
 
 	UFUNCTION()
 	void StartButtonClick();
@@ -35,12 +35,12 @@ public:
 	void QuitButtonClick();
 
 	UFUNCTION()
-	void SoundButtonClick();
+	void OptionsButtonClick();
 
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<UUserWidget> _Keyimage;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
-	TSubclassOf<UUserWidget> _Sound;
+	TSubclassOf<UUserWidget> _OptionsButton;
 
 };

@@ -15,11 +15,11 @@
 UMainStartWidget::UMainStartWidget(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	static ConstructorHelpers::FClassFinder<UUserWidget> SoundTest
+	static ConstructorHelpers::FClassFinder<UUserWidget> Options
 	(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/options_UITEST.options_UITEST_C'"));
-	if (SoundTest.Succeeded())
+	if (Options.Succeeded())
 	{
-		_Sound = SoundTest.Class;
+		_OptionsButton = Options.Class;
 	}
 }
 
@@ -37,9 +37,9 @@ void UMainStartWidget::NativeConstruct()
 		QuitButton->OnClicked.AddDynamic(this, &UMainStartWidget::QuitButtonClick);
 	}
 
-	if (SoundButton)
+	if (OptionsButton)
 	{
-		SoundButton->OnClicked.AddDynamic(this, &UMainStartWidget::SoundButtonClick);
+		OptionsButton->OnClicked.AddDynamic(this, &UMainStartWidget::OptionsButtonClick);
 	}
 
 }
@@ -56,14 +56,14 @@ void UMainStartWidget::QuitButtonClick()
 	UKismetSystemLibrary::QuitGame(GetWorld(), GetWorld()->GetFirstPlayerController(), EQuitPreference::Quit, true);
 }
 
-void UMainStartWidget::SoundButtonClick()
+void UMainStartWidget::OptionsButtonClick()
 {
-	if (_Sound)
+	if (_OptionsButton)
 	{
-		UUserWidget* SoundTestrr = CreateWidget<UUserWidget>(GetWorld(), _Sound);
-		if (SoundTestrr)
+		UUserWidget* Optionss = CreateWidget<UUserWidget>(GetWorld(), _OptionsButton);
+		if (Optionss)
 		{
-			SoundTestrr->AddToViewport();
+			Optionss->AddToViewport();
 		}
 	}
 }
