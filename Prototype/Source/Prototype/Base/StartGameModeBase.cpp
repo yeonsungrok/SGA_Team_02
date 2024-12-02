@@ -46,50 +46,6 @@ void AStartGameModeBase::BeginPlay()
 	{
 		UIManager->OpenUI(UI_LIST::StartUI);
 	}
-
-	AMyPlayer* player = Cast<AMyPlayer>(UGameplayStatics::GetPlayerCharacter(this, 0));
-	if (player)
-	{
-		UMyGameInstance* GameInstance = Cast<UMyGameInstance>(GetGameInstance());
-		if (GameInstance)
-		{
-			if (GameInstance->GetFirst())
-			{
-				UE_LOG(LogTemp, Warning, TEXT("First GamemOde"));
-				GAMEINSTANCE->InitializeManagers();
-
-				UStatComponent* StatComponent = player->FindComponentByClass<UStatComponent>();
-				UInventoryComponent* InvenComponent = player->FindComponentByClass<UInventoryComponent>();
-				if (StatComponent)
-				{
-					player->_StatCom->SetLevelInit(1);
-				}
-				if (InvenComponent)
-				{
-					player->_inventoryComponent->InitSlot();
-				}
-			}
-			else
-			{
-				UE_LOG(LogTemp, Warning, TEXT("no first GamemOde"));
-				GAMEINSTANCE->InitializeManagers();
-
-				UStatComponent* StatComponent = player->FindComponentByClass<UStatComponent>();
-				UInventoryComponent* InvenComponent = player->FindComponentByClass<UInventoryComponent>();
-				if (StatComponent)
-				{
-					GameInstance->LoadPlayerStats(StatComponent);
-				}
-				if (InvenComponent)
-				{
-					GameInstance->LoadInventory(InvenComponent);
-				}
-				GameInstance->LoadPlayerSkeletal(player);
-
-
-			}
-		}
-	}
 }
 
 void AStartGameModeBase::PostInitializeComponents()

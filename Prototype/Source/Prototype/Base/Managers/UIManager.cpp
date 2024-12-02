@@ -75,6 +75,10 @@ AUIManager::AUIManager()
 	_uiList.Add(_startUI);
 	_uiIsOpen.Add(false);
 	_isPauseWhenOpen.Add(true);
+
+	_uiList.Add(_loadUI);
+	_uiIsOpen.Add(false);
+	_isPauseWhenOpen.Add(false);
 }
 
 // Called when the game starts or when spawned

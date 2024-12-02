@@ -4,6 +4,8 @@
 #include "UI/MainStartWidget.h"
 #include "Kismet/GameplayStatics.h"
 #include "Components/Button.h"
+#include "Base/Managers/UIManager.h"
+#include "Base/MyGameInstance.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Blueprint/UserWidget.h"
 #include "UObject/ConstructorHelpers.h"
@@ -13,30 +15,18 @@
 UMainStartWidget::UMainStartWidget(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	static ConstructorHelpers::FClassFinder<UUserWidget> KeyUI(
-		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Widget_Info.Widget_Info_C'")
-	);
-
-	if (KeyUI.Succeeded())
-	{
-		_Keyimage = KeyUI.Class;
-	}
-
 	static ConstructorHelpers::FClassFinder<UUserWidget> SoundTest
 	(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Sound_UI.Sound_UI_C'"));
 	if (SoundTest.Succeeded())
 	{
 		_Sound = SoundTest.Class;
 	}
-	
 }
 
 void UMainStartWidget::NativeConstruct()
 {
 
 	Super::NativeConstruct();
-
-
 
 	if (StartButton)
 	{
@@ -56,16 +46,9 @@ void UMainStartWidget::NativeConstruct()
 
 void UMainStartWidget::StartButtonClick()
 {
-
-	if (_Keyimage) 
-	{
-		UUserWidget* ControlInfoWidget = CreateWidget<UUserWidget>(GetWorld(), _Keyimage);
-		if (ControlInfoWidget)
-		{
-			ControlInfoWidget->AddToViewport();
-		}
-	}
-	//UGameplayStatics::OpenLevel(GetWorld(), TEXT("NewMap"));
+	UIManager->OpenUI(UI_LIST::Load);
+	
+	UGameplayStatics::OpenLevel(GetWorld(), TEXT("NewMap"));
 }
 
 void UMainStartWidget::QuitButtonClick()
