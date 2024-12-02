@@ -48,7 +48,14 @@ void UMainStartWidget::StartButtonClick()
 {
 	UIManager->OpenUI(UI_LIST::Load);
 	
-	UGameplayStatics::OpenLevel(GetWorld(), TEXT("NewMap"));
+	 FTimerHandle TimerHandle;
+    GetWorld()->GetTimerManager().SetTimer(
+        TimerHandle, 
+        this, 
+        &UMainStartWidget::OpenLevel, 
+        2.0f, 
+        false
+    );
 }
 
 void UMainStartWidget::QuitButtonClick()
@@ -66,4 +73,9 @@ void UMainStartWidget::SoundButtonClick()
 			SoundTestrr->AddToViewport();
 		}
 	}
+}
+
+void UMainStartWidget::OpenLevel()
+{
+	 UGameplayStatics::OpenLevel(GetWorld(), TEXT("NewMap"));
 }
