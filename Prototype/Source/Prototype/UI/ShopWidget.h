@@ -22,8 +22,12 @@ class PROTOTYPE_API UShopWidget : public UUserWidget
 
 public:
 	void UpdateShopList(TArray<ABaseItem*> list);
+	void ReflectInvenSlots(class AMyPlayer* player);
 
 private:
+	
+	void SetInvenButtons();
+
 	/// <summary>
 	/// Inventory Elements
 	/// </summary>
@@ -56,6 +60,9 @@ private:
 	class UButton* SellBtn;
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* SellBtnText;
+	
+	UPROPERTY(meta = (BindWidget))
+	class UTextBlock* GoldAmount;
 
 	//////////////////////////////////
 	///Shop Elements

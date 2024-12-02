@@ -12,6 +12,7 @@
 
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnItemEquipped, AEquipItem*, EquipItem);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FINTERECT);
 
 struct FInputActionValue;
 class ABaseItem;
@@ -94,6 +95,8 @@ public:
 	void SavePlayerState();
 	void LoadPlayerState();
 	void ClearSkillTimer();
+
+	FINTERECT interectNPC;
 
 private:
 	void Move(const FInputActionValue &value);

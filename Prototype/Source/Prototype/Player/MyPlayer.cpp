@@ -958,10 +958,9 @@ void AMyPlayer::Interect(const FInputActionValue& value)
 
 	auto invenUI = UIManager->GetInventoryUI();
 
-	//TODO : Dummy Function
 	if (isPressed && invenUI != nullptr)
 	{
-		UIManager->ToggleUI(UI_LIST::Shop);
+		interectNPC.Broadcast();
 	}
 }
 

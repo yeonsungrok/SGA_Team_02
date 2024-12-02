@@ -36,7 +36,9 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	AMyPlayer* GetConvTarget() { return _target; }
-
+	
+	UFUNCTION()
+	void Interect();
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Player", meta = (AllowPrivateAccess = "true"))
 	AMyPlayer* _target;

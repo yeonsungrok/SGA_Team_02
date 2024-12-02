@@ -2,10 +2,16 @@
 
 
 #include "MyNPC.h"
+#include "Player/MyPlayer.h"
+#include "Player/MyPlayerController.h"
 #include "Components/SphereComponent.h"
 #include "Components/SkeletalMeshComponent.h"
-#include "Player/MyPlayer.h"
 #include "Component/ShopComponent.h"
+#include "Base/MyGameInstance.h"
+#include "Base/Managers/UIManager.h"
+#include "UI/ShopWidget.h"
+
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AMyNPC::AMyNPC()
@@ -45,13 +51,17 @@ void AMyNPC::PostInitializeComponents()
 
 	_trigger->OnComponentBeginOverlap.AddDynamic(this, &AMyNPC::OnOverlapBegin);
 	_trigger->OnComponentEndOverlap.AddDynamic(this, &AMyNPC::OnOverlapEnd);
+	//_target->interectNPC.AddUObject(this, &AMyNPC::Interect);
 }
 
 void AMyNPC::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	_target = Cast<AMyPlayer>(OtherActor);
-	if (_target == nullptr)
+	auto target = Cast<AMyPlayer>(OtherActor);
+	if (target == nullptr)
 		return;
+
+	_target = target;
+	_target->interectNPC.AddDynamic(this, &AMyNPC::Interect);
 
 	_isOverlapped = true;
 	_shopComp->SetCustomer(_target);
@@ -60,6 +70,7 @@ void AMyNPC::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherAc
 
 void AMyNPC::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
+	_target->interectNPC.RemoveDynamic(this, &AMyNPC::Interect);
 	_target = nullptr;
 	_isOverlapped = false;
 	_shopComp->SetCustomer(_target);
@@ -77,5 +88,13 @@ void AMyNPC::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+void AMyNPC::Interect()
+{
+	if (_isOverlapped == false)
+		return;
+	UIManager->GetShopUI()->ReflectInvenSlots(_target);
+	UIManager->ToggleUI(UI_LIST::Shop);
 }
 

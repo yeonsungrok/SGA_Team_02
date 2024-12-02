@@ -2,7 +2,11 @@
 
 
 #include "UI/ShopWidget.h"
+#include "Base/MyGameInstance.h"
+#include "Player/MyPlayer.h"
+#include "Components/UniformGridPanel.h"
 #include "InventoryWidget.h"
+#include "Component/InventoryComponent.h"
 #include "Component/ShopComponent.h"
 #include "Components/CanvasPanel.h"
 #include "UI/Elements/IndexedButton.h"
@@ -11,6 +15,8 @@
 bool UShopWidget::Initialize()
 {
 	bool result = Super::Initialize();
+
+	SetInvenButtons();
 
 	_SellPanels.Add(SellPanel_0);
 	_SellPanels.Add(SellPanel_1);
@@ -34,5 +40,39 @@ void UShopWidget::UpdateShopList(TArray<ABaseItem*> list)
 		price->SetText(FText::FromString(FString::FromInt(list[i]->GetPrice()) + FString(TEXT(" G"))));
 		auto description = Cast<UTextBlock>(_SellPanels[i]->GetChildAt(3));
 		description->SetText(FText::FromString(list[i]->GetDesc()));
+	}
+}
+
+void UShopWidget::ReflectInvenSlots(AMyPlayer* player)
+{
+	TArray<ABaseItem*> itemList = player->_inventoryComponent->GetItemSlots();
+	for (int i = 0; i < Button_.Num(); i++)
+	{
+		Button_[i]->SetItem(itemList[i]);
+		Button_[i]->ButtonUpdate();
+	}
+
+	//TODO : Get Wallet too & Call this every opening
+	int32 Gold = player->_inventoryComponent->GetHowMuchIHave();
+}
+
+void UShopWidget::SetInvenButtons()
+{
+	TArray<UWidget*> widgets;
+	widgets = ItemSlots->GetAllChildren();
+
+	int32 index = 0;
+	for (UWidget* widget : widgets)
+	{
+		UIndexedButton* button = Cast<UIndexedButton>(widget);
+		if (button)
+		{
+			button->SetIndex(index);
+			button->SetSlotType(SlotType::Inventory);
+			button->SetIsEnabled(true);
+			Button_.Add(button);
+
+			index++;
+		}
 	}
 }
