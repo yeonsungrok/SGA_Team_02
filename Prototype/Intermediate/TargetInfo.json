@@ -2,12 +2,12 @@
 	"Targets": [
 		{
 			"Name": "Prototype",
-			"Path": "../Source/Prototype.Target.cs",
+			"Path": "..\\Source\\Prototype.Target.cs",
 			"Type": "Game"
 		},
 		{
 			"Name": "PrototypeEditor",
-			"Path": "../Source/PrototypeEditor.Target.cs",
+			"Path": "..\\Source\\PrototypeEditor.Target.cs",
 			"Type": "Editor"
 		}
 	]
