@@ -12,6 +12,7 @@ enum class UI_LIST
 	Inventory,
 	Boss,
 	Shop,
+	Load,
 	Status,
 };
 
@@ -63,6 +64,9 @@ private:
 
 	UPROPERTY()
 	TArray<bool> _isPauseWhenOpen;
+
+	UPROPERTY()
+	UUserWidget* _loadUI;
 
 	UPROPERTY()
 	UInventoryWidget* _inventoryUI;

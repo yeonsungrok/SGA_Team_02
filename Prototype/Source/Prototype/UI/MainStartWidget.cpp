@@ -25,10 +25,7 @@ UMainStartWidget::UMainStartWidget(const FObjectInitializer& ObjectInitializer)
 
 void UMainStartWidget::NativeConstruct()
 {
-
 	Super::NativeConstruct();
-
-
 
 	if (StartButton)
 	{
@@ -39,12 +36,10 @@ void UMainStartWidget::NativeConstruct()
 		QuitButton->OnClicked.AddDynamic(this, &UMainStartWidget::QuitButtonClick);
 	}
 
-
 }
 
 void UMainStartWidget::StartButtonClick()
 {
-
 	if (_Keyimage) 
 	{
 		UUserWidget* ControlInfoWidget = CreateWidget<UUserWidget>(GetWorld(), _Keyimage);
@@ -53,7 +48,7 @@ void UMainStartWidget::StartButtonClick()
 			ControlInfoWidget->AddToViewport();
 		}
 	}
-	//UGameplayStatics::OpenLevel(GetWorld(), TEXT("NewMap"));
+	UGameplayStatics::OpenLevel(GetWorld(), TEXT("NewMap"));
 }
 
 void UMainStartWidget::QuitButtonClick()

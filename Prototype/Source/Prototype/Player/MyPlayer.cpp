@@ -686,7 +686,7 @@ void AMyPlayer::ConfirmTeleportLocation()
 	 AMyPlayerController* PlayerController = Cast<AMyPlayerController>(GetController());
     if (PlayerController)
     {
-		TargetSkillLocation.Z += 50.f;
+		TargetSkillLocation.Z += 100.f;
         SetActorLocation(TargetSkillLocation);
 
         UE_LOG(LogTemp, Warning, TEXT("Teleported to: %s"), *TargetSkillLocation.ToString());
