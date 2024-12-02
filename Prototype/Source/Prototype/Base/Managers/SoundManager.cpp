@@ -7,7 +7,8 @@
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
 #include "Components/AudioComponent.h"
-#include "Kismet/GameplayStatics.h"
+
+#include "TimerManager.h"
 
 // Sets default values
 ASoundManager::ASoundManager()
@@ -56,6 +57,14 @@ ASoundManager::ASoundManager()
 	CreateSound("LevelupSound_Cue", "/Script/Engine.Blueprint'/Game/Blueprint/Sound/LevelupSound_BP.LevelupSound_BP_C'");
 
 	CreateSound("ObstacleBroken_Cue", "/Script/Engine.Blueprint'/Game/Blueprint/Sound/ObstacleBroken_BP.ObstacleBroken_BP_C'");
+
+	// Find Target (NormalMonster AI)
+	
+	CreateSound("FindTarget_03_Cue", "/Script/Engine.Blueprint'/Game/Blueprint/Sound/FindTarget_BP.FindTarget_BP_C'");
+
+
+	// test 
+	_soundEffectTable = TMap<FString, TArray<ASoundEffect*>>();
 }
 
 void ASoundManager::BeginPlay()
@@ -81,6 +90,8 @@ void ASoundManager::Destroy()
 
 void ASoundManager::PlaySound(FString name, FVector location)
 {
+
+
 	if (_soundEffectTable.Contains(name) == false)
 		return;
 
@@ -95,6 +106,61 @@ void ASoundManager::PlaySound(FString name, FVector location)
 	if (findSound)
 		(*findSound)->Play(location);
 
+}
+
+void ASoundManager::PlaySoundOnce(FString name, FVector location)
+{
+	if (ActiveSounds.Contains(name))
+	{
+		ASoundEffect* ExistingSound = ActiveSounds[name];
+		if (ExistingSound && ExistingSound->IsPlaying())
+		{
+			return; // 중복 재생 방지
+		}
+	}
+
+	// 사운드 생성 및 재생
+	if (_soundTable.Contains(name))
+	{
+		TSubclassOf<ASoundEffect> SoundEffectClass = _soundTable[name];
+		if (SoundEffectClass)
+		{
+			ASoundEffect* TempSoundEffect = GetWorld()->SpawnActor<ASoundEffect>(SoundEffectClass, location, FRotator::ZeroRotator);
+
+			if (TempSoundEffect)
+			{
+				TempSoundEffect->Play(location);
+
+				// Duration을 가져와서 재생 시간을 계산
+				float Duration = TempSoundEffect->GetDuration();
+				UE_LOG(LogTemp, Warning, TEXT("Playing sound for %f seconds."), Duration);
+
+				// 재생 중인 사운드 등록
+				ActiveSounds.Add(name, TempSoundEffect);
+
+				// 수명 종료 후 맵에서 제거 (타이머 사용)
+				FTimerHandle TimerHandle;
+				GetWorld()->GetTimerManager().SetTimer(
+					TimerHandle, // 타이머 핸들
+					[this, name, TempSoundEffect]() {
+						// ActiveSounds에서 제거하고, 소멸
+						ActiveSounds.Remove(name);
+						TempSoundEffect->Destroy();
+					},
+					Duration, // Duration 후 실행
+					false // 반복 안함
+				);
+			}
+		}
+	}
+}
+
+void ASoundManager::HandleAudioFinished(UAudioComponent* AudioComponent)
+{
+	if (AudioComponent)
+	{
+		AudioComponent->DestroyComponent();
+	}
 }
 
 void ASoundManager::PlaySoundWithDuration(FString name, FVector location, float duration)

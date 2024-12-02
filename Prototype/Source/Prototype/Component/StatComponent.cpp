@@ -62,6 +62,8 @@ void UStatComponent::Reset()
 
 void UStatComponent::SetLevelInit(int level)
 {
+
+
 	FMyStatData* Data = nullptr;
 
 	if (GAMEINSTANCE)
@@ -282,6 +284,16 @@ void UStatComponent::SetStr(int32 newstr)
 	UIManager->GetInventoryUI()->UpdateStat();
 }
 
+void UStatComponent::SetOgStr(int32 newstr)
+{
+	_ogStr = FMath::Clamp(newstr, 0, 100);
+}
+
+void UStatComponent::SetModStr(int32 newstr)
+{
+	_modStr = FMath::Clamp(newstr, 0, 100);
+}
+
 void UStatComponent::SetDex(int32 newdex)
 {
 
@@ -296,6 +308,16 @@ void UStatComponent::SetDex(int32 newdex)
 	UIManager->GetInventoryUI()->UpdateStat();
 }
 
+void UStatComponent::SetOgDex(int32 newdex)
+{
+	_ogDex = FMath::Clamp(newdex, 0, 100);
+}
+
+void UStatComponent::SetModDex(int32 newdex)
+{
+	_modDex = FMath::Clamp(newdex, 0, 100);
+}
+
 void UStatComponent::SetInt(int32 newint)
 {
 	auto myGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
@@ -307,6 +329,16 @@ void UStatComponent::SetInt(int32 newint)
 
 	UIManager->GetInventoryUI()->UpdateOriginStat((int32)StatType::INT, _int);
 	UIManager->GetInventoryUI()->UpdateStat();
+}
+
+void UStatComponent::SetOgInt(int32 newint)
+{
+	_ogInt = FMath::Clamp(newint, 0, 100);
+}
+
+void UStatComponent::SetModInt(int32 newint)
+{
+	_modInt = FMath::Clamp(newint, 0, 100);
 }
 
 void UStatComponent::SetExp(int32 newexp)
@@ -443,7 +475,6 @@ int UStatComponent::AddCurMp(int32 amount)
 void UStatComponent::AddAttackDamage(float amount)
 {
 	_attackDamage += amount;
-	UE_LOG(LogTemp, Warning, TEXT("Attack Damage: %d"), _attackDamage);
 }
 
 void UStatComponent::AddExp(int32 amount)

@@ -3,8 +3,10 @@
 
 #include "Monster/Monster.h"
 #include "Components/CapsuleComponent.h"
+#include "Engine/DamageEvents.h"
 #include "../Player/MyPlayer.h"
 #include "../Player/MyPlayerController.h"
+#include "Base/MyGameInstance.h"
 #include "Component/StatComponent.h"
 
 
@@ -35,6 +37,61 @@ void AMonster::Disable()
 
 }
 
+void AMonster::AttackHit()
+{
+    TArray<FHitResult> hitResults;
+    FCollisionQueryParams params(NAME_None, false, this);
+
+    float attackRange = 500.0f;
+    float attackRadius = 50.0f;
+
+    bool bResult = GetWorld()->SweepMultiByChannel(
+        hitResults,
+        GetActorLocation(),
+        GetActorLocation() + GetActorForwardVector() * attackRange,
+        FQuat::Identity,
+        ECollisionChannel::ECC_GameTraceChannel2,
+        FCollisionShape::MakeSphere(attackRadius),
+        params
+    );
+
+    FVector vec = GetActorForwardVector() * attackRange;
+    FVector center = GetActorLocation() + vec * 0.5f;
+
+    FColor drawColor = FColor::Green;
+
+    if (bResult)
+    {
+        drawColor = FColor::Red;
+
+        for (auto &hitResult : hitResults)
+        {
+            AActor* hitActor = hitResult.GetActor();
+            if (hitActor && hitActor->IsValidLowLevel())
+            {
+                if (!hitActor->IsA<AMonster>())
+                {
+                    FDamageEvent DamageEvent;
+                    hitActor->TakeDamage(_StatCom->GetStr(), DamageEvent, GetController(), this);
+                    _hitPoint = hitResult.ImpactPoint;
+
+                    SoundManager->PlaySound(*GetHitSoundName(), _hitPoint);
+                    EffectManager->Play(*GetPlayerAttackHitEffect(), _hitPoint);
+                    break;
+                }
+            }
+        }
+    }
+    else
+    {
+        FVector missLocation = GetActorLocation();
+        SoundManager->PlaySound(*GetSwingSoundName(), missLocation);
+    }
+
+    DrawDebugSphere(GetWorld(), center, attackRadius, 32, drawColor, false, 0.3f);
+}
+
+
 void AMonster::DropReword()
 {
     
@@ -50,7 +107,6 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent,
     AMyPlayer* Player = Cast<AMyPlayer>(PlayerController->GetPawn());
 
 	float damaged = -_StatCom->AddCurHp(-Damage);
-	UE_LOG(LogTemp, Warning, TEXT("Take Damaged: %f"),Damage);
 
 	if (this->_StatCom->IsDead() && Player != nullptr)
 	{

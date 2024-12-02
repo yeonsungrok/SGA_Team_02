@@ -36,6 +36,8 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
+	void Init();
+
 	void SetSales();
 
 	void Sale(int32 index);

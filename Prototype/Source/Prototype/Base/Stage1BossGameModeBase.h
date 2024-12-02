@@ -28,6 +28,7 @@ public:
 
 	void BossStart();
 
+	void LockSkill();
 
 
 

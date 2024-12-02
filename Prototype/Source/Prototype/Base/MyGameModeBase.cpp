@@ -3,6 +3,8 @@
 #include "MyGameModeBase.h"
 #include "../Component/StatComponent.h"
 #include "MyGameInstance.h"
+#include "../Player/MyPlayerController.h"
+#include "UI/SkillWidget_test.h"
 #include "../Player/MyPlayer.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -15,14 +17,26 @@ void AMyGameModeBase::BeginPlay()
 	AMyPlayer *player = Cast<AMyPlayer>(UGameplayStatics::GetPlayerCharacter(this, 0));
 	if (player)
 	{
+		UStatComponent *StatComponent = player->FindComponentByClass<UStatComponent>();
+		UInventoryComponent *InvenComponent = player->FindComponentByClass<UInventoryComponent>();
 		UMyGameInstance *GameInstance = Cast<UMyGameInstance>(GetGameInstance());
+
+
+		APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
+		if (PlayerController)
+		{
+			PlayerController->bShowMouseCursor = false;
+			PlayerController->SetInputMode(FInputModeGameOnly());
+		}
+		FTimerHandle TimerHandle;
+		GetWorldTimerManager().SetTimer(TimerHandle, this, &AMyGameModeBase::LockSkill, 0.1f, false);
+
 		if (GameInstance)
 		{
 			if (GameInstance->GetFirst())
-			{
-				UE_LOG(LogTemp,Warning,TEXT("First GamemOde"));
-				UStatComponent *StatComponent = player->FindComponentByClass<UStatComponent>();
-				UInventoryComponent *InvenComponent = player->FindComponentByClass<UInventoryComponent>();
+			{			
+				GAMEINSTANCE->InitializeManagers();
+
 				if(StatComponent)
 				{
 					player->_StatCom->SetLevelInit(1);
@@ -35,11 +49,8 @@ void AMyGameModeBase::BeginPlay()
 			}
 			else
 			{
-				UE_LOG(LogTemp,Warning,TEXT("no first GamemOde"));
-				GAMEINSTANCE->InitializeManagers();
+				GameInstance->InitializeManagers();
 				
-				UStatComponent *StatComponent = player->FindComponentByClass<UStatComponent>();
-				UInventoryComponent *InvenComponent = player->FindComponentByClass<UInventoryComponent>();
 				if(StatComponent)
 				{
 					GameInstance->LoadPlayerStats(StatComponent);
@@ -49,8 +60,6 @@ void AMyGameModeBase::BeginPlay()
 					GameInstance->LoadInventory(InvenComponent);
 				}
 				GameInstance->LoadPlayerSkeletal(player);
-				
-			
 			}
 		}
 	}
@@ -59,4 +68,13 @@ void AMyGameModeBase::BeginPlay()
 void AMyGameModeBase::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
+}
+
+void AMyGameModeBase::LockSkill()
+{
+	AMyPlayerController* PlayerController = Cast<AMyPlayerController>(GetWorld()->GetFirstPlayerController());
+	if (PlayerController && PlayerController->SkillWidgetInstance)
+	{
+		PlayerController->SkillWidgetInstance->LockAllSkill();
+	}
 }

@@ -21,7 +21,7 @@ public:
 	virtual FString GetGuardOff() const override;
 	virtual FString GetDeadSoundName() const override;
 
-
+	void PlayFindEffect();
 
 
 protected:
@@ -33,4 +33,6 @@ protected:
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Animation", meta = (AllowPrivateAccess = "true"))
 	class UMonster_N_AnimInstance* _monster_N_AnimInstance;
+
+	bool first = true;
 };

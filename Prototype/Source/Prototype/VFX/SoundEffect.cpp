@@ -34,6 +34,7 @@ void ASoundEffect::Tick(float DeltaTime)
 
 void ASoundEffect::Play(FVector location)
 {
+
 	if (_audioComponent && _soundCom)
 	{
 		SetActorLocation(location);
@@ -53,6 +54,13 @@ void ASoundEffect::Stop()
 	{
 		_audioComponent->Stop();
 	}
+}
+
+float ASoundEffect::GetDuration() const
+{
+	float Duration = _soundCom ? _soundCom->GetDuration() : 0.1f;
+	UE_LOG(LogTemp, Warning, TEXT("Sound Duration: %f"), Duration);
+	return Duration;
 }
 
 

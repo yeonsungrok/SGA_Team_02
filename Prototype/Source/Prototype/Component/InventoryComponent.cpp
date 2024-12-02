@@ -314,7 +314,6 @@ void UInventoryComponent::ShowItemSlots()
 		}
 		else
 		{
-			// 슬롯에 아이템이 없을 경우
 			UE_LOG(LogTemp, Warning, TEXT("Slot %d: Empty"), i);
 		}
 	}

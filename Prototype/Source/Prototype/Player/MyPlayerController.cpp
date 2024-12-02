@@ -28,6 +28,7 @@ void AMyPlayerController::BeginPlay()
         SkillWidgetInstance = CreateWidget<USkillWidget_test>(this, SkillWidgetClass);
         if (SkillWidgetInstance)
         {
+             SkillWidgetInstance->LockAllSkill();
             SkillWidgetInstance->AddToViewport();
         }
     }

@@ -23,12 +23,17 @@ void UShopComponent::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
-	
+	SetSales();
 }
 
 void UShopComponent::SetCustomer(AMyPlayer* target)
 {
 	_customer = target;
+}
+
+void UShopComponent::Init()
+{
+	SetSales();
 }
 
 void UShopComponent::SetSales()

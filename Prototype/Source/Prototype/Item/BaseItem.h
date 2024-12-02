@@ -39,6 +39,9 @@ struct FItemData : public FTableRowBase
 	int _Price;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int _Equip;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int _Value;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -80,6 +83,9 @@ public:
 	virtual void UseItem();
 	virtual void DropItem(FVector location, FRotator rotation = FRotator::ZeroRotator);
 
+	virtual void SetPlayer(); 
+	
+
 	//Item Data Getter
 	int GetCode(){return _Code;}
 	FString GetName() { return _Name; }
@@ -90,6 +96,7 @@ public:
 	int32 GetValue() { return _Value; }
 	UStaticMesh* GetSkeletalMesh() {return _Mesh;}
 	UTexture2D* GetTexture() { return _Texture; }
+	int32 GetEquip() {return _Equip;}
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components")
@@ -110,4 +117,5 @@ protected:
 	int32 _Value;
 	UStaticMesh* _Mesh;
 	UTexture2D* _Texture;
+	int _Equip;
 };

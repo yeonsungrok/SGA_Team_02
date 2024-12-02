@@ -39,14 +39,14 @@ UMyGameInstance::UMyGameInstance()
 		_BossstatTable = BossStatData.Object;
 	}
 
-	static ConstructorHelpers::FObjectFinder<UDataTable> ConsumItemData(TEXT("/Script/Engine.DataTable'/Game/Data/Item/ConsumeItemTable.ConsumeItemTable'"));
+	static ConstructorHelpers::FObjectFinder<UDataTable> ConsumItemData(TEXT("/Script/Engine.DataTable'/Game/Data/Item/ConsumeItem.ConsumeItem'"));
 
 	if (ConsumItemData.Succeeded())
 	{
 		_ConsItemTable = ConsumItemData.Object;
 	}
 
-	static ConstructorHelpers::FObjectFinder<UDataTable> EquipItemData(TEXT("/Script/Engine.DataTable'/Game/Data/Item/EquipItemDataTable.EquipItemDataTable'"));
+	static ConstructorHelpers::FObjectFinder<UDataTable> EquipItemData(TEXT("/Script/Engine.DataTable'/Game/Data/Item/Equipitem.Equipitem'"));
 
 	if (EquipItemData.Succeeded())
 	{
@@ -76,8 +76,17 @@ void UMyGameInstance::SavePlayerStats(class UStatComponent *StatComponent)
 		_savedMaxHp = StatComponent->GetMaxHp();
 		_savedMaxMp = StatComponent->GetMaxMp();
 		_savedStr = StatComponent->GetStr();
+		_savedOgStr = StatComponent->GetOgStr();
+		_savedModStr = StatComponent->GetModStr();
+		
 		_savedDex = StatComponent->GetDex();
+		_savedOgDex = StatComponent->GetOgDex();
+		_savedModDex = StatComponent->GetModDex();
+
 		_savedInt = StatComponent->GetInt();
+		_savedOgInt = StatComponent->GetOgInt();
+		_savedModInt = StatComponent->GetModInt();
+
 		_savedCurHp = StatComponent->GetCurHp();
 		_savedCurMp = StatComponent->GetCurMp();
 		_savedExp = StatComponent->GetExp();
@@ -93,8 +102,17 @@ void UMyGameInstance::LoadPlayerStats(class UStatComponent *StatComponent)
 		StatComponent->SetMaxHp(_savedMaxHp);
 		StatComponent->SetMaxMp(_savedMaxMp);
 		StatComponent->SetStr(_savedStr);
+		StatComponent->SetOgStr(_savedOgStr);
+		StatComponent->SetModStr(_savedModStr);
+
 		StatComponent->SetDex(_savedDex);
+		StatComponent->SetOgDex(_savedOgDex);
+		StatComponent->SetModDex(_savedModDex);
+
 		StatComponent->SetInt(_savedInt);
+		StatComponent->SetOgInt(_savedOgInt);
+		StatComponent->SetModInt(_savedModInt);
+
 		StatComponent->SetHp(_savedCurHp);
 		StatComponent->SetMp(_savedCurMp);
 		StatComponent->SetExp(_savedExp);
@@ -102,10 +120,14 @@ void UMyGameInstance::LoadPlayerStats(class UStatComponent *StatComponent)
 	}
 }
 
+
 void UMyGameInstance::SaveInventory(class UInventoryComponent *InventoryComponent)
 {
 	if (InventoryComponent)
 	{
+		SavedInventoryData.Empty();
+		SavedEquipData.Empty();
+		
 		TArray<ABaseItem *> Items = InventoryComponent->GetItemSlots();
 		TMap<FString, AEquipItem *> EquipItems = InventoryComponent->GetEquipSlots();
 
@@ -123,6 +145,7 @@ void UMyGameInstance::SaveInventory(class UInventoryComponent *InventoryComponen
 				ItemData._Value = Item->GetValue();
 				ItemData._Mesh = Item->GetSkeletalMesh();
 				ItemData._Texture = Item->GetTexture();
+				ItemData._Equip = Item->GetEquip();
 
 				SavedInventoryData.Add(ItemData);
 			}
@@ -142,10 +165,13 @@ void UMyGameInstance::SaveInventory(class UInventoryComponent *InventoryComponen
 				ItemData._Value = Item.Value->GetValue();
 				ItemData._Mesh = Item.Value->GetSkeletalMesh();
 				ItemData._Texture = Item.Value->GetTexture();
-
+				ItemData._Equip = static_cast<int>(Item.Value->GetEquipType());
+				
 				SavedEquipData.Add(Item.Key, ItemData);
 			}
 		}
+		_savedMoney = InventoryComponent->GetHowMuchIHave();
+
 	}
 }
 
@@ -168,6 +194,7 @@ void UMyGameInstance::LoadInventory(class UInventoryComponent *InventoryComponen
 			{
 				AEquipItem *EquipItem = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
 				EquipItem->SetItemWithCode(ItemData._Code);
+				EquipItem->SetEquipType(ItemData._Equip);
 				NewItem = EquipItem;
 			}
 
@@ -176,7 +203,7 @@ void UMyGameInstance::LoadInventory(class UInventoryComponent *InventoryComponen
 				InventoryComponent->AddItemToSlot(NewItem);
 			}
 		}
-
+		
 		for (const auto &Item : SavedEquipData)
 		{
 			AEquipItem *NewItem = nullptr;
@@ -189,12 +216,14 @@ void UMyGameInstance::LoadInventory(class UInventoryComponent *InventoryComponen
 				if (EquipItem)
 				{
 					EquipItem->SetItemWithCode(ItemData._Code);
+					EquipItem->SetEquipType(ItemData._Equip);
 					NewItem = EquipItem;
 
                     InventoryComponent->AddItemToEquip(EquipType,NewItem);
 				}
 			}
 		}
+		InventoryComponent->GettingMoney(_savedMoney);
 	}
 }
 
@@ -241,12 +270,18 @@ void UMyGameInstance::LoadPlayerSkeletal(class AMyPlayer* player)
     }
 }
 
+TArray<ABaseItem*> UMyGameInstance::GetInvenItemList()
+{
+	return UIManager->GetInventoryUI()->GetInvenContents();
+}
+
 void UMyGameInstance::Init()
 {
 	Super::Init();
 
 	auto statData = GetStatDataByLevel(1);
 	auto EpicData = GetEpicDataByLevel(1);
+	auto BossData = GetBossDataByLevel(1);
 
 	InitializeManagers();
 }
@@ -320,9 +355,9 @@ ABaseItem* UMyGameInstance::SellDataToItemData(FSellings* data)
 {
 	if (data->Type == ItemType::Equipment)
 	{
-		AEquipItem* equip = GetWorld()->SpawnActor<AEquipItem>(ABaseItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+		AEquipItem* equip = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
 		equip->SetItemWithCode(data->Code);
-		return equip;
+		return Cast<ABaseItem>(equip);
 	}
 	else
 	{

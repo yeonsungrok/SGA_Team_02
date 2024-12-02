@@ -28,6 +28,8 @@ public:
 	UFUNCTION()
 	virtual void Disable() override;
 
+	virtual void AttackHit() override;
+
 	virtual void Attack_AI(){};
 	
 

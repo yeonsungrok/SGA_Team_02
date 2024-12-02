@@ -120,7 +120,7 @@ void UStatWidget::HPUpdate(int32 HP)
 	if (HPNum)
 	{
 		HPNum->SetText(FText::AsNumber(HP));
-		
+
 	}
 }
 
@@ -176,7 +176,7 @@ void UStatWidget::UpdateStatDisplay()
 		STRUpdate(player->_StatCom->GetStr());
 		DEXUpdate(player->_StatCom->GetDex());
 		INTUpdate(player->_StatCom->GetInt());
-		
+
 		BonusPointUpdate(player->_StatCom->GetBonusPoint());
 		PlLevelUpdate(player->_StatCom->GetLevel());
 
@@ -195,13 +195,13 @@ void UStatWidget::UpdateStatDisplay()
 
 void UStatWidget::HPDownClick()
 {
-	
+
 	AMyPlayer* player = Cast<AMyPlayer>(GetOwningPlayerPawn());
 
 	if (player && player->_StatCom)
 	{
 		int32 StatHp = player->_StatCom->GetMaxHp();
-		int32 baseHp = player->_StatCom->GetBaseStat(StatType::HP); 
+		int32 baseHp = player->_StatCom->GetBaseStat(StatType::HP);
 		int32 bonusPoints = player->_StatCom->GetBonusPoint();
 
 		if (StatHp > baseHp)

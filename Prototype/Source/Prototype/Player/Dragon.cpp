@@ -295,6 +295,8 @@ void ADragon::PostInitializeComponents()
         // 애니메이션 몽타주 끝났을 때 처리할 델리게이트 연결
         _dragonAnimInstance->OnMontageEnded.AddDynamic(this, &ADragon::OnAttackEnded);
 
+
+        _dragonAnimInstance->_attackDelegate_Dragon.AddUObject(this, &ACreature::AttackHit);
         // 드래곤 사망 델리게이트 연결
         _dragonAnimInstance->_deathDelegate_Dragon.AddUObject(this, &ADragon::Disable);
     }
@@ -375,4 +377,13 @@ void ADragon::Tick(float DeltaTime)
         SetActorRotation(NewRotation); // 회전 적용
     }
 
+}
+
+float ADragon::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+
+    Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
+
+
+    return 0.0f;
 }
