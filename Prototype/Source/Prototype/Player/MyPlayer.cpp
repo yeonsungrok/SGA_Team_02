@@ -1082,10 +1082,13 @@ void AMyPlayer::Interect(const FInputActionValue &value)
 
 	auto invenUI = UIManager->GetInventoryUI();
 
+<<<<<<< HEAD
 	// TODO : Dummy Function
+=======
+>>>>>>> PSW-NPC
 	if (isPressed && invenUI != nullptr)
 	{
-		UIManager->ToggleUI(UI_LIST::Shop);
+		interectNPC.Broadcast();
 	}
 }
 
