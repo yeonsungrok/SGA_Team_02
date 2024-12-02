@@ -6,17 +6,18 @@
 #include "Player/MyPlayer.h"
 #include "UI/MainStartWidget.h"
 #include "Blueprint/UserWidget.h" 
+#include "Base/Managers/UIManager.h"
 
 #include "Kismet/GameplayStatics.h"
 
 AStartGameModeBase::AStartGameModeBase()
 {
-	static ConstructorHelpers::FClassFinder<UMainStartWidget> StartWidget(
-		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/MainStart_UI.MainStart_UI_C'"));
-	if (StartWidget.Succeeded())
-	{
-		StartLevelWidgetClass = StartWidget.Class;
-	}
+	//static ConstructorHelpers::FClassFinder<UMainStartWidget> StartWidget(
+	//	TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/MainStart_UI.MainStart_UI_C'"));
+	//if (StartWidget.Succeeded())
+	//{
+	//	StartLevelWidgetClass = StartWidget.Class;
+	//}
 
 }
 
@@ -24,17 +25,26 @@ void AStartGameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	
-	if (StartLevelWidgetClass)
+	//
+	//if (StartLevelWidgetClass)
+	//{
+
+	//	StartLevelWidget = CreateWidget<UMainStartWidget>(GetWorld(), StartLevelWidgetClass);
+
+	//	if (StartLevelWidget)
+	//	{
+	//		StartLevelWidget->AddToViewport();
+
+
+	//	}
+	//	
+	//}
+
+	auto startUI = UIManager->GetStartUI();
+
+	if (startUI != nullptr)
 	{
-
-		StartLevelWidget = CreateWidget<UMainStartWidget>(GetWorld(), StartLevelWidgetClass);
-
-		if (StartLevelWidget)
-		{
-			StartLevelWidget->AddToViewport();
-		}
-		
+		UIManager->OpenUI(UI_LIST::StartUI);
 	}
 
 	AMyPlayer* player = Cast<AMyPlayer>(UGameplayStatics::GetPlayerCharacter(this, 0));

@@ -5,6 +5,7 @@
 #include "UI/InventoryWidget.h"
 #include "UI/Boss1Widget.h"
 #include "UI/ShopWidget.h"
+#include "UI/MainStartWidget.h"
 #include "Kismet/GameplayStatics.h"
 
 #include "TriggerBox_StageSequnce/StageSequence_Trigger.h"
@@ -36,12 +37,21 @@ AUIManager::AUIManager()
 		_shopUI = CreateWidget<UShopWidget>(GetWorld(), shopUI.Class);
 	}
 
+	static ConstructorHelpers::FClassFinder<UUserWidget> StartWidget(
+		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/MainStart_UI.MainStart_UI_C'"));
+	if (StartWidget.Succeeded())
+	{
+		_startUI = CreateWidget<UMainStartWidget>(GetWorld(), StartWidget.Class);
+	}
+
 	static ConstructorHelpers::FObjectFinder<UTexture2D> defaultTexture(
 		TEXT("/Script/Engine.Texture2D'/Game/CraftResourcesIcons/Textures/T_Default.T_Default'"));
 	if (defaultTexture.Succeeded())
 	{
 		_defaultTexture = defaultTexture.Object;
 	}
+
+
 
 	_uiList.Add(_inventoryUI);
 	_uiIsOpen.Add(false);
@@ -52,6 +62,10 @@ AUIManager::AUIManager()
 	_isPauseWhenOpen.Add(false);
 
 	_uiList.Add(_shopUI);
+	_uiIsOpen.Add(false);
+	_isPauseWhenOpen.Add(true);
+
+	_uiList.Add(_startUI);
 	_uiIsOpen.Add(false);
 	_isPauseWhenOpen.Add(true);
 }
