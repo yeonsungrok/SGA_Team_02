@@ -76,7 +76,7 @@ void UBaseAnimInstance::PlayAttackMontage()
 {
 	if (!Montage_IsPlaying(_myAnimMontage))
 	{
-		Montage_Play(_myAnimMontage);
+		Montage_Play(_myAnimMontage, 0.6f);
 	}
 }
 

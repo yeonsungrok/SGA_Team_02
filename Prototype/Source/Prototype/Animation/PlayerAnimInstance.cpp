@@ -116,6 +116,11 @@ void UPlayerAnimInstance::PlaySkill03Montage()
 	}
 }
 
+void UPlayerAnimInstance::AnimNotify_clickNext()
+{
+	_comboDelegate.Broadcast();
+}
+
 void UPlayerAnimInstance::AnimNotify_Attackhit()
 {
 	_attackDelegate.Broadcast();
