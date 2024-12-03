@@ -391,10 +391,8 @@ void UStatComponent::SetStatBoost(int32 rate)
     _dex = FMath::Clamp(_dex * boostFactor, 0, 100);
     _int = FMath::Clamp(_int * boostFactor, 0, 100);
     _maxHp = FMath::Clamp(_maxHp * boostFactor, 0, 10000); 
-    _maxMp = FMath::Clamp(_maxMp * boostFactor, 0, 10000);
 
     SetHp(_maxHp); 
-    SetMp(_maxMp); 
 
 	UE_LOG(LogTemp, Warning, TEXT("Boost str: %d , _dex: %d, _int:%d, _maxHp :%d, _maxMp:%d"),_str,_dex,_int,_maxHp,_maxMp);
 
