@@ -580,7 +580,7 @@ void AMyPlayer::AttackA(const FInputActionValue &value)
 		_KnightanimInstance->PlayAttackMontage();
 		_isAttacking = true;
 
-		_curAttackIndex = 1;  // 첫 번째 섹션으로 돌아감
+		_curAttackIndex = 1; 
 		
 		_KnightanimInstance->JumpToSection(_curAttackIndex);
 	}
@@ -614,12 +614,13 @@ void AMyPlayer::Skill1(const FInputActionValue &value)
 {
 	bool isPressed = value.Get<bool>();
 
-	if (isPressed && _skillWidgetInstance != nullptr)
+	if (isPressed && _skillWidgetInstance != nullptr && _StatCom->GetCurMp()<10)
 	{
 		if (SkillOnCooldown[0]|| _skillWidgetInstance->IsSkillLocked(0))
 			return;
 		else
 		{
+			_StatCom->SetMp(_StatCom->GetCurMp() - 10);
 			SkillOnCooldown[0] = true;
 			if (_StatCom->GetInt() >= 40)
 			{
@@ -743,12 +744,13 @@ void AMyPlayer::Skill2(const FInputActionValue &value)
 
 	if (isPressed)
 	{
-		if (SkillOnCooldown[1]|| _skillWidgetInstance->IsSkillLocked(1))
+		if (SkillOnCooldown[1]|| _skillWidgetInstance->IsSkillLocked(1)&& _StatCom->GetCurMp()<10)
 			return;
 
 		if (_skillWidgetInstance != nullptr)
 		{
 			APlayerController *PlayerController = Cast<APlayerController>(GetController());
+			_StatCom->SetMp(_StatCom->GetCurMp() - 10);
 
 			if (SpawnedDecalActor)
 			{
@@ -814,6 +816,8 @@ void AMyPlayer::ConfirmSkillLocation()
 
 	SkillOnCooldown[1] = true;
 
+	_StatCom->SetMp(_StatCom->GetCurMp() - 10);
+
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.Owner = this;
 	SpawnParams.Instigator = GetInstigator();
@@ -869,7 +873,7 @@ void AMyPlayer::Skill3(const FInputActionValue &value)
 {
 	bool isPressed = value.Get<bool>();
 
-	if (isPressed && _skillWidgetInstance != nullptr)
+	if (isPressed && _skillWidgetInstance != nullptr&& _StatCom->GetCurMp()<10)
 	{
 		if (SkillOnCooldown[2] || _skillWidgetInstance->IsSkillLocked(2))
 			return;
@@ -879,6 +883,8 @@ void AMyPlayer::Skill3(const FInputActionValue &value)
 			_skillWidgetInstance->StartCooldown(2, 5.0f);
 			if (_fireball != nullptr)
 			{
+				_StatCom->SetMp(_StatCom->GetCurMp() - 10);
+
 				SoundManager->PlaySound(*GetSkillSound03(), this->GetActorLocation());
 				SoundManager->PlaySound(*GetSkillSound03Shout(), this->GetActorLocation());
 
@@ -915,12 +921,14 @@ void AMyPlayer::Skill4(const FInputActionValue &value)
 {
 	bool isPressed = value.Get<bool>();
 
-	if (isPressed && _skillWidgetInstance != nullptr)
+	if (isPressed && _skillWidgetInstance != nullptr&& _StatCom->GetCurMp()<10)
 	{
 		if (SkillOnCooldown[3]|| _skillWidgetInstance->IsSkillLocked(3))
 			return;
 		else
 		{
+			_StatCom->SetMp(_StatCom->GetCurMp() - 10);
+			
 			_StatCom->SetStatBoost(_StatCom->GetInt());
 
 			SkillOnCooldown[3] = true;
