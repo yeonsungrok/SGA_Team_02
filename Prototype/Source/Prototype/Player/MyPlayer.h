@@ -66,6 +66,7 @@ public:
 
 	void SetEquipItem(EItemType equiptype, AEquipItem* equipitem);
 
+	void Silent();
 	void LockAllSkill();
 	void UnLockAllSkill();
 

@@ -382,6 +382,21 @@ void AMyPlayer::SetEquipItem(EItemType equiptype, AEquipItem *equipitem)
 	// TODO:Update UI
 }
 
+void AMyPlayer::Silent()
+{
+    LockAllSkill();
+
+    FTimerHandle TimerHandle;
+
+    GetWorld()->GetTimerManager().SetTimer(
+        TimerHandle, 
+        this, 
+        &AMyPlayer::UnLockAllSkill, 
+        3.0f, 
+        false
+    );
+}
+
 void AMyPlayer::LockAllSkill()
 {
 	_skillWidgetInstance->LockAllSkill();
@@ -719,7 +734,7 @@ void AMyPlayer::ConfirmTeleportLocation()
     {
 		TargetSkillLocation.Z += 100.f;
         SetActorLocation(TargetSkillLocation);
-
+		EffectManager->Play("NS_Teleport",TargetSkillLocation);
         UE_LOG(LogTemp, Warning, TEXT("Teleported to: %s"), *TargetSkillLocation.ToString());
 
         bIsTeleportReadyToCast = false;
