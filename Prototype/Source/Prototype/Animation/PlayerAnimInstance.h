@@ -30,7 +30,10 @@ public:
 
 	AttackDelegate _attackDelegate;
 	DeathDelegate _deathDelegate_Knight;
-
+	ComboDelegate _comboDelegate;
+	
+	UFUNCTION()
+	void AnimNotify_clickNext();
 
 	UFUNCTION()
 	virtual void AnimNotify_Attackhit();

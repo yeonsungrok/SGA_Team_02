@@ -60,7 +60,7 @@ public:
 	bool GetIsAttacking() {return _isAttacking;}
 
 	UFUNCTION()
-	void OnAttackEnded(class UAnimMontage* Montage, bool bInterrupted);
+	virtual  void OnAttackEnded(class UAnimMontage* Montage, bool bInterrupted);
 
 	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser);
 
@@ -82,7 +82,7 @@ protected:
 	bool _isAttacking = false;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	int32 _curAttackIndex = 0;
+	int32 _curAttackIndex = 1;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	float _vertical = 0.0f;

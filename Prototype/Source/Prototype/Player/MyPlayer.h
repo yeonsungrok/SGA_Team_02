@@ -71,8 +71,9 @@ public:
 
 
 
-	void OnAttackEnded(class UAnimMontage* Montage, bool bInterrupted);
-	
+	virtual void OnAttackEnded(class UAnimMontage* Montage, bool bInterrupted) override;
+	void NextCombo();
+
 	void EquipBaseBody();
 	void EquipBaseLower();
 	void EquipBaseShoulder();

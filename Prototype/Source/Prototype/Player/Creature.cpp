@@ -213,6 +213,7 @@ FString ACreature::GetLevelUpSound() const
 
 void ACreature::OnAttackEnded(UAnimMontage* Montage, bool bInterrupted)
 {
+	UE_LOG(LogTemp, Warning, TEXT("Creaature attackended"));
 	_isAttacking = false;
 	_attackEndedDelegate.Broadcast();
 }
