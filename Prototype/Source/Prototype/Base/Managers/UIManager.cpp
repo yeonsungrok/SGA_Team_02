@@ -51,6 +51,13 @@ AUIManager::AUIManager()
 		_loadUI = CreateWidget<UUserWidget>(GetWorld(), LoadWidget.Class);
 	}
 
+	static ConstructorHelpers::FClassFinder<UUserWidget> OptionsWidget(
+		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/options_UITEST.options_UITEST_C'"));
+	if (OptionsWidget.Succeeded())
+	{
+		_options = CreateWidget<UUserWidget>(GetWorld(), OptionsWidget.Class);
+	}
+
 	static ConstructorHelpers::FObjectFinder<UTexture2D> defaultTexture(
 		TEXT("/Script/Engine.Texture2D'/Game/CraftResourcesIcons/Textures/T_Default.T_Default'"));
 	if (defaultTexture.Succeeded())
@@ -59,6 +66,9 @@ AUIManager::AUIManager()
 	}
 
 
+
+
+	
 
 	_uiList.Add(_inventoryUI);
 	_uiIsOpen.Add(false);
@@ -79,6 +89,10 @@ AUIManager::AUIManager()
 	_uiList.Add(_loadUI);
 	_uiIsOpen.Add(false);
 	_isPauseWhenOpen.Add(false);
+
+	_uiList.Add(_options);
+	_uiIsOpen.Add(false);
+	_isPauseWhenOpen.Add(true);
 }
 
 // Called when the game starts or when spawned

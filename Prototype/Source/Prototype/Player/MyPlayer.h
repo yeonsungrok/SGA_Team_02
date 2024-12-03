@@ -117,10 +117,10 @@ private:
 	void GuardStart(const FInputActionValue &value);
 	void GuardEnd(const FInputActionValue &value);
 	void LockOn(const FInputActionValue &value);
-	// cheol
 	void StatUIOpen(const FInputActionValue &value);
 	void InvenUIOpen(const FInputActionValue &value);
 	void Interect(const FInputActionValue &value);
+	void OptionsOpen(const FInputActionValue& value);
 
 
 	//TODO : FIX
@@ -215,6 +215,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction *_InteractAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* _OptionsAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent *_springArm;

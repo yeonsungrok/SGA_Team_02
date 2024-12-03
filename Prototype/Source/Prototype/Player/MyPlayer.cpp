@@ -319,7 +319,10 @@ void AMyPlayer::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 		EnhancedInputComponent->BindAction(_LockOnAction, ETriggerEvent::Started, this, &AMyPlayer::LockOn);
 		EnhancedInputComponent->BindAction(_InteractAction, ETriggerEvent::Started, this, &AMyPlayer::Interect);
 
+		EnhancedInputComponent->BindAction(_OptionsAction, ETriggerEvent::Started, this, &AMyPlayer::OptionsOpen);
 		EnhancedInputComponent->BindAction(_Change, ETriggerEvent::Started, this, &AMyPlayer::ToggleTransformation);
+
+	
 	}
 }
 
@@ -1085,6 +1088,18 @@ void AMyPlayer::Interect(const FInputActionValue &value)
 	if (isPressed && invenUI != nullptr)
 	{
 		interectNPC.Broadcast();
+	}
+}
+
+void AMyPlayer::OptionsOpen(const FInputActionValue& value)
+{
+	bool isPressed = value.Get<bool>();
+
+	auto OptionsUI = UIManager->GetOptionsUI();
+
+	if (isPressed && OptionsUI != nullptr)
+	{
+		UIManager->ToggleUI(UI_LIST::Options);
 	}
 }
 

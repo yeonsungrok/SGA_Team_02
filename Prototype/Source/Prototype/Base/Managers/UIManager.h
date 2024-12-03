@@ -14,6 +14,7 @@ enum class UI_LIST
 	Shop,
 	StartUI,
 	Load,
+	Options,
 	Status
 };
 
@@ -52,6 +53,7 @@ public:
 	UBoss1Widget* GetBossUI() {return _bossUI;}
 	UShopWidget* GetShopUI() { return _shopUI; }
 	UMainStartWidget* GetStartUI() { return _startUI; }
+	UUserWidget* GetOptionsUI() { return _options; }
 	UTexture2D* GetDefaultTexture() { return _defaultTexture; }
 
 
@@ -87,4 +89,7 @@ private:
 
 	UPROPERTY()
 	UUserWidget* _loadUI;
+
+	UPROPERTY()
+	UUserWidget* _options;
 };
