@@ -59,6 +59,8 @@ public:
 
 	void UpdateUI();
 
+	bool IsSlotFull() { return _isSlotFull; }
+
 private:
 	//Trigger
 	bool _isSlotFull = false;

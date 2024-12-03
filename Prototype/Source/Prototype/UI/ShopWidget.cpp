@@ -24,6 +24,12 @@ bool UShopWidget::Initialize()
 	_SellPanels.Add(SellPanel_3);
 	_SellPanels.Add(SellPanel_4);
 
+	Cast<UButton>(_SellPanels[0]->GetChildAt(4))->OnClicked.AddDynamic(this, &UShopWidget::BuySlot1);
+	Cast<UButton>(_SellPanels[1]->GetChildAt(4))->OnClicked.AddDynamic(this, &UShopWidget::BuySlot2);
+	Cast<UButton>(_SellPanels[2]->GetChildAt(4))->OnClicked.AddDynamic(this, &UShopWidget::BuySlot3);
+	Cast<UButton>(_SellPanels[3]->GetChildAt(4))->OnClicked.AddDynamic(this, &UShopWidget::BuySlot4);
+	Cast<UButton>(_SellPanels[4]->GetChildAt(4))->OnClicked.AddDynamic(this, &UShopWidget::BuySlot5);
+
 	return result;
 }
 
@@ -54,6 +60,7 @@ void UShopWidget::ReflectInvenSlots(AMyPlayer* player)
 
 	//TODO : Get Wallet too & Call this every opening
 	int32 Gold = player->_inventoryComponent->GetHowMuchIHave();
+	GoldAmount->SetText(FText::FromString(FString::FromInt(Gold)));
 }
 
 void UShopWidget::SetInvenButtons()
@@ -75,4 +82,25 @@ void UShopWidget::SetInvenButtons()
 			index++;
 		}
 	}
+}
+
+void UShopWidget::BuySlot1()
+{
+	
+}
+
+void UShopWidget::BuySlot2()
+{
+}
+
+void UShopWidget::BuySlot3()
+{
+}
+
+void UShopWidget::BuySlot4()
+{
+}
+
+void UShopWidget::BuySlot5()
+{
 }

@@ -8,6 +8,7 @@
 #include "ShopComponent.generated.h"
 
 class AMyPlayer;
+enum class DealContext;
 
 #define SHOP_LIST_MAX 5
 
@@ -40,7 +41,7 @@ public:
 
 	void SetSales();
 
-	void Sale(int32 index);
+	DealContext Sale(int32 index);
 
 
 	void SetCustomer(AMyPlayer* target);

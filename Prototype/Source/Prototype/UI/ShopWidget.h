@@ -10,6 +10,15 @@ class UCanvasPanel;
 class ABaseItem;
 class UIndexedButton;
 
+UENUM()
+enum class DealContext
+{
+	Error = -1,
+	Succeed = 0,
+	MoneyNotEnough,
+	InventoryIsFull,
+	EmptySlot,
+};
 /**
  * 
  */
@@ -27,6 +36,17 @@ public:
 private:
 	
 	void SetInvenButtons();
+
+	UFUNCTION()
+	void BuySlot1();
+	UFUNCTION()
+	void BuySlot2();
+	UFUNCTION()
+	void BuySlot3();
+	UFUNCTION()
+	void BuySlot4();
+	UFUNCTION()
+	void BuySlot5();
 
 	/// <summary>
 	/// Inventory Elements

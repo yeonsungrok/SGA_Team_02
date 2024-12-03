@@ -5,6 +5,7 @@
 #include "Base/MyGameInstance.h"
 #include "Base/Managers/UIManager.h"
 #include "UI/ShopWidget.h"
+#include "Player/MyPlayer.h"
 
 // Sets default values for this component's properties
 UShopComponent::UShopComponent()
@@ -49,7 +50,44 @@ void UShopComponent::SetSales()
 	UIManager->GetShopUI()->UpdateShopList(_sallings);
 }
 
-void UShopComponent::Sale(int32 index)
+DealContext UShopComponent::Sale(int32 index)
 {
+	//TODO : void형 함수로 바꾸기(shop ui가 component를 모를 수 있게)
+	//		 DealContext처리를 shop ui 내부 함수에서 처리하기
+	//		 ==> 이 함수에서는 DealContext::Succeed만 처리하게
+	if (_customer == nullptr)
+		return DealContext::Error;
+
+	if (index >= SHOP_LIST_MAX)
+		return DealContext::Error;
+
+	if (_sallings[index] == nullptr)
+		return DealContext::Error;
+
+	auto p_inventory = _customer->_inventoryComponent;
+
+	int32 p_wallet = p_inventory->GetHowMuchIHave();
+	if (p_wallet < _sallings[index]->GetPrice())
+		return DealContext::MoneyNotEnough;
+
+	if (p_inventory->IsSlotFull())
+		return DealContext::InventoryIsFull;
+
+	ABaseItem* merch = nullptr;
+	if (_sallings[index]->GetType() == ItemType::Consume)
+	{
+		merch = GetWorld()->SpawnActor<ABaseItem>(ABaseItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+		merch->SetItemWithCode(_sallings[index]->GetCode());
+	}
+	else if (_sallings[index]->GetType() == ItemType::Equipment)
+	{
+		AEquipItem* EquipItem = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+		EquipItem->SetItemWithCode(_sallings[index]->GetCode());
+		EquipItem->SetEquipType(_sallings[index]->GetEquip());
+		merch = EquipItem;
+	}
+	p_inventory->GettingMoney(-merch->GetPrice());
+	_customer->_inventoryComponent->AddItem(0, merch);
+	return DealContext::Succeed;
 }
 
