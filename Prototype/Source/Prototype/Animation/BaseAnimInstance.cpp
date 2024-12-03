@@ -74,10 +74,15 @@ void UBaseAnimInstance::JumpToSection(int32 sectionIndex)
 
 void UBaseAnimInstance::PlayAttackMontage()
 {
-	if (!Montage_IsPlaying(_myAnimMontage))
+	//Montage_IsActive(_myAnimMontage);
+
+	if ( !Montage_IsPlaying(_myAnimMontage))
 	{
-		Montage_Play(_myAnimMontage, 0.6f);
+	
+			Montage_Play(_myAnimMontage);
+
 	}
+
 }
 
 void UBaseAnimInstance::PlayStunMontage()

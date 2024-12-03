@@ -40,6 +40,9 @@ public:
 
 	UFUNCTION()
 	virtual void AnimNotify_Death();
+
+
+
 private:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Skills", meta = (AllowPrivateAccess = "true"))
 	UAnimMontage* _skill01Montage;

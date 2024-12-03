@@ -32,6 +32,8 @@ public:
 	//UFUNCTION(BlueprintCallable) 블루프린트와 연결하려면 이것사용
 	void PlayHitReactionMontage();
 
+
+
 protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player", meta = (AllowPrivateAccess = true))
@@ -71,4 +73,5 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animations", meta = (AllowPrivateAccess = true))
 	class UAnimMontage* _attackMagicMontage;
 
+	
 };
