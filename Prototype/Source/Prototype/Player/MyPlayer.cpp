@@ -177,6 +177,7 @@ AMyPlayer::AMyPlayer()
 	bIsDashing = false;
 	DashDuration = _dashDistance / _dashSpeed;
 	DashTimeElapsed = 0.f;
+	bool test = false;
 }
 
 // Called when the game starts or when spawned
@@ -1093,14 +1094,63 @@ void AMyPlayer::Interect(const FInputActionValue &value)
 
 void AMyPlayer::OptionsOpen(const FInputActionValue& value)
 {
-	bool isPressed = value.Get<bool>();
 
+	bool isPressed = value.Get<bool>();
 	auto OptionsUI = UIManager->GetOptionsUI();
 
 	if (isPressed && OptionsUI != nullptr)
 	{
 		UIManager->ToggleUI(UI_LIST::Options);
+		bool bIsPaused = UGameplayStatics::IsGamePaused(GetWorld());
+		UGameplayStatics::SetGamePaused(GetWorld(), !bIsPaused);
+
+		APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+		if (PlayerController)
+		{
+			if (!bIsPaused)
+			{
+				PlayerController->bShowMouseCursor = true;
+				//UIManager->OpenUI(UI_LIST::Options);
+				PlayerController->SetInputMode(FInputModeGameAndUI().SetHideCursorDuringCapture(false));
+			}
+			else
+			{
+				PlayerController->bShowMouseCursor = false;
+				//UIManager->CloseUI(UI_LIST::Options);
+				PlayerController->SetInputMode(FInputModeGameOnly());
+			}
+		}
 	}
+	//bool isPressed = value.Get<bool>();
+	//auto OptionsUI = UIManager->GetOptionsUI();
+
+	//APlayerController* Pl = Cast<APlayerController>(GetController());
+
+	//if (isPressed && OptionsUI != nullptr)
+	//{
+
+	//	UIManager->ToggleUI(UI_LIST::Options);
+
+	//	//if (_fixedCamera)
+	//	//{
+	//	//	UIManager->ToggleUI(UI_LIST::Options);
+
+	//	//	UGameplayStatics::SetGamePaused(GetWorld(), false);
+	//	//	//APlayerController::SetGamePaused()
+	//	//	
+	//	//	_fixedCamera = false;
+	//	//	UE_LOG(LogTemp, Error, TEXT("ERRRR"));
+	//	//}
+	//	//else
+	//	//{
+	//	//	UIManager->ToggleUI(UI_LIST::Options);
+
+	//	//	UGameplayStatics::SetGamePaused(GetWorld(), true);
+	//	//	_fixedCamera = true;
+	//	//	UE_LOG(LogTemp, Error, TEXT("ELLLLL"));
+	//	//}
+	//
+	//}
 }
 
 void AMyPlayer::PerformDash(float DeltaTime)

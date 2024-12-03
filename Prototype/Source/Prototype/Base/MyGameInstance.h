@@ -70,6 +70,9 @@ public:
 	ASoundManager* GetSoundManager() { return _soundManager; }
 	AEffectManager* GetEffectManager() { return _effectManager; }
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Audio")
+	float MasterVolume = 1.0f;
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	class AUIManager* _UIManager;
