@@ -58,6 +58,7 @@ void ABossFireball::OnMyCharacterOverlap(UPrimitiveComponent* OverlappedComponen
     if (player)
     {
         player->TakeDamage(_damageAmount, FDamageEvent(), nullptr, this);
+        player->Silent();
         Destroy();
     }
 }

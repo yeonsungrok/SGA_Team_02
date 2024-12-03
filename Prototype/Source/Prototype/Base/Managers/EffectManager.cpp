@@ -19,6 +19,9 @@ AEffectManager::AEffectManager()
 
 	_rootComponent = CreateDefaultSubobject<USceneComponent>("RootComponent");
 	RootComponent = _rootComponent;
+
+	//Player : Skill 1 Teleport Niagara
+	CreateNiagaraClass(TEXT("NS_Teleport"), TEXT("/Script/Engine.Blueprint'/Game/Blueprint/VFX/Niagara/NS_Skill04_Start_BP.NS_Skill04_Start_BP_C'"));
 	
 	//Player : Skill 2 Meteor Niagara
 	CreateNiagaraClass(TEXT("NS_Meteor"), TEXT("/Script/Engine.Blueprint'/Game/Blueprint/VFX/NS_Meteor_BP.NS_Meteor_BP_C'"));
