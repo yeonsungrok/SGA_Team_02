@@ -591,14 +591,14 @@ void AMyPlayer::AttackA(const FInputActionValue &value)
 		_isAttacking = true;
 
 		
-		if (_curAttackIndex <= 4)
+		if (_curAttackIndex < 5)
 		{
 			_KnightanimInstance->PlayAttackMontage();
 			_KnightanimInstance->JumpToSection(_curAttackIndex);
 			_curAttackIndex++;
 		}
 	
-		else if (_curAttackIndex > 4)
+		else if (_curAttackIndex >= 5)
 		{
 			_KnightanimInstance->PlayAttackMontage();
 			_curAttackIndex = 1; 
@@ -615,10 +615,11 @@ void AMyPlayer::Skill1(const FInputActionValue &value)
 
 	if (isPressed && _skillWidgetInstance != nullptr)
 	{
-		if (SkillOnCooldown[0]|| _skillWidgetInstance->IsSkillLocked(0))
+		if (SkillOnCooldown[0]|| _skillWidgetInstance->IsSkillLocked(0) || _StatCom->GetCurMp() < 10)
 			return;
 		else
 		{
+			_StatCom->SetMp(_StatCom->GetCurMp() - 10);
 			SkillOnCooldown[0] = true;
 			if (_StatCom->GetInt() >= 40)
 			{
@@ -742,11 +743,12 @@ void AMyPlayer::Skill2(const FInputActionValue &value)
 
 	if (isPressed)
 	{
-		if (SkillOnCooldown[1]|| _skillWidgetInstance->IsSkillLocked(1))
+		if (SkillOnCooldown[1]|| _skillWidgetInstance->IsSkillLocked(1)|| _StatCom->GetCurMp() < 10)
 			return;
 
 		if (_skillWidgetInstance != nullptr)
 		{
+			_StatCom->SetMp(_StatCom->GetCurMp() - 10);
 			APlayerController *PlayerController = Cast<APlayerController>(GetController());
 
 			if (SpawnedDecalActor)
@@ -870,10 +872,11 @@ void AMyPlayer::Skill3(const FInputActionValue &value)
 
 	if (isPressed && _skillWidgetInstance != nullptr)
 	{
-		if (SkillOnCooldown[2] || _skillWidgetInstance->IsSkillLocked(2))
+		if (SkillOnCooldown[2] || _skillWidgetInstance->IsSkillLocked(2)|| _StatCom->GetCurMp() < 10)
 			return;
 		else
 		{
+			_StatCom->SetMp(_StatCom->GetCurMp() - 10);
 			SkillOnCooldown[2] = true;
 			_skillWidgetInstance->StartCooldown(2, 5.0f);
 			if (_fireball != nullptr)
@@ -916,10 +919,11 @@ void AMyPlayer::Skill4(const FInputActionValue &value)
 
 	if (isPressed && _skillWidgetInstance != nullptr)
 	{
-		if (SkillOnCooldown[3]|| _skillWidgetInstance->IsSkillLocked(3))
+		if (SkillOnCooldown[3]|| _skillWidgetInstance->IsSkillLocked(3)|| _StatCom->GetCurMp() < 10)
 			return;
 		else
 		{
+			_StatCom->SetMp(_StatCom->GetCurMp() - 10);
 			_StatCom->SetStatBoost(_StatCom->GetInt());
 
 			SkillOnCooldown[3] = true;
