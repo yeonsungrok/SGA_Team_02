@@ -1110,47 +1110,17 @@ void AMyPlayer::OptionsOpen(const FInputActionValue& value)
 			if (!bIsPaused)
 			{
 				PlayerController->bShowMouseCursor = true;
-				//UIManager->OpenUI(UI_LIST::Options);
 				PlayerController->SetInputMode(FInputModeGameAndUI().SetHideCursorDuringCapture(false));
 			}
 			else
 			{
 				PlayerController->bShowMouseCursor = false;
-				//UIManager->CloseUI(UI_LIST::Options);
+			
 				PlayerController->SetInputMode(FInputModeGameOnly());
 			}
 		}
 	}
-	//bool isPressed = value.Get<bool>();
-	//auto OptionsUI = UIManager->GetOptionsUI();
-
-	//APlayerController* Pl = Cast<APlayerController>(GetController());
-
-	//if (isPressed && OptionsUI != nullptr)
-	//{
-
-	//	UIManager->ToggleUI(UI_LIST::Options);
-
-	//	//if (_fixedCamera)
-	//	//{
-	//	//	UIManager->ToggleUI(UI_LIST::Options);
-
-	//	//	UGameplayStatics::SetGamePaused(GetWorld(), false);
-	//	//	//APlayerController::SetGamePaused()
-	//	//	
-	//	//	_fixedCamera = false;
-	//	//	UE_LOG(LogTemp, Error, TEXT("ERRRR"));
-	//	//}
-	//	//else
-	//	//{
-	//	//	UIManager->ToggleUI(UI_LIST::Options);
-
-	//	//	UGameplayStatics::SetGamePaused(GetWorld(), true);
-	//	//	_fixedCamera = true;
-	//	//	UE_LOG(LogTemp, Error, TEXT("ELLLLL"));
-	//	//}
-	//
-	//}
+	
 }
 
 void AMyPlayer::PerformDash(float DeltaTime)
