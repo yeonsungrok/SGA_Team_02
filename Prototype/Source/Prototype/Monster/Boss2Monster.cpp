@@ -207,6 +207,7 @@ void ABoss2Monster::AttackHit()
 				EffectManager->Play(*GetPlayerAttackHitEffect(), _hitPoint);
 
 				EffectManager->Play(*GetBoss2AttackEffect(), _hitPoint);
+				
 				break;
 			}
 		}
@@ -247,6 +248,9 @@ void ABoss2Monster::Teleport(FVector location)
 
     SetActorRotation(NewRotation);
 
+
+	EffectManager->Play(*GetBoss2TeleportEffect(), GetActorLocation() - FVector(0.0f, 0.0f, 100.0f));
+	SoundManager->PlaySound(*GetBoss2TeleportSound(), GetActorLocation());
 	Attack_AI();
 }
 
@@ -254,5 +258,16 @@ FString ABoss2Monster::GetBoss2AttackEffect() const
 {
 	return "NS_Mage_LIghtning_Bolt";
 }
+
+FString ABoss2Monster::GetBoss2TeleportEffect() const
+{
+	return "NS_Boss_02_Teleport";
+}
+
+FString ABoss2Monster::GetBoss2TeleportSound() const
+{
+	return "Boss_02_Teleport_Cue";
+}
+
 
 

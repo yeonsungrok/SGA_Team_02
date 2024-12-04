@@ -19,7 +19,8 @@ public:
 	void Teleport(FVector location);
 
 	virtual FString GetBoss2AttackEffect() const;
-	
+	virtual FString GetBoss2TeleportEffect() const;
+	virtual FString GetBoss2TeleportSound() const;
 
 	bool GetIsfire(){return Isfire;}
 

@@ -26,7 +26,8 @@ public:
 	 void LaunchTowards(FVector TargetLocation);
 
      virtual FString GetBoss2_HitEffect() const;
-
+     virtual FString GetBoss2MissileTakeSound() const;
+     virtual FString GetBoss2MissileMissSound() const;
 protected:
     UPROPERTY(EditDefaultsOnly, Category = "Components")
     class UProjectileMovementComponent* ProjectileMovement;
