@@ -5,6 +5,7 @@
 #include "Base/MyGameInstance.h"
 #include "Base/Managers/UIManager.h"
 #include "UI/ShopWidget.h"
+#include "Player/MyPlayer.h"
 
 // Sets default values for this component's properties
 UShopComponent::UShopComponent()
@@ -24,6 +25,7 @@ void UShopComponent::BeginPlay()
 
 	// ...
 	SetSales();
+	UIManager->GetShopUI()->SaleSucceed.AddUObject(this, &UShopComponent::Sale);
 }
 
 void UShopComponent::SetCustomer(AMyPlayer* target)
@@ -51,5 +53,26 @@ void UShopComponent::SetSales()
 
 void UShopComponent::Sale(int32 index)
 {
+	if (_customer == nullptr)
+		return;
+	
+	auto p_inventory = _customer->_inventoryComponent;
+
+	ABaseItem* merch = nullptr;
+	if (_sallings[index]->GetType() == ItemType::Consume)
+	{
+		merch = GetWorld()->SpawnActor<ABaseItem>(ABaseItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+		merch->SetItemWithCode(_sallings[index]->GetCode());
+	}
+	else if (_sallings[index]->GetType() == ItemType::Equipment)
+	{
+		AEquipItem* EquipItem = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+		EquipItem->SetItemWithCode(_sallings[index]->GetCode());
+		EquipItem->SetEquipType(_sallings[index]->GetEquip());
+		merch = EquipItem;
+	}
+	p_inventory->GettingMoney(-merch->GetPrice());
+	_customer->_inventoryComponent->AddItem(0, merch);
+	UIManager->GetShopUI()->ReflectInvenSlots(_customer);
 }
 
