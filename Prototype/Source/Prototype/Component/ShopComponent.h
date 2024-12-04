@@ -35,13 +35,13 @@ public:
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
-
 public:	
 	void Init();
 
+	UFUNCTION()
 	void SetSales();
 
-	DealContext Sale(int32 index);
+	void Sale(int32 index);
 
 
 	void SetCustomer(AMyPlayer* target);

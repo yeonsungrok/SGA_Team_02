@@ -25,6 +25,7 @@ void UShopComponent::BeginPlay()
 
 	// ...
 	SetSales();
+	UIManager->GetShopUI()->SaleSucceed.AddUObject(this, &UShopComponent::Sale);
 }
 
 void UShopComponent::SetCustomer(AMyPlayer* target)
@@ -50,28 +51,12 @@ void UShopComponent::SetSales()
 	UIManager->GetShopUI()->UpdateShopList(_sallings);
 }
 
-DealContext UShopComponent::Sale(int32 index)
+void UShopComponent::Sale(int32 index)
 {
-	//TODO : void형 함수로 바꾸기(shop ui가 component를 모를 수 있게)
-	//		 DealContext처리를 shop ui 내부 함수에서 처리하기
-	//		 ==> 이 함수에서는 DealContext::Succeed만 처리하게
 	if (_customer == nullptr)
-		return DealContext::Error;
-
-	if (index >= SHOP_LIST_MAX)
-		return DealContext::Error;
-
-	if (_sallings[index] == nullptr)
-		return DealContext::Error;
-
+		return;
+	
 	auto p_inventory = _customer->_inventoryComponent;
-
-	int32 p_wallet = p_inventory->GetHowMuchIHave();
-	if (p_wallet < _sallings[index]->GetPrice())
-		return DealContext::MoneyNotEnough;
-
-	if (p_inventory->IsSlotFull())
-		return DealContext::InventoryIsFull;
 
 	ABaseItem* merch = nullptr;
 	if (_sallings[index]->GetType() == ItemType::Consume)
@@ -88,6 +73,6 @@ DealContext UShopComponent::Sale(int32 index)
 	}
 	p_inventory->GettingMoney(-merch->GetPrice());
 	_customer->_inventoryComponent->AddItem(0, merch);
-	return DealContext::Succeed;
+	UIManager->GetShopUI()->ReflectInvenSlots(_customer);
 }
 

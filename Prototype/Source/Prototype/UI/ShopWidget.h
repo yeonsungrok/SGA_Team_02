@@ -19,9 +19,9 @@ enum class DealContext
 	InventoryIsFull,
 	EmptySlot,
 };
-/**
- * 
- */
+
+DECLARE_MULTICAST_DELEGATE_OneParam(ItemSale, int32);
+
 UCLASS()
 class PROTOTYPE_API UShopWidget : public UUserWidget
 {
@@ -33,9 +33,13 @@ public:
 	void UpdateShopList(TArray<ABaseItem*> list);
 	void ReflectInvenSlots(class AMyPlayer* player);
 
+	ItemSale SaleSucceed;
 private:
 	
 	void SetInvenButtons();
+
+	DealContext BuyResult(int32 slot);
+	void TryBuyItem(int32 slot);
 
 	UFUNCTION()
 	void BuySlot1();
@@ -64,6 +68,7 @@ private:
 	class UUniformGridPanel* ItemSlots;
 	UPROPERTY(meta = (BindWidget))
 	TArray<UIndexedButton*> Button_;
+	bool _isSlotFull = true;
 
 	UPROPERTY(meta = (BindWidget))
 	class UImage* ItemTexture;
@@ -81,6 +86,7 @@ private:
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* SellBtnText;
 	
+	int32 p_gold;
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* GoldAmount;
 
