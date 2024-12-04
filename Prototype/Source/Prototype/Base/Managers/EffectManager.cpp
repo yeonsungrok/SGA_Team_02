@@ -51,6 +51,10 @@ AEffectManager::AEffectManager()
 
 	// Find Target
 	CreateNiagaraClass(TEXT("NS_FindTarget"), TEXT("/Script/Engine.Blueprint'/Game/Blueprint/VFX/Niagara/NS_FindTarget_BP.NS_FindTarget_BP_C'"));
+
+	// Boss02 Attack Hit Effect
+	CreateNiagaraClass(TEXT("NS_Mage_LIghtning_Bolt"), TEXT("/Script/Engine.Blueprint'/Game/Blueprint/VFX/Niagara/NS_Boss02_Effeck_BP.NS_Boss02_Effeck_BP_C'"));
+
 }
 
 void AEffectManager::CreateNiagaraClass(FString name, FString path)
