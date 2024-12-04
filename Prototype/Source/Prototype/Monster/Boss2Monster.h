@@ -18,6 +18,9 @@ public:
 	void Skill_AI(FVector location);
 	void Teleport(FVector location);
 
+	virtual FString GetBoss2AttackEffect() const;
+	
+
 	bool GetIsfire(){return Isfire;}
 
 private:
