@@ -634,7 +634,6 @@ void AMyPlayer::Skill1(const FInputActionValue &value)
 			return;
 		else
 		{
-			_StatCom->SetMp(_StatCom->GetCurMp() - 10);
 			SkillOnCooldown[0] = true;
 			if (_StatCom->GetInt() >= 40)
 			{
@@ -672,6 +671,7 @@ void AMyPlayer::Skill1(const FInputActionValue &value)
 			}
 			else
 			{
+				_StatCom->SetMp(_StatCom->GetCurMp() - 10);
 				bIsDashing = true;
 
 				FVector2D MovementInput = _moveVector;
@@ -729,6 +729,7 @@ void AMyPlayer::UpdateTeleportLocation()
 
 void AMyPlayer::ConfirmTeleportLocation()
 {
+	_StatCom->SetMp(_StatCom->GetCurMp() - 10);
 	 AMyPlayerController* PlayerController = Cast<AMyPlayerController>(GetController());
     if (PlayerController)
     {
@@ -763,7 +764,6 @@ void AMyPlayer::Skill2(const FInputActionValue &value)
 
 		if (_skillWidgetInstance != nullptr)
 		{
-			_StatCom->SetMp(_StatCom->GetCurMp() - 10);
 			APlayerController *PlayerController = Cast<APlayerController>(GetController());
 
 			if (SpawnedDecalActor)
@@ -828,6 +828,7 @@ void AMyPlayer::ConfirmSkillLocation()
 	if (SkillOnCooldown[1])
 		return;
 
+	_StatCom->SetMp(_StatCom->GetCurMp() - 10);
 	SkillOnCooldown[1] = true;
 
 	FActorSpawnParameters SpawnParams;
