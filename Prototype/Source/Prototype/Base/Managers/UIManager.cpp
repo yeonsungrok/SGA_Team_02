@@ -116,6 +116,9 @@ void AUIManager::OpenUI(UI_LIST ui)
 	if (_isPauseWhenOpen[UIindex])
 		pauseGame.Broadcast();
 
+	if(ui == UI_LIST::Options)
+		UGameplayStatics::SetGamePaused(GetWorld(), true);
+
 	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
 	if (PlayerController)
 	{
@@ -142,6 +145,7 @@ void AUIManager::CloseUI(UI_LIST ui)
 
 	_uiList[UIindex]->SetVisibility(ESlateVisibility::Hidden);
 	_uiList[UIindex]->RemoveFromParent();
+
 	_uiIsOpen[UIindex] = false;
 
 	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
