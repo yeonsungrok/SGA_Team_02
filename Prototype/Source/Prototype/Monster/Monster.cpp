@@ -129,15 +129,16 @@ void AMonster::Reward(AMyPlayer *player)
 {
     ABaseItem *NewItem = nullptr;
 
-    // UE_LOG(LogTemp, Warning, TEXT("Reward"));
-    // int RandomValue = FMath::RandRange(2, 3);
-    // NewItem = GetWorld()->SpawnActor<AConsumeItem>(AConsumeItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
-    // NewItem->SetItemWithCode(RandomValue);
+    UE_LOG(LogTemp, Warning, TEXT("Reward"));
+    int RandomValue = FMath::RandRange(2, 3);
+    NewItem = GetWorld()->SpawnActor<AConsumeItem>(AConsumeItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+    NewItem->SetItemWithCode(RandomValue);
+    NewItem->SetPlayer();
 
-    // if (NewItem)
-    // {
-    //     player->_inventoryComponent->AddItemToSlot(NewItem);
-    // }
+    if (NewItem)
+    {
+        player->_inventoryComponent->AddItemToSlot(NewItem);
+    }
 }
 
 void AMonster::LaunchFromPlayer(FVector LaunchDirection)
