@@ -56,6 +56,7 @@ public:
 	class AUIManager* GetUIManager() { return _UIManager; }
 
 	FMyStatData* GetStatDataByLevel(int level);
+	FMyStatData* GetMonsterDataByLevel(int level);
 	FMyStatData* GetEpicDataByLevel(int level);
 	FMyStatData* GetBossDataByLevel(int level);
 	FMyStatData* GetDragonDataByLevel(int level);
@@ -85,6 +86,9 @@ private:
 
 	UPROPERTY()
 	UDataTable* _BossstatTable;
+	
+	UPROPERTY()
+	UDataTable* _MonsterstatTable;
 
 	UPROPERTY()
 	UDataTable* _ConsItemTable;

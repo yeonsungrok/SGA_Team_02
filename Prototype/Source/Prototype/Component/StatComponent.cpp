@@ -56,14 +56,13 @@ void UStatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 void UStatComponent::Reset()
 {
 	_curHp = _maxHp;
+	_curMp = _maxMp;
 }
 
 
 
 void UStatComponent::SetLevelInit(int level)
 {
-
-
 	FMyStatData* Data = nullptr;
 
 	if (GAMEINSTANCE)
@@ -104,6 +103,35 @@ void UStatComponent::SetLevelInit(int level)
 		}
 	}
 
+}
+
+void UStatComponent::SetMonsterLevelInit(int level)
+{
+	FMyStatData* Data = nullptr;
+
+	if (GAMEINSTANCE)
+	{
+		Data = GAMEINSTANCE->GetMonsterDataByLevel(level);
+		_level = level;
+		_maxHp = Data->MaxHP;
+		_ogHp = _maxHp;
+		_maxMp = Data->MaxMP;
+		_ogMp = _maxMp;
+		_str = Data->STR;
+		_ogStr = _str;
+		_dex = Data->DEX;
+		_ogDex = _dex;
+		_int = Data->INT;
+		_ogInt = _int;
+
+		_nextExp = Data->EXP;
+		_curExp = 0;
+		SetHp(_maxHp);
+		SetMp(_maxMp);
+		_bonusPoint = Data->BonusPoint;
+		_PILevelDelegate.Broadcast(_level);
+
+	}
 }
 
 void UStatComponent::SetEpicLevelInit(int level)
@@ -485,6 +513,7 @@ void UStatComponent::AddExp(int32 amount)
 	{
 		_curExp -= _nextExp;
 		UE_LOG(LogTemp, Warning, TEXT("exp : %d level up"),amount);
+		Reset();
 		_level++;
 		_nextExp = 100 + (_level * 50); 
 		_PILevelDelegate.Broadcast(_level);
@@ -517,11 +546,13 @@ void UStatComponent::ModStat(StatType stat, int32 amount)
 	{
 	case StatType::HP:
 		_modHp += amount;
+		SetHp(_curHp + amount);
 		_maxHp = _ogHp + _modHp;
 		invenUI->UpdateOriginStat((int32)(StatType::HP), _maxHp);
 		break;
 	case StatType::MP:
 		_modMp += amount;
+		SetMp(_curMp + amount);
 		_maxMp = _ogMp + _modMp;
 		invenUI->UpdateOriginStat((int32)(StatType::MP), _maxMp);
 		break;

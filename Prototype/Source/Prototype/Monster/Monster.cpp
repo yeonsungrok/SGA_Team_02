@@ -28,7 +28,6 @@ void AMonster::PostInitializeComponents()
 {
     Super::PostInitializeComponents();
 
-    _StatCom->SetLevelInit(1);
     Reward();
 }
 
@@ -96,8 +95,6 @@ void AMonster::DropReword()
 
 float AMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent, AController *EventInstigator, AActor *DamageCauser)
 {
-    Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
-
     APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
     if (!PlayerController)
         return 0.0f;

@@ -729,7 +729,7 @@ void AMyPlayer::UpdateTeleportLocation()
 
 void AMyPlayer::ConfirmTeleportLocation()
 {
-	_StatCom->SetMp(_StatCom->GetCurMp() - 10);
+	_StatCom->AddCurMp(-10);
 	 AMyPlayerController* PlayerController = Cast<AMyPlayerController>(GetController());
     if (PlayerController)
     {
@@ -828,7 +828,7 @@ void AMyPlayer::ConfirmSkillLocation()
 	if (SkillOnCooldown[1])
 		return;
 
-	_StatCom->SetMp(_StatCom->GetCurMp() - 10);
+	_StatCom->AddCurMp(-10);
 	SkillOnCooldown[1] = true;
 
 	FActorSpawnParameters SpawnParams;
@@ -892,7 +892,7 @@ void AMyPlayer::Skill3(const FInputActionValue &value)
 			return;
 		else
 		{
-			_StatCom->SetMp(_StatCom->GetCurMp() - 10);
+			_StatCom->AddCurMp(-10);
 			SkillOnCooldown[2] = true;
 			_skillWidgetInstance->StartCooldown(2, 5.0f);
 			if (_fireball != nullptr)
@@ -939,7 +939,7 @@ void AMyPlayer::Skill4(const FInputActionValue &value)
 			return;
 		else
 		{
-			_StatCom->SetMp(_StatCom->GetCurMp() - 10);
+			_StatCom->AddCurMp(-10);
 			_StatCom->SetStatBoost(_StatCom->GetInt());
 
 			SkillOnCooldown[3] = true;

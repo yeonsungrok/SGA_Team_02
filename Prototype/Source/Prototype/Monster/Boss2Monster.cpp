@@ -55,6 +55,7 @@ void ABoss2Monster::PostInitializeComponents()
 		_bossMonster02_AnimInstance->_deathDelegate.AddUObject(this, &AMonster::Disable);
 		_bossMonster02_AnimInstance->_skillDelegate.AddDynamic(this, &ABoss2Monster::FireballAttack);
 	}
+	 _StatCom->SetBossLevelInit(1);
 }
 
 void ABoss2Monster::FireballAttack(FVector Location)

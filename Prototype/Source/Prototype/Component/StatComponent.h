@@ -68,6 +68,7 @@ struct FMyStatData : public FTableRowBase
 
 };
 
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class PROTOTYPE_API UStatComponent : public UActorComponent
 {
@@ -149,7 +150,7 @@ public:
 	void ModStat(StatType stat, int32 amount);
 
 	void SetLevelInit(int level);
-	// cheol 에픽몬스터 
+	void SetMonsterLevelInit(int level);
 	void SetEpicLevelInit(int level);
 	void SetBossLevelInit(int level);
 

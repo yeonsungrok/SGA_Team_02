@@ -23,8 +23,6 @@ ANormalMonster::ANormalMonster()
 	}
 
 
-
-	_exp = 50;
 	_launchLength = 1000.0f;
 	_upVector = {0.0f,0.0f,200.f};
 }
@@ -59,6 +57,7 @@ void ANormalMonster::PlayFindEffect()
 void ANormalMonster::BeginPlay()
 {
 	Super::BeginPlay();
+	
 }
 
 void ANormalMonster::PostInitializeComponents()
@@ -72,6 +71,7 @@ void ANormalMonster::PostInitializeComponents()
 		 _monster_N_AnimInstance->_attackDelegate.AddUObject(this, &ACreature::AttackHit);
 		 _monster_N_AnimInstance->_death_N_MonsterDelegate.AddUObject(this, &AMonster::Disable);
 	 }
+	  _StatCom->SetMonsterLevelInit(1);
 
 }
 

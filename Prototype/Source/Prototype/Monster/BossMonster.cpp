@@ -61,7 +61,7 @@ void ABossMonster::PostInitializeComponents()
 		_bossMonster01_AnimInstance->_stunDelegate.AddUObject(this, &ABossMonster::StunEnd);
 	}
 
-
+	 _StatCom->SetBossLevelInit(1);
 }
 
 void ABossMonster::Attack_AI()
