@@ -240,7 +240,6 @@ void UInventoryWidget::UseItem()
 {
 	if (_targetItem == nullptr)
 		return;
-	UE_LOG(LogTemp, Warning, TEXT("UseItem"));
 	if (Cast<AEquipItem>(_targetItem))
 	{
 		if (_targetIndex == -1)
@@ -294,7 +293,6 @@ void UInventoryWidget::UseItem()
 
 	if (Cast<AConsumeItem>(_targetItem))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("ConsumeItem"));
 		ItemDrop.Broadcast(_targetIndex, false);
 		ItemUse.Broadcast(_targetIndex);
 		_targetItem = nullptr;
