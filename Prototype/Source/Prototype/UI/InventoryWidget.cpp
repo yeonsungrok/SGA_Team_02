@@ -240,7 +240,6 @@ void UInventoryWidget::UseItem()
 {
 	if (_targetItem == nullptr)
 		return;
-
 	if (Cast<AEquipItem>(_targetItem))
 	{
 		if (_targetIndex == -1)
@@ -291,12 +290,14 @@ void UInventoryWidget::UseItem()
 			UpdateStat();
 		}
 	}
+
 	if (Cast<AConsumeItem>(_targetItem))
 	{
 		ItemDrop.Broadcast(_targetIndex, false);
 		ItemUse.Broadcast(_targetIndex);
 		_targetItem = nullptr;
 	}
+
 	ShowItem();
 	//UpdateSlot(_targetIndex, _targetItem);
 }
