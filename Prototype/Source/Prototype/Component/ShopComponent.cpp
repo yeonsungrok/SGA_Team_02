@@ -84,7 +84,7 @@ void UShopComponent::SalePlayerItem(int32 index, int32 amount)
 
 	auto p_inventory = _customer->_inventoryComponent;
 
-	p_inventory->ExcuteItem(index, false);
+	p_inventory->DeleteItem(index);
 	p_inventory->GettingMoney(amount);
 	UIManager->GetShopUI()->ReflectInvenSlots(_customer);
 }

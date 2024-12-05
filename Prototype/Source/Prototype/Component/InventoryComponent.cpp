@@ -157,6 +157,19 @@ void UInventoryComponent::ExcuteItem(int32 slot, bool isDrop)
 	_EmptySlots.Add(slot);
 }
 
+void UInventoryComponent::DeleteItem(int32 slot)
+{
+	if (_ItemSlots[slot] == nullptr)
+		return;
+	if (slot >= _itemSlotMax)
+		return;
+
+	_ItemSlots[slot] = nullptr;
+	_EmptySlots.Add(slot);
+
+	UIupdate_Pop(slot);
+}
+
 void UInventoryComponent::ExcuteEquip(FString part)
 {
 	if (_EquipSlots[part] == nullptr)

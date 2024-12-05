@@ -40,6 +40,7 @@ public:
 
 	UFUNCTION()
 	void ExcuteItem(int32 slot, bool isDrop);
+	void DeleteItem(int32 slot);
 	void ExcuteEquip(FString part);
 	void EquipItem(int32 slot);
 	void TryEquip(FString part, int32 slot);
