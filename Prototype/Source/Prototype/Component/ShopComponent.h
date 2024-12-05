@@ -8,6 +8,7 @@
 #include "ShopComponent.generated.h"
 
 class AMyPlayer;
+enum class DealContext;
 
 #define SHOP_LIST_MAX 5
 
@@ -34,10 +35,10 @@ public:
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
-
 public:	
 	void Init();
 
+	UFUNCTION()
 	void SetSales();
 
 	void Sale(int32 index);

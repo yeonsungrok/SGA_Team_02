@@ -62,7 +62,12 @@ ASoundManager::ASoundManager()
 	
 	CreateSound("FindTarget_03_Cue", "/Script/Engine.Blueprint'/Game/Blueprint/Sound/FindTarget_BP.FindTarget_BP_C'");
 
-
+	// Boss02 Attack And Target Hit Missile
+	CreateSound("Boss_02_Attack_TargetHitSound_Cue", "/Script/Engine.Blueprint'/Game/Blueprint/Sound/Boss_02_AttackTarget_Hit_Cue.Boss_02_AttackTarget_Hit_Cue_C'");
+	// Boss02 Teleport Sound
+	CreateSound("Boss_02_Teleport_Cue", "/Script/Engine.Blueprint'/Game/Blueprint/Sound/Boss_02_Teleport_BP.Boss_02_Teleport_BP_C'");
+	// Boss02 Missile Missing
+	CreateSound("Boss_02_Attack_01_Cue", "/Script/Engine.Blueprint'/Game/Blueprint/Sound/Boss_02_MissingTarget_BP.Boss_02_MissingTarget_BP_C'");
 	// test 
 	_soundEffectTable = TMap<FString, TArray<ASoundEffect*>>();
 }

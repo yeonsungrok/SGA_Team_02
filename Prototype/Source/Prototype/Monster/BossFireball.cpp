@@ -9,6 +9,12 @@
 #include "Engine/DamageEvents.h"
 #include "../Player/MyPlayer.h"
 
+#include "NiagaraSystem.h"
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraComponent.h"
+#include "Base/MyGameInstance.h"
+#include "Base/Managers/EffectManager.h"
+#include "Base/Managers/SoundManager.h"
 
 
 // Sets default values
@@ -20,8 +26,11 @@ ABossFireball::ABossFireball()
 	CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionComponent"));
     RootComponent = CollisionComponent;
 
-    Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-    Mesh->SetupAttachment(RootComponent);
+    _niagaraBossCom = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NS_Mage_LIghtningShield"));
+    _niagaraBossCom->SetupAttachment(RootComponent);
+
+    /*Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+    Mesh->SetupAttachment(RootComponent);*/
 
     ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovement"));
     ProjectileMovement->InitialSpeed = 0.0f;
@@ -52,14 +61,35 @@ void ABossFireball::LaunchTowards(FVector TargetLocation)
     ProjectileMovement->Velocity = Direction * 2000.f;
 }
 
+FString ABossFireball::GetBoss2_HitEffect() const
+{
+    return "NS_Mage_LIghtning_Bolt";
+}
+
+FString ABossFireball::GetBoss2MissileTakeSound() const
+{
+    return "Boss_02_Attack_TargetHitSound_Cue";
+}
+
+FString ABossFireball::GetBoss2MissileMissSound() const
+{
+    return "Boss_02_Attack_01_Cue";
+}
+
 void ABossFireball::OnMyCharacterOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
     auto player = Cast<AMyPlayer>(OtherActor);
     if (player)
     {
         player->TakeDamage(_damageAmount, FDamageEvent(), nullptr, this);
+        EffectManager->Play(*GetBoss2_HitEffect(), player->GetActorLocation());
+        SoundManager->PlaySound(*GetBoss2MissileTakeSound(), player->GetActorLocation());
         player->Silent();
         Destroy();
+    }
+    else
+    {
+        SoundManager->PlaySound(*GetBoss2MissileMissSound(), GetActorLocation());
     }
 }
 

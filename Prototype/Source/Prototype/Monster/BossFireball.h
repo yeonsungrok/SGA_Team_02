@@ -25,6 +25,9 @@ public:
 
 	 void LaunchTowards(FVector TargetLocation);
 
+     virtual FString GetBoss2_HitEffect() const;
+     virtual FString GetBoss2MissileTakeSound() const;
+     virtual FString GetBoss2MissileMissSound() const;
 protected:
     UPROPERTY(EditDefaultsOnly, Category = "Components")
     class UProjectileMovementComponent* ProjectileMovement;
@@ -40,5 +43,9 @@ protected:
 
     UPROPERTY(EditDefaultsOnly, Category = "Damage")
     float _damageAmount = 50.0f;
+
+private:
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+    class UNiagaraComponent* _niagaraBossCom;
 
 };

@@ -11,6 +11,11 @@
 #include "../Animation/Monster_Boss2_AnimInstance.h"
 #include "BossFireball.h"
 
+#include "NiagaraSystem.h"
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraComponent.h"
+#include "Base/Managers/EffectManager.h"
+
 ABoss2Monster::ABoss2Monster()
 {
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> SM(TEXT("/Script/Engine.SkeletalMesh'/Game/ParagonMinions/Characters/Minions/Prime_Helix/Meshes/Prime_Helix.Prime_Helix'"));
@@ -191,6 +196,7 @@ void ABoss2Monster::AttackHit()
 		
 		for (auto &hitResult : hitResults)
 		{
+
 			if (hitResult.GetActor() && hitResult.GetActor()->IsValidLowLevel())
 			{
 				FDamageEvent DamageEvent;
@@ -199,6 +205,9 @@ void ABoss2Monster::AttackHit()
 				_hitPoint = hitResult.ImpactPoint;
 				SoundManager->PlaySound(*GetHitSoundName(), _hitPoint);
 				EffectManager->Play(*GetPlayerAttackHitEffect(), _hitPoint);
+
+				EffectManager->Play(*GetBoss2AttackEffect(), _hitPoint);
+				
 				break;
 			}
 		}
@@ -207,8 +216,12 @@ void ABoss2Monster::AttackHit()
 	{
 		FVector missLocation = GetActorLocation();
 		SoundManager->PlaySound(*GetSwingSoundName(), missLocation);
+
+		
 	}
 	DrawDebugSphere(GetWorld(), center, attackRadius, 32, drawColor, false, 0.3f);
+
+
 }
 
 void ABoss2Monster::Skill_AI(FVector location)
@@ -235,5 +248,26 @@ void ABoss2Monster::Teleport(FVector location)
 
     SetActorRotation(NewRotation);
 
+
+	EffectManager->Play(*GetBoss2TeleportEffect(), GetActorLocation() - FVector(0.0f, 0.0f, 100.0f));
+	SoundManager->PlaySound(*GetBoss2TeleportSound(), GetActorLocation());
 	Attack_AI();
 }
+
+FString ABoss2Monster::GetBoss2AttackEffect() const
+{
+	return "NS_Mage_LIghtning_Bolt";
+}
+
+FString ABoss2Monster::GetBoss2TeleportEffect() const
+{
+	return "NS_Boss_02_Teleport";
+}
+
+FString ABoss2Monster::GetBoss2TeleportSound() const
+{
+	return "Boss_02_Teleport_Cue";
+}
+
+
+
