@@ -29,6 +29,7 @@ void AMonster::PostInitializeComponents()
     Super::PostInitializeComponents();
 
     _StatCom->SetLevelInit(1);
+    Reward();
 }
 
 void AMonster::Disable()
@@ -117,27 +118,43 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent,
         Player->_StatCom->AddExp(_StatCom->GetNextExp());
         const float RewardChance = 0.3f;
 
-        if (FMath::FRand() <= RewardChance)
-        {
-            Reward(Player);
-        }
+        // if (FMath::FRand() <= RewardChance)
+        //{
+        Player->_inventoryComponent->AddItemToSlot(NewItem);
+        //}
     }
+
     return 0.0f;
 }
 
-void AMonster::Reward(AMyPlayer *player)
+void AMonster::Reward()
 {
-    ABaseItem *NewItem = nullptr;
 
-    UE_LOG(LogTemp, Warning, TEXT("Reward"));
-    int RandomValue = FMath::RandRange(2, 3);
-    NewItem = GetWorld()->SpawnActor<AConsumeItem>(AConsumeItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
-    NewItem->SetItemWithCode(RandomValue);
-    NewItem->SetPlayer();
+    float Random = FMath::FRand();
+    float RewardThreshold = 0.5;
 
-    if (NewItem)
+    if (Random <= RewardThreshold)
     {
-        player->_inventoryComponent->AddItemToSlot(NewItem);
+        int RandomItemValue = FMath::RandRange(2, 3);
+        auto *ConsumeItem = GetWorld()->SpawnActor<AConsumeItem>(AConsumeItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+        if (ConsumeItem)
+        {
+            ConsumeItem->SetItemWithCode(RandomItemValue);
+            NewItem = ConsumeItem;
+        }
+    }
+    else
+    {
+        int RandomEquipValue = FMath::RandRange(2, 11);
+        auto *EquipItem = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+        if (EquipItem)
+        {
+            EquipItem->SetItemWithCode(RandomEquipValue);
+            int32 EquipType = EquipItem->GetEquip();
+            EquipItem->SetEquipType(EquipType);
+            NewItem = EquipItem;
+        }
+        NewItem->SetPlayer();
     }
 }
 

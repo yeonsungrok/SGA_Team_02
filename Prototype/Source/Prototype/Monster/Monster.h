@@ -53,7 +53,7 @@ public:
 	UFUNCTION()
     void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
-	virtual void Reward(class AMyPlayer* player);
+	virtual void Reward();
 
 
 
@@ -66,6 +66,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Physics", meta = (AllowPrivateAccess = "true"))
 	FVector _upVector;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Physics", meta = (AllowPrivateAccess = "true"))
+	class ABaseItem *NewItem = nullptr;
 
 
 	//TODO::만들어지면
