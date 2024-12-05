@@ -139,6 +139,12 @@
     <ClInclude Include="..\..\Source\Prototype\Base\Stage2BossGameModeBase.h">
       <Filter>Source\Prototype\Base</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Base\Stage2NormalGameModeBase.cpp">
+      <Filter>Source\Prototype\Base</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Base\Stage2NormalGameModeBase.h">
+      <Filter>Source\Prototype\Base</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Prototype\Base\StartGameModeBase.cpp">
       <Filter>Source\Prototype\Base</Filter>
     </ClCompile>
