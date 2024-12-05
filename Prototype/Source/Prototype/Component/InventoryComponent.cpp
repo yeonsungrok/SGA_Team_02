@@ -389,3 +389,10 @@ void UInventoryComponent::UpdateUI()
 
 
 }
+
+
+void UInventoryComponent::SetMoney(int32 amount)
+{
+	_Wallet = amount;
+	UIManager->GetInventoryUI()->UpdateGold(_Wallet);
+}
