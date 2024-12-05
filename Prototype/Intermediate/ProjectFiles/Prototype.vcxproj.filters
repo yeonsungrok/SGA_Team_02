@@ -562,6 +562,12 @@
     <ClInclude Include="..\..\Source\Prototype\Player\Portal\Portal_Stage2_Boss.h">
       <Filter>Source\Prototype\Player\Portal</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\Player\Portal\Portal_Stage2_Normal.cpp">
+      <Filter>Source\Prototype\Player\Portal</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Player\Portal\Portal_Stage2_Normal.h">
+      <Filter>Source\Prototype\Player\Portal</Filter>
+    </ClInclude>
     <Filter Include="Source\Prototype\TriggerBox_StageSequnce">
       <UniqueIdentifier>{12C4424A-1C5B-338C-A606-4653F08DF755}</UniqueIdentifier>
     </Filter>

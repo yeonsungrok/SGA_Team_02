@@ -585,6 +585,10 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\Prototype\Player\Portal\Portal_Stage2_Boss.h"/>
+    <ClCompile Include="..\..\Source\Prototype\Player\Portal\Portal_Stage2_Normal.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Player\Portal\Portal_Stage2_Normal.h"/>
     <ClCompile Include="..\..\Source\Prototype\TriggerBox_StageSequnce\StageSequence_Trigger.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
