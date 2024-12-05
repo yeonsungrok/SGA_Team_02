@@ -10,6 +10,8 @@ class UCanvasPanel;
 class ABaseItem;
 class UIndexedButton;
 
+#define SellDCAmount 0.6f
+
 UENUM()
 enum class DealContext
 {
@@ -20,7 +22,8 @@ enum class DealContext
 	EmptySlot,
 };
 
-DECLARE_MULTICAST_DELEGATE_OneParam(ItemSale, int32);
+DECLARE_MULTICAST_DELEGATE_OneParam(ItemBuy, int32);
+DECLARE_MULTICAST_DELEGATE_TwoParams(ItemSale, int32, int32);
 
 UCLASS()
 class PROTOTYPE_API UShopWidget : public UUserWidget
@@ -33,13 +36,16 @@ public:
 	void UpdateShopList(TArray<ABaseItem*> list);
 	void ReflectInvenSlots(class AMyPlayer* player);
 
-	ItemSale SaleSucceed;
+	ItemBuy BuySucceed;
+	ItemSale SaleItem;
 private:
 	
 	void SetInvenButtons();
 
 	DealContext BuyResult(int32 slot);
 	void TryBuyItem(int32 slot);
+	UFUNCTION()
+	void SellItem();
 
 	UFUNCTION()
 	void BuySlot1();
@@ -51,6 +57,34 @@ private:
 	void BuySlot4();
 	UFUNCTION()
 	void BuySlot5();
+
+	void ShowItem();
+	void SetTargetItem(int32 slotIndex);
+
+	UFUNCTION()
+	void TargetItem0();
+	UFUNCTION()
+	void TargetItem1();
+	UFUNCTION()
+	void TargetItem2();
+	UFUNCTION()
+	void TargetItem3();
+	UFUNCTION()
+	void TargetItem4();
+	UFUNCTION()
+	void TargetItem5();
+	UFUNCTION()
+	void TargetItem6();
+	UFUNCTION()
+	void TargetItem7();
+	UFUNCTION()
+	void TargetItem8();
+	UFUNCTION()
+	void TargetItem9();
+	UFUNCTION()
+	void TargetItem10();
+	UFUNCTION()
+	void TargetItem11();
 
 	/// <summary>
 	/// Inventory Elements
@@ -75,12 +109,8 @@ private:
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* ItemName;
 	UPROPERTY(meta = (BindWidget))
-	class UTextBlock* ItemDesc;
+	class UTextBlock* Price;
 
-	UPROPERTY(meta = (BindWidget))
-	class UButton* DropBtn;
-	UPROPERTY(meta = (BindWidget))
-	class UTextBlock* DropBtnText;
 	UPROPERTY(meta = (BindWidget))
 	class UButton* SellBtn;
 	UPROPERTY(meta = (BindWidget))
@@ -109,5 +139,7 @@ private:
 	
 	UPROPERTY(meta = (BindWidget))
 	UCanvasPanel* SellPanel_4;
+
+	int32 _tempPrice;
 
 };
