@@ -95,6 +95,9 @@ private:
 	UDataTable* _ShopList;
 
 	UPROPERTY()
+	TArray<UDataTable*> _ShopLists;
+
+	UPROPERTY()
 	UDataTable* _DragonStatTable;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
