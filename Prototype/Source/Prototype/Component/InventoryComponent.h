@@ -56,7 +56,7 @@ public:
 
 	int32 GetHowMuchIHave() { return _Wallet; }
 	void GettingMoney(int32 amount);
-	void SetMoney(int32 amount){_Wallet = amount;}
+	void SetMoney(int32 amount);
 
 	void UpdateUI();
 

@@ -222,10 +222,21 @@ float ACreature::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent
 {
 	Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
 
-	if (bIsGuarding)
-	{
-		SoundManager->PlaySound(*GetGuardOn(), _hitPoint);
-	}
+	FVector AttackDirection = DamageCauser->GetActorLocation() - GetActorLocation();
+    AttackDirection.Z = 0.0f;
+    AttackDirection.Normalize();
+
+    FVector GuardDirection = GetActorForwardVector(); 
+
+    float DotProduct = FVector::DotProduct(GuardDirection, AttackDirection); 
+    float Angle = FMath::Acos(DotProduct) * (180.0f / PI); 
+
+    const float GuardAngle = 90.0f; 
+
+    if (bIsGuarding && Angle <= GuardAngle)
+    {
+        SoundManager->PlaySound(*GetGuardOn(), _hitPoint);
+    }
 	else
 	{
 		UBaseAnimInstance* AnimInstance = Cast<UBaseAnimInstance>(GetMesh()->GetAnimInstance());
