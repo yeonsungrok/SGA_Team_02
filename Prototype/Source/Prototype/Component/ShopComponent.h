@@ -41,8 +41,10 @@ public:
 	UFUNCTION()
 	void SetSales();
 
+	UFUNCTION()
 	void Sale(int32 index);
-
+	UFUNCTION()
+	void SalePlayerItem(int32 index, int32 amount);
 
 	void SetCustomer(AMyPlayer* target);
 

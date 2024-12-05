@@ -25,7 +25,8 @@ void UShopComponent::BeginPlay()
 
 	// ...
 	SetSales();
-	UIManager->GetShopUI()->SaleSucceed.AddUObject(this, &UShopComponent::Sale);
+	UIManager->GetShopUI()->BuySucceed.AddUObject(this, &UShopComponent::Sale);
+	UIManager->GetShopUI()->SaleItem.AddUObject(this, &UShopComponent::SalePlayerItem);
 }
 
 void UShopComponent::SetCustomer(AMyPlayer* target)
@@ -72,7 +73,19 @@ void UShopComponent::Sale(int32 index)
 		merch = EquipItem;
 	}
 	p_inventory->GettingMoney(-merch->GetPrice());
-	_customer->_inventoryComponent->AddItem(0, merch);
+	p_inventory->AddItem(0, merch);
+	UIManager->GetShopUI()->ReflectInvenSlots(_customer);
+}
+
+void UShopComponent::SalePlayerItem(int32 index, int32 amount)
+{
+	if (_customer == nullptr)
+		return;
+
+	auto p_inventory = _customer->_inventoryComponent;
+
+	p_inventory->ExcuteItem(index, false);
+	p_inventory->GettingMoney(amount);
 	UIManager->GetShopUI()->ReflectInvenSlots(_customer);
 }
 
