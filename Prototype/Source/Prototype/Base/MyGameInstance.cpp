@@ -187,7 +187,7 @@ void UMyGameInstance::LoadInventory(class UInventoryComponent *InventoryComponen
 
 			if (ItemData._Type == ItemType::Consume)
 			{
-				NewItem = GetWorld()->SpawnActor<ABaseItem>(ABaseItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+				NewItem = GetWorld()->SpawnActor<AConsumeItem>(AConsumeItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
 				NewItem->SetItemWithCode(ItemData._Code);
 			}
 			else if (ItemData._Type == ItemType::Equipment)
@@ -221,7 +221,7 @@ void UMyGameInstance::LoadInventory(class UInventoryComponent *InventoryComponen
 
                     InventoryComponent->AddItemToEquip(EquipType,NewItem);
 				}
-			}
+			} 
 		}
 		InventoryComponent->GettingMoney(_savedMoney);
 	}
