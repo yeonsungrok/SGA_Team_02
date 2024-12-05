@@ -73,6 +73,7 @@ void AMyNPC::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActo
 	_target = nullptr;
 	_isOverlapped = false;
 	_shopComp->SetCustomer(_target);
+	UIManager->CloseUI(UI_LIST::Shop);
 }
 
 // Called every frame
