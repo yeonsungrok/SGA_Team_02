@@ -24,5 +24,6 @@ public:
 
 private:
 	bool _isAttacking = false;
+	int count = 0;
 	
 };

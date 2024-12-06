@@ -24,8 +24,14 @@ EBTNodeResult::Type UBTTaskNode_MagicBall::ExecuteTask(UBehaviorTreeComponent& O
 		return EBTNodeResult::Failed;
 	
 		character->MagicShot();
-		character->testDecalSkill();
-	
+		count++;
+
+		if (count == 3)
+		{
+			character->testDecalSkill();
+			count = 0;
+		}
+		
 
 	_isAttacking = true;
 
