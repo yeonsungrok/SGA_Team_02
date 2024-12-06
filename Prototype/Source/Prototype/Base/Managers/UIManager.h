@@ -59,6 +59,11 @@ public:
 
 	PAUSE_GAME pauseGame;
 	RESUM_GAME resumGame;
+
+private:
+	bool InventoryMutual(UI_LIST invenUI);
+	bool InterectMutual(UI_LIST interectUI);
+
 private:
 	UPROPERTY()
 	TArray<UUserWidget*> _uiList;

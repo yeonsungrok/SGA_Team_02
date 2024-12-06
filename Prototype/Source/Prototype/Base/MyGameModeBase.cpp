@@ -60,6 +60,7 @@ void AMyGameModeBase::BeginPlay()
 					GameInstance->LoadInventory(InvenComponent);
 				}
 				GameInstance->LoadPlayerSkeletal(player);
+				player->_StatCom->Reset();
 			}
 		}
 	}

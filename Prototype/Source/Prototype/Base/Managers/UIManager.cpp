@@ -113,6 +113,9 @@ void AUIManager::OpenUI(UI_LIST ui)
 	if (UIindex > _uiList.Num())
 		return;
 
+	if (InventoryMutual(ui) || InterectMutual(ui))
+		return;
+
 	if (_isPauseWhenOpen[UIindex])
 		pauseGame.Broadcast();
 
@@ -179,4 +182,22 @@ void AUIManager::ToggleUI(UI_LIST ui)
 		CloseUI(ui);
 	else
 		OpenUI(ui);
+}
+
+bool AUIManager::InventoryMutual(UI_LIST invenUI)
+{
+	if(invenUI != UI_LIST::Inventory)
+		return false;
+	if (_uiIsOpen[(int32)UI_LIST::Shop])
+		return true;
+	return false;
+}
+
+bool AUIManager::InterectMutual(UI_LIST interectUI)
+{
+	if (interectUI != UI_LIST::Shop)
+		return false;
+	if (_uiIsOpen[(int32)UI_LIST::Inventory])
+		return true;
+	return false;
 }
