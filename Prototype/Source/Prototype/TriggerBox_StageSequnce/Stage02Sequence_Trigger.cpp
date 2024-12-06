@@ -23,7 +23,7 @@
 #include "Component/StatComponent.h"
 
 #include "Base/Stage2BossGameModeBase.h"
-//#include <Base/MyGameInstance.h>
+#include <Base/MyGameInstance.h>
 #include "Player/Creature.h"
 #include "Blueprint/UserWidget.h"
 
@@ -156,7 +156,7 @@ void AStage02Sequence_Trigger::OnSequenceFinished()
     UE_LOG(LogTemp, Error, TEXT("Broadcasting OnShowMinimap Delegate"));
     OnShowMinimap_02.Broadcast();
 
-  /*  AStage1BossGameModeBase* GameMode = Cast<AStage1BossGameModeBase>(GetWorld()->GetAuthGameMode());
+ /*   AStage2BossGameModeBase* GameMode = Cast<AStage2BossGameModeBase>(GetWorld()->GetAuthGameMode());
     if (GameMode)
     {
         GameMode->BossStart();
