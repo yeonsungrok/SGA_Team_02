@@ -94,6 +94,9 @@ void UMyGameInstance::SavePlayerStats(class UStatComponent *StatComponent)
 		_savedOgInt = StatComponent->GetOgInt();
 		_savedModInt = StatComponent->GetModInt();
 
+		_savedAttackRadius = StatComponent->GetAttackRadius();
+		_savedAttackRange = StatComponent->GetAttackRange();
+
 		_savedCurHp = StatComponent->GetCurHp();
 		_savedCurMp = StatComponent->GetCurMp();
 		_savedExp = StatComponent->GetExp();
@@ -119,6 +122,9 @@ void UMyGameInstance::LoadPlayerStats(class UStatComponent *StatComponent)
 		StatComponent->SetInt(_savedInt);
 		StatComponent->SetOgInt(_savedOgInt);
 		StatComponent->SetModInt(_savedModInt);
+
+		StatComponent->SetAttackRange(_savedAttackRange);
+		StatComponent->SetAttackRadius(_savedAttackRadius);
 
 		StatComponent->SetHp(_savedCurHp);
 		StatComponent->SetMp(_savedCurMp);

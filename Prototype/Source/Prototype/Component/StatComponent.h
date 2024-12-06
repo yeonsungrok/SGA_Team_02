@@ -116,7 +116,12 @@ public:
 	int32 GetOgInt()  { return _ogInt; }
 	int32 GetModInt()  { return _modInt; }
 
+	float GetAttackRange(){return _attackRange;}
+	float GetAttackRadius(){return _attackRadius;}
+
 	int32 GetBonusPoint() { return _bonusPoint; }
+
+	
 
 	void SetLevel(int32 newLevel);
 	void SetMaxHp(int32 newMaxHp);
@@ -141,8 +146,12 @@ public:
 
 	void SetHp(int32 hp);
 	void SetMp(int32 mp);
+	
 	int AddCurHp(int32 amount);
 	int AddCurMp(int32 amount);
+
+	void SetAttackRange(int32 newrange){_attackRange = newrange;}
+    void SetAttackRadius(int32 newradius){_attackRadius = newradius;}
 
 	void AddAttackDamage(float amount);
 	void AddExp(int32 amount);
@@ -250,6 +259,13 @@ protected:
 	int32 _modInt;
 	
 	//////////////////////////////
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stat, meta = (AllowPrivateAccess = true))
+	float _attackRange;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stat, meta = (AllowPrivateAccess = true))
+	float _attackRadius;
+
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stat, meta = (AllowPrivateAccess = true))
 	int32 _attackDamage;

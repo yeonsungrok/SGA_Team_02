@@ -224,7 +224,6 @@ void AMyPlayer::PostInitializeComponents()
 			float CurrentMP = _StatCom->GetCurMp();
 			float CurrentEXP = _StatCom->GetExp();
 
-			// 플레이어 스탯
 			UE_LOG(LogTemp, Warning, TEXT("Current HP: %f, Current MP: %f, Current EXP: %f"), CurrentHP, CurrentMP, CurrentEXP);
 
 			_StatCom->_PlHPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetPlHPBar);
@@ -416,7 +415,6 @@ void AMyPlayer::OnAttackEnded(UAnimMontage* Montage, bool bInterrupted)
 
 void AMyPlayer::NextCombo()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Player Notify isAttacking False"));
 	_isAttacking = false;
 }
 
