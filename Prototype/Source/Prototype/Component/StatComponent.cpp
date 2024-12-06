@@ -77,6 +77,8 @@ void UStatComponent::SetLevelInit(int level)
 
 		_nextExp = Data->EXP;
 		_curExp = 0;
+		_attackRadius = 50.0f;
+		_attackRange = 300.0f;
 		SetHp(_maxHp);
 		SetMp(_maxMp);
 		_bonusPoint = Data->BonusPoint;
@@ -126,6 +128,10 @@ void UStatComponent::SetMonsterLevelInit(int level)
 
 		_nextExp = Data->EXP;
 		_curExp = 0;
+
+		_attackRadius = 50.0f;
+		_attackRange = 300.0f;
+
 		SetHp(_maxHp);
 		SetMp(_maxMp);
 		_bonusPoint = Data->BonusPoint;
@@ -155,6 +161,10 @@ void UStatComponent::SetEpicLevelInit(int level)
 
 		_nextExp = Data->EXP;
 		_curExp = 0;
+
+		_attackRadius = 50.0f;
+		_attackRange = 300.0f;
+
 		SetHp(_maxHp);
 		SetMp(_maxMp);
 		_bonusPoint = Data->BonusPoint;
@@ -184,6 +194,10 @@ void UStatComponent::SetBossLevelInit(int level)
 		_ogInt = _int;
 
 		_curExp = Data->EXP;
+
+		_attackRadius = 50.0f;
+		_attackRange = 300.0f;
+
 		SetHp(_maxHp);
 		SetMp(_maxMp);
 		_bonusPoint = Data->BonusPoint;

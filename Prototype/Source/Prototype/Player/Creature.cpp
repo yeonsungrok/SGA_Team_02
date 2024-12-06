@@ -44,12 +44,10 @@ void ACreature::PostInitializeComponents()
 
 void ACreature::Init()
 {
-
 }
 
 void ACreature::Disable()
 {
-
 }
 
 void ACreature::AttackHit()
@@ -57,27 +55,28 @@ void ACreature::AttackHit()
 	TArray<FHitResult> hitResults;
 	FCollisionQueryParams params(NAME_None, false, this);
 
-	float attackRange = 500.0f;
-	float attackRadius = 50.0f;
+	float attackRange = _StatCom->GetAttackRange();
+	float attackRadius = _StatCom->GetAttackRadius();
+
+	FVector capsuleCenter = GetActorLocation() + GetActorForwardVector() * (attackRange * 0.5f);
+
+	FQuat capsuleRotation = FQuat::FindBetweenNormals(FVector::UpVector, GetActorForwardVector());
 
 	bool bResult = GetWorld()->SweepMultiByChannel(
 		hitResults,
-		GetActorLocation(),
-		GetActorLocation() + GetActorForwardVector() * attackRange,
-		FQuat::Identity,
+		capsuleCenter,
+		capsuleCenter,
+		capsuleRotation,
 		ECollisionChannel::ECC_GameTraceChannel2,
-		FCollisionShape::MakeSphere(attackRadius),
+		FCollisionShape::MakeCapsule(attackRadius, attackRange * 0.5f),
 		params);
-
-	FVector vec = GetActorForwardVector() * attackRange;
-	FVector center = GetActorLocation() + vec * 0.5f;
 
 	FColor drawColor = FColor::Green;
 
 	if (bResult)
 	{
 		drawColor = FColor::Red;
-		
+
 		for (auto &hitResult : hitResults)
 		{
 			if (hitResult.GetActor() && hitResult.GetActor()->IsValidLowLevel())
@@ -95,10 +94,19 @@ void ACreature::AttackHit()
 	else
 	{
 		FVector missLocation = GetActorLocation();
-		
+
 		SoundManager->PlaySound(*GetSwingSoundName(), missLocation);
 	}
-	DrawDebugSphere(GetWorld(), center, attackRadius, 32, drawColor, false, 0.3f);
+
+	DrawDebugCapsule(
+		GetWorld(),
+		capsuleCenter,
+		attackRange * 0.5f,
+		attackRadius,
+		capsuleRotation,
+		drawColor,
+		false,
+		0.3f);
 }
 
 FString ACreature::GetHitSoundName() const
@@ -148,12 +156,12 @@ FString ACreature::GetSkillSound03Shout() const
 
 FString ACreature::GetSkillSound04Start() const
 {
-	return  "default_Skill04_Start";
+	return "default_Skill04_Start";
 }
 
 FString ACreature::GetSkillSound04Durring() const
 {
-	return  "default_Skill04_Durring";
+	return "default_Skill04_Durring";
 }
 
 FString ACreature::GetBossMonsterAttack() const
@@ -211,9 +219,8 @@ FString ACreature::GetLevelUpSound() const
 	return "default_LevelUpSound";
 }
 
-void ACreature::OnAttackEnded(UAnimMontage* Montage, bool bInterrupted)
+void ACreature::OnAttackEnded(UAnimMontage *Montage, bool bInterrupted)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Creaature attackended"));
 	_isAttacking = false;
 	_attackEndedDelegate.Broadcast();
 }
@@ -223,23 +230,23 @@ float ACreature::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent
 	Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
 
 	FVector AttackDirection = DamageCauser->GetActorLocation() - GetActorLocation();
-    AttackDirection.Z = 0.0f;
-    AttackDirection.Normalize();
+	AttackDirection.Z = 0.0f;
+	AttackDirection.Normalize();
 
-    FVector GuardDirection = GetActorForwardVector(); 
+	FVector GuardDirection = GetActorForwardVector();
 
-    float DotProduct = FVector::DotProduct(GuardDirection, AttackDirection); 
-    float Angle = FMath::Acos(DotProduct) * (180.0f / PI); 
+	float DotProduct = FVector::DotProduct(GuardDirection, AttackDirection);
+	float Angle = FMath::Acos(DotProduct) * (180.0f / PI);
 
-    const float GuardAngle = 90.0f; 
+	const float GuardAngle = 90.0f;
 
-    if (bIsGuarding && Angle <= GuardAngle)
-    {
-        SoundManager->PlaySound(*GetGuardOn(), _hitPoint);
-    }
+	if (bIsGuarding && Angle <= GuardAngle)
+	{
+		SoundManager->PlaySound(*GetGuardOn(), _hitPoint);
+	}
 	else
 	{
-		UBaseAnimInstance* AnimInstance = Cast<UBaseAnimInstance>(GetMesh()->GetAnimInstance());
+		UBaseAnimInstance *AnimInstance = Cast<UBaseAnimInstance>(GetMesh()->GetAnimInstance());
 		if (AnimInstance)
 		{
 			AnimInstance->PlayHitReactionMontage();
@@ -256,7 +263,7 @@ float ACreature::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent
 		if (_StatCom->IsDead())
 		{
 			SoundManager->PlaySound(*GetDeadSoundName(), this->GetActorLocation());
-			
+
 			SetActorEnableCollision(false);
 			auto controller = GetController();
 			if (controller)

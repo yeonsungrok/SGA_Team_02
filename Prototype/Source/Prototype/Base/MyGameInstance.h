@@ -153,6 +153,12 @@ private:
 	int32 _savedModInt;
 
 	UPROPERTY()
+	float _savedAttackRadius;
+
+	UPROPERTY()
+	float _savedAttackRange;
+
+	UPROPERTY()
 	int32 _savedExp;
 	UPROPERTY()
 	int32 _savedBonus;
