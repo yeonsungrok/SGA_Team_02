@@ -62,11 +62,12 @@ void UBTService_LongFindTarget::TickNode(UBehaviorTreeComponent& OwnerComp, uint
                 return;
             }
         }
+        OwnerComp.GetBlackboardComponent()->SetValueAsObject(FName(TEXT("LongTarget")), nullptr);
         DrawDebugSphere(world, center, searchRadius, 32, FColor::Green, false, 0.3f);
     }
-    else
+   /* else
     {
         OwnerComp.GetBlackboardComponent()->SetValueAsObject(FName(TEXT("Target")), nullptr);
         DrawDebugSphere(world, center, searchRadius, 32, FColor::Green, false, 0.3f);
-    }
+    }*/
 }
