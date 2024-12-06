@@ -260,6 +260,7 @@ void AMyPlayer::Tick(float DeltaTime)
 		PerformDash(DeltaTime);
 	}
 
+
 	if (_Widget)
 	{
 		auto PlWidget = Cast<UPlayerBarWidget>(_Widget);
@@ -273,8 +274,14 @@ void AMyPlayer::Tick(float DeltaTime)
 			float HPPercent = float(PlCurHp) / float(PlMaxHp);
 			float MPPercent = float(PlCurMp) / float(PlMaxMp);
 
-			float NewHPScaleX = float(PlMaxHp) / 1000.0f;
-			float NewMPScaleX = float(PlMaxMp) / 50.0f;
+			// Bar 제한 범위
+			float MinHPScaleX = 1.0f;  
+			float MaxHPScaleX = 1.8f;  
+			float MinMPScaleX = 1.0f; 
+			float MaxMPScaleX = 1.5f; 
+
+			float NewHPScaleX = FMath::Clamp(float(PlMaxHp) / 1000.0f, MinHPScaleX, MaxHPScaleX);
+			float NewMPScaleX = FMath::Clamp(float(PlMaxMp) / 50.0f, MinMPScaleX, MaxMPScaleX);
 
 			if (_StatCom->GetMaxHp() > _StatCom->GetCurHp())
 			{
