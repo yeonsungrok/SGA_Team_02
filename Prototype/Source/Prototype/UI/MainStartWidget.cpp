@@ -79,3 +79,4 @@ void UMainStartWidget::OpenLevel()
 {
 	 UGameplayStatics::OpenLevel(GetWorld(), TEXT("NewMap"));
 }
+
