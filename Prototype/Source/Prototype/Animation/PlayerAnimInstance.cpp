@@ -6,6 +6,9 @@
 #include "../Player/MyPlayer.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/PawnMovementComponent.h"
+#include "Animation/AnimInstance.h"
+#include "Animation/AnimMontage.h"
+
 
 UPlayerAnimInstance::UPlayerAnimInstance()
 {
@@ -60,6 +63,16 @@ UPlayerAnimInstance::UPlayerAnimInstance()
 	}
 
 
+
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> ChangeMontage
+	(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Player/ChangeDragonMontage.ChangeDragonMontage'"));
+	if (ChangeMontage.Succeeded())
+	{
+		_changeMontage = ChangeMontage.Object;
+	}
+
+
+	
 }
 
 void UPlayerAnimInstance::PlayGuardMontage(bool bIsGuarding)
@@ -116,6 +129,15 @@ void UPlayerAnimInstance::PlaySkill03Montage()
 	}
 }
 
+
+void UPlayerAnimInstance::PlayChangeMontage()
+{
+	if (_changeMontage)
+	{
+		Montage_Play(_changeMontage);
+	}
+}
+
 void UPlayerAnimInstance::AnimNotify_clickNext()
 {
 	_comboDelegate.Broadcast();
@@ -130,3 +152,6 @@ void UPlayerAnimInstance::AnimNotify_Death()
 {
 	_deathDelegate_Knight.Broadcast();
 }
+
+
+

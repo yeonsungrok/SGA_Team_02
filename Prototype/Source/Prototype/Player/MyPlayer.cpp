@@ -241,6 +241,9 @@ void AMyPlayer::PostInitializeComponents()
 		_KnightanimInstance->_attackDelegate.AddUObject(this, &ACreature::AttackHit);
 		_KnightanimInstance->_deathDelegate_Knight.AddUObject(this, &AMyPlayer::Disable);
 		_KnightanimInstance->_comboDelegate.AddUObject(this, &AMyPlayer::NextCombo);
+		
+		/*_KnightanimInstance->_changeDelegate.AddUObject(this, &AMyPlayer::EndMontage);*/
+		//_KnightanimInstance->_endMontageDelegate.AddDynamic(this, &AMyPlayer::TransformToDragon);
 	}
 }
 
@@ -1238,9 +1241,34 @@ void AMyPlayer::ToggleTransformation()
 	}
 	else // 그렇지 않으면 드래곤으로 변환
 	{
-		TransformToDragon();
+		UPlayerAnimInstance* AnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
+		if (AnimInstance)
+		{
+			// 몽타주 재생
+			AnimInstance->PlayChangeMontage();
+
+			// 몽타주 종료 이벤트와 연결
+			AnimInstance->OnMontageEnded.AddDynamic(this, &AMyPlayer::HandleMontageEnd);
+		}
 	}
 }
+
+void AMyPlayer::HandleMontageEnd(UAnimMontage* Montage, bool bInterrupted)
+{
+	UPlayerAnimInstance* AnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
+	if (AnimInstance && Montage == AnimInstance->GetChangeMontage())
+	{
+		if (!bInterrupted && !_isTransformed) // 몽타주가 정상 종료되었고 변환 상태가 아닌 경우
+		{
+			TransformToDragon();
+		}
+
+		// 델리게이트 연결 해제
+		AnimInstance->OnMontageEnded.RemoveDynamic(this, &AMyPlayer::HandleMontageEnd);
+	}
+}
+
+
 
 void AMyPlayer::SavePlayerState()
 {
