@@ -38,6 +38,8 @@ void AStage2BossGameModeBase::BeginPlay()
 	AMyPlayer *player = Cast<AMyPlayer>(UGameplayStatics::GetPlayerCharacter(this, 0));
 	if (player)
 	{
+		FTimerHandle TimerHandle;
+		GetWorldTimerManager().SetTimer(TimerHandle, this, &AStage2BossGameModeBase::LockSkill, 0.1f, false);
 		UMyGameInstance *GameInstance = Cast<UMyGameInstance>(GetGameInstance());
 		if (GameInstance)
 		{
