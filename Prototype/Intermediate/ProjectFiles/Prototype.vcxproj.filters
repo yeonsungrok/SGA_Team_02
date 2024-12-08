@@ -571,6 +571,12 @@
     <Filter Include="Source\Prototype\TriggerBox_StageSequnce">
       <UniqueIdentifier>{12C4424A-1C5B-338C-A606-4653F08DF755}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Prototype\TriggerBox_StageSequnce\SequenceBase_Trigger.cpp">
+      <Filter>Source\Prototype\TriggerBox_StageSequnce</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\TriggerBox_StageSequnce\SequenceBase_Trigger.h">
+      <Filter>Source\Prototype\TriggerBox_StageSequnce</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Prototype\TriggerBox_StageSequnce\Stage02Sequence_Trigger.cpp">
       <Filter>Source\Prototype\TriggerBox_StageSequnce</Filter>
     </ClCompile>
@@ -590,6 +596,12 @@
       <Filter>Source\Prototype\UI</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Prototype\UI\Boss1Widget.h">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\UI\Boss2Widget.cpp">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\UI\Boss2Widget.h">
       <Filter>Source\Prototype\UI</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Prototype\UI\InventoryWidget.cpp">
