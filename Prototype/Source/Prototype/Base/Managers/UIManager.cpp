@@ -4,6 +4,7 @@
 
 #include "UI/InventoryWidget.h"
 #include "UI/Boss1Widget.h"
+#include "UI/Boss2Widget.h"
 #include "UI/ShopWidget.h"
 #include "UI/MainStartWidget.h"
 #include "Kismet/GameplayStatics.h"
@@ -28,6 +29,13 @@ AUIManager::AUIManager()
 	if (boss1widget.Succeeded())
 	{
 		_bossUI = CreateWidget<UBoss1Widget>(GetWorld(), boss1widget.Class);
+	}
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> boss2widget(
+		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Boss2_UI.Boss2_UI_C'"));
+	if (boss2widget.Succeeded())
+	{
+		_boss2UI = CreateWidget<UBoss2Widget>(GetWorld(), boss2widget.Class);
 	}
 
 	static ConstructorHelpers::FClassFinder<UUserWidget> shopUI(
@@ -75,6 +83,10 @@ AUIManager::AUIManager()
 	_isPauseWhenOpen.Add(true);
 
 	_uiList.Add(_bossUI);
+	_uiIsOpen.Add(false);
+	_isPauseWhenOpen.Add(false);
+
+	_uiList.Add(_boss2UI);
 	_uiIsOpen.Add(false);
 	_isPauseWhenOpen.Add(false);
 
@@ -165,8 +177,12 @@ void AUIManager::CloseAll()
 
 	for (auto widget : _uiList)
 	{
-		widget->SetVisibility(ESlateVisibility::Hidden);
-		widget->RemoveFromParent();
+		if(widget)
+		{
+			widget->SetVisibility(ESlateVisibility::Hidden);
+			widget->RemoveFromParent();
+		}
+		
 	}
 	for (bool isopen : _uiIsOpen)
 		isopen = false;

@@ -31,7 +31,7 @@ ABoss2Monster::ABoss2Monster()
 		_fireball = BF.Class;
 	}
 
-	GetCapsuleComponent()->SetCapsuleHalfHeight(250.0f);
+	GetCapsuleComponent()->SetCapsuleHalfHeight(330.0f);
 	GetCapsuleComponent()->SetCapsuleRadius(100.0f);
 
 	AIControllerClass = AAIController_Boss2::StaticClass();
