@@ -595,3 +595,37 @@ void UStatComponent::ModStat(StatType stat, int32 amount)
 		break;
 	}
 }
+
+void UStatComponent::SetDragonLevelInit(int level)
+{
+	FMyStatData* Data = nullptr;
+
+	if (GAMEINSTANCE)
+	{
+		Data = GAMEINSTANCE->GetDragonDataByLevel(level);
+		_level = level;
+		_maxHp = Data->MaxHP;
+		_maxMp = Data->MaxMP;
+		_str = Data->STR;
+		_dex = Data->DEX;
+		_int = Data->INT;
+
+		_nextExp = Data->EXP;
+		_curExp = 0;
+		_attackRadius = 220.0f;
+		_attackRange = 1000.0f;
+		SetHp(_maxHp);
+		SetMp(_maxMp);
+		_bonusPoint = Data->BonusPoint;
+		_PILevelDelegate.Broadcast(_level);
+
+		if (_level == 1)
+		{
+			_ogHp = _maxHp;
+			_ogMp = _maxMp;
+			_ogStr = _str;
+			_ogDex = _dex;
+			_ogInt = _int;
+		}
+	}
+}

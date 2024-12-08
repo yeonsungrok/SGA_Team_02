@@ -163,6 +163,8 @@ public:
 	void SetEpicLevelInit(int level);
 	void SetBossLevelInit(int level);
 
+	void SetDragonLevelInit(int level);
+
 	bool IsDead() { return _curHp <= 0; }
 
 	DeathDelegate _deathDelegate;

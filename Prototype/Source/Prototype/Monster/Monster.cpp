@@ -10,6 +10,7 @@
 #include "Item/Equip/EquipItem.h"
 #include "Base/MyGameInstance.h"
 #include "Component/StatComponent.h"
+#include "../Player/Dragon.h"
 
 AMonster::AMonster()
 {

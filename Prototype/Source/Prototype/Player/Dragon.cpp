@@ -23,6 +23,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MyPlayerController.h"
 #include "../Animation/BaseAnimInstance.h"
+#include "Monster/Monster.h"
 
 
 #include "Base/Managers/UIManager.h"
@@ -162,6 +163,15 @@ void ADragon::ToggleTransformation()
     }
 }
 
+void ADragon::OnMonsterHit(AMonster* HitMonster, const FHitResult& Hit)
+{
+    if (HitMonster)
+    {
+        FVector LaunchDirection = (HitMonster->GetActorLocation() - GetActorLocation()).GetSafeNormal();
+        HitMonster->LaunchFromPlayer(LaunchDirection);
+    }
+}
+
 void ADragon::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
     Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -290,7 +300,7 @@ void ADragon::PostInitializeComponents()
 
     // 애니메이션 인스턴스 캐스팅
     _dragonAnimInstance = Cast<UDragonAnimInstance>(GetMesh()->GetAnimInstance());
-    if (_dragonAnimInstance && _dragonAnimInstance->IsValidLowLevelFast())
+    if ( _dragonAnimInstance->IsValidLowLevelFast())
     {
         // 애니메이션 몽타주 끝났을 때 처리할 델리게이트 연결
         _dragonAnimInstance->OnMontageEnded.AddDynamic(this, &ADragon::OnAttackEnded);
@@ -305,29 +315,13 @@ void ADragon::PostInitializeComponents()
         UE_LOG(LogTemp, Warning, TEXT("Failed to initialize _dragonAnimInstance for ADragon!"));
     }
 
-    //----------------------------------------------보스몹으로 일단세팅----------------------
+    // TODO
+    //----------------------------------------------임시 dragon state으로 일단세팅----------------------
     if (_StatCom)
     {
-        _StatCom->SetBossLevelInit(1);
+        _StatCom->SetDragonLevelInit(1);
     }
     //------------------------------------------------------------------------------------------
-    if (_Widget)
-    {
-        auto PlWidget = Cast<UPlayerBarWidget>(_Widget);
-        if (PlWidget)
-        {
-            float CurrentHP = _StatCom->GetCurHp();
-            float CurrentMP = _StatCom->GetCurMp();
-            float CurrentEXP = _StatCom->GetExp();
-
-            // 플레이어 스탯
-            UE_LOG(LogTemp, Warning, TEXT("Current HP: %f, Current MP: %f, Current EXP: %f"), CurrentHP, CurrentMP, CurrentEXP);
-
-            _StatCom->_PlHPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetPlHPBar);
-            _StatCom->_PlMPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetPlMPBar);
-            _StatCom->_PlEXPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetPlExpBar);
-        }
-    }
 
 }
 
@@ -338,36 +332,6 @@ void ADragon::Tick(float DeltaTime)
 
     if (_StatCom->IsDead())
         return;
-
-    if (_Widget)
-    {
-        auto PlWidget = Cast<UPlayerBarWidget>(_Widget);
-        if (PlWidget)
-        {
-            int32 PlMaxHp = _StatCom->GetMaxHp();
-            int32 PlMaxMp = _StatCom->GetMaxMp();
-            int32 PlCurHp = _StatCom->GetCurHp();
-            int32 PlCurMp = _StatCom->GetCurMp();
-
-            float HPPercent = float(PlCurHp) / float(PlMaxHp);
-            float MPPercent = float(PlCurMp) / float(PlMaxMp);
-
-            float NewHPScaleX = float(PlMaxHp) / 1000.0f;
-            float NewMPScaleX = float(PlMaxMp) / 50.0f;
-
-            if (_StatCom->GetMaxHp() > _StatCom->GetCurHp())
-            {
-                PlWidget->Pl_HPBar->SetPercent(HPPercent);
-                PlWidget->Pl_HPBar->SetRenderScale(FVector2D(NewHPScaleX, 3.0f));
-            }
-
-            if (_StatCom->GetMaxMp() > _StatCom->GetCurMp())
-            {
-                PlWidget->Pl_MPBar->SetPercent(MPPercent);
-                PlWidget->Pl_MPBar->SetRenderScale(FVector2D(NewMPScaleX, 3.0f));
-            }
-        }
-    }
 
 
     if (GetVelocity().Size() > 0.0f)

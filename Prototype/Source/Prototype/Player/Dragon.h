@@ -37,6 +37,7 @@ public:
 
     void ToggleTransformation();
 
+    void OnMonsterHit(class AMonster* HitMonster, const FHitResult& Hit);
 
     virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
     virtual void PostInitializeComponents() override;

@@ -11,6 +11,7 @@
 #include "../Animation/BaseAnimInstance.h"
 #include "../Base/Managers/SoundManager.h"
 #include "../Player/MyPlayer.h"
+#include "../Player/Dragon.h"
 
 // Sets default values
 ACreature::ACreature()

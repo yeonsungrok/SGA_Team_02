@@ -1177,6 +1177,11 @@ void AMyPlayer::ClearSkillTimer()
 
 void AMyPlayer::TransformToDragon()
 {
+	//if (_StatCom)
+	//{
+	//	_StatCom->SetDragonLevelInit(1);
+	//}
+
 	if (!_dragonInstance)
 	{
 		// 드래곤 인스턴스 생성
