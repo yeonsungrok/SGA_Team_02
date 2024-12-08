@@ -101,10 +101,11 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent,
         return 0.0f;
 
     AMyPlayer *Player = Cast<AMyPlayer>(PlayerController->GetPawn());
+    ADragon* Dragon = Cast<ADragon>(PlayerController->GetPawn());
 
     float damaged = -_StatCom->AddCurHp(-Damage);
 
-    if (this->_StatCom->IsDead() && Player != nullptr)
+    if (this->_StatCom->IsDead() && Player != nullptr || Dragon != nullptr)
     {
         SetActorEnableCollision(false);
         auto controller = GetController();
@@ -112,14 +113,23 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent,
             GetController()->UnPossess();
         MonsterEvent.Broadcast();
 
-        Player->_inventoryComponent->GettingMoney(FMath::FRand() * 100);
-        Player->_StatCom->AddExp(_StatCom->GetNextExp());
-        const float RewardChance = 0.3f;
 
-        // if (FMath::FRand() <= RewardChance)
-        //{
-        Player->_inventoryComponent->AddItemToSlot(NewItem);
-        //}
+        if (Player)
+        {
+            Player->_inventoryComponent->GettingMoney(FMath::FRand() * 100);
+            Player->_StatCom->AddExp(_StatCom->GetNextExp());
+            const float RewardChance = 0.3f;
+
+            // if (FMath::FRand() <= RewardChance)
+            //{
+            Player->_inventoryComponent->AddItemToSlot(NewItem);
+            //}
+        }
+        else if (Dragon)
+        {
+            Dragon->_StatCom->AddExp(_StatCom->GetNextExp());
+            const float RewardChance = 0.3f;
+        }
     }
 
     return 0.0f;
