@@ -11,6 +11,7 @@ enum class UI_LIST
 {
 	Inventory,
 	Boss,
+	Boss2,
 	Shop,
 	StartUI,
 	Load,
@@ -24,6 +25,7 @@ DECLARE_MULTICAST_DELEGATE(RESUM_GAME);
 class UInventoryWidget;
 class UTexture2D;
 class UBoss1Widget;
+class UBoss2Widget;
 class UShopWidget;
 class UMainStartWidget;
 
@@ -51,6 +53,7 @@ public:
 
 	UInventoryWidget* GetInventoryUI() { return _inventoryUI; }
 	UBoss1Widget* GetBossUI() {return _bossUI;}
+	UBoss2Widget* GetBoss2UI() {return _boss2UI;}
 	UShopWidget* GetShopUI() { return _shopUI; }
 	UMainStartWidget* GetStartUI() { return _startUI; }
 	UUserWidget* GetOptionsUI() { return _options; }
@@ -85,6 +88,9 @@ private:
 
 	UPROPERTY()
 	UBoss1Widget* _bossUI;
+
+	UPROPERTY()
+	UBoss2Widget* _boss2UI;
 
 	UPROPERTY()
 	UShopWidget* _shopUI;
