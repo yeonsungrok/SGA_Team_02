@@ -45,6 +45,12 @@ public:
 	bool GetFirst(){return _firstIn;}
 	void SetFirst(bool first){_firstIn = first;}
 
+	bool GetStage1Clear(){return _stage1Clear;}
+	void SetStage1Clear(bool clear){_stage1Clear = clear;}
+
+	bool GetStage2Clear(){return _stage2Clear;}
+	void SetStage2Clear(bool clear){_stage2Clear = clear;}
+
 	TArray<ABaseItem*> GetInvenItemList();
 
 public:
@@ -179,6 +185,12 @@ private:
 	
 	UPROPERTY()
 	bool _firstIn = true;
+
+	UPROPERTY()
+	bool _stage1Clear = false;
+
+	UPROPERTY()
+	bool _stage2Clear = false;
 
 
 
