@@ -28,10 +28,16 @@ public:
 	void PlaySkill02Montage();
 	void PlaySkill03Montage();
 
+
 	AttackDelegate _attackDelegate;
 	DeathDelegate _deathDelegate_Knight;
 	ComboDelegate _comboDelegate;
-	
+
+
+	void PlayChangeMontage();
+	UFUNCTION()
+	UAnimMontage* GetChangeMontage() const { return _changeMontage; }
+
 	UFUNCTION()
 	void AnimNotify_clickNext();
 
@@ -42,7 +48,6 @@ public:
 	virtual void AnimNotify_Death();
 
 
-
 private:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Skills", meta = (AllowPrivateAccess = "true"))
 	UAnimMontage* _skill01Montage;
@@ -50,6 +55,12 @@ private:
 	UAnimMontage* _skill02Montage;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Skills", meta = (AllowPrivateAccess = "true"))
 	UAnimMontage* _skill03Montage;
+
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Skills", meta = (AllowPrivateAccess = "true"))
+	UAnimMontage* _changeMontage;
+
+
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", Meta = (AllowPrivateAccess = true))

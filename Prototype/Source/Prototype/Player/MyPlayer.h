@@ -306,8 +306,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Transformation")
 	TSubclassOf<ADragon> DragonClass;
+	
 
 private:
 	class ADragon* _dragonInstance; // Dragon 참조
+
+	UFUNCTION()
+	void HandleMontageEnd(UAnimMontage* Montage, bool bInterrupted);
 
 };
