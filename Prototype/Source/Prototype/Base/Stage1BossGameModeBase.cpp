@@ -91,6 +91,7 @@ void AStage1BossGameModeBase::PostInitializeComponents()
 
 void AStage1BossGameModeBase::BossClear()
 {
+	GAMEINSTANCE->SetStage1Clear(true);
 	if (_portal)
 	{
 		FActorSpawnParameters SpawnParams;

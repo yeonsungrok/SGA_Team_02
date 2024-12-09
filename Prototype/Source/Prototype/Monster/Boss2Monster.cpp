@@ -7,10 +7,12 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Player/MyPlayer.h"
 #include "Base/MyGameInstance.h"
+#include "Base/Stage2BossGameModeBase.h"
 #include "Engine/DamageEvents.h"
 #include "../Animation/Monster_Boss2_AnimInstance.h"
 #include "BossFireball.h"
-
+#include "SunderPool.h"
+#include "BossSunder.h"
 #include "NiagaraSystem.h"
 #include "NiagaraFunctionLibrary.h"
 #include "NiagaraComponent.h"
@@ -31,7 +33,15 @@ ABoss2Monster::ABoss2Monster()
 		_fireball = BF.Class;
 	}
 
-	GetCapsuleComponent()->SetCapsuleHalfHeight(330.0f);
+	static ConstructorHelpers::FClassFinder<ABossSunder> BS(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/Monster/BossMonster/BossSunder_BP.BossSunder_BP_C'"));
+	if (BS.Succeeded())
+	{
+		_sunder = BS.Class;
+	}
+	
+	SunderPool = NewObject<USunderPool>();
+
+	GetCapsuleComponent()->SetCapsuleHalfHeight(310.0f);
 	GetCapsuleComponent()->SetCapsuleRadius(100.0f);
 
 	AIControllerClass = AAIController_Boss2::StaticClass();
@@ -41,6 +51,7 @@ ABoss2Monster::ABoss2Monster()
 void ABoss2Monster::BeginPlay()
 {
 	Super::BeginPlay();
+
 }
 
 void ABoss2Monster::PostInitializeComponents()
@@ -56,6 +67,7 @@ void ABoss2Monster::PostInitializeComponents()
 		_bossMonster02_AnimInstance->_skillDelegate.AddDynamic(this, &ABoss2Monster::FireballAttack);
 	}
 	 _StatCom->SetBossLevelInit(1);
+
 }
 
 void ABoss2Monster::FireballAttack(FVector Location)
@@ -236,23 +248,36 @@ void ABoss2Monster::Skill_AI(FVector location)
 
 void ABoss2Monster::Teleport(FVector location)
 {
+    float OriginalZ = location.Z;
 
-	float OriginalZ = location.Z;
-	FVector TeleportLocation = location+FMath::VRand() * FMath::FRandRange(100.0f, 600.0f);
-	TeleportLocation.Z = OriginalZ;
-	SetActorLocation(TeleportLocation, false, nullptr, ETeleportType::TeleportPhysics);
+    FVector TeleportLocation = location + FMath::VRand() * FMath::FRandRange(100.0f, 600.0f);
+    TeleportLocation.Z = OriginalZ;
 
-	FRotator CurrentRotation = GetActorRotation();
+
+    FVector MinBounds(-1710.0f, -3790.0f, 460.0f);
+    FVector MaxBounds(2190.0f, -1270.0f, 460.0f);
+
+    TeleportLocation.X = FMath::Clamp(TeleportLocation.X, MinBounds.X, MaxBounds.X);
+    TeleportLocation.Y = FMath::Clamp(TeleportLocation.Y, MinBounds.Y, MaxBounds.Y);
+    TeleportLocation.Z = MinBounds.Z; 
+
+
+    SetActorLocation(TeleportLocation, false, nullptr, ETeleportType::TeleportPhysics);
+
+    FRotator CurrentRotation = GetActorRotation();
     FVector DirectionToLocation = location - TeleportLocation;
     FRotator LookAtRotation = DirectionToLocation.Rotation();
     FRotator NewRotation = FRotator(CurrentRotation.Pitch, LookAtRotation.Yaw, CurrentRotation.Roll);
 
     SetActorRotation(NewRotation);
 
+	FVector EffectLocation = GetActorLocation();
+	EffectLocation.Z -= 300.0f;
 
-	EffectManager->Play(*GetBoss2TeleportEffect(), GetActorLocation() - FVector(0.0f, 0.0f, 100.0f));
-	SoundManager->PlaySound(*GetBoss2TeleportSound(), GetActorLocation());
-	Attack_AI();
+    EffectManager->Play(*GetBoss2TeleportEffect(), EffectLocation);
+    SoundManager->PlaySound(*GetBoss2TeleportSound(), GetActorLocation());
+
+    Attack_AI();
 }
 
 FString ABoss2Monster::GetBoss2AttackEffect() const
@@ -269,6 +294,4 @@ FString ABoss2Monster::GetBoss2TeleportSound() const
 {
 	return "Boss_02_Teleport_Cue";
 }
-
-
 

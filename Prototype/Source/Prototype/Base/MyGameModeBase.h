@@ -22,5 +22,9 @@ public:
 	virtual void PostInitializeComponents() override;
 
 	void LockSkill();
+
+private:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<class APortal_Stage2_Normal> _portal2;
 	
 };

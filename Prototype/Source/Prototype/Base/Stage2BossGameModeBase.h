@@ -27,6 +27,7 @@ public:
 
 	void LockSkill();
 
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class ABoss2Monster> _boss;
