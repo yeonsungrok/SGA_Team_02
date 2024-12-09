@@ -5,6 +5,6 @@
 
 APortal_Stage1_Normal::APortal_Stage1_Normal()
 {
-	_mapName = TEXT("stage_01_Map_Normal");
+	_mapName = TEXT("stage_01_Map_Normal1");
 
 }
