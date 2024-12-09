@@ -10,6 +10,8 @@
 #include "../Player/MyPlayerController.h"
 #include "Base/Managers/UIManager.h"
 #include "../Monster/Boss2Monster.h"
+#include "../Monster/SunderPool.h"
+#include "../Monster/BossSunder.h"
 #include "../Monster/AI/AIController_Boss2.h"
 #include "UI/Boss2Widget.h"
 #include "UI/SkillWidget_test.h"
@@ -90,6 +92,8 @@ void AStage2BossGameModeBase::BeginPlay()
 		Boss->_StatCom->_PlHPDelegate.AddUObject(UIManager->GetBoss2UI(), &UBoss2Widget::UpdateBossHPBar);
 		Boss->_StatCom->_deathDelegate.AddUObject(this, &AStage2BossGameModeBase::BossClear);
 	}
+
+
 }
 
 void AStage2BossGameModeBase::PostInitializeComponents()
@@ -129,6 +133,7 @@ void AStage2BossGameModeBase::BossStart()
 		player->_skillWidgetInstance->UnLockAllSkill();
 		player->SetActorLocationAndRotation(NewLocation, NewRotation);
 	}
+
 }
 
 void AStage2BossGameModeBase::LockSkill()
@@ -139,3 +144,5 @@ void AStage2BossGameModeBase::LockSkill()
 		PlayerController->SkillWidgetInstance->LockAllSkill(); 
 	}
 }
+
+

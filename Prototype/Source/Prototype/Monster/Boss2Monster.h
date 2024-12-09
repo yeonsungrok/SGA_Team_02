@@ -35,6 +35,7 @@ private:
 	UFUNCTION()
 	void FireballAttack(FVector Location);
 
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Animation", meta = (AllowPrivateAccess = "true"))
 	class UMonster_Boss2_AnimInstance* _bossMonster02_AnimInstance;
 
@@ -42,6 +43,12 @@ private:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Fireball", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class ABossFireball> _fireball;	
+
+	UPROPERTY()
+    class USunderPool* SunderPool;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<class ABossSunder> _sunder;
 
 	bool Isfire;
 };
