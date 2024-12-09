@@ -314,4 +314,11 @@ private:
 	UFUNCTION()
 	void HandleMontageEnd(UAnimMontage* Montage, bool bInterrupted);
 
+	bool _bCanTransform = true; // 변환 가능 상태
+	float _transformCooldown = 3.0f; // 쿨타임(초)
+	FTimerHandle _transformCooldownHandle; // 타이머 핸들
+
+	void StartTransformationCooldown();
+	void ResetTransformationCooldown();
+
 };

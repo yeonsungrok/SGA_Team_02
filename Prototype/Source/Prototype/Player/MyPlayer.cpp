@@ -1235,6 +1235,12 @@ void AMyPlayer::TransformToHuman()
 
 void AMyPlayer::ToggleTransformation()
 {
+	if (!_bCanTransform)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Transformation is on cooldown."));
+		return;
+	}
+
 	if (_isTransformed) // 현재 변환된 상태이면 인간으로 복귀
 	{
 		TransformToHuman();
@@ -1249,6 +1255,7 @@ void AMyPlayer::ToggleTransformation()
 
 			// 몽타주 종료 이벤트와 연결
 			AnimInstance->OnMontageEnded.AddDynamic(this, &AMyPlayer::HandleMontageEnd);
+			StartTransformationCooldown();
 		}
 	}
 }
@@ -1266,6 +1273,25 @@ void AMyPlayer::HandleMontageEnd(UAnimMontage* Montage, bool bInterrupted)
 		// 델리게이트 연결 해제
 		AnimInstance->OnMontageEnded.RemoveDynamic(this, &AMyPlayer::HandleMontageEnd);
 	}
+}
+
+void AMyPlayer::StartTransformationCooldown()
+{
+	_bCanTransform = false;
+
+	// 타이머 설정
+	GetWorldTimerManager().SetTimer(
+		_transformCooldownHandle,
+		this,
+		&AMyPlayer::ResetTransformationCooldown,
+		_transformCooldown,
+		false
+	);
+}
+
+void AMyPlayer::ResetTransformationCooldown()
+{
+	_bCanTransform = true;
 }
 
 
