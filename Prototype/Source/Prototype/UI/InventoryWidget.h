@@ -10,6 +10,8 @@
 class ABaseItem;
 class UIndexedButton;
 
+#define PlaceHolder 10
+
 DECLARE_MULTICAST_DELEGATE_TwoParams(ItemDropDelegate, int32, bool);
 DECLARE_MULTICAST_DELEGATE_OneParam(ItemUseDelegate, int32);
 DECLARE_MULTICAST_DELEGATE_OneParam(ItemEquipDelegate, int32);
@@ -42,6 +44,8 @@ public:
 
 	void CheckCanEquip();
 
+	//Calling Once Only
+	void InitStat(TArray<int32> statTable);
 
 	void UpdateStat();
 	void UpdateOriginStat(int32 statType, int32 amount);
@@ -165,5 +169,8 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* GoldAmount;
+
+	TArray<int32> _VogStat;
+	TArray<int32> _VmodStat;
 
 };

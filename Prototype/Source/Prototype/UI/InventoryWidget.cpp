@@ -52,6 +52,9 @@ bool UInventoryWidget::Initialize()
 	DropBtn->OnClicked.AddDynamic(this, &UInventoryWidget::DropItem);
 	UseBtn->OnClicked.AddDynamic(this, &UInventoryWidget::UseItem);
 
+	_VogStat.Reserve(5);
+	_VmodStat.Reserve(5);
+
 	return result;
 }
 
@@ -161,7 +164,7 @@ void UInventoryWidget::UpdateEquipSlot(FString slot, ABaseItem* item)
 
 void UInventoryWidget::ShowItem()
 {
-	RefreshModStat();
+	UpdateStat();
 	if (_targetItem == nullptr)
 	{
 		ItemTexture->SetBrushFromTexture(T_DEFAULT);
@@ -299,7 +302,6 @@ void UInventoryWidget::UseItem()
 	}
 
 	ShowItem();
-	//UpdateSlot(_targetIndex, _targetItem);
 }
 
 void UInventoryWidget::CheckCanEquip()
@@ -341,6 +343,23 @@ void UInventoryWidget::CheckCanEquip()
 	UpdateAllEquipBtn();
 }
 
+void UInventoryWidget::InitStat(TArray<int32> statTable)
+{
+	if (statTable.Num() < 5)
+		return;
+
+	for (int i = 0; i < statTable.Num(); i++)
+	{
+		_VogStat.Add(statTable[i]);
+		_VmodStat.Add(PlaceHolder);
+	}
+	for (int i = 0; i < statTable.Num(); i++)
+	{
+		UpdateOriginStat(i, _VogStat[i]);
+	}
+	UpdateStat();
+}
+
 void UInventoryWidget::UpdateStat()
 {
 	for (int i = 0; i < 5; i++)
@@ -357,16 +376,21 @@ void UInventoryWidget::UpdateOriginStat(int32 statType, int32 amount)
 
 void UInventoryWidget::UpdateModStat(int32 statType, int32 amount)
 {
-	FString originStat = _originStat[statType]->GetText().ToString();
-	int modStat = amount + FCString::Atoi(*originStat);
-
-	_modStat[statType]->SetText(FText::FromString(FString::FromInt(modStat)));
+	//TODO : Index Error
+	FString originStat = (_originStat[statType]->GetText()).ToString();
+	//////////////////
 	
-	if (modStat > FCString::Atoi(*originStat))
+	_VmodStat[statType] = PlaceHolder + amount;
+	//////////////////
+	int32 moded = _VogStat[statType] + _VmodStat[statType] - PlaceHolder;
+
+	_modStat[statType]->SetText(FText::FromString(FString::FromInt(moded)));
+	
+	if (moded > FCString::Atoi(*originStat))
 		_modStat[statType]->SetColorAndOpacity(FSlateColor(FColor(0, 200, 0)));
-	if (modStat == FCString::Atoi(*originStat))
+	if (moded == FCString::Atoi(*originStat))
 		_modStat[statType]->SetColorAndOpacity(FSlateColor(FColor(255, 255, 255)));
-	if (modStat < FCString::Atoi(*originStat))
+	if (moded < FCString::Atoi(*originStat))
 		_modStat[statType]->SetColorAndOpacity(FSlateColor(FColor(150, 0, 0)));
 }
 
@@ -374,7 +398,7 @@ void UInventoryWidget::RefreshModStat()
 {
 	for (int i = 0; i < 5; i++)
 	{
-		UpdateModStat(i, 0);
+		UpdateModStat(i, PlaceHolder);
 	}
 }
 

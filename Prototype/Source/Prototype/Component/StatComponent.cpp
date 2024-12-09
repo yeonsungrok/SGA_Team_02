@@ -95,13 +95,8 @@ void UStatComponent::SetLevelInit(int level)
 
 		if (Cast<AMyPlayer>(GetOwner()))
 		{
-			UIManager->GetInventoryUI()->UpdateOriginStat((int32)StatType::HP, _maxHp);
-			UIManager->GetInventoryUI()->UpdateOriginStat((int32)StatType::MP, _maxMp);
-			UIManager->GetInventoryUI()->UpdateOriginStat((int32)StatType::STR, _str);
-			UIManager->GetInventoryUI()->UpdateOriginStat((int32)StatType::DEX, _dex);
-			UIManager->GetInventoryUI()->UpdateOriginStat((int32)StatType::INT, _int);
-
-			UIManager->GetInventoryUI()->UpdateStat();
+			TArray<int32> statPack4UI = { _ogHp, _ogMp, _ogStr, _ogDex, _ogInt };
+			UIManager->GetInventoryUI()->InitStat(statPack4UI);
 		}
 	}
 
@@ -559,29 +554,29 @@ void UStatComponent::ModStat(StatType stat, int32 amount)
 	switch (stat)
 	{
 	case StatType::HP:
-		_modHp += amount;
+		_modHp = amount;
 		SetHp(_curHp + amount);
 		_maxHp = _ogHp + _modHp;
 		invenUI->UpdateOriginStat((int32)(StatType::HP), _maxHp);
 		break;
 	case StatType::MP:
-		_modMp += amount;
+		_modMp = amount;
 		SetMp(_curMp + amount);
 		_maxMp = _ogMp + _modMp;
 		invenUI->UpdateOriginStat((int32)(StatType::MP), _maxMp);
 		break;
 	case StatType::STR:
-		_modStr += amount;
+		_modStr = amount;
 		_str = _ogStr + _modStr;
 		invenUI->UpdateOriginStat((int32)(StatType::STR), _str);
 		break;
 	case StatType::DEX:
-		_modDex += amount;
+		_modDex = amount;
 		_dex = _ogDex + _modDex;
 		invenUI->UpdateOriginStat((int32)(StatType::DEX), _dex);
 		break;
 	case StatType::INT:
-		_modInt += amount;
+		_modInt = amount;
 		_int = _ogInt + _modInt;
 		invenUI->UpdateOriginStat((int32)(StatType::INT), _int);
 		break;
