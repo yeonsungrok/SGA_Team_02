@@ -420,6 +420,10 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\Prototype\Monster\BossObstacle.h"/>
+    <ClCompile Include="..\..\Source\Prototype\Monster\BossSunder.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\BossSunder.h"/>
     <ClCompile Include="..\..\Source\Prototype\Monster\EpicMonster2.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -448,6 +452,10 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\Prototype\Monster\NormalMonster.h"/>
+    <ClCompile Include="..\..\Source\Prototype\Monster\SunderPool.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\Monster\SunderPool.h"/>
     <ClInclude Include="..\..\Source\Prototype\Monster\test_monster.h"/>
     <ClCompile Include="..\..\Source\Prototype\Monster\AI\AIController_Boss2.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
