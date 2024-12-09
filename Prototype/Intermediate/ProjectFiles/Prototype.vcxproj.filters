@@ -604,6 +604,12 @@
     <ClInclude Include="..\..\Source\Prototype\UI\Boss2Widget.h">
       <Filter>Source\Prototype\UI</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\UI\IconTestWidget.cpp">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\UI\IconTestWidget.h">
+      <Filter>Source\Prototype\UI</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Prototype\UI\InventoryWidget.cpp">
       <Filter>Source\Prototype\UI</Filter>
     </ClCompile>
