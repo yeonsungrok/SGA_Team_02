@@ -54,7 +54,7 @@ bool UShopWidget::Initialize()
 
 void UShopWidget::UpdateShopList(TArray<ABaseItem*> list)
 {
-	for (int i = 0; i < SHOP_LIST_MAX; i++)
+	for (int i = 0; i < list.Num(); i++)
 	{
 		auto item = Cast<UIndexedButton>(_SellPanels[i]->GetChildAt(0));
 		item->SetItem(list[i]);

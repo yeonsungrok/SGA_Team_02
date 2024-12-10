@@ -70,7 +70,7 @@ public:
 	FItemData* GetConsumeItemData(int code);
 	FItemData* GetEquipItemData(int code);
 
-	TArray<FSellings*> GetSellingData();
+	TArray<FSellings*> GetSellingData(int32 shop);
 
 	ABaseItem* SellDataToItemData(FSellings* data);
 
