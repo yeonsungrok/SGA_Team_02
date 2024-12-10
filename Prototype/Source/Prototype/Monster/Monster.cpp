@@ -87,7 +87,7 @@ void AMonster::AttackHit()
         SoundManager->PlaySound(*GetSwingSoundName(), missLocation);
     }
 
-    DrawDebugSphere(GetWorld(), center, attackRadius, 32, drawColor, false, 0.3f);
+   // DrawDebugSphere(GetWorld(), center, attackRadius, 32, drawColor, false, 0.3f);
 }
 
 void AMonster::DropReword()

@@ -99,7 +99,7 @@ void ACreature::AttackHit()
 		SoundManager->PlaySound(*GetSwingSoundName(), missLocation);
 	}
 
-	DrawDebugCapsule(
+	/*DrawDebugCapsule(
 		GetWorld(),
 		capsuleCenter,
 		attackRange * 0.5f,
@@ -107,7 +107,7 @@ void ACreature::AttackHit()
 		capsuleRotation,
 		drawColor,
 		false,
-		0.3f);
+		0.3f);*/
 }
 
 FString ACreature::GetHitSoundName() const
