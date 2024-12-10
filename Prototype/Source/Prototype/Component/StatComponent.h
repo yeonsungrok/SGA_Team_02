@@ -163,7 +163,11 @@ public:
 	void SetEpicLevelInit(int level);
 	void SetBossLevelInit(int level);
 
+<<<<<<< HEAD
 	void SetDragonLevelInit(int level);
+=======
+	void UpdateUI();
+>>>>>>> PSW-NPC
 
 	bool IsDead() { return _curHp <= 0; }
 

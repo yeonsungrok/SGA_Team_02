@@ -10,6 +10,8 @@
 class ABaseItem;
 class UIndexedButton;
 
+#define PlaceHolder 10
+
 DECLARE_MULTICAST_DELEGATE_TwoParams(ItemDropDelegate, int32, bool);
 DECLARE_MULTICAST_DELEGATE_OneParam(ItemUseDelegate, int32);
 DECLARE_MULTICAST_DELEGATE_OneParam(ItemEquipDelegate, int32);
@@ -42,10 +44,13 @@ public:
 
 	void CheckCanEquip();
 
+	//Calling Once Only
+	void InitStat(TArray<int32> statTable);
 
 	void UpdateStat();
 	void UpdateOriginStat(int32 statType, int32 amount);
-	void UpdateModStat(int32 statType, int32 amount);
+	void UpdateModStatValue(int32 equipType, int32 statType, int32 amount);
+	void UpdateModStat(int32 equipType, int32 statType, int32 amount);
 	void RefreshModStat();
 
 	void UpdateGold(int32 amount);
@@ -116,6 +121,8 @@ private:
 	UPROPERTY()
 	int32 _targetIndex = -1;
 
+	bool _isThisAlreadyTargetted = false;
+
 	//UI Elememts
 	UPROPERTY(meta = (BindWidget))
 	class UUniformGridPanel* ItemSlots;
@@ -139,7 +146,7 @@ private:
 	class UTextBlock* UseBtnText;
 
 	UPROPERTY(meta = (BindWidget))
-	class UUniformGridPanel* EquipSlots;
+	TArray<UIndexedButton*> _EquipSlots;
 	UPROPERTY(meta = (BindWidget))
 	UIndexedButton* Helmet;
 	UPROPERTY(meta = (BindWidget))
@@ -166,4 +173,11 @@ private:
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* GoldAmount;
 
+	TArray<int32> _VogStat;
+	//Value Real modStat
+	TArray<TArray<int32>> _VRmodStat;
+	//Value Virtual modStat
+	TArray<TArray<int32>> _VVmodStat;
+
+	TArray<int32> _VmodStat;
 };

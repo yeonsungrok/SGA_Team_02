@@ -72,6 +72,8 @@ void UShopComponent::Sale(int32 index)
 		EquipItem->SetEquipType(_sallings[index]->GetEquip());
 		merch = EquipItem;
 	}
+	merch->SetPlayer();
+
 	p_inventory->GettingMoney(-merch->GetPrice());
 	p_inventory->AddItem(0, merch);
 	UIManager->GetShopUI()->ReflectInvenSlots(_customer);
