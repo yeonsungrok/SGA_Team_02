@@ -250,11 +250,11 @@ void UMyGameInstance::SavePlayerSkeletal(class AMyPlayer* player)
 {
     if (player)
     {
-        _savedBodyMesh = player->GetMesh() ? player->GetMesh()->SkeletalMesh : nullptr;
-        _savedLowerBodyMesh = player->_lowerBodyMesh ? player->_lowerBodyMesh->SkeletalMesh : nullptr;
-        _savedShoulderBodyMesh = player->_shoulderBodyMesh ? player->_shoulderBodyMesh->SkeletalMesh : nullptr;
-        _savedSwordBodyMesh = player->_swordBodyMesh ? player->_swordBodyMesh->SkeletalMesh : nullptr;
-        _savedShieldBodyMesh = player->_shieldBodyMesh ? player->_shieldBodyMesh->SkeletalMesh : nullptr;
+		_savedBodyMesh = player->GetMesh() ? Cast<USkeletalMesh>(player->GetMesh()->GetSkinnedAsset()) : nullptr;
+		_savedLowerBodyMesh = player->_lowerBodyMesh ? Cast<USkeletalMesh>(player->_lowerBodyMesh->GetSkinnedAsset()) : nullptr;
+		_savedShoulderBodyMesh = player->_shoulderBodyMesh ? Cast<USkeletalMesh>(player->_shoulderBodyMesh->GetSkinnedAsset()) : nullptr;
+		_savedSwordBodyMesh = player->_swordBodyMesh ? Cast<USkeletalMesh>(player->_swordBodyMesh->GetSkinnedAsset()) : nullptr;
+		_savedShieldBodyMesh = player->_shieldBodyMesh ? Cast<USkeletalMesh>(player->_shieldBodyMesh->GetSkinnedAsset()) : nullptr;
     }
 }
 
