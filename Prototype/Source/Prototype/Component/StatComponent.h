@@ -163,6 +163,8 @@ public:
 	void SetEpicLevelInit(int level);
 	void SetBossLevelInit(int level);
 
+	void UpdateUI();
+
 	bool IsDead() { return _curHp <= 0; }
 
 	DeathDelegate _deathDelegate;

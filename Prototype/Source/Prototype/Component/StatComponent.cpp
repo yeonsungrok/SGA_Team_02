@@ -92,12 +92,7 @@ void UStatComponent::SetLevelInit(int level)
 			_ogDex = _dex;
 			_ogInt = _int;
 		}
-
-		if (Cast<AMyPlayer>(GetOwner()))
-		{
-			TArray<int32> statPack4UI = { _ogHp, _ogMp, _ogStr, _ogDex, _ogInt };
-			UIManager->GetInventoryUI()->InitStat(statPack4UI);
-		}
+		UpdateUI();
 	}
 
 }
@@ -201,6 +196,15 @@ void UStatComponent::SetBossLevelInit(int level)
 	}
 }
 
+void UStatComponent::UpdateUI()
+{
+	if (Cast<AMyPlayer>(GetOwner()))
+	{
+		TArray<int32> statPack4UI = { _ogHp, _ogMp, _ogStr, _ogDex, _ogInt };
+		UIManager->GetInventoryUI()->InitStat(statPack4UI);
+	}
+}
+
 int32 UStatComponent::GetBaseStat(StatType statType) const
 {
 	switch (statType)
@@ -278,6 +282,7 @@ void UStatComponent::SetMaxHp(int32 newMaxHp)
 
 	_maxHp = Data->MaxHP;
 	_maxHp = FMath::Clamp(newMaxHp, 0, 10000);
+	_ogHp = _maxHp;
 
 	UIManager->GetInventoryUI()->UpdateOriginStat((int32)StatType::HP, _maxHp);
 	UIManager->GetInventoryUI()->UpdateStat();
@@ -292,6 +297,7 @@ void UStatComponent::SetMaxMp(int32 newMaxMp)
 
 	_maxMp = Data->MaxMP;
 	_maxMp = FMath::Clamp(newMaxMp, 0, 10000);
+	_ogMp = _maxMp;
 
 	UIManager->GetInventoryUI()->UpdateOriginStat((int32)StatType::MP, _maxMp);
 	UIManager->GetInventoryUI()->UpdateStat();

@@ -15,6 +15,7 @@
 
 #include "Item/BaseItem.h"
 #include "Item/Consumes/ConsumeItem.h"
+#include "Item/Equip/EquipItem.h"
 #include "Component/StatComponent.h"
 
 UInventoryWidget::UInventoryWidget(const FObjectInitializer& ObjectInitializer)
@@ -54,6 +55,17 @@ bool UInventoryWidget::Initialize()
 
 	_VogStat.Reserve(5);
 	_VmodStat.Reserve(5);
+	_VRmodStat.Reserve((int32)EItemType::END);
+	_VVmodStat.Reserve((int32)EItemType::END);
+	/*
+	_VmodStat
+
+			hp		mp		str		...
+	Helmet	0		0		0
+	upper	0		0		0
+	lower
+	...
+	*/
 
 	return result;
 }
@@ -83,6 +95,13 @@ void UInventoryWidget::SetItemButtons()
 	LowerArmor->SetSlotType(SlotType::Equip);
 	Sword->SetSlotType(SlotType::Equip);
 	Shield->SetSlotType(SlotType::Equip);
+
+	_EquipSlots.Add(Helmet);
+	_EquipSlots.Add(ShoulderGuard);
+	_EquipSlots.Add(UpperArmor);
+	_EquipSlots.Add(LowerArmor);
+	_EquipSlots.Add(Sword);
+	_EquipSlots.Add(Shield);
 }
 
 void UInventoryWidget::SetStats()
@@ -178,12 +197,12 @@ void UInventoryWidget::ShowItem()
 			if (_targetIndex == -1)
 			{
 				UseBtnText->SetText(FText::FromString(TEXT("Strip")));
-				UpdateModStat((int32)_targetItem->GetModStat(), -_targetItem->GetValue());
+				UpdateModStat((int32)(Cast<AEquipItem>(_targetItem)->GetEquipType()), (int32)_targetItem->GetModStat(), -_targetItem->GetValue());
 			}
 			else
 			{
 				UseBtnText->SetText(FText::FromString(TEXT("Equip")));
-				UpdateModStat((int32)_targetItem->GetModStat(), _targetItem->GetValue());
+				UpdateModStat((int32)(Cast<AEquipItem>(_targetItem)->GetEquipType()), (int32)_targetItem->GetModStat(), _targetItem->GetValue());
 			}
 		}
 		else
@@ -351,7 +370,19 @@ void UInventoryWidget::InitStat(TArray<int32> statTable)
 	for (int i = 0; i < statTable.Num(); i++)
 	{
 		_VogStat.Add(statTable[i]);
-		_VmodStat.Add(PlaceHolder);
+		_VmodStat.Add(0);
+	}
+	for (int i = 0; i < (int32)EItemType::END; i++)
+	{
+		TArray<int32> temp;
+		TArray<int32> demp;
+		for (int j = 0; j < statTable.Num(); j++)
+		{
+			temp.Add(0);
+			demp.Add(0);
+		}
+		_VRmodStat.Add(temp);
+		_VVmodStat.Add(demp);
 	}
 	for (int i = 0; i < statTable.Num(); i++)
 	{
@@ -374,15 +405,24 @@ void UInventoryWidget::UpdateOriginStat(int32 statType, int32 amount)
 	_originStat[statType]->SetText(FText::FromString(FString::FromInt(amount)));
 }
 
-void UInventoryWidget::UpdateModStat(int32 statType, int32 amount)
+void UInventoryWidget::UpdateModStatValue(int32 equipType, int32 statType, int32 amount)
 {
-	//TODO : Index Error
+	_VRmodStat[equipType][statType] = amount;
+}
+
+void UInventoryWidget::UpdateModStat(int32 equipType, int32 statType, int32 amount)
+{
 	FString originStat = (_originStat[statType]->GetText()).ToString();
-	//////////////////
 	
-	_VmodStat[statType] = PlaceHolder + amount;
 	//////////////////
-	int32 moded = _VogStat[statType] + _VmodStat[statType] - PlaceHolder;
+	_VVmodStat[equipType][statType] = amount;
+	int32 moded = 0;
+	for (int32 i = 0; i < (int32)EItemType::END; i++)
+	{
+		moded += _VVmodStat[i][statType];
+	}
+	moded += _VogStat[statType];
+	//////////////////
 
 	_modStat[statType]->SetText(FText::FromString(FString::FromInt(moded)));
 	
@@ -396,9 +436,11 @@ void UInventoryWidget::UpdateModStat(int32 statType, int32 amount)
 
 void UInventoryWidget::RefreshModStat()
 {
-	for (int i = 0; i < 5; i++)
+
+	for (int i = 0; i < (int)EItemType::END; i++)
 	{
-		UpdateModStat(i, PlaceHolder);
+		for (int j = 0; j < 5; j++)
+			_VVmodStat[i][j] = 0;
 	}
 }
 
@@ -425,6 +467,11 @@ void UInventoryWidget::SetTargetItem(int32 slotIndex)
 
 	ABaseItem* item = Button_[slotIndex]->GetItem();
 	if (item == nullptr) return;
+
+	if (_targetItem == item)
+		_isThisAlreadyTargetted = true;
+	else
+		_isThisAlreadyTargetted = false;
 
 	_targetItem = item;
 	_targetIndex = slotIndex;
@@ -457,6 +504,11 @@ void UInventoryWidget::SetTargetEquip(EItemType equip)
 		break;
 	}
 	if (item == nullptr) return;
+
+	if (_targetItem == item)
+		_isThisAlreadyTargetted = true;
+	else
+		_isThisAlreadyTargetted = false;
 
 	_targetItem = item;
 	_targetIndex = -1;

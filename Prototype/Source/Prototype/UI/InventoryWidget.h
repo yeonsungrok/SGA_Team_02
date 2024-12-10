@@ -49,7 +49,8 @@ public:
 
 	void UpdateStat();
 	void UpdateOriginStat(int32 statType, int32 amount);
-	void UpdateModStat(int32 statType, int32 amount);
+	void UpdateModStatValue(int32 equipType, int32 statType, int32 amount);
+	void UpdateModStat(int32 equipType, int32 statType, int32 amount);
 	void RefreshModStat();
 
 	void UpdateGold(int32 amount);
@@ -120,6 +121,8 @@ private:
 	UPROPERTY()
 	int32 _targetIndex = -1;
 
+	bool _isThisAlreadyTargetted = false;
+
 	//UI Elememts
 	UPROPERTY(meta = (BindWidget))
 	class UUniformGridPanel* ItemSlots;
@@ -143,7 +146,7 @@ private:
 	class UTextBlock* UseBtnText;
 
 	UPROPERTY(meta = (BindWidget))
-	class UUniformGridPanel* EquipSlots;
+	TArray<UIndexedButton*> _EquipSlots;
 	UPROPERTY(meta = (BindWidget))
 	UIndexedButton* Helmet;
 	UPROPERTY(meta = (BindWidget))
@@ -171,6 +174,10 @@ private:
 	class UTextBlock* GoldAmount;
 
 	TArray<int32> _VogStat;
-	TArray<int32> _VmodStat;
+	//Value Real modStat
+	TArray<TArray<int32>> _VRmodStat;
+	//Value Virtual modStat
+	TArray<TArray<int32>> _VVmodStat;
 
+	TArray<int32> _VmodStat;
 };
