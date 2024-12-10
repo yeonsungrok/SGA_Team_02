@@ -156,7 +156,7 @@ void AEquipItem::UnEquip()
         break;
     }
 
-    _player->GetStatComponent()->ModStat(_ModStatType, -_Value);
+    _player->GetStatComponent()->ModStat(_ModStatType, 0);
     _isEquipped = false;
 }
 
