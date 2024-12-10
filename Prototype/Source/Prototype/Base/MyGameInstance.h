@@ -167,6 +167,8 @@ private:
 	UPROPERTY()
 	int32 _savedExp;
 	UPROPERTY()
+	int32 _savedNextExp;
+	UPROPERTY()
 	int32 _savedBonus;
 
 	UPROPERTY()

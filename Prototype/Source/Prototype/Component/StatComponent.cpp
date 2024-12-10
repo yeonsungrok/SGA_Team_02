@@ -402,6 +402,13 @@ void UStatComponent::SetExp(int32 newexp)
 	_curExp = FMath::Clamp(newexp, 0, 100);
 }
 
+void UStatComponent::SetNextExp(int32 newnextexp)
+{
+	_nextExp = newnextexp;
+	float ratio = EXpRatio();
+	_PlEXPDelegate.Broadcast(ratio);
+}
+
 void UStatComponent::AddStat(StatType type, int32 amount)
 {
 	switch (type)

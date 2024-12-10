@@ -139,7 +139,8 @@ public:
 	void SetOgInt(int32 newint);
 	void SetModInt(int32 newint);
 	void SetExp(int32 newexp);
-	
+	void SetNextExp(int32 newnextexp);
+
 	void AddStat(StatType type, int32 amount = 1);
 
 	void SetStatBoost(int32 rate);
