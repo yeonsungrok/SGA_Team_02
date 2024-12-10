@@ -67,11 +67,25 @@ UMyGameInstance::UMyGameInstance()
 		_DragonStatTable = DragonStat.Object;
 	}
 	
-	static ConstructorHelpers::FObjectFinder<UDataTable> shopList(TEXT("/Script/Engine.DataTable'/Game/Data/ShopListDataTable.ShopListDataTable'"));
-
-	if (shopList.Succeeded())
+	static ConstructorHelpers::FObjectFinder<UDataTable> shopList1(TEXT("/Script/Engine.DataTable'/Game/Data/Postion_ShopKeeper.Postion_ShopKeeper'"));
+	if (shopList1.Succeeded())
 	{
-		_ShopList = shopList.Object;
+		_ShopLists.Add(shopList1.Object);
+	}
+	static ConstructorHelpers::FObjectFinder<UDataTable> shopList2(TEXT("/Script/Engine.DataTable'/Game/Data/BasicEquip_ShopKeeper.BasicEquip_ShopKeeper'"));
+	if (shopList2.Succeeded())
+	{
+		_ShopLists.Add(shopList2.Object);
+	}
+	static ConstructorHelpers::FObjectFinder<UDataTable> shopList3(TEXT("/Script/Engine.DataTable'/Game/Data/ShinyEquip_ShopKeeper.ShinyEquip_ShopKeeper'"));
+	if (shopList3.Succeeded())
+	{
+		_ShopLists.Add(shopList3.Object);
+	}
+	static ConstructorHelpers::FObjectFinder<UDataTable> shopList4(TEXT("/Script/Engine.DataTable'/Game/Data/ShadowEquip_ShopKeeper.ShadowEquip_ShopKeeper'"));
+	if (shopList4.Succeeded())
+	{
+		_ShopLists.Add(shopList4.Object);
 	}
 }
 
@@ -363,14 +377,14 @@ FItemData *UMyGameInstance::GetEquipItemData(int code)
 	return EquipData;
 }
 
-TArray<FSellings*> UMyGameInstance::GetSellingData()
+TArray<FSellings*> UMyGameInstance::GetSellingData(int32 shop)
 {
 	TArray<FSellings*> sellingList;
 	FSellings* sellingData = nullptr;
 	
 	for (int i = 0; i < SHOP_LIST_MAX; i++)
 	{
-		sellingData = _ShopList->FindRow<FSellings>(*FString::FromInt(i), TEXT(""));
+		sellingData = _ShopLists[shop]->FindRow<FSellings>(*FString::FromInt(i), TEXT(""));
 		sellingList.Add(sellingData);
 	}
 

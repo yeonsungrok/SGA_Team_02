@@ -95,6 +95,7 @@ void AMyNPC::Interect()
 	if (_isOverlapped == false)
 		return;
 	UIManager->GetShopUI()->ReflectInvenSlots(_target);
+	_shopComp->OpenShop();
 	UIManager->ToggleUI(UI_LIST::Shop);
 }
 
