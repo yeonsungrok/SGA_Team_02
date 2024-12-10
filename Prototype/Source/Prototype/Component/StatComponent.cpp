@@ -288,6 +288,11 @@ void UStatComponent::SetMaxHp(int32 newMaxHp)
 	UIManager->GetInventoryUI()->UpdateStat();
 }
 
+void UStatComponent::SetOgHp(int32 newMaxHp)
+{
+	_ogHp = FMath::Clamp(newMaxHp, 0, 1000);
+}
+
 void UStatComponent::SetMaxMp(int32 newMaxMp)
 {
 
@@ -301,6 +306,11 @@ void UStatComponent::SetMaxMp(int32 newMaxMp)
 
 	UIManager->GetInventoryUI()->UpdateOriginStat((int32)StatType::MP, _maxMp);
 	UIManager->GetInventoryUI()->UpdateStat();
+}
+
+void UStatComponent::SetOgMp(int32 newMaxMp)
+{
+	_ogMp = FMath::Clamp(newMaxMp, 0, 1000);
 }
 
 void UStatComponent::SetBonusPoint(int32 newBp)

@@ -125,7 +125,9 @@ public:
 
 	void SetLevel(int32 newLevel);
 	void SetMaxHp(int32 newMaxHp);
+	void SetOgHp(int32 newMaxHp);
 	void SetMaxMp(int32 newMaxMp);
+	void SetOgMp(int32 newMaxMp);
 	void SetBonusPoint(int32 newBp);
 	void SetStr(int32 newstr);
 	void SetOgStr(int32 newstr);

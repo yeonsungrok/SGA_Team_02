@@ -81,7 +81,9 @@ void UMyGameInstance::SavePlayerStats(class UStatComponent *StatComponent)
 	{
 		_savedLevel = StatComponent->GetLevel();
 		_savedMaxHp = StatComponent->GetMaxHp();
+		_savedOgHp = StatComponent->GetOgHp();
 		_savedMaxMp = StatComponent->GetMaxMp();
+		_savedOgMp = StatComponent->GetOhMp();
 		_savedStr = StatComponent->GetStr();
 		_savedOgStr = StatComponent->GetOgStr();
 		_savedModStr = StatComponent->GetModStr();
@@ -110,7 +112,9 @@ void UMyGameInstance::LoadPlayerStats(class UStatComponent *StatComponent)
 	{
 		StatComponent->SetLevel(_savedLevel);
 		StatComponent->SetMaxHp(_savedMaxHp);
+		StatComponent->SetOgHp(_savedOgHp);
 		StatComponent->SetMaxMp(_savedMaxMp);
+		StatComponent->SetOgMp(_savedOgMp);
 		StatComponent->SetStr(_savedStr);
 		StatComponent->SetOgStr(_savedOgStr);
 		StatComponent->SetModStr(_savedModStr);

@@ -312,6 +312,8 @@ void UInventoryComponent::AddItemToEquip(FString EquipSlot,class ABaseItem* NewI
 	if(EquipItem)
 	{
 		_EquipSlots.Add(EquipSlot,EquipItem);
+		_EquipSlots[EquipSlot]->UseItem();
+		UIupdate_equip(EquipSlot, _EquipSlots[EquipSlot]);
 	}
 	
 }
