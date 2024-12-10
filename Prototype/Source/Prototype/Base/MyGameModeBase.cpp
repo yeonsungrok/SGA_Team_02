@@ -7,6 +7,8 @@
 #include "UI/SkillWidget_test.h"
 #include "../Player/MyPlayer.h"
 #include "../Player/Portal/Portal_Stage2_Normal.h"
+#include "../Monster/NormalMonster.h"
+#include "../Monster/AI/AIController_NormalMonster.h"
 #include "Engine/DirectionalLight.h"
 #include "Engine/SkyLight.h"
 #include "Kismet/GameplayStatics.h"
@@ -17,6 +19,12 @@ AMyGameModeBase::AMyGameModeBase()
 	if (PS.Succeeded())
 	{
 		_portal2 = PS.Class;
+	}
+
+	static ConstructorHelpers::FClassFinder<ANormalMonster> NM(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/Monster/NormalMonster/NormalMonster_BP.NormalMonster_BP_C'"));
+	if (NM.Succeeded())
+	{
+		_monster = NM.Class;
 	}
 }
 
@@ -43,7 +51,7 @@ void AMyGameModeBase::BeginPlay()
 			if (GameInstance->GetFirst())
 			{
 				GAMEINSTANCE->InitializeManagers();
-
+				
 				if (StatComponent)
 				{
 					player->_StatCom->SetLevelInit(1);
@@ -52,12 +60,16 @@ void AMyGameModeBase::BeginPlay()
 				{
 					player->_inventoryComponent->InitSlot();
 				}
+
+				FVector BaseLocation(-4120.f, -3620.f, 18.f);
+				FVector AddLocation(-300.f,1200.f,0.0f);
+				SpawnMonster(BaseLocation,AddLocation);
 				GameInstance->SetFirst(false);
 			}
 			else
 			{
 				GameInstance->InitializeManagers();
-
+				
 				if (StatComponent)
 				{
 					GameInstance->LoadPlayerStats(StatComponent);
@@ -71,6 +83,9 @@ void AMyGameModeBase::BeginPlay()
 
 				if (GameInstance->GetStage1Clear())
 				{
+					FVector BaseLocation(1310.f, 50.f, 18.f);
+					FVector AddLocation(500.f,830.f,0.0f);
+					SpawnMonster(BaseLocation,AddLocation);
 					if (_portal2)
 					{
 						FVector Location(5690.f, 5900.f, -40.f);
@@ -78,6 +93,7 @@ void AMyGameModeBase::BeginPlay()
 						GetWorld()->SpawnActor<APortal_Stage2_Normal>(_portal2, Location, Rotation);
 					}
 				}
+
 			}
 		}
 	}
@@ -96,3 +112,29 @@ void AMyGameModeBase::LockSkill()
 		PlayerController->SkillWidgetInstance->LockAllSkill();
 	}
 }
+
+void AMyGameModeBase::SpawnMonster(FVector BaseLocation, FVector AddLocation)
+{
+	if (_monster)
+    {
+        FActorSpawnParameters SpawnParams;
+        for (int i = 0; i < 5; ++i) 
+        {
+            SpawnParams.Name = FName(*FString::Printf(TEXT("Monster_%d"), i + 1));
+            
+            FVector SpawnLocation = BaseLocation + (AddLocation * i);
+            
+            ANormalMonster* Monster = GetWorld()->SpawnActor<ANormalMonster>(_monster, SpawnLocation, FRotator::ZeroRotator, SpawnParams);
+            if (Monster)
+            {
+                Monster->_StatCom->SetMonsterLevelInit(1);
+                AAIController_NormalMonster* MonsterAI = GetWorld()->SpawnActor<AAIController_NormalMonster>(AAIController_NormalMonster::StaticClass());
+                if (MonsterAI)
+                {
+                    MonsterAI->OnPossess(Monster);
+                }
+            }
+        }
+    }
+}
+
