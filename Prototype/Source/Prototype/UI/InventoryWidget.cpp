@@ -54,18 +54,6 @@ bool UInventoryWidget::Initialize()
 	UseBtn->OnClicked.AddDynamic(this, &UInventoryWidget::UseItem);
 
 	_VogStat.Reserve(5);
-	_VmodStat.Reserve(5);
-	_VRmodStat.Reserve((int32)EItemType::END);
-	_VVmodStat.Reserve((int32)EItemType::END);
-	/*
-	_VmodStat
-
-			hp		mp		str		...
-	Helmet	0		0		0
-	upper	0		0		0
-	lower
-	...
-	*/
 
 	return result;
 }
@@ -197,12 +185,12 @@ void UInventoryWidget::ShowItem()
 			if (_targetIndex == -1)
 			{
 				UseBtnText->SetText(FText::FromString(TEXT("Strip")));
-				UpdateModStat((int32)(Cast<AEquipItem>(_targetItem)->GetEquipType()), (int32)_targetItem->GetModStat(), -_targetItem->GetValue());
+				UpdateModStat((int32)_targetItem->GetModStat(), -_targetItem->GetValue());
 			}
 			else
 			{
 				UseBtnText->SetText(FText::FromString(TEXT("Equip")));
-				UpdateModStat((int32)(Cast<AEquipItem>(_targetItem)->GetEquipType()), (int32)_targetItem->GetModStat(), _targetItem->GetValue());
+				UpdateModStat((int32)_targetItem->GetModStat(), _targetItem->GetValue());
 			}
 		}
 		else
@@ -370,19 +358,6 @@ void UInventoryWidget::InitStat(TArray<int32> statTable)
 	for (int i = 0; i < statTable.Num(); i++)
 	{
 		_VogStat.Add(statTable[i]);
-		_VmodStat.Add(0);
-	}
-	for (int i = 0; i < (int32)EItemType::END; i++)
-	{
-		TArray<int32> temp;
-		TArray<int32> demp;
-		for (int j = 0; j < statTable.Num(); j++)
-		{
-			temp.Add(0);
-			demp.Add(0);
-		}
-		_VRmodStat.Add(temp);
-		_VVmodStat.Add(demp);
 	}
 	for (int i = 0; i < statTable.Num(); i++)
 	{
@@ -405,43 +380,24 @@ void UInventoryWidget::UpdateOriginStat(int32 statType, int32 amount)
 	_originStat[statType]->SetText(FText::FromString(FString::FromInt(amount)));
 }
 
-void UInventoryWidget::UpdateModStatValue(int32 equipType, int32 statType, int32 amount)
+void UInventoryWidget::UpdateModStat(int32 statType, int32 amount)
 {
-	_VRmodStat[equipType][statType] = amount;
-}
+	int32 nowStat = FCString::Atoi(*(_originStat[statType]->GetText()).ToString());
 
-void UInventoryWidget::UpdateModStat(int32 equipType, int32 statType, int32 amount)
-{
-	FString originStat = (_originStat[statType]->GetText()).ToString();
-	
-	//////////////////
-	_VVmodStat[equipType][statType] = amount;
 	int32 moded = 0;
-	for (int32 i = 0; i < (int32)EItemType::END; i++)
-	{
-		moded += _VVmodStat[i][statType];
-	}
-	moded += _VogStat[statType];
-	//////////////////
+	if (nowStat == _VogStat[statType] || nowStat + amount == _VogStat[statType])
+		moded = nowStat + amount;
+	else
+		moded = _VogStat[statType] + amount;
 
 	_modStat[statType]->SetText(FText::FromString(FString::FromInt(moded)));
-	
-	if (moded > FCString::Atoi(*originStat))
+
+	if (moded > nowStat)
 		_modStat[statType]->SetColorAndOpacity(FSlateColor(FColor(0, 200, 0)));
-	if (moded == FCString::Atoi(*originStat))
+	if (moded == nowStat)
 		_modStat[statType]->SetColorAndOpacity(FSlateColor(FColor(255, 255, 255)));
-	if (moded < FCString::Atoi(*originStat))
+	if (moded < nowStat)
 		_modStat[statType]->SetColorAndOpacity(FSlateColor(FColor(150, 0, 0)));
-}
-
-void UInventoryWidget::RefreshModStat()
-{
-
-	for (int i = 0; i < (int)EItemType::END; i++)
-	{
-		for (int j = 0; j < 5; j++)
-			_VVmodStat[i][j] = 0;
-	}
 }
 
 void UInventoryWidget::UpdateGold(int32 amount)

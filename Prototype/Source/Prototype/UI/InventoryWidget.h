@@ -49,9 +49,7 @@ public:
 
 	void UpdateStat();
 	void UpdateOriginStat(int32 statType, int32 amount);
-	void UpdateModStatValue(int32 equipType, int32 statType, int32 amount);
-	void UpdateModStat(int32 equipType, int32 statType, int32 amount);
-	void RefreshModStat();
+	void UpdateModStat(int32 statType, int32 amount = 0);
 
 	void UpdateGold(int32 amount);
 
@@ -174,10 +172,4 @@ private:
 	class UTextBlock* GoldAmount;
 
 	TArray<int32> _VogStat;
-	//Value Real modStat
-	TArray<TArray<int32>> _VRmodStat;
-	//Value Virtual modStat
-	TArray<TArray<int32>> _VVmodStat;
-
-	TArray<int32> _VmodStat;
 };
