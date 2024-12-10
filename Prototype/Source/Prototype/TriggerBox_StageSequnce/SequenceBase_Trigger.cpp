@@ -12,6 +12,7 @@
 
 #include "UI/PlayerBarWidget.h"
 #include "UI/SkillWidget_test.h"
+#include "UI/MiniMapWidget.h"
 #include "UI/StatWidget.h"
 #include "Component/StatComponent.h"
 

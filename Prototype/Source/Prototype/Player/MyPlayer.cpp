@@ -30,6 +30,7 @@
 #include "GameFramework/Actor.h"
 #include "Components/SceneCaptureComponent2D.h"
 #include "PaperSpriteComponent.h"
+#include "UI/MiniMapWidget.h"
 
 // te
 #include "GameFramework/Actor.h"
