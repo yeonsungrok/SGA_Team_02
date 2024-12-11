@@ -134,7 +134,7 @@ void USkillWidget_test::UpdateCooldown(int32 SkillIndex)
 
         if (CooldownOverlays[SkillIndex])
         {
-            FSlateBrush Brush = CooldownOverlays[SkillIndex]->Brush;
+            FSlateBrush Brush = CooldownOverlays[SkillIndex]->GetBrush();
             Brush.ImageSize = FVector2D(Brush.ImageSize.X, SkillImage1->GetDesiredSize().Y);
             CooldownOverlays[SkillIndex]->SetBrush(Brush);
 
@@ -147,7 +147,7 @@ void USkillWidget_test::UpdateCooldown(int32 SkillIndex)
 
         if (CooldownOverlays[SkillIndex])
         {
-            FSlateBrush Brush = CooldownOverlays[SkillIndex]->Brush;
+            FSlateBrush Brush = CooldownOverlays[SkillIndex]->GetBrush();
             Brush.ImageSize = FVector2D(Brush.ImageSize.X, SkillImage1->GetDesiredSize().Y * Percent);
             CooldownOverlays[SkillIndex]->SetBrush(Brush);
 

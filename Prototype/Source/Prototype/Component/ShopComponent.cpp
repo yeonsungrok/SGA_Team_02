@@ -4,6 +4,7 @@
 #include "Component/ShopComponent.h"
 #include "Base/MyGameInstance.h"
 #include "Base/Managers/UIManager.h"
+#include "NPC/MyNPC.h"
 #include "UI/ShopWidget.h"
 #include "Player/MyPlayer.h"
 
@@ -23,10 +24,7 @@ void UShopComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
-	SetSales();
-	UIManager->GetShopUI()->BuySucceed.AddUObject(this, &UShopComponent::Sale);
-	UIManager->GetShopUI()->SaleItem.AddUObject(this, &UShopComponent::SalePlayerItem);
+	Init();
 }
 
 void UShopComponent::SetCustomer(AMyPlayer* target)
@@ -36,19 +34,28 @@ void UShopComponent::SetCustomer(AMyPlayer* target)
 
 void UShopComponent::Init()
 {
-	SetSales();
+	int32 shopCode = Cast<AMyNPC>(GetOwner())->GetShopCode();
+
+	SetSales(shopCode);
+	UIManager->GetShopUI()->BuySucceed.AddUObject(this, &UShopComponent::Sale);
+	UIManager->GetShopUI()->SaleItem.AddUObject(this, &UShopComponent::SalePlayerItem);
 }
 
-void UShopComponent::SetSales()
+void UShopComponent::SetSales(int32 code)
 {
-	auto data = GAMEINSTANCE->GetSellingData();
+	auto data = GAMEINSTANCE->GetSellingData(code);
 	ABaseItem* item;
 	for (auto it : data)
 	{
+		if (it == nullptr)
+			continue;
 		item = GAMEINSTANCE->SellDataToItemData(it);
 		_sallings.Add(item);
 	}
+}
 
+void UShopComponent::OpenShop()
+{
 	UIManager->GetShopUI()->UpdateShopList(_sallings);
 }
 

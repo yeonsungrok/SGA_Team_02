@@ -67,11 +67,25 @@ UMyGameInstance::UMyGameInstance()
 		_DragonStatTable = DragonStat.Object;
 	}
 	
-	static ConstructorHelpers::FObjectFinder<UDataTable> shopList(TEXT("/Script/Engine.DataTable'/Game/Data/ShopListDataTable.ShopListDataTable'"));
-
-	if (shopList.Succeeded())
+	static ConstructorHelpers::FObjectFinder<UDataTable> shopList1(TEXT("/Script/Engine.DataTable'/Game/Data/Postion_ShopKeeper.Postion_ShopKeeper'"));
+	if (shopList1.Succeeded())
 	{
-		_ShopList = shopList.Object;
+		_ShopLists.Add(shopList1.Object);
+	}
+	static ConstructorHelpers::FObjectFinder<UDataTable> shopList2(TEXT("/Script/Engine.DataTable'/Game/Data/BasicEquip_ShopKeeper.BasicEquip_ShopKeeper'"));
+	if (shopList2.Succeeded())
+	{
+		_ShopLists.Add(shopList2.Object);
+	}
+	static ConstructorHelpers::FObjectFinder<UDataTable> shopList3(TEXT("/Script/Engine.DataTable'/Game/Data/ShinyEquip_ShopKeeper.ShinyEquip_ShopKeeper'"));
+	if (shopList3.Succeeded())
+	{
+		_ShopLists.Add(shopList3.Object);
+	}
+	static ConstructorHelpers::FObjectFinder<UDataTable> shopList4(TEXT("/Script/Engine.DataTable'/Game/Data/ShadowEquip_ShopKeeper.ShadowEquip_ShopKeeper'"));
+	if (shopList4.Succeeded())
+	{
+		_ShopLists.Add(shopList4.Object);
 	}
 }
 
@@ -102,6 +116,7 @@ void UMyGameInstance::SavePlayerStats(class UStatComponent *StatComponent)
 		_savedCurHp = StatComponent->GetCurHp();
 		_savedCurMp = StatComponent->GetCurMp();
 		_savedExp = StatComponent->GetExp();
+		_savedNextExp = StatComponent->GetNextExp();
 		_savedBonus = StatComponent->GetBonusPoint();
 	}
 }
@@ -132,8 +147,9 @@ void UMyGameInstance::LoadPlayerStats(class UStatComponent *StatComponent)
 
 		StatComponent->SetHp(_savedCurHp);
 		StatComponent->SetMp(_savedCurMp);
-		StatComponent->SetExp(_savedExp);
+		StatComponent->SetNextExp(_savedNextExp);
 		StatComponent->SetBonusPoint(_savedBonus);
+		StatComponent->AddExp(_savedExp);
 
 		StatComponent->UpdateUI();
 	}
@@ -250,11 +266,11 @@ void UMyGameInstance::SavePlayerSkeletal(class AMyPlayer* player)
 {
     if (player)
     {
-        _savedBodyMesh = player->GetMesh() ? player->GetMesh()->SkeletalMesh : nullptr;
-        _savedLowerBodyMesh = player->_lowerBodyMesh ? player->_lowerBodyMesh->SkeletalMesh : nullptr;
-        _savedShoulderBodyMesh = player->_shoulderBodyMesh ? player->_shoulderBodyMesh->SkeletalMesh : nullptr;
-        _savedSwordBodyMesh = player->_swordBodyMesh ? player->_swordBodyMesh->SkeletalMesh : nullptr;
-        _savedShieldBodyMesh = player->_shieldBodyMesh ? player->_shieldBodyMesh->SkeletalMesh : nullptr;
+		_savedBodyMesh = player->GetMesh() ? Cast<USkeletalMesh>(player->GetMesh()->GetSkinnedAsset()) : nullptr;
+		_savedLowerBodyMesh = player->_lowerBodyMesh ? Cast<USkeletalMesh>(player->_lowerBodyMesh->GetSkinnedAsset()) : nullptr;
+		_savedShoulderBodyMesh = player->_shoulderBodyMesh ? Cast<USkeletalMesh>(player->_shoulderBodyMesh->GetSkinnedAsset()) : nullptr;
+		_savedSwordBodyMesh = player->_swordBodyMesh ? Cast<USkeletalMesh>(player->_swordBodyMesh->GetSkinnedAsset()) : nullptr;
+		_savedShieldBodyMesh = player->_shieldBodyMesh ? Cast<USkeletalMesh>(player->_shieldBodyMesh->GetSkinnedAsset()) : nullptr;
     }
 }
 
@@ -363,14 +379,14 @@ FItemData *UMyGameInstance::GetEquipItemData(int code)
 	return EquipData;
 }
 
-TArray<FSellings*> UMyGameInstance::GetSellingData()
+TArray<FSellings*> UMyGameInstance::GetSellingData(int32 shop)
 {
 	TArray<FSellings*> sellingList;
 	FSellings* sellingData = nullptr;
 	
 	for (int i = 0; i < SHOP_LIST_MAX; i++)
 	{
-		sellingData = _ShopList->FindRow<FSellings>(*FString::FromInt(i), TEXT(""));
+		sellingData = _ShopLists[shop]->FindRow<FSellings>(*FString::FromInt(i), TEXT(""));
 		sellingList.Add(sellingData);
 	}
 

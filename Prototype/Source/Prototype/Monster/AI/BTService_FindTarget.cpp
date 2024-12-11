@@ -78,7 +78,7 @@ void UBTService_FindTarget::TickNode(UBehaviorTreeComponent &OwnerComp, uint8 *N
                 if (myCharacterController != nullptr && myCharacterController->IsPlayerController())
                 {
                     OwnerComp.GetBlackboardComponent()->SetValueAsObject(FName(TEXT("Target")), myCharacter);
-                    DrawDebugSphere(world, center, searchRadius, 32, FColor::Red, false, 0.3f);
+                   // DrawDebugSphere(world, center, searchRadius, 32, FColor::Red, false, 0.3f);
 
                     ANormalMonster* NMonster = Cast<ANormalMonster>(currentPawn);
                     if (NMonster == nullptr)  return;
@@ -89,7 +89,7 @@ void UBTService_FindTarget::TickNode(UBehaviorTreeComponent &OwnerComp, uint8 *N
             }
         }
         OwnerComp.GetBlackboardComponent()->SetValueAsObject(FName(TEXT("Target")), nullptr);
-        DrawDebugSphere(world, center, searchRadius, 32, FColor::Green, false, 0.3f);
+       // DrawDebugSphere(world, center, searchRadius, 32, FColor::Green, false, 0.3f);
     }
   /*   else
      {

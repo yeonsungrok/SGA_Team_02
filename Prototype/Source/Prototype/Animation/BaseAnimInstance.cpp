@@ -3,6 +3,7 @@
 
 #include "Animation/BaseAnimInstance.h"
 
+#include "KismetAnimationLibrary.h"
 #include "../Player/Creature.h"
 #include "../Player/MyPlayer.h"
 #include "../Player/Dragon.h"
@@ -47,7 +48,7 @@ void UBaseAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 
 
 		_isFalling = myCharacter->GetMovementComponent()->IsFalling();
-		_Direction = CalculateDirection(myCharacter->GetVelocity(), myCharacter->GetActorRotation());
+		_Direction = UKismetAnimationLibrary::CalculateDirection(myCharacter->GetVelocity(), myCharacter->GetActorRotation());
 
 		_vertical = _speed + (myCharacter->GetVertical() - _speed) * (DeltaSeconds);
 		_horizontal = _Direction + (myCharacter->GetHorizontal() - _Direction) * (DeltaSeconds);

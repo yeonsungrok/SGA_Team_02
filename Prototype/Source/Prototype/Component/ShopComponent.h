@@ -39,7 +39,9 @@ public:
 	void Init();
 
 	UFUNCTION()
-	void SetSales();
+	void SetSales(int32 code);
+
+	void OpenShop();
 
 	UFUNCTION()
 	void Sale(int32 index);

@@ -87,7 +87,7 @@ void AMonster::AttackHit()
         SoundManager->PlaySound(*GetSwingSoundName(), missLocation);
     }
 
-    DrawDebugSphere(GetWorld(), center, attackRadius, 32, drawColor, false, 0.3f);
+   // DrawDebugSphere(GetWorld(), center, attackRadius, 32, drawColor, false, 0.3f);
 }
 
 void AMonster::DropReword()
@@ -101,11 +101,10 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent,
         return 0.0f;
 
     AMyPlayer *Player = Cast<AMyPlayer>(PlayerController->GetPawn());
-    ADragon* Dragon = Cast<ADragon>(PlayerController->GetPawn());
 
     float damaged = -_StatCom->AddCurHp(-Damage);
 
-    if (this->_StatCom->IsDead() && Player != nullptr || Dragon != nullptr)
+    if (this->_StatCom->IsDead() && Player != nullptr)
     {
         SetActorEnableCollision(false);
         auto controller = GetController();
@@ -120,15 +119,10 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent,
             Player->_StatCom->AddExp(_StatCom->GetNextExp());
             const float RewardChance = 0.3f;
 
-            // if (FMath::FRand() <= RewardChance)
+            //if (FMath::FRand() <= RewardChance)
             //{
             Player->_inventoryComponent->AddItemToSlot(NewItem);
             //}
-        }
-        else if (Dragon)
-        {
-            Dragon->_StatCom->AddExp(_StatCom->GetNextExp());
-            const float RewardChance = 0.3f;
         }
     }
 

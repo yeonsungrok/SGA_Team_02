@@ -27,9 +27,8 @@ bool UBTDecorator_CanAttack::CalculateRawConditionValue(UBehaviorTreeComponent& 
 
     float Distance = Target->GetDistanceTo(CurrentPawn);
 
-    return Distance < 700.0f;
+   /* return Distance < 700.0f;
 
-    return result;
-
-
+    return result;*/
+    return Distance < 700.0f && result;  // 두 조건을 동시에 만족해야만 true를 반환하도록 수정
 }

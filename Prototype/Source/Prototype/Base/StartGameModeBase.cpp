@@ -40,12 +40,35 @@ void AStartGameModeBase::BeginPlay()
 	//	
 	//}
 
-	auto startUI = UIManager->GetStartUI();
+
+
+
+
+	if (UIManager)
+	{
+		auto startUI = UIManager->GetStartUI();
+		if (startUI != nullptr)
+		{
+			UIManager->OpenUI(UI_LIST::StartUI);
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("StartUI is nullptr in UIManager!"));
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("UIManager is nullptr! Check its initialization."));
+	}
+
+	/*auto startUI = UIManager->GetStartUI();
 
 	if (startUI != nullptr)
 	{
 		UIManager->OpenUI(UI_LIST::StartUI);
-	}
+	}*/
+	
+
 }
 
 void AStartGameModeBase::PostInitializeComponents()

@@ -183,7 +183,7 @@ void UStatComponent::SetBossLevelInit(int level)
 		_int = Data->INT;
 		_ogInt = _int;
 
-		_curExp = Data->EXP;
+		_nextExp = Data->EXP;
 
 		_attackRadius = 50.0f;
 		_attackRange = 300.0f;
@@ -199,7 +199,7 @@ void UStatComponent::SetBossLevelInit(int level)
 void UStatComponent::UpdateUI()
 {
 	if (Cast<AMyPlayer>(GetOwner()))
-	{
+	{ 
 		TArray<int32> statPack4UI = { _ogHp, _ogMp, _ogStr, _ogDex, _ogInt };
 		UIManager->GetInventoryUI()->InitStat(statPack4UI);
 	}
@@ -400,6 +400,13 @@ void UStatComponent::SetExp(int32 newexp)
 	FMyStatData* Data = nullptr;
 
 	_curExp = FMath::Clamp(newexp, 0, 100);
+}
+
+void UStatComponent::SetNextExp(int32 newnextexp)
+{
+	_nextExp = newnextexp;
+	//float ratio = EXpRatio();
+	//_PlEXPDelegate.Broadcast(ratio);
 }
 
 void UStatComponent::AddStat(StatType type, int32 amount)

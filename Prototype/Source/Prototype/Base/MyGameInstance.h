@@ -70,7 +70,7 @@ public:
 	FItemData* GetConsumeItemData(int code);
 	FItemData* GetEquipItemData(int code);
 
-	TArray<FSellings*> GetSellingData();
+	TArray<FSellings*> GetSellingData(int32 shop);
 
 	ABaseItem* SellDataToItemData(FSellings* data);
 
@@ -166,6 +166,8 @@ private:
 
 	UPROPERTY()
 	int32 _savedExp;
+	UPROPERTY()
+	int32 _savedNextExp;
 	UPROPERTY()
 	int32 _savedBonus;
 
