@@ -93,7 +93,7 @@ void AMeteorDecal::OnMeteorImpact()
     }
 
    
-    float DamageAmount = 5000.0f;
+    float DamageAmount = 500.0f;
     FVector DecalSize = GetDecal()->DecalSize;
     float Size = DecalSize.Y;
     float DamageRadius = _areaRadius * Size;
