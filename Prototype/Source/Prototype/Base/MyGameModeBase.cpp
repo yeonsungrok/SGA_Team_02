@@ -21,7 +21,7 @@ AMyGameModeBase::AMyGameModeBase()
 		_portal2 = PS.Class;
 	}
 
-	static ConstructorHelpers::FClassFinder<ANormalMonster> NM(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/Monster/NormalMonster/NormalMonster_BP.NormalMonster_BP_C'"));
+	static ConstructorHelpers::FClassFinder<ANormalMonster> NM(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/Monster/NormalMonster/BaseMap_NormalMonster_03_BP.BaseMap_NormalMonster_03_BP_C'"));
 	if (NM.Succeeded())
 	{
 		_monster = NM.Class;

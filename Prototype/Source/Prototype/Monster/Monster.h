@@ -69,16 +69,5 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Physics", meta = (AllowPrivateAccess = "true"))
 	class ABaseItem *NewItem = nullptr;
-
-
-	//TODO::만들어지면
-	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AI, meta = (AllowPrivateAccess = "true"))
-	// class AAIController* _aiController;
-
-	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = ReWord, meta = (AllowPrivateAccess = "true"))
-	// TArray<class ABaseItem*> _rewardItem;
-
-	//UPROPERTY()
-	//UClass* _rewardClass;
 	
 };
