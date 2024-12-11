@@ -12,6 +12,8 @@ AConsumeItem::AConsumeItem()
 
 void AConsumeItem::UseItem()
 {
-	if (_player)
-		_player->GetStatComponent()->ModStat(_ModStatType, _Value);
+	if (!_player)
+		SetPlayer();
+
+	_player->GetStatComponent()->ModStat(_ModStatType, _Value);
 }

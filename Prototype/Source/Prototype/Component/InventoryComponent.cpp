@@ -8,6 +8,7 @@
 #include "UI/InventoryWidget.h"
 
 #include "Item/BaseItem.h"
+#include "Item/Consumes/ConsumeItem.h"
 #include "Item/Equip/EquipItem.h"
 #include "Item/Equip/Helmet.h"
 #include "Item/Equip/UpperArmor.h"
@@ -151,7 +152,11 @@ void UInventoryComponent::ExcuteItem(int32 slot, bool isDrop)
 	if (isDrop)
 		_ItemSlots[slot]->DropItem(itemPos);
 	else
+	{
 		_ItemSlots[slot]->UseItem();
+
+	}
+
 
 	_ItemSlots[slot] = nullptr;
 	_EmptySlots.Add(slot);
