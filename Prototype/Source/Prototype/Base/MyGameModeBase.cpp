@@ -11,6 +11,7 @@
 #include "../Monster/AI/AIController_NormalMonster.h"
 #include "Engine/DirectionalLight.h"
 #include "Engine/SkyLight.h"
+#include "Monster/BossObstacle.h"
 #include "Kismet/GameplayStatics.h"
 
 AMyGameModeBase::AMyGameModeBase()
@@ -25,6 +26,12 @@ AMyGameModeBase::AMyGameModeBase()
 	if (NM.Succeeded())
 	{
 		_monster = NM.Class;
+	}
+
+	static ConstructorHelpers::FClassFinder<ABossObstacle> BO(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/Monster/BossMonster/MapObstacle_BP.MapObstacle_BP_C'"));
+	if (BO.Succeeded())
+	{
+		_obstacle = BO.Class;
 	}
 }
 
@@ -64,6 +71,16 @@ void AMyGameModeBase::BeginPlay()
 				FVector BaseLocation(-4120.f, -3620.f, 18.f);
 				FVector AddLocation(-300.f,1200.f,0.0f);
 				SpawnMonster(BaseLocation,AddLocation);
+
+				/*if (_obstacle)
+				{
+					FActorSpawnParameters SpawnParams;
+					SpawnParams.Name = FName((TEXT("Obstacle")));
+
+					FVector SpawnLocation = (630.f, -667.f, 179.f);
+
+					ABossObstacle* obstacle = GetWorld()->SpawnActor<ABossObstacle>(_obstacle, SpawnLocation, FRotator::ZeroRotator, SpawnParams);
+				}*/
 				GameInstance->SetFirst(false);
 			}
 			else
