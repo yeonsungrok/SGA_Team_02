@@ -16,11 +16,12 @@ ABossSunder::ABossSunder()
 	PrimaryActorTick.bCanEverTick = true;
 
 	CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionBox"));
-    RootComponent = CollisionBox;
+    //RootComponent = CollisionBox;
     CollisionBox->SetCollisionProfileName(TEXT("Trigger"));
 
     LightningEffect = CreateDefaultSubobject<UNiagaraComponent>(TEXT("LightningEffect"));
-    LightningEffect->SetupAttachment(RootComponent);
+   // LightningEffect->SetupAttachment(CollisionBox);
+
 
 }
 
