@@ -118,6 +118,10 @@ void ABaseItem::GetItem()
 
 void ABaseItem::UseItem()
 {
+	if (!_player)
+		SetPlayer();
+
+	_player->GetStatComponent()->ModStat(_ModStatType, _Value);
 }
 
 void ABaseItem::DropItem(FVector location, FRotator rotation)

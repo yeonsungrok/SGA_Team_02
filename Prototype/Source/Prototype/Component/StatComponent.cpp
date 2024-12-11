@@ -199,7 +199,7 @@ void UStatComponent::SetBossLevelInit(int level)
 void UStatComponent::UpdateUI()
 {
 	if (Cast<AMyPlayer>(GetOwner()))
-	{
+	{ 
 		TArray<int32> statPack4UI = { _ogHp, _ogMp, _ogStr, _ogDex, _ogInt };
 		UIManager->GetInventoryUI()->InitStat(statPack4UI);
 	}
@@ -405,8 +405,8 @@ void UStatComponent::SetExp(int32 newexp)
 void UStatComponent::SetNextExp(int32 newnextexp)
 {
 	_nextExp = newnextexp;
-	float ratio = EXpRatio();
-	_PlEXPDelegate.Broadcast(ratio);
+	//float ratio = EXpRatio();
+	//_PlEXPDelegate.Broadcast(ratio);
 }
 
 void UStatComponent::AddStat(StatType type, int32 amount)

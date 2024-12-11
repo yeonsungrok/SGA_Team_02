@@ -147,9 +147,9 @@ void UMyGameInstance::LoadPlayerStats(class UStatComponent *StatComponent)
 
 		StatComponent->SetHp(_savedCurHp);
 		StatComponent->SetMp(_savedCurMp);
-		StatComponent->SetExp(_savedExp);
 		StatComponent->SetNextExp(_savedNextExp);
 		StatComponent->SetBonusPoint(_savedBonus);
+		StatComponent->AddExp(_savedExp);
 
 		StatComponent->UpdateUI();
 	}

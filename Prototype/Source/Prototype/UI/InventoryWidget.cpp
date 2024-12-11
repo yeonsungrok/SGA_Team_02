@@ -250,7 +250,7 @@ void UInventoryWidget::UseItem()
 {
 	if (_targetItem == nullptr)
 		return;
-	if (Cast<AEquipItem>(_targetItem))
+	if (_targetItem->GetType() == ItemType::Equipment)
 	{
 		if (_targetIndex == -1)
 		{
@@ -300,8 +300,7 @@ void UInventoryWidget::UseItem()
 			UpdateStat();
 		}
 	}
-
-	if (Cast<AConsumeItem>(_targetItem))
+	else
 	{
 		ItemDrop.Broadcast(_targetIndex, false);
 		ItemUse.Broadcast(_targetIndex);

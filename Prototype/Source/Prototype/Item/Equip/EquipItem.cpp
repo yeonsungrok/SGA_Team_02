@@ -162,13 +162,13 @@ void AEquipItem::UnEquip()
 
 void AEquipItem::UseItem()
 {
-    if (_player)
-    {
-        EquipPlayer();
-        _player->ItemEquipped.Broadcast(this);
+    if (!_player)
+        SetPlayer();
 
-        _player->GetStatComponent()->ModStat(_ModStatType, _Value);
-    }
+    EquipPlayer();
+    _player->ItemEquipped.Broadcast(this);
+
+    _player->GetStatComponent()->ModStat(_ModStatType, _Value);
 }
 
 void AEquipItem::DropItem(FVector location, FRotator rotation)
