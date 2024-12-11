@@ -230,11 +230,19 @@ void UStatComponent::DecreaseStat(StatType stat, int32 amount)
 	{
 	case StatType::HP:
 		if (_maxHp - amount >= _ogHp)
+		{
 			_maxHp -= amount;
+			if (_curHp > _maxHp)
+				_curHp = _maxHp;
+		}
 		break;
 	case StatType::MP:
 		if (_maxMp - amount >= _ogMp)
+		{
 			_maxMp -= amount;
+			if (_curMp > _maxMp)
+				_curMp = _maxMp;
+		}
 		break;
 	case StatType::STR:
 		if (_str - amount >= _ogStr)
