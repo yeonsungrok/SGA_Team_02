@@ -9,15 +9,16 @@
 #include "Base/Managers/UIManager.h"
 
 #include "Kismet/GameplayStatics.h"
+#include "GameFramework/PlayerController.h"
 
 AStartGameModeBase::AStartGameModeBase()
 {
-	//static ConstructorHelpers::FClassFinder<UMainStartWidget> StartWidget(
-	//	TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/MainStart_UI.MainStart_UI_C'"));
-	//if (StartWidget.Succeeded())
-	//{
-	//	StartLevelWidgetClass = StartWidget.Class;
-	//}
+	static ConstructorHelpers::FClassFinder<UMainStartWidget> StartWidget(
+		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/MainStart_UI.MainStart_UI_C'"));
+	if (StartWidget.Succeeded())
+	{
+		StartLevelWidgetClass = StartWidget.Class;
+	}
 
 }
 
@@ -26,40 +27,39 @@ void AStartGameModeBase::BeginPlay()
 	Super::BeginPlay();
 	
 	//
-	//if (StartLevelWidgetClass)
+	if (StartLevelWidgetClass)
+	{
+
+		StartLevelWidget = CreateWidget<UMainStartWidget>(GetWorld(), StartLevelWidgetClass);
+
+		if (StartLevelWidget)
+		{
+			StartLevelWidget->AddToViewport();
+
+		}
+		
+	}
+
+
+
+
+
+	//if (UIManager)
 	//{
-
-	//	StartLevelWidget = CreateWidget<UMainStartWidget>(GetWorld(), StartLevelWidgetClass);
-
-	//	if (StartLevelWidget)
+	//	auto startUI = UIManager->GetStartUI();
+	//	if (startUI != nullptr)
 	//	{
-	//		StartLevelWidget->AddToViewport();
-
-
+	//		UIManager->OpenUI(UI_LIST::StartUI);
 	//	}
-	//	
+	//	else
+	//	{
+	//		UE_LOG(LogTemp, Warning, TEXT("StartUI is nullptr in UIManager!"));
+	//	}
 	//}
-
-
-
-
-
-	if (UIManager)
-	{
-		auto startUI = UIManager->GetStartUI();
-		if (startUI != nullptr)
-		{
-			UIManager->OpenUI(UI_LIST::StartUI);
-		}
-		else
-		{
-			UE_LOG(LogTemp, Warning, TEXT("StartUI is nullptr in UIManager!"));
-		}
-	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("UIManager is nullptr! Check its initialization."));
-	}
+	//else
+	//{
+	//	UE_LOG(LogTemp, Error, TEXT("UIManager is nullptr! Check its initialization."));
+	//}
 
 	/*auto startUI = UIManager->GetStartUI();
 

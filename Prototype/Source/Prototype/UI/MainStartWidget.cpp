@@ -21,6 +21,13 @@ UMainStartWidget::UMainStartWidget(const FObjectInitializer& ObjectInitializer)
 	{
 		_OptionsButton = Options.Class;
 	}
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> LOAD
+	(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Widget_Info.Widget_Info_C'"));
+	if (LOAD.Succeeded())
+	{
+		_Keyimage = LOAD.Class;
+	}
 }
 
 void UMainStartWidget::NativeConstruct()
@@ -46,16 +53,22 @@ void UMainStartWidget::NativeConstruct()
 
 void UMainStartWidget::StartButtonClick()
 {
-	UIManager->OpenUI(UI_LIST::Load);
-	
-	 FTimerHandle TimerHandle;
-    GetWorld()->GetTimerManager().SetTimer(
-        TimerHandle, 
-        this, 
-        &UMainStartWidget::OpenLevel, 
-        2.0f, 
-        false
-    );
+	//UIManager->OpenUI(UI_LIST::Load);
+	//
+	// FTimerHandle TimerHandle;
+ //   GetWorld()->GetTimerManager().SetTimer(
+ //       TimerHandle, 
+ //       this, 
+ //       &UMainStartWidget::OpenLevel, 
+ //       2.0f, 
+ //       false
+ //   );
+	//
+
+
+
+
+	OpenLevel();
 }
 
 void UMainStartWidget::QuitButtonClick()
