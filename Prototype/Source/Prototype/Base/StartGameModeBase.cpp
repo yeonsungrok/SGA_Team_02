@@ -27,6 +27,8 @@ void AStartGameModeBase::BeginPlay()
 	Super::BeginPlay();
 	
 	//
+	APlayerController* PlayerController = Cast<APlayerController>(GetWorld()->GetFirstPlayerController());
+
 	if (StartLevelWidgetClass)
 	{
 
@@ -35,6 +37,7 @@ void AStartGameModeBase::BeginPlay()
 		if (StartLevelWidget)
 		{
 			StartLevelWidget->AddToViewport();
+			PlayerController->bShowMouseCursor = true;
 
 		}
 		
