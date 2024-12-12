@@ -43,6 +43,9 @@ public:
 	void Interect();
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Shop", meta = (AllowPrivateAccess = "true"))
+	FString _NPCName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Shop", meta = (AllowPrivateAccess = "true"))
 	int32 _shopCode;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Player", meta = (AllowPrivateAccess = "true"))
@@ -59,4 +62,6 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Shop", meta = (AllowPrivateAccess = "true"))
 	class UShopComponent* _shopComp;
+
+	class UNPC_NameWidget* _nameWidget;
 };

@@ -490,6 +490,12 @@
     <ClInclude Include="..\..\Source\Prototype\NPC\MyNPC.h">
       <Filter>Source\Prototype\NPC</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Prototype\NPC\NPC_NameWidget.cpp">
+      <Filter>Source\Prototype\NPC</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Prototype\NPC\NPC_NameWidget.h">
+      <Filter>Source\Prototype\NPC</Filter>
+    </ClInclude>
     <Filter Include="Source\Prototype\Player">
       <UniqueIdentifier>{83517824-5C32-3E62-8E44-C9D524CEF97F}</UniqueIdentifier>
     </Filter>

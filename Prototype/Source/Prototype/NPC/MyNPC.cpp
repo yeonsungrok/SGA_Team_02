@@ -10,6 +10,7 @@
 #include "Base/MyGameInstance.h"
 #include "Base/Managers/UIManager.h"
 #include "UI/ShopWidget.h"
+#include "NPC_NameWidget.h"
 
 #include "Kismet/GameplayStatics.h"
 
@@ -36,6 +37,8 @@ AMyNPC::AMyNPC()
 	}
 
 	_shopComp = CreateDefaultSubobject<UShopComponent>(TEXT("Shop Component"));
+
+	_nameWidget = CreateDefaultSubobject<UNPC_NameWidget>(TEXT("Name Widget"));
 }
 
 // Called when the game starts or when spawned
@@ -43,6 +46,7 @@ void AMyNPC::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	_nameWidget->SetNPC_Name(_NPCName);
 }
 
 void AMyNPC::PostInitializeComponents()
@@ -51,6 +55,7 @@ void AMyNPC::PostInitializeComponents()
 
 	_trigger->OnComponentBeginOverlap.AddDynamic(this, &AMyNPC::OnOverlapBegin);
 	_trigger->OnComponentEndOverlap.AddDynamic(this, &AMyNPC::OnOverlapEnd);
+
 }
 
 void AMyNPC::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -65,6 +70,9 @@ void AMyNPC::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherAc
 	_isOverlapped = true;
 	_shopComp->SetCustomer(_target);
 	//Optional : Look Player
+
+	_nameWidget->SetVisibility(ESlateVisibility::Visible);
+	_nameWidget->AddToViewport();
 }
 
 void AMyNPC::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
@@ -74,6 +82,9 @@ void AMyNPC::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActo
 	_isOverlapped = false;
 	_shopComp->SetCustomer(_target);
 	UIManager->CloseUI(UI_LIST::Shop);
+
+	_nameWidget->SetVisibility(ESlateVisibility::Hidden);
+	_nameWidget->RemoveFromParent();
 }
 
 // Called every frame
