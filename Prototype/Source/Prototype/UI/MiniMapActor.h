@@ -20,10 +20,6 @@ protected:
     virtual void BeginPlay() override;
 
 private:
-
-
-
-
     UPROPERTY(EditAnywhere, Category = "UI")
     TSubclassOf<UUserWidget> MiniMapWidgetClass;
 
