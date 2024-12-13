@@ -6,10 +6,8 @@
 
 void UNPC_NameWidget::SetNPC_Name(FString name)
 {
-	if (!NPC_Name)
-		return;
 	if (name.IsEmpty())
-		NPC_Name->SetText(FText::FromString(TEXT("No data")));
+		NPC_name->SetText(FText::FromString(TEXT("No data")));
 	else
-		NPC_Name->SetText(FText::FromString(name));
+		NPC_name->SetText(FText::FromString(name));
 }

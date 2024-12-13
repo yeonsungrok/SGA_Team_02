@@ -66,17 +66,20 @@ AUIManager::AUIManager()
 		_options = CreateWidget<UUserWidget>(GetWorld(), OptionsWidget.Class);
 	}
 
+	/*static ConstructorHelpers::FClassFinder<UUserWidget> npcWidget(
+		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/NPC_UI.NPC_UI_C'")
+	);
+	if (npcWidget.Succeeded())
+	{
+		_NPCnameUI = CreateWidget<UNPC_NameWidget>(GetWorld(), npcWidget.Class);
+	}*/
+
 	static ConstructorHelpers::FObjectFinder<UTexture2D> defaultTexture(
 		TEXT("/Script/Engine.Texture2D'/Game/CraftResourcesIcons/Textures/T_Default.T_Default'"));
 	if (defaultTexture.Succeeded())
 	{
 		_defaultTexture = defaultTexture.Object;
 	}
-
-
-
-
-	
 
 	_uiList.Add(_inventoryUI);
 	_uiIsOpen.Add(false);
@@ -105,6 +108,10 @@ AUIManager::AUIManager()
 	_uiList.Add(_options);
 	_uiIsOpen.Add(false);
 	_isPauseWhenOpen.Add(true);
+
+	/*_uiList.Add(_NPCnameUI);
+	_uiIsOpen.Add(false);
+	_isPauseWhenOpen.Add(false);*/
 }
 
 // Called when the game starts or when spawned
