@@ -46,16 +46,17 @@ void UMainStartWidget::NativeConstruct()
 
 void UMainStartWidget::StartButtonClick()
 {
-	UIManager->OpenUI(UI_LIST::Load);
+	OpenLevel();
+	//UIManager->OpenUI(UI_LIST::Load);
 	
-	 FTimerHandle TimerHandle;
-    GetWorld()->GetTimerManager().SetTimer(
-        TimerHandle, 
-        this, 
-        &UMainStartWidget::OpenLevel, 
-        2.0f, 
-        false
-    );
+	//  FTimerHandle TimerHandle;
+    // GetWorld()->GetTimerManager().SetTimer(
+    //     TimerHandle, 
+    //     this, 
+    //     &UMainStartWidget::OpenLevel, 
+    //    2.0f, 
+    //    false
+    //);
 }
 
 void UMainStartWidget::QuitButtonClick()

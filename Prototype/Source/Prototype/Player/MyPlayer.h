@@ -59,12 +59,7 @@ public:
 	void UpdateCamera(float DeltaTime);
 
 	void SetSkillOnCooldown(int32 index, bool cool) { SkillOnCooldown[index] = cool; }
-
-	UFUNCTION()
-	void EquipItem(AEquipItem* equipitem);
 	void GetItem(ABaseItem* item);
-
-	void SetEquipItem(EItemType equiptype, AEquipItem* equipitem);
 
 	void Silent();
 	void LockAllSkill();

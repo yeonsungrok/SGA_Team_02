@@ -229,10 +229,10 @@ void AMyPlayer::PostInitializeComponents()
 			_StatCom->_PlHPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetPlHPBar);
 			_StatCom->_PlMPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetPlMPBar);
 			_StatCom->_PlEXPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetPlExpBar);
+			_StatCom->_PlMaxHPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetMaxHpBar);
+			_StatCom->_PlMaxMPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetMaxMpBar);
 		}
 	}
-
-	ItemEquipped.AddDynamic(this, &AMyPlayer::EquipItem);
 
 	_KnightanimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 	if (_KnightanimInstance->IsValidLowLevelFast())
@@ -263,41 +263,6 @@ void AMyPlayer::Tick(float DeltaTime)
 	}
 
 
-	if (_Widget)
-	{
-		auto PlWidget = Cast<UPlayerBarWidget>(_Widget);
-		if (PlWidget)
-		{
-			int32 PlMaxHp = _StatCom->GetMaxHp();
-			int32 PlMaxMp = _StatCom->GetMaxMp();
-			int32 PlCurHp = _StatCom->GetCurHp();
-			int32 PlCurMp = _StatCom->GetCurMp();
-
-			float HPPercent = float(PlCurHp) / float(PlMaxHp);
-			float MPPercent = float(PlCurMp) / float(PlMaxMp);
-
-			// Bar 제한 범위
-			float MinHPScaleX = 1.0f;  
-			float MaxHPScaleX = 1.8f;  
-			float MinMPScaleX = 1.0f; 
-			float MaxMPScaleX = 1.5f; 
-
-			float NewHPScaleX = FMath::Clamp(float(PlMaxHp) / 1000.0f, MinHPScaleX, MaxHPScaleX);
-			float NewMPScaleX = FMath::Clamp(float(PlMaxMp) / 50.0f, MinMPScaleX, MaxMPScaleX);
-
-			if (_StatCom->GetMaxHp() > _StatCom->GetCurHp())
-			{
-				PlWidget->Pl_HPBar->SetPercent(HPPercent);
-				PlWidget->Pl_HPBar->SetRenderScale(FVector2D(NewHPScaleX, 3.0f));
-			}
-
-			if (_StatCom->GetMaxMp() > _StatCom->GetCurMp())
-			{
-				PlWidget->Pl_MPBar->SetPercent(MPPercent);
-				PlWidget->Pl_MPBar->SetRenderScale(FVector2D(NewMPScaleX, 3.0f));
-			}
-		}
-	}
 }
 
 float AMyPlayer::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent, AController *EventInstigator, AActor *DamageCauser)
@@ -306,7 +271,7 @@ float AMyPlayer::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent
 	return 0.0f;
 }
 
-// Called to bind functionality to input
+
 void AMyPlayer::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -365,10 +330,7 @@ void AMyPlayer::UpdateCamera(float DeltaTime)
 	}
 }
 
-void AMyPlayer::EquipItem(AEquipItem *equipitem)
-{
-	SetEquipItem(equipitem->GetEquipType(), equipitem);
-}
+
 
 void AMyPlayer::GetItem(ABaseItem *item)
 {
@@ -377,19 +339,7 @@ void AMyPlayer::GetItem(ABaseItem *item)
 	_inventoryComponent->AddItem(0, item);
 }
 
-void AMyPlayer::SetEquipItem(EItemType equiptype, AEquipItem *equipitem)
-{
-	if (_EquipItems.Contains(equiptype))
-	{
-		// TODO
-		return;
-	}
-	else
-	{
-		_EquipItems.Add(equiptype, equipitem);
-	}
-	// TODO:Update UI
-}
+
 
 void AMyPlayer::Silent()
 {
@@ -418,7 +368,7 @@ void AMyPlayer::UnLockAllSkill()
 
 void AMyPlayer::OnAttackEnded(UAnimMontage* Montage, bool bInterrupted)
 {
-	_isAttacking = false;  // 공격 중 상태 해제
+	_isAttacking = false;
 	
 	_curAttackIndex = 1;
 }
@@ -744,7 +694,6 @@ void AMyPlayer::ConfirmTeleportLocation()
 		TargetSkillLocation.Z += 100.f;
         SetActorLocation(TargetSkillLocation);
 		EffectManager->Play("NS_Teleport",TargetSkillLocation);
-        UE_LOG(LogTemp, Warning, TEXT("Teleported to: %s"), *TargetSkillLocation.ToString());
 
         bIsTeleportReadyToCast = false;
 

@@ -24,8 +24,6 @@ UStatComponent::UStatComponent()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-
-
 }
 
 
@@ -37,10 +35,6 @@ void UStatComponent::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
-
-
-	
-
 }
 
 
@@ -290,7 +284,9 @@ void UStatComponent::SetMaxHp(int32 newMaxHp)
 
 	_maxHp = Data->MaxHP;
 	_maxHp = FMath::Clamp(newMaxHp, 0, 10000);
-	_ogHp = _maxHp;
+	SetHp(_maxHp);
+
+	_PlMaxHPDelegate.Broadcast(_maxHp);
 
 	UIManager->GetInventoryUI()->UpdateOriginStat((int32)StatType::HP, _maxHp);
 	UIManager->GetInventoryUI()->UpdateStat();
@@ -303,15 +299,14 @@ void UStatComponent::SetOgHp(int32 newMaxHp)
 
 void UStatComponent::SetMaxMp(int32 newMaxMp)
 {
-
 	auto myGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
 	FMyStatData* Data = nullptr;
 
-
 	_maxMp = Data->MaxMP;
 	_maxMp = FMath::Clamp(newMaxMp, 0, 10000);
-	_ogMp = _maxMp;
+	 SetMp(_maxMp);
 
+	_PlMaxMPDelegate.Broadcast(_maxMp);
 	UIManager->GetInventoryUI()->UpdateOriginStat((int32)StatType::MP, _maxMp);
 	UIManager->GetInventoryUI()->UpdateStat();
 }

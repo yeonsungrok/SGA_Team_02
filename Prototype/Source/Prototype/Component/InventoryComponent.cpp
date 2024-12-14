@@ -154,7 +154,6 @@ void UInventoryComponent::ExcuteItem(int32 slot, bool isDrop)
 	else
 	{
 		_ItemSlots[slot]->UseItem();
-
 	}
 
 

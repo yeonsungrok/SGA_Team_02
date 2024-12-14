@@ -11,6 +11,8 @@ DECLARE_MULTICAST_DELEGATE(DeathDelegate)
 
 DECLARE_MULTICAST_DELEGATE_OneParam(PlHP, float);
 DECLARE_MULTICAST_DELEGATE_OneParam(PlMP, float);
+DECLARE_MULTICAST_DELEGATE_OneParam(PlMaxHP, int32);
+DECLARE_MULTICAST_DELEGATE_OneParam(PlMaxMP, int32);
 DECLARE_MULTICAST_DELEGATE_OneParam(PIEXP, float);
 DECLARE_MULTICAST_DELEGATE_OneParam(PILevel, int32);
 
@@ -175,7 +177,9 @@ public:
 
 	float EXpRatio() { return _curExp / (float)_nextExp; }
 	PlHP _PlHPDelegate;
+	PlMaxHP _PlMaxHPDelegate;
 	PlMP _PlMPDelegate;
+	PlMaxMP _PlMaxMPDelegate;
 	PIEXP _PlEXPDelegate;
 	PILevel _PILevelDelegate;
 	

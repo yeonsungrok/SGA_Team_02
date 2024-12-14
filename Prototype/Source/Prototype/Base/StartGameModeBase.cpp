@@ -42,7 +42,7 @@ void AStartGameModeBase::BeginPlay()
 
 
 
-
+	GAMEINSTANCE->InitializeManagers();
 
 	if (UIManager)
 	{

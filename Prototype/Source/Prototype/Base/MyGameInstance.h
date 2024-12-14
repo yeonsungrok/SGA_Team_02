@@ -84,6 +84,12 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	class AUIManager* _UIManager;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	ASoundManager* _soundManager;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	AEffectManager* _effectManager;
+
 	UPROPERTY()
 	UDataTable* _statTable;
 
@@ -110,10 +116,7 @@ private:
 	UPROPERTY()
 	UDataTable* _DragonStatTable;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	ASoundManager* _soundManager;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	AEffectManager* _effectManager;
+
 
 	UPROPERTY()
 	int32 _savedLevel;
