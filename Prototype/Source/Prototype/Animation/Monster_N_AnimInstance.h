@@ -18,15 +18,11 @@ class PROTOTYPE_API UMonster_N_AnimInstance : public UBaseAnimInstance
 public:
 	UMonster_N_AnimInstance();
 
-	AttackDelegate _attackDelegate;
-
-	DeathDelegate _death_N_MonsterDelegate;
+	UFUNCTION()
+	virtual void AnimNotify_Attackhit() override;
 
 	UFUNCTION()
-	virtual void AnimNotify_Attackhit();
-
-	UFUNCTION()
-	virtual void AnimNotify_Death();
+	virtual void AnimNotify_Death() override;
 
 
 };

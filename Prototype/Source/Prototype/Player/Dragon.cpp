@@ -306,9 +306,9 @@ void ADragon::PostInitializeComponents()
         _dragonAnimInstance->OnMontageEnded.AddDynamic(this, &ADragon::OnAttackEnded);
 
 
-        _dragonAnimInstance->_attackDelegate_Dragon.AddUObject(this, &ACreature::AttackHit);
+        _dragonAnimInstance->_attackDelegate.AddUObject(this, &ACreature::AttackHit);
         // 드래곤 사망 델리게이트 연결
-        _dragonAnimInstance->_deathDelegate_Dragon.AddUObject(this, &ADragon::Disable);
+        _dragonAnimInstance->_deathDelegate.AddUObject(this, &ADragon::Disable);
     }
     else
     {

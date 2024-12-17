@@ -66,7 +66,7 @@ void AEpicMonster_witch::PostInitializeComponents()
 	{
 		_monster_Epic_AnimInstance->OnMontageEnded.AddDynamic(this, &ACreature::OnAttackEnded);
 		_monster_Epic_AnimInstance->_attackDelegate.AddUObject(this, &ACreature::AttackHit);
-		_monster_Epic_AnimInstance->_death_Epic_MonsterDelegate.AddUObject(this, &AMonster::Disable);
+		_monster_Epic_AnimInstance->_deathDelegate.AddUObject(this, &AMonster::Disable);
 
 	}
 }
@@ -79,8 +79,7 @@ void AEpicMonster_witch::Tick(float DeltaTime)
 
 void AEpicMonster_witch::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	Super::SetupPlayerInputComponent(PlayerInputComponent);\
 }
 
 

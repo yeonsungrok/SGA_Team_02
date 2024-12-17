@@ -69,7 +69,7 @@ void ANormalMonster::PostInitializeComponents()
 	 {
 		 _monster_N_AnimInstance->OnMontageEnded.AddDynamic(this, &ACreature::OnAttackEnded);
 		 _monster_N_AnimInstance->_attackDelegate.AddUObject(this, &ACreature::AttackHit);
-		 _monster_N_AnimInstance->_death_N_MonsterDelegate.AddUObject(this, &AMonster::Disable);
+		 _monster_N_AnimInstance->_deathDelegate.AddUObject(this, &AMonster::Disable);
 	 }
 	  _StatCom->SetMonsterLevelInit(1);
 

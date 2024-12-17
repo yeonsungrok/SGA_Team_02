@@ -126,5 +126,15 @@ void UBaseAnimInstance::PlayHitReactionMontage()
 	}
 }
 
+void UBaseAnimInstance::AnimNotify_Attackhit()
+{
+	_attackDelegate.Broadcast();
+}
+
+void UBaseAnimInstance::AnimNotify_Death()
+{
+	_deathDelegate.Broadcast();
+}
+
 
 

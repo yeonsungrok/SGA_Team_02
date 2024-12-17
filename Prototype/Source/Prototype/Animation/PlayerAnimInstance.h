@@ -39,10 +39,10 @@ public:
 	void AnimNotify_clickNext();
 
 	UFUNCTION()
-	virtual void AnimNotify_Attackhit();
+	virtual void AnimNotify_Attackhit() override;
 
 	UFUNCTION()
-	virtual void AnimNotify_Death();
+	virtual void AnimNotify_Death() override;
 
 
 private:

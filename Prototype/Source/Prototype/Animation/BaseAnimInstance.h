@@ -9,11 +9,7 @@
 
 DECLARE_MULTICAST_DELEGATE(AttackDelegate);
 DECLARE_MULTICAST_DELEGATE(DeathDelegate);
-DECLARE_MULTICAST_DELEGATE(StunEndDelegate);
 DECLARE_MULTICAST_DELEGATE(ComboDelegate);
-
-//DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMontageEnded, UAnimMontage*, Montage);
-
 
 
 UCLASS()
@@ -38,6 +34,10 @@ public:
 
 	AttackDelegate _attackDelegate;
 	DeathDelegate _deathDelegate;
+
+	virtual void AnimNotify_Attackhit();
+
+	virtual void AnimNotify_Death();
 
 
 

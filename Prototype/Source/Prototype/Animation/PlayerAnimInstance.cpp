@@ -142,12 +142,12 @@ void UPlayerAnimInstance::AnimNotify_clickNext()
 
 void UPlayerAnimInstance::AnimNotify_Attackhit()
 {
-	_attackDelegate.Broadcast();
+	Super::AnimNotify_Attackhit();
 }
 
 void UPlayerAnimInstance::AnimNotify_Death()
 {
-	_deathDelegate.Broadcast();
+	Super::AnimNotify_Death();
 }
 
 

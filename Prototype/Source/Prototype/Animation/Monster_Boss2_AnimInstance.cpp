@@ -35,12 +35,12 @@ void UMonster_Boss2_AnimInstance::PlaySkillMontage()
 
 void UMonster_Boss2_AnimInstance::AnimNotify_Attackhit()
 {
-    _attackDelegate.Broadcast();
+   Super::AnimNotify_Attackhit();
 }
 
 void UMonster_Boss2_AnimInstance::AnimNotify_Death()
 {
-    _deathDelegate.Broadcast();
+   Super::AnimNotify_Death();
 }
 
 void UMonster_Boss2_AnimInstance::AnimNotify_Fire()

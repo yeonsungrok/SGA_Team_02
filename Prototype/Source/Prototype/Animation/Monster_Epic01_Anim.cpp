@@ -5,6 +5,7 @@
 
 UMonster_Epic01_Anim::UMonster_Epic01_Anim()
 {
+
 	static ConstructorHelpers::FObjectFinder<UAnimMontage> Monster_Epic_01_AttackNear
 	(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Monster/EpicMonster/EpicMonster01_AnimMontage_Near.EpicMonster01_AnimMontage_Near'"));
 
@@ -32,16 +33,6 @@ UMonster_Epic01_Anim::UMonster_Epic01_Anim()
 }
 
 
-void UMonster_Epic01_Anim::AnimNotify_Attackhit()
-{
-	_attackDelegate.Broadcast();
-}
-
-void UMonster_Epic01_Anim::AnimNotify_Death()
-{
-	_death_Epic_MonsterDelegate.Broadcast();
-}
-
 void UMonster_Epic01_Anim::PlayAttackFarMontage()
 {
 	Super::PlayAttackFarMontage();
@@ -50,4 +41,14 @@ void UMonster_Epic01_Anim::PlayAttackFarMontage()
 void UMonster_Epic01_Anim::PlayAttackDotrMontage()
 {
 	Super::PlayAttackDotrMontage();
+}
+
+void UMonster_Epic01_Anim::AnimNotify_Attackhit()
+{
+	Super::AnimNotify_Attackhit();
+}
+
+void UMonster_Epic01_Anim::AnimNotify_Death()
+{
+	Super::AnimNotify_Death();
 }

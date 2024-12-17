@@ -61,19 +61,19 @@ void UMonster_Boss01_AnimInstance::JumpToSection(int32 sectionIndex)
 	Super::JumpToSection(sectionIndex);
 }
 
+void UMonster_Boss01_AnimInstance::AnimNotify_StunEnd()
+{
+	_stunDelegate.Broadcast();
+}
+
 void UMonster_Boss01_AnimInstance::AnimNotify_Attackhit()
 {
-	_attackDelegate.Broadcast();
+	Super::AnimNotify_Attackhit();
 }
 
 void UMonster_Boss01_AnimInstance::AnimNotify_Death()
 {
-	_deathDelegate.Broadcast();
-}
-
-void UMonster_Boss01_AnimInstance::AnimNotify_StunEnd()
-{
-	_stunDelegate.Broadcast();
+	Super::AnimNotify_Death();
 }
 
 

@@ -22,15 +22,11 @@ public:
 
 	virtual void PlayAttackDotrMontage() override;
 
-	AttackDelegate _attackDelegate;
-
-	DeathDelegate _death_Epic_MonsterDelegate;
+	UFUNCTION()
+	virtual void AnimNotify_Attackhit() override;
 
 	UFUNCTION()
-	virtual void AnimNotify_Attackhit();
-
-	UFUNCTION()
-	virtual void AnimNotify_Death();
+	virtual void AnimNotify_Death() override;
 
 
 

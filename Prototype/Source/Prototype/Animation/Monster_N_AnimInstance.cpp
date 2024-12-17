@@ -25,10 +25,10 @@ UMonster_N_AnimInstance::UMonster_N_AnimInstance()
 
 void UMonster_N_AnimInstance::AnimNotify_Attackhit()
 {
-	_attackDelegate.Broadcast();
+	Super::AnimNotify_Attackhit();
 }
 
 void UMonster_N_AnimInstance::AnimNotify_Death()
 {
-	_death_N_MonsterDelegate.Broadcast();
+ 	Super::AnimNotify_Death();
 }

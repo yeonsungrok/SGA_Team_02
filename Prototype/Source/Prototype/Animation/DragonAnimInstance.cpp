@@ -16,19 +16,12 @@ UDragonAnimInstance::UDragonAnimInstance()
 
 }
 
-void UDragonAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
-{
-	Super::NativeUpdateAnimation(DeltaSeconds);
-}
-
-
-
 void UDragonAnimInstance::AnimNotify_Attackhit()
 {
-	_attackDelegate_Dragon.Broadcast();
+	Super::AnimNotify_Attackhit();
 }
 
 void UDragonAnimInstance::AnimNotify_Death()
 {
-	_deathDelegate_Dragon.Broadcast();
+	Super::AnimNotify_Death();
 }

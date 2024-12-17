@@ -18,21 +18,15 @@ class PROTOTYPE_API UDragonAnimInstance : public UBaseAnimInstance
 public:
 	UDragonAnimInstance();
 
-	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
-	/*void SetSpeed(float NewSpeed);*/
-
-	AttackDelegate _attackDelegate_Dragon;
-	DeathDelegate _deathDelegate_Dragon;
-
+	UFUNCTION()
+	virtual void AnimNotify_Attackhit()override;
 
 	UFUNCTION()
-	virtual void AnimNotify_Attackhit();
-
-	UFUNCTION()
-	virtual void AnimNotify_Death();
+	virtual void AnimNotify_Death()override;
 
 	//추가시도...
 	void SetJumping(bool bJumping) { bIsJumping = bJumping; }
+
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "Animation")
 	bool bIsJumping;

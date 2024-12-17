@@ -9,6 +9,7 @@
 /**
  * 
  */
+DECLARE_MULTICAST_DELEGATE(StunDelegate);
 UCLASS()
 class PROTOTYPE_API UMonster_Boss01_AnimInstance : public UBaseAnimInstance
 {
@@ -21,16 +22,17 @@ public:
 
 	virtual void JumpToSection(int32 sectionIndex) override;
 
-	StunEndDelegate _stunDelegate;
-
-	UFUNCTION()
-	virtual void AnimNotify_Attackhit();
-
-	UFUNCTION()
-	virtual void AnimNotify_Death();
+	StunDelegate _stunDelegate;
 
 	UFUNCTION()
 	virtual void AnimNotify_StunEnd();
+
+	UFUNCTION()
+	virtual void AnimNotify_Attackhit() override;
+
+	UFUNCTION()
+	virtual void AnimNotify_Death() override;
+
 
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", Meta = (AllowPrivateAccess = true))
