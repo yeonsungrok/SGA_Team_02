@@ -1,0 +1,2930 @@
+{
+	"AssetInfoVersion": 2,
+	"ShaderCodeToAssets": [
+		{
+			"ShaderMapHash": "AD0E690085598BB73808EC49BD3D3108FA1590C9",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Global/Eyes/Materials/M_EyeRefractive"
+			]
+		},
+		{
+			"ShaderMapHash": "8C122B017AEF09604483534619468905651C44A1",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_Stones"
+			]
+		},
+		{
+			"ShaderMapHash": "E9F3AA016ECFAD58AADA52D86A1F16F6406C8772",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dawn/MaterialFunctions/Master_SidesMarble"
+			]
+		},
+		{
+			"ShaderMapHash": "ADE2E101BB9749CE0360A9E9EEE31B40BF3C21A9",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/M_TerminusGate_Trim"
+			]
+		},
+		{
+			"ShaderMapHash": "9D684303838C588F63ED24D7F97C4CF6063F0E97",
+			"Assets": [
+				"/Game/Blueprint/Animation/Monster/BossMonster/02_-_Default"
+			]
+		},
+		{
+			"ShaderMapHash": "966A4403096D78098C56237D7472E71996063DB5",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Global/Eyes/Materials/M_EyeRefractive"
+			]
+		},
+		{
+			"ShaderMapHash": "8BF746034D1842D6818BCF42DA8C27BD67C6C945",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Global/Eyes/Materials/M_Eye_Occlusion",
+				"/Game/ParagonMorigesh/Characters/Global/Eyes/Materials/M_Eye_Occlusion",
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/M_Eye_Occlusion_Morigesh"
+			]
+		},
+		{
+			"ShaderMapHash": "EAAB7D03C257D32B317B33AECB3FB2D64178F596",
+			"Assets": [
+				"/Engine/EngineMaterials/Widget3DPassThrough_Masked"
+			]
+		},
+		{
+			"ShaderMapHash": "BA4E9F04A49104B8E46AB97A4677CCC38B187410",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Branches_Mat"
+			]
+		},
+		{
+			"ShaderMapHash": "893B6B05908AC65E2C27AED222C2CE5211C691F1",
+			"Assets": [
+				"/Game/ParagonMinions/Characters/Minions/Prime_Helix/Materials/M_Prime_Helix_Visor"
+			]
+		},
+		{
+			"ShaderMapHash": "00AF19063A21082E92D67C88E6119160D15C5106",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Dragonlord/Materials/M_Greystone_Dragonlord_shield"
+			]
+		},
+		{
+			"ShaderMapHash": "D7A9D506EE0B0681951A8C08D8B946FCC8F4FADD",
+			"Assets": [
+				"/Game/ParagonMinions/Characters/Minions/Prime_Helix/Materials/M_Prime_Helix_Limbs_02"
+			]
+		},
+		{
+			"ShaderMapHash": "31D85107B58991DDB2408C80C8DBA8CA92EC37FC",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Environment/TempleEntrance_01/mi_TempleEntrance_01_00",
+				"/Game/TemplesOfCambodia/Environment/TempleEntrance_01/mi_TempleEntrance_01_01",
+				"/Game/TemplesOfCambodia/Environment/TempleEntrance_01/mi_TempleEntrance_01_02",
+				"/Game/TemplesOfCambodia/Environment/TempleEntrance_01/mi_TempleEntrance_01_03",
+				"/Game/TemplesOfCambodia/Environment/TempleEntrance_01/mi_TempleEntrance_01_04",
+				"/Game/TemplesOfCambodia/Environment/TempleRoof_01/mi_TempleRoof_01_00",
+				"/Game/TemplesOfCambodia/Environment/TempleRoof_01/mi_TempleRoof_01_01",
+				"/Game/TemplesOfCambodia/Environment/TempleRoof_01/mi_TempleRoof_01_02",
+				"/Game/TemplesOfCambodia/Environment/TempleWall_02/mi_TempleWall_02_00"
+			]
+		},
+		{
+			"ShaderMapHash": "08D6A4070F09369ED0450BF58C2A6CD32EEA4B15",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Novaborn/Materials/M_Greystone_Novaborn_Torso"
+			]
+		},
+		{
+			"ShaderMapHash": "0D6DE408759578939D2402F77E8670D618C9FF1A",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Stone"
+			]
+		},
+		{
+			"ShaderMapHash": "534843093884583826F0052358BD94AC9E90D182",
+			"Assets": [
+				"/Engine/VREditor/TransformGizmo/TransformGizmoMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "AEDF740AC033651E8DA6EC59B8EB82072DDD3B4C",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_Sheen_Mask_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "08B47B0AE3E31EFE1E2B05F53B66078CF0A41239",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/WhiteTiger/Materials/M_Greystone_legs_WhiteTiger"
+			]
+		},
+		{
+			"ShaderMapHash": "4EE9BC0A6FFDF673BA17508A34ECBAB4ABED2C00",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/WhiteTiger/Materials/M_Greystone_shield_WhiteTiger"
+			]
+		},
+		{
+			"ShaderMapHash": "D8C4260B859154733F3DE3C3583D07B17C2E2516",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/M_FieldGrass_01",
+				"/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/M_FieldGrass_Inst_01_LOD1"
+			]
+		},
+		{
+			"ShaderMapHash": "13E6450B99CEA7E75811482A919FB0DE3D23428D",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Wax_Base"
+			]
+		},
+		{
+			"ShaderMapHash": "652B9B0B6464F755D5E12C754689BF9D38C2DA29",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_Fire_Burst"
+			]
+		},
+		{
+			"ShaderMapHash": "C7766D0CB8B2F7B8673DE89EA2A78E2C921FC368",
+			"Assets": [
+				"/Game/Blueprint/VFX/Niagara/P_Smoke_C_Converted"
+			]
+		},
+		{
+			"ShaderMapHash": "6CC2B60CB414E22C4FE9FC8F1280043569D183EF",
+			"Assets": [
+				"/Game/ParagonGreystone/FX/Materials/Heroes/Greystone/Skins/Novaborn/M_Greystone_Novaborn_ULT_Patten2"
+			]
+		},
+		{
+			"ShaderMapHash": "01ECDC0C8571D542049B96D1A558C3CE5ECB38AC",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/M_Morigesh_TearDuct"
+			]
+		},
+		{
+			"ShaderMapHash": "D0E0480D9B22850138A1D83681A65076092F1CB7",
+			"Assets": [
+				"/Game/ParagonProps/Ground/Materials/M_WetDecal"
+			]
+		},
+		{
+			"ShaderMapHash": "12B7C40DD23E66AE63093DA773CB606C12588A0D",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Global/Eyes/Materials/M_Eye_Occlusion",
+				"/Game/ParagonMorigesh/Characters/Global/Eyes/Materials/M_Eye_Occlusion",
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/M_Eye_Occlusion_Morigesh"
+			]
+		},
+		{
+			"ShaderMapHash": "15A43E0F0352934FF78A4153D163C1693EDCB55C",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_LightningScroll"
+			]
+		},
+		{
+			"ShaderMapHash": "6397B80F94AC21BC8A2C9FEE33E10A93CC4B0587",
+			"Assets": [
+				"/ControlRig/M_Manip"
+			]
+		},
+		{
+			"ShaderMapHash": "8F6EE910818B2DDFA1BC1EDAB04FED66ADF298DA",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Novaborn/Materials/M_Greystone_Novaborn_Flesh_head"
+			]
+		},
+		{
+			"ShaderMapHash": "7B7A06117D58074167E94E998B5B125F6F43D873",
+			"Assets": [
+				"/Engine/EditorMaterials/Dataflow/DataflowVertexMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "E3231C11BAE2FB3C10AE337E860C38EF42CBE688",
+			"Assets": [
+				"/Engine/EngineSky/M_Sky_Panning_Clouds2"
+			]
+		},
+		{
+			"ShaderMapHash": "B88C25117A3A7B0ADF1B29179A1A93E5432AAAD7",
+			"Assets": [
+				"/Game/ParagonMinions/Characters/Minions/Prime_Helix/Materials/M_Prime_Helix_Torso_V1"
+			]
+		},
+		{
+			"ShaderMapHash": "ACA57D12C2E0D95D267C098FF2F6711D1A95F454",
+			"Assets": [
+				"/Game/SuperGrid/StarterPack/Materials/Base/M_SuperGrid_SingleColor"
+			]
+		},
+		{
+			"ShaderMapHash": "161AEA12F89547D0D9D807E5FB35EE54152353A5",
+			"Assets": [
+				"/Game/TemplesOfCambodia/BaseMaterials/m_BaseMaterial_01_05_tessellation"
+			]
+		},
+		{
+			"ShaderMapHash": "181CEE124226B7BC3BC6982CF05C1192F10A212C",
+			"Assets": [
+				"/Engine/EditorMaterials/Camera/CineMat"
+			]
+		},
+		{
+			"ShaderMapHash": "D66417137BCF87CCA75DD394D20845CD52527B15",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dusk/Materials/Master_SidesMarble"
+			]
+		},
+		{
+			"ShaderMapHash": "90F83F135D5E545E3D635E9519F5B0152427BDD4",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Cobweb"
+			]
+		},
+		{
+			"ShaderMapHash": "C84271130F6023F3AF2138361E41AD7547DB23CD",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Decals/Sand_01/m_Sand_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "E654FD146813F8AD1B99C269430F80343AE32BD6",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_Glow"
+			]
+		},
+		{
+			"ShaderMapHash": "6ADF371570DEDDC54501665801B99ED9C5B19579",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Dusk_Spire_Gate_Pillars",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Dusk_WallA_Flat_NoBrick",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Dusk_WallA_Strait",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Evil_Corrupt_Inhibitor_Center",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Evil_Stair_Flat_Inst",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_EvilGate_Piece_4",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/Referecnce_DarkSide",
+				"/Game/SampleMap/Materials/M_Dawn_StairsBlack"
+			]
+		},
+		{
+			"ShaderMapHash": "0C8857155E4C11C58D368D63AC3147F6F89CDA93",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Global/Eyes/Materials/M_EyeRefractive"
+			]
+		},
+		{
+			"ShaderMapHash": "C4C88616FE65DCD98FE11C8D1A83F1FCF102C64D",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/WhiteTiger/Materials/M_Greystone_Torso_WhiteTiger"
+			]
+		},
+		{
+			"ShaderMapHash": "4A9B2D17DA711C2BB99345EC5D232470383A6ACC",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Effects/Fog_01/m_Fog_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "7ED4E717228BB15168C6D69DD239138DFDE84D21",
+			"Assets": [
+				"/Game/Blueprint/VFX/Niagara/P_DissolveEdge"
+			]
+		},
+		{
+			"ShaderMapHash": "28CD3E1A629CCB55E088F90EDB67A4E9FCC3A682",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Foliage/Leaves/M_DeadLeaves"
+			]
+		},
+		{
+			"ShaderMapHash": "4F56921AF263213F5DE3F754A899540ECFC12D6A",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/WhiteTiger/Materials/M_Greystone_legs_WhiteTiger"
+			]
+		},
+		{
+			"ShaderMapHash": "F8BB221B003037F14E1B311657EB54FB45E7AFC5",
+			"Assets": [
+				"/Engine/EngineMaterials/RemoveSurfaceMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "8075F11B726105D773AFF628F2B9FC160877CD63",
+			"Assets": [
+				"/Engine/EditorMaterials/PhAT_UnselectedMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "C4F2091CB4642716303765420C141E0349BDF868",
+			"Assets": [
+				"/Engine/EngineMaterials/Widget3DPassThrough",
+				"/Engine/EngineMaterials/Widget3DPassThrough_Translucent_OneSided"
+			]
+		},
+		{
+			"ShaderMapHash": "2C316C1DE67521C4A22D22B3914FF5B17492571F",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Foliage/Tree_01/mi_Branch_02_01",
+				"/Game/TemplesOfCambodia/Foliage/Tree_01/mi_Branch_02_01_BigTree"
+			]
+		},
+		{
+			"ShaderMapHash": "F4A8511E58947E37F6036B95A47C9BEF00FD4C69",
+			"Assets": [
+				"/Game/MegaMagicVFXBundle/VFX/MagicAuraVFX/Essentials/Materials/M_Stars"
+			]
+		},
+		{
+			"ShaderMapHash": "C433651EECE0F39B0B62852711CE9AA3F188AE08",
+			"Assets": [
+				"/Game/ParagonMinions/FX/Materials/Smoke/DirectionalLit/M_DamageBuff_Master"
+			]
+		},
+		{
+			"ShaderMapHash": "1E7AA41F4B0B3F4AAE16ED3780888A4773656D75",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/M_Morigesh_Body"
+			]
+		},
+		{
+			"ShaderMapHash": "88792E20E71D188E84A72EC99C1D9001DC4BCC68",
+			"Assets": [
+				"/Interchange/gltf/M_Default"
+			]
+		},
+		{
+			"ShaderMapHash": "74DEB620606A8EFAB841FD7FB9F383B97DA65D5F",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Billboard_Mat"
+			]
+		},
+		{
+			"ShaderMapHash": "7F10D02089466FEABDB777DF865596E9C1DECB5F",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_Fire_Mesh"
+			]
+		},
+		{
+			"ShaderMapHash": "323A72212B664C7A1D844CE374603C0B34FC5264",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/M_Morigesh_Body"
+			]
+		},
+		{
+			"ShaderMapHash": "42FC062226EC2BB683B2BA921C27AD2CD159C8C0",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Decals/Wet_01/m_Wet_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "62F665229F79C55C926D06DF7028C655BEBA4610",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dawn/Materials/Dawn_Pillarl_Inst",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/Dawn_Sconce_Inst",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/Dawnside_Inhib_Ring_Trims",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawn_Gate_Metal",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawn_Tower_Metal",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawnside_Walls_V3_Part1_MetalOnly",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/Monolith_DawnArchitecture_AllMetal",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/Monolith_DawnCollar_Metal",
+				"/Game/SampleMap/Materials/M_ParagonGates",
+				"/Game/SampleMap/Materials/M_ParagonGates1"
+			]
+		},
+		{
+			"ShaderMapHash": "22071D23802B359DA3C3DFB4E2E0C050A190DCCE",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/MM_Marble_Walls_Inst"
+			]
+		},
+		{
+			"ShaderMapHash": "802C932366F28CA1E662540F8B2CD783A38C72A7",
+			"Assets": [
+				"/Game/Blueprint/VFX/Niagara/P_DissolveEdge_Pupple"
+			]
+		},
+		{
+			"ShaderMapHash": "3FEC962397C36F44E40DED97ED906573B7CAC6F7",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawn_Gate",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawn_Reference",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawn_Stairs",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawn_Tower",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawnside_Walls_V3_Part1",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/Monolith_DawnArchitecture_NoNormal"
+			]
+		},
+		{
+			"ShaderMapHash": "59317824FDC3AA2CAA186D5AC634ACE4306E3764",
+			"Assets": [
+				"/Game/ParagonMorigesh/FX/Meshes/Splines/M_Spline_Preview"
+			]
+		},
+		{
+			"ShaderMapHash": "B27933259C10533D84634E0134FBFA7D9449ADC1",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Materials/M_Greystone_legs"
+			]
+		},
+		{
+			"ShaderMapHash": "97988226EA5B18E20D199FCC2DADE87A38AE4A99",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_Earth_Crack"
+			]
+		},
+		{
+			"ShaderMapHash": "68E43E284861380BD2F29A28111BA09EC80F22E1",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/M_TerminusGate_Nose"
+			]
+		},
+		{
+			"ShaderMapHash": "7C6D492817E725D9490C1B8804BFB3E89059DAB6",
+			"Assets": [
+				"/Paper2D/DefaultSpriteMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "0F8D5928AF6BF0B9A3321A124A0F4A8A38B74498",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Cliffs/Cliff01/MI_Cliff01",
+				"/Game/KiteDemo/Environments/Rocks/GroundRevealRock001/MI_GroundRevealRock001a",
+				"/Game/KiteDemo/Environments/Rocks/Large_Volcanic_Rock_001/MI_Large_VolcanicRock_002",
+				"/Game/KiteDemo/Environments/Rocks/Medium_Boulder_001/MI_MediumBoulder_0012",
+				"/Game/KiteDemo/Environments/Rocks/Medium_Boulder_002/MI_MediumBoulder_002",
+				"/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/MI_MountainRock_Closed",
+				"/Game/KiteDemo/Environments/Rocks/Scree001/MI_Scree_001_CC",
+				"/Game/KiteDemo/Environments/Rocks/Scree002/MI_Scree002_NEW",
+				"/Game/KiteDemo/Environments/Trees/Vegetation_Debris_002/MI_Vegetation_Debris_002",
+				"/Game/KiteDemo/Material/M_Photoscan_Master"
+			]
+		},
+		{
+			"ShaderMapHash": "565C8029E9DF588004D0A00A2133EA80B7692DD0",
+			"Assets": [
+				"/Game/Blueprint/VFX/redcircle_decal"
+			]
+		},
+		{
+			"ShaderMapHash": "13B4BA2AA79D2FB21EEBE0CC4136304496CA301F",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Tough/Materials/M_Greystone_ToughTorso"
+			]
+		},
+		{
+			"ShaderMapHash": "1CA0F72AE775C23B72C0FF8553A0F6DDE3A29199",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/M_Morigesh_Items"
+			]
+		},
+		{
+			"ShaderMapHash": "DBB24C2BC6739CDF5BF0338D0FEC4F92FD3BF8D2",
+			"Assets": [
+				"/Game/ParagonMorigesh/FX/Materials/Sparks/M_Hotdog_Spark_VLerp_Rand_Master"
+			]
+		},
+		{
+			"ShaderMapHash": "ECDB602B072B513FD7D953CE68196B397DED7AB1",
+			"Assets": [
+				"/Game/Blueprint/VFX/Niagara/P_DissolveEdge_Pupple"
+			]
+		},
+		{
+			"ShaderMapHash": "BABC5C2CAC02B07731D29740E750434E33E91551",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Tough/Materials/M_Greystone_ToughArms"
+			]
+		},
+		{
+			"ShaderMapHash": "38441E2D06A973652ACAD197B7043BE2D43C6B49",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_Sparks"
+			]
+		},
+		{
+			"ShaderMapHash": "866AB42EA4710921A28E5719FDE4707B55013D95",
+			"Assets": [
+				"/Game/Blueprint/UI/Map/BaseMap/NewTestBaseMap1"
+			]
+		},
+		{
+			"ShaderMapHash": "BB97C92EBD42DF5547D0B8A31CCE590261C4D7D5",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01_Billboard_Mat"
+			]
+		},
+		{
+			"ShaderMapHash": "E8D83730978DAAAA925AE6FCCE43372E3E05665C",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/M_BaseWall_Piece_FD_Carving",
+				"/Game/ParagonProps/Agora/Props/Materials/M_BaseWall_Piece_J",
+				"/Game/ParagonProps/Agora/Props/Materials/M_BaseWall_Piece_K_Carving",
+				"/Game/ParagonProps/Agora/Props/Materials/M_Glansgruvan_Rock_Inst",
+				"/Game/ParagonProps/Agora/Props/Materials/MM_MossRocks"
+			]
+		},
+		{
+			"ShaderMapHash": "A6D24E30605CCFB86FDA313EA0DDE6A43036EE79",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Environment/GroundRocks_01/mi_GroundRocks_01_00"
+			]
+		},
+		{
+			"ShaderMapHash": "98564731076CD892E7701BD31F50E02044F4635C",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Tough/Materials/M_Greystone_ToughLegs"
+			]
+		},
+		{
+			"ShaderMapHash": "3D4BA3311E37E0AAE493735D783976A1BC8C18A2",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Medieval_Weapons_Base"
+			]
+		},
+		{
+			"ShaderMapHash": "D1313B326D22F7B64362CDDAB40913AAA6A1052B",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/MM_Marble_Walls_Inst"
+			]
+		},
+		{
+			"ShaderMapHash": "B5D7AD3217C1308E54BD972FB47F14BA0EA7DC26",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Global/Eyes/Materials/M_TearDuct_2"
+			]
+		},
+		{
+			"ShaderMapHash": "BC34CA333E2A06EC4ED343674C56DB5301676F55",
+			"Assets": [
+				"/Engine/EngineMaterials/PhAT_JointLimitMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "3443D63496061AD0D71ED15AC312997D4B2155A9",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Foliage/Ferns/M_Fern_01_Inst"
+			]
+		},
+		{
+			"ShaderMapHash": "D552E5341100A99934224C310F7EF651FB2E775C",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_HealingCross_3D"
+			]
+		},
+		{
+			"ShaderMapHash": "0B223C35E0601B21FF954D2047266E27D0E0F080",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Base_01"
+			]
+		},
+		{
+			"ShaderMapHash": "48DCA235492F03F4EE7B2740204220204B73397E",
+			"Assets": [
+				"/Game/Blueprint/UI/Map/stage_02_Map/stage_02_Test"
+			]
+		},
+		{
+			"ShaderMapHash": "782648362ECA02EFCA75FD5FB8B0904E3467C01C",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/M_TerminusGate_Gateway"
+			]
+		},
+		{
+			"ShaderMapHash": "AD9160368A46D2ABE7E57DB9FB7A2A6F26992413",
+			"Assets": [
+				"/Game/SKnight_modular/Skeleton_Knight_07/materials/M_SKnigh_07_armor"
+			]
+		},
+		{
+			"ShaderMapHash": "EA3E973637D1854BF4CCE8A20CA0CDFAE1C8AAB9",
+			"Assets": [
+				"/Game/ParagonProps/Ground/Materials/M_WetDecal2"
+			]
+		},
+		{
+			"ShaderMapHash": "A6E7F036B2488FB588E5C63CD0F78D7B4F40927E",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Evil_Corrupt_Inhibitor_Strip",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Evil_InhibGate_Top",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_EvilBarbican_Top_A",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Generic_Metal",
+				"/Game/SampleMap/Materials/M_ParagonLogo_Inst1"
+			]
+		},
+		{
+			"ShaderMapHash": "1E142D3803CE5A8DA6D288BF24D4A386ECA51BE0",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Decals/Puddle_01/m_Puddle_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "66533638226BC63D039F136177BF6AEEB7D58891",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Materials/M_Greystone_Flesh_head"
+			]
+		},
+		{
+			"ShaderMapHash": "F3377F38419732478AF88ACFD1FF0AE4B2D7A714",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_Default_Mask_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "F41CA13866CD83689B3BFBBB0C106EB01EB35D11",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/Free_WhiteTiger_Detach/M_White_Cloth"
+			]
+		},
+		{
+			"ShaderMapHash": "89CCFC38AF5AD60D59C75433649E0A7BD0C5700A",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Foliage/Bush_01/mi_Branch_01_01_Interactive"
+			]
+		},
+		{
+			"ShaderMapHash": "55A97C3ACE263DD71525BE9C1F832466B11941CA",
+			"Assets": [
+				"/Engine/EngineMaterials/DefaultPostProcessMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "ED06BC3ADBC60D388B561D906A6D06DEBA4AF877",
+			"Assets": [
+				"/Engine/EngineMaterials/Widget3DPassThrough_Opaque"
+			]
+		},
+		{
+			"ShaderMapHash": "D341D43A07A79C9EDC7E559BE5F5785512581BB7",
+			"Assets": [
+				"/Game/ParagonGreystone/FX/Materials/Heroes/Greystone/Abilities/M_LeapAOE_Projectile_Wind_Rush"
+			]
+		},
+		{
+			"ShaderMapHash": "64EF7C3B77ED01B32E38D8403E409FBF9522C07D",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Environment/Pottery_01/mi_Pottery_01_04"
+			]
+		},
+		{
+			"ShaderMapHash": "0BBECA3BFF90FC4FF663BA9FDFE0C2DEF8F6F443",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Global/Mouth/Materials/M_Mouth_Master"
+			]
+		},
+		{
+			"ShaderMapHash": "79629D3CE75DAE3B49A4CA25B90695128260900D",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/MI_Global_Feathers_Morigesh"
+			]
+		},
+		{
+			"ShaderMapHash": "261E803D299A438BED3128C3104B799317A5A16F",
+			"Assets": [
+				"/Game/MixedVFX/Materials/MaterialInstances/MI_FireFlipbook1",
+				"/Game/MixedVFX/Materials/MaterialInstances/MI_Flare",
+				"/Game/MixedVFX/Materials/MaterialInstances/MI_Lightning",
+				"/Game/MixedVFX/Materials/MaterialInstances/MI_Star"
+			]
+		},
+		{
+			"ShaderMapHash": "D908D73D845EB700D2E93E247B36964AB4D3FB25",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Tough/Materials/M_Greystone_ToughSword"
+			]
+		},
+		{
+			"ShaderMapHash": "ADEF423ECA3DC70EA77565C2EEF6F95D2C7A89F2",
+			"Assets": [
+				"/Game/MegaMagicVFXBundle/VFX/MagicalExplosionsVFX/Essentials/Materials/M_MasterSpriteMat"
+			]
+		},
+		{
+			"ShaderMapHash": "5524543EA07FD2143A89A6D159942C8319FCE9CD",
+			"Assets": [
+				"/Engine/EditorMaterials/PhAT_NoCollisionMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "986B983E16B3A813A77D2844EE306F53FE847B58",
+			"Assets": [
+				"/Game/TemplesOfCambodia/BaseMaterials/m_Foliage_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "64ADEA3E3E7897F16F7C27725B0284447727F51E",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Tough/Materials/M_Greystone_ToughTorso"
+			]
+		},
+		{
+			"ShaderMapHash": "06126D3FBDC8430BD43240B8E6B2C86602417670",
+			"Assets": [
+				"/Game/SuperGrid/StarterPack/Materials/Base/M_SuperGrid_HoloRefract"
+			]
+		},
+		{
+			"ShaderMapHash": "F8549F3F296A153DBED9519D945C0FCEB586879E",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_Lightning_Zaps"
+			]
+		},
+		{
+			"ShaderMapHash": "FDBAA03F594269569EF12CBD3529661C13320C09",
+			"Assets": [
+				"/Game/ParagonMinions/Characters/Minions/Prime_Helix/Materials/M_Prime_Helix_Visor"
+			]
+		},
+		{
+			"ShaderMapHash": "AB84C440426EC287FF9E8072A3FCA6FF9FFB606A",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_Energy_Sphere"
+			]
+		},
+		{
+			"ShaderMapHash": "D676984269077C04E3D7BE5B8A077C286CF75913",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_Ring"
+			]
+		},
+		{
+			"ShaderMapHash": "7CD4C7429F8EAFD9C37D4C3FC1073808EB8C949C",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Foliage/Flowers/FieldScabious/M_FieldScabious_01",
+				"/Game/KiteDemo/Environments/Foliage/Flowers/FieldScabious/M_FieldScabious_01_Inst02"
+			]
+		},
+		{
+			"ShaderMapHash": "D60BC942126FD6B9013D2D7DA3A92B0030293147",
+			"Assets": [
+				"/Game/Monster/Materials/M_Monster_Body_Skin1"
+			]
+		},
+		{
+			"ShaderMapHash": "1B6BD342D77679C9662721299C0483D6470BCBC8",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Foliage/Ferns/M_Fern_01"
+			]
+		},
+		{
+			"ShaderMapHash": "410B3743F83C6AF61F409F1856975FC2C072A555",
+			"Assets": [
+				"/Game/Blueprint/UI/Map/stage_01_Map/stage_01_Normal"
+			]
+		},
+		{
+			"ShaderMapHash": "D3564D43AF3773755F2E0335FEA1882BEB484510",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Trees/HillTree_Tall_02/HillTree_Tall_01_Billboard_Mat"
+			]
+		},
+		{
+			"ShaderMapHash": "8D9F6A43A332E64B6A2EF26A73E0ABC7E2E5B3B2",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Foliage/Flowers/Buttercup/M_Buttercup_Patch_01"
+			]
+		},
+		{
+			"ShaderMapHash": "BCDCD243BCE5E2A9A901BA93DF6A0CFB9C76DFEB",
+			"Assets": [
+				"/Engine/EngineMaterials/FlattenMaterial_WS_Normal_VT"
+			]
+		},
+		{
+			"ShaderMapHash": "40C710448E32417610A40D5A44FFDCC55C4D517D",
+			"Assets": [
+				"/Game/MixedVFX/Materials/M_TrailMaster"
+			]
+		},
+		{
+			"ShaderMapHash": "0E9A7344640E10F0CAD493A0BD7E54B848971585",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Mono_WaterBall"
+			]
+		},
+		{
+			"ShaderMapHash": "4FE9B34409DAD8D6F180CB658201C4D61D85A276",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Tough/Materials/M_Greystone_ToughLegs"
+			]
+		},
+		{
+			"ShaderMapHash": "988BED4471770463B100C5B7629F01048AFA301C",
+			"Assets": [
+				"/Game/ParagonMorigesh/FX/Materials/Debuffs/FX/M_CleanseFlare"
+			]
+		},
+		{
+			"ShaderMapHash": "547C5745E01A65840DE9EB15F312BF3114E64854",
+			"Assets": [
+				"/Game/Kobo_Dungeon/Materials/M-Master/M-Master"
+			]
+		},
+		{
+			"ShaderMapHash": "3913184634629106EAEA7236A0B1E9061CF34A1D",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Foliage/BogMyrtle_01/BogMyrtle_01_Fronds_Mat"
+			]
+		},
+		{
+			"ShaderMapHash": "CA754847E2C9D396AA89D92399AFF7B84ACC8532",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/MI_Basewall_Piece_Metal_2"
+			]
+		},
+		{
+			"ShaderMapHash": "E8FCA748ECB59F94A8E275C969CF283123B3D0D4",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_01_Branches_Mat"
+			]
+		},
+		{
+			"ShaderMapHash": "53C037492CA233CA0E8A7C9BCC1B0CCFFA42404B",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/MI_Global_Feathers_Morigesh"
+			]
+		},
+		{
+			"ShaderMapHash": "34EDAD49399C7B5ACC260DA75D47DF6ACBD479E7",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Ruins/Materials/M_Jungle_Metal"
+			]
+		},
+		{
+			"ShaderMapHash": "335BBA49BACD5FFFC2319A924B942349C67A8235",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_Default_Blend"
+			]
+		},
+		{
+			"ShaderMapHash": "016D514A399D05243C77C5C4316AB460D5C4FF55",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Evil_Stair_Top_Inst",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Generic",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Generic_BigWall"
+			]
+		},
+		{
+			"ShaderMapHash": "05FFAA4BE028ADD0737B4701D2519EFCCC5FC5F5",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Effects/Rain_01/m_Rain_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "7174F34B0EC697E21C35ADBD0DF94781AB7F0087",
+			"Assets": [
+				"/Game/ParagonMinions/FX/Materials/Flares/M_Buff_Red_ImpactRays"
+			]
+		},
+		{
+			"ShaderMapHash": "CC09514E90B9ECD7A12B1D38DB34D88A3039680C",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Evil_Stair_Top_Inst",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Generic",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Generic_BigWall"
+			]
+		},
+		{
+			"ShaderMapHash": "55D95B4E6E5591DCFDADF281ED34192339C6BCC3",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_01_Leaves_Mat2"
+			]
+		},
+		{
+			"ShaderMapHash": "E4BC604F2A843F5B3811FB380E7BBB2DFEB2A849",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/M_Morigesh_Body"
+			]
+		},
+		{
+			"ShaderMapHash": "77B8784FB82C2490CF8CB53A54EBACDB14BD5ECA",
+			"Assets": [
+				"/Engine/VREditor/TransformGizmo/Main"
+			]
+		},
+		{
+			"ShaderMapHash": "B8887853F5386EFB2FFEB096EC3AB5F1CEF2E50C",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_Default_Blend_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "9104905322BDCD587864439D50AB3F8425B5D0C2",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Tough/Materials/M_Greystone_Tough_head_skin"
+			]
+		},
+		{
+			"ShaderMapHash": "9EED9453C26C2BED839D3D0E32D9332C04562EA0",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_Unlit_Blend_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "8996D053BC29EBFB07BF031B787A2CD68AFF156E",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/Free_WhiteTiger_Detach/M_Body"
+			]
+		},
+		{
+			"ShaderMapHash": "E775EF53B9E64DC0486668FD31906D3F5D04FAC0",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dusk/Materials/Master_SidesMarble",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Dusk_Spire_Gate_Pillars",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Dusk_WallA_Flat_NoBrick",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Dusk_WallA_Strait",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Evil_Corrupt_Inhibitor_Center",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Evil_Stair_Flat_Inst",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_EvilGate_Piece_4",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/Referecnce_DarkSide",
+				"/Game/SampleMap/Materials/M_Dawn_StairsBlack"
+			]
+		},
+		{
+			"ShaderMapHash": "43E22754C33C89280938EB86EEA22D62168D2BB1",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_Sheen_Blend"
+			]
+		},
+		{
+			"ShaderMapHash": "4891735463ACCB09072DD4460A87D09E263DD780",
+			"Assets": [
+				"/Engine/EngineDebugMaterials/M_VolumeRenderSphereTracePP"
+			]
+		},
+		{
+			"ShaderMapHash": "FFD57554E4EDBFE33630AA8C5F4DECDE4D082985",
+			"Assets": [
+				"/Game/KiteDemo/Environments/GroundTiles/LeafyPath/MI_Tile_LeafPathStones",
+				"/Game/KiteDemo/Environments/GroundTiles/PebblyRiverbank/MI_PSM_PebblyRiverbank_Tile",
+				"/Game/KiteDemo/Environments/GroundTiles/RockyPath/MI_PSM_RockyPath_Tile",
+				"/Game/KiteDemo/Material/M_Photoscan_Master_Displacement"
+			]
+		},
+		{
+			"ShaderMapHash": "6D239C541EE90E00A76A08DC14658369737A09BC",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Novaborn/Materials/M_Greystone_Novaborn_Legs"
+			]
+		},
+		{
+			"ShaderMapHash": "AFA60555466AC2D3C58DA51288B3098FCD0818BE",
+			"Assets": [
+				"/Interchange/gltf/M_Sheen"
+			]
+		},
+		{
+			"ShaderMapHash": "AF4F505573516F4FC1E96C430024BEA2E61DD1A3",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Environment/TempleWall_01/mi_TempleWall_01_00",
+				"/Game/TemplesOfCambodia/Environment/TempleWall_01/mi_TempleWall_01_01",
+				"/Game/TemplesOfCambodia/Environment/TempleWall_01/mi_TempleWall_01_02"
+			]
+		},
+		{
+			"ShaderMapHash": "95BFE255AA5B64E9FA2BC7A300B940C9814B3EBF",
+			"Assets": [
+				"/Engine/BasicShapes/BasicShapeMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "BB58EB55EFEC859131CE86C509F8D9373FF263D5",
+			"Assets": [
+				"/Game/Movie/Stage02/M_SceneMesh"
+			]
+		},
+		{
+			"ShaderMapHash": "0DD704565096439AD6E58B7AA380658024BBC5DF",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_Unlit_Blend"
+			]
+		},
+		{
+			"ShaderMapHash": "C90D785750A22190DEE656B5C16B0D69BE615241",
+			"Assets": [
+				"/Game/TemplesOfCambodia/BaseMaterials/m_BaseMaterial_01_02_Tile"
+			]
+		},
+		{
+			"ShaderMapHash": "32BCD95751E398F605E51EA5AF1640C4DC30843B",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/M_FieldGrass_Inst_01_LOD2"
+			]
+		},
+		{
+			"ShaderMapHash": "9B59E757AE9C14081071352103CD43DB8FF53A23",
+			"Assets": [
+				"/Engine/EngineDebugMaterials/DebugMeshMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "E4F64258F9229578E372E5211BEA35998BDCF6C0",
+			"Assets": [
+				"/Game/ParagonMinions/FX/Materials/Debris/M_Buff_Red_Rock"
+			]
+		},
+		{
+			"ShaderMapHash": "8E9EF1580EF17E0C22FD4E2600BCD7DD0A820519",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Tough/Materials/M_Greystone_Tough_head_skin"
+			]
+		},
+		{
+			"ShaderMapHash": "086A295957F7269B159607ED14CE2C6840F1B9A9",
+			"Assets": [
+				"/ControlRig/Controls/ControlRigGizmoMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "4A8A68597C6452F6FF6BEAE834B73067A52D7BDF",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/Free_WhiteTiger_Detach/M_Pants"
+			]
+		},
+		{
+			"ShaderMapHash": "A634ED59FEBAB607E2AB93A44795B9787034C9C3",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Foliage/Bush_01/mi_BushTrunk_01_01_Interactive"
+			]
+		},
+		{
+			"ShaderMapHash": "707A5B5A432A712451310BAF2B93AD3B0D6A5B9A",
+			"Assets": [
+				"/Game/Blueprint/VFX/Niagara/NS_Projectile_01"
+			]
+		},
+		{
+			"ShaderMapHash": "3FBCF55AEA8FE4394A650956BB1D49D744CD22A6",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Global/Eyes/Materials/M_TearDuct_2"
+			]
+		},
+		{
+			"ShaderMapHash": "4E0F285B8362182D8DCFD2442FD6BDB67223EC9B",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Global/Eyes/Materials/M_TearLine",
+				"/Game/ParagonMorigesh/Characters/Global/Eyes/Materials/M_TearLine"
+			]
+		},
+		{
+			"ShaderMapHash": "5963935BBFBA9CEF7CD8C131C5719246FB348C3A",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Rocks/Materials/M_ScanRock"
+			]
+		},
+		{
+			"ShaderMapHash": "A9CB955BBFE53014AA08A3AAC615B1063CADFBA6",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Global/Feathers/M_Global_Feathers"
+			]
+		},
+		{
+			"ShaderMapHash": "F63C605C8423AAB9E465E86BF644EEAC4C9ED274",
+			"Assets": [
+				"/Engine/EditorMaterials/PreviewShadowIndicatorMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "D784D05C6B9328D68DA5F485FB34DEFC7A86051F",
+			"Assets": [
+				"/Game/QuadrapedCreatures/MountainDragon/Materials/M_MOUNTAIN_DRAGON"
+			]
+		},
+		{
+			"ShaderMapHash": "FC92DA5CC2AB6C80615370E473B9FE300D15AB59",
+			"Assets": [
+				"/Engine/VREditor/TransformGizmo/Xray"
+			]
+		},
+		{
+			"ShaderMapHash": "1F105F5D78A95F92C4DB703361FE3FC8257F71E0",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_Transmission_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "58DD635D638BE6598D1C0613A7C1189F12BC3955",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Global/Eyelash/M_EyelashMaster"
+			]
+		},
+		{
+			"ShaderMapHash": "9ECADA5DC594C292B18504D470D47AF13D318AA6",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_SpecularGlossiness_Mask_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "DD628A5E9068D22C783EBE5D8FA79B545ABA3E4C",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Foliage/Tree_01/mi_Branch_01_01",
+				"/Game/TemplesOfCambodia/Foliage/Tree_01/mi_Branch_01_01_BigTree",
+				"/Game/TemplesOfCambodia/Foliage/Tree_01/mi_Branch_01_01_BigTree_Wind",
+				"/Game/TemplesOfCambodia/Foliage/Tree_01/mi_Branch_01_02",
+				"/Game/TemplesOfCambodia/Foliage/Tree_01/mi_Branch_01_02_wind"
+			]
+		},
+		{
+			"ShaderMapHash": "6061925E934AEC7C7187B81827CDF735CA921AAC",
+			"Assets": [
+				"/Game/SuperGrid/StarterPack/Materials/Base/M_SuperGrid_Orientation"
+			]
+		},
+		{
+			"ShaderMapHash": "D84F955E094ADD0EC492F84387F8296DA030E433",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Tough/Materials/M_Greystone_Tough_Hair_Demo"
+			]
+		},
+		{
+			"ShaderMapHash": "422FB65EF6616DCE1250B894E70C1E98D222B017",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Foliage/Bush_01/mi_Branch_01_02_Interactive"
+			]
+		},
+		{
+			"ShaderMapHash": "1B7BCA5E3814D5CB1C516493A6691F88A13D0931",
+			"Assets": [
+				"/Game/Blueprint/UI/Map/stage_01_Map/stage_01_BossMap/BossMap"
+			]
+		},
+		{
+			"ShaderMapHash": "CB1BCD5ECDB2B083FF2E89E04C67702A2702DD00",
+			"Assets": [
+				"/Game/MixedVFX/Materials/M_TranslucentUnlitMaster"
+			]
+		},
+		{
+			"ShaderMapHash": "C63FD05EF8C9AFBCAECFF2E41C0F2BA8C3A36B7A",
+			"Assets": [
+				"/Game/Sicka_EnvPack2/Sicka_Ancient_Kit/Materials/M_Master"
+			]
+		},
+		{
+			"ShaderMapHash": "7E47D25EB0F2785D4F1F143C409872EA33312E74",
+			"Assets": [
+				"/Engine/EngineMaterials/Widget3DPassThrough_Masked_OneSided"
+			]
+		},
+		{
+			"ShaderMapHash": "02AD0B60816A739AC022870208C18158CCB908D5",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/M_TerminusGate_Nose",
+				"/Game/ParagonProps/Agora/Props/Materials/M_TerminusGate_Trim"
+			]
+		},
+		{
+			"ShaderMapHash": "6BA896615C599A7BA6C12F94CCBFE22A5BCB4BB7",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Environment/Pedestal_01/mi_Pedestal_01_01",
+				"/Game/TemplesOfCambodia/Environment/Rock_01/mi_Rock_01_00",
+				"/Game/TemplesOfCambodia/Environment/Rock_03/mi_Rock_03_01",
+				"/Game/TemplesOfCambodia/Environment/Rock_04/mi_Rock_04_03_Wet"
+			]
+		},
+		{
+			"ShaderMapHash": "2AF0EC62FB00D524334D3A8708DD72EFD9A9E0EA",
+			"Assets": [
+				"/Game/ParagonMorigesh/FX/Materials/Heroes/Morigesh/M_Morigesh_Twisted_Plane"
+			]
+		},
+		{
+			"ShaderMapHash": "001851635C5CB90D1C8AC32A6E10101DC15B4FD4",
+			"Assets": [
+				"/Game/SuperGrid/StarterPack/Materials/Base/M_SuperGrid_Glowing_MultiColor"
+			]
+		},
+		{
+			"ShaderMapHash": "0BEBEB63AA08FEE808E942FDA1CC35F22A1A860A",
+			"Assets": [
+				"/Game/SKnight_modular/Skeleton_Knight_01/materials/M_weapon_01"
+			]
+		},
+		{
+			"ShaderMapHash": "AB72E264D4760A57DFE7F3D412D35AADFB641637",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_SpecularGlossiness_Mask"
+			]
+		},
+		{
+			"ShaderMapHash": "0D0FF864E962294C0F7C68B0134BD69462B5F76A",
+			"Assets": [
+				"/Game/SKnight_modular/Skeleton_Knight_07/materials/M_SKnigh_07_armor"
+			]
+		},
+		{
+			"ShaderMapHash": "EE2CAA655FEAED11F8E302C2215EE02D79D59701",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Tough/Materials/M_Greystone_ToughSword"
+			]
+		},
+		{
+			"ShaderMapHash": "C175C465BA4B8204C911AE37DEF211C3DE43BDDA",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Leaves_Mat"
+			]
+		},
+		{
+			"ShaderMapHash": "21ECDB6542B8EBA789BDF15A5E86625ECCD08085",
+			"Assets": [
+				"/Game/ParagonGreystone/FX/Materials/Heroes/Greystone/Skins/Novaborn/M_Greystone_Novaborn_Constellations_Lines"
+			]
+		},
+		{
+			"ShaderMapHash": "FBA980661F36BDBCA31C98E63DFB9669C8146F84",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Novaborn/Materials/M_Greystone_Novaborn_Head"
+			]
+		},
+		{
+			"ShaderMapHash": "386CD86699ABE955D8E0E2717F5DE00C5AD68E98",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Global/Mouth/Materials/M_Mouth_Master"
+			]
+		},
+		{
+			"ShaderMapHash": "7754556757CDE3B6339979C9B23F6026BB72D09E",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_SpecularGlossiness_Opaque_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "0EF6C068D45374F23989E70C69FCC4F32111F25D",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/MI_Basewall_Piece_Metal_2"
+			]
+		},
+		{
+			"ShaderMapHash": "26E7AD69090774539BE8CA9D222192E3E508B493",
+			"Assets": [
+				"/Game/Scanned3DPeoplePack/RP_Character/rp_eric_rigged_001_ue4/Materials/rp_eric_rigged_001_mat"
+			]
+		},
+		{
+			"ShaderMapHash": "BDD8046ABB31E4C2CD95921A8938158F5C93C648",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/M_Morigesh_HeadArmsLeg"
+			]
+		},
+		{
+			"ShaderMapHash": "3EA47D6A28D77633E137A6CFAAABD794D09D8529",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/M_TerminusGate_Gateway"
+			]
+		},
+		{
+			"ShaderMapHash": "E4128B6A7755A5CE22E24E39C38BB12505F01ADD",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dusk/Materials/Master_SidesMarble"
+			]
+		},
+		{
+			"ShaderMapHash": "B5DDA56A7A2B624A21D8828D7753B8F49DF29CEF",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_Heal_Sphere"
+			]
+		},
+		{
+			"ShaderMapHash": "8292246B2AB0D87CD1846DAB68F77F01ED6D3B5E",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Vegetation"
+			]
+		},
+		{
+			"ShaderMapHash": "33AE386B2064D3503A4D0A6E876906F1C288B380",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Effects/LumenLight_01/m_LumenLight_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "454F866B98D9F66350B3F5A1E0A1269EB8F0A9F6",
+			"Assets": [
+				"/Game/Blueprint/VFX/Material/M_Meteor"
+			]
+		},
+		{
+			"ShaderMapHash": "D998A96B77F2A39B8CC30769DF7B2E239E46032F",
+			"Assets": [
+				"/Game/SampleMap/Materials/M_ParagonLogo_Inst"
+			]
+		},
+		{
+			"ShaderMapHash": "8E45386CA5B81ADD08B280AA7BB0FB8C46913A6B",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Novaborn/Materials/M_Greystone_Novaborn_Torso"
+			]
+		},
+		{
+			"ShaderMapHash": "9CD4C46CA7F2D12C99133E155326BA82BE056329",
+			"Assets": [
+				"/Game/SuperGrid/StarterPack/Materials/Base/M_SuperGrid_MetalCustom"
+			]
+		},
+		{
+			"ShaderMapHash": "AB221F6EFB6A82E90404FAE1F47CEE60312854E2",
+			"Assets": [
+				"/Niagara/DefaultAssets/DefaultSpriteMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "3F6E286E3814329023A974CFC065E99452111CBB",
+			"Assets": [
+				"/Engine/EngineDebugMaterials/DebugEditorMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "8811CF6EBD8BA2179C893DA009326356CD0843E7",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/WhiteTiger/Materials/MIC_GreystoneFur_WhiteTiger"
+			]
+		},
+		{
+			"ShaderMapHash": "5345326F4FD1EE6DDE1D2E5D3814E0D95F878A6C",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Base"
+			]
+		},
+		{
+			"ShaderMapHash": "64E459719016A091C418BCCF736E95776124265C",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Base2"
+			]
+		},
+		{
+			"ShaderMapHash": "9FA3B072DF5E0EEDB5EA9F39ABBDE73B24841D55",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Environment/Relief_01/mi_Relief_01_01",
+				"/Game/TemplesOfCambodia/Environment/StairsSculpture_01/mi_StairsSculpture_01_01",
+				"/Game/TemplesOfCambodia/Environment/StairsSculpture_01/mi_StairsSculpture_01_02",
+				"/Game/TemplesOfCambodia/Environment/StairsSculpture_01/mi_StairsSculpture_01_03"
+			]
+		},
+		{
+			"ShaderMapHash": "6082F172FC979E441649FA8CABD7C49EFF13B6BC",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/MM_Marble_Walls_Inst"
+			]
+		},
+		{
+			"ShaderMapHash": "6E5E3873C2DD5289A4605C981BAFA6178D8DB4E0",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Effects/Mist_01/m_ps_Mist_01_01_Lit"
+			]
+		},
+		{
+			"ShaderMapHash": "D16CBE73293ACD5CECA2C077B00B05A9711F428F",
+			"Assets": [
+				"/Interchange/gltf/M_ClearCoat"
+			]
+		},
+		{
+			"ShaderMapHash": "69E7C573D3B9C2244987495C836A17277E16E569",
+			"Assets": [
+				"/Game/SKnight_modular/Skeleton/materials/M_Skeleton"
+			]
+		},
+		{
+			"ShaderMapHash": "304F3C74D38FD21E4EB7893DC78C6B184BB16A9F",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/MM_Marble_Metal_Arch"
+			]
+		},
+		{
+			"ShaderMapHash": "5C58F574C557C55CA27B62719E7F179136C3944F",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Foliage/Flowers/Heather/M_HeatherNew_Master"
+			]
+		},
+		{
+			"ShaderMapHash": "E747FF777F61D7795B58E892C8F12EEC292FC0F0",
+			"Assets": [
+				"/Game/MixedVFX/Materials/M_Slash_Master"
+			]
+		},
+		{
+			"ShaderMapHash": "38E42D78A9479414D387654CD08798874B2B9AF9",
+			"Assets": [
+				"/Game/ParagonGreystone/FX/Materials/Heroes/Greystone/Skins/Novaborn/M_Greystone_Novaborn_Square_Gradient"
+			]
+		},
+		{
+			"ShaderMapHash": "B48C307829946ABE9084F77A64700AC7BDF1E75C",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Materials/MIC_GreystoneFur"
+			]
+		},
+		{
+			"ShaderMapHash": "87FEC6797892E2C8F31A3D87F72A15D03E77437E",
+			"Assets": [
+				"/Game/TemplesOfCambodia/BaseMaterials/m_BaseMaterial_01_07_Masks"
+			]
+		},
+		{
+			"ShaderMapHash": "0B4DD579775B4D789EC10C6254731658BEC0064F",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Effects/Fog_01/mi_Fog_01_02_blue"
+			]
+		},
+		{
+			"ShaderMapHash": "A4767B7B20ABA3DC0122101530E519E4C8ABA9B1",
+			"Assets": [
+				"/Game/ParagonProps/Ground/Materials/M_Waterfloor"
+			]
+		},
+		{
+			"ShaderMapHash": "1745817B0D889276DEBA6C659F5FF8AB05A2A639",
+			"Assets": [
+				"/Game/MegaMagicVFXBundle/VFX/MagicalExplosionsVFX/Essentials/Materials/M_SmokeSubUV"
+			]
+		},
+		{
+			"ShaderMapHash": "1A80037DCAA3D4C30FE1A27FE2941C878B4307A1",
+			"Assets": [
+				"/Game/MegaMagicVFXBundle/VFX/MagicalExplosionsVFX/Essentials/Materials/M_Meteor"
+			]
+		},
+		{
+			"ShaderMapHash": "7F03997D851C292AA532208699C675B0E553D159",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/MM_Marble_Metal_Arch"
+			]
+		},
+		{
+			"ShaderMapHash": "BE6C197FDD15434B8976D259A9E6BBEC2E5AEB81",
+			"Assets": [
+				"/Game/ParagonGreystone/FX/Materials/Heroes/M_ArrowFlare"
+			]
+		},
+		{
+			"ShaderMapHash": "58ED848029622421AF9174A5DBDAA149A303DE54",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Demo/EpicContent/Materials/M_Water_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "E556C68076252E1A4243424412CAC635D75F93DA",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/M_TerminusGate_Trim"
+			]
+		},
+		{
+			"ShaderMapHash": "A72EB1813F4A4F63E2B125ED07D99E05F578CE25",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Novaborn/Materials/M_Greystone_Novaborn_Legs"
+			]
+		},
+		{
+			"ShaderMapHash": "41E0C081C11C05F24332B0CD0CC8725507EEDEF9",
+			"Assets": [
+				"/Game/SKnight_modular/Skeleton_Knight_07/materials/M_weapon_07"
+			]
+		},
+		{
+			"ShaderMapHash": "190A4982F0A92FAAAE328466E016D1C2EB84189D",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/M_DinoNest"
+			]
+		},
+		{
+			"ShaderMapHash": "B712528290246C8D112ABBAD3AB5E0A96044E71C",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dawn/MaterialFunctions/Master_SidesMarble"
+			]
+		},
+		{
+			"ShaderMapHash": "0CAC4C83B841C9B400F0FC4B1DC3F1C0EEF11181",
+			"Assets": [
+				"/Engine/EngineMaterials/Widget3DPassThrough_Translucent"
+			]
+		},
+		{
+			"ShaderMapHash": "40880F8492FC38E8F280C2D6C1D0C3D041B7609C",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_Unlit_Mask"
+			]
+		},
+		{
+			"ShaderMapHash": "BD2A88859D3F0B0E1E50ADA635814098A1807161",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Light"
+			]
+		},
+		{
+			"ShaderMapHash": "2540BB856905DA14B5E646B6B88B137E290B0542",
+			"Assets": [
+				"/Game/MegaMagicVFXBundle/VFX/MagicShieldsVFX/Essentials/Materials/M_CurseShield"
+			]
+		},
+		{
+			"ShaderMapHash": "0A5FA58686956CD05FD76744278AF6D236F8A6B2",
+			"Assets": [
+				"/Game/ParagonMinions/FX/Materials/Debris/M_Buff_Red_SmashImpact"
+			]
+		},
+		{
+			"ShaderMapHash": "9EADE887850E735AD36C5B1A79C7E77F03A2AC35",
+			"Assets": [
+				"/Game/MegaMagicVFXBundle/VFX/MagicShieldsVFX/Essentials/Materials/M_LightningShield"
+			]
+		},
+		{
+			"ShaderMapHash": "3B5210884DC2FB2D7268DF55F9B5B5580BF55D04",
+			"Assets": [
+				"/Engine/EngineDebugMaterials/BlackUnlitMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "BDBC4789DF5972C8A352722A8911A949C01D76F5",
+			"Assets": [
+				"/Game/Blueprint/VFX/Niagara/P_DissolveEdge_Green",
+				"/Game/Blueprint/VFX/Niagara/P_DissolveEdge_Yellow"
+			]
+		},
+		{
+			"ShaderMapHash": "DADD0D8A94CDC94D806ECBD5499DE64F75BEE7C2",
+			"Assets": [
+				"/Game/SKnight_modular/Skeleton/materials/M_Skeleton"
+			]
+		},
+		{
+			"ShaderMapHash": "3A2EA68A1814C5911259CB4D43966373102FD717",
+			"Assets": [
+				"/Game/ParagonMinions/Characters/Minions/Prime_Helix/Materials/M_Prime_Helix_Torso_V1"
+			]
+		},
+		{
+			"ShaderMapHash": "1744228B400BA2E2D42C19E80191B6FDA4AA3219",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/MM_Marble_Metal_Arch"
+			]
+		},
+		{
+			"ShaderMapHash": "7F78458B5D4DA519E12794C515B70350A039BC2C",
+			"Assets": [
+				"/Game/ParagonGreystone/FX/Materials/Heroes/Greystone/Skins/Novaborn/M_Greystone_Novaborn_Constellations_Stars"
+			]
+		},
+		{
+			"ShaderMapHash": "13037D8B845083F593B0E384BFC0963DA287FE83",
+			"Assets": [
+				"/Game/Lighting/M_SkyFloor"
+			]
+		},
+		{
+			"ShaderMapHash": "4A1FE68B05BAD75E1D3034F2E34013C3DB3C36D9",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Global/Feathers/M_Global_Feathers"
+			]
+		},
+		{
+			"ShaderMapHash": "8D8A848CA96CFE5093889D6E0057E65302714B7D",
+			"Assets": [
+				"/Game/ParagonMorigesh/FX/Materials/Smoke/M_Morigesh_EmoteSmoke"
+			]
+		},
+		{
+			"ShaderMapHash": "3F528A8C9FDBCD60B56342197C5D3D4CFE402F7C",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Global/Eyes/Materials/M_EyeRefractive"
+			]
+		},
+		{
+			"ShaderMapHash": "89FCBF8C85565606E578EEB1B6639A816271B0E8",
+			"Assets": [
+				"/Game/Realistic_Starter_VFX_Pack_Vol2/Materials/M_Smoke_C"
+			]
+		},
+		{
+			"ShaderMapHash": "CD53CF8C8E9075A121229FE8862F9F04CE202B54",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Dusk_Spire_Gate_Pillars",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Dusk_WallA_Flat_NoBrick",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Dusk_WallA_Strait",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Evil_Corrupt_Inhibitor_Center",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Evil_Stair_Flat_Inst",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_EvilGate_Piece_4",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/Referecnce_DarkSide",
+				"/Game/SampleMap/Materials/M_Dawn_StairsBlack"
+			]
+		},
+		{
+			"ShaderMapHash": "BC65188DDE98E273A53F5D7CE6A21C514DE42A5E",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Novaborn/Materials/M_Greystone_Novaborn_Torso"
+			]
+		},
+		{
+			"ShaderMapHash": "780C368E31953B7E4EC6AFABD9EFA76B7DEF176F",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dawn/MaterialFunctions/Master_SidesMarble"
+			]
+		},
+		{
+			"ShaderMapHash": "9DB3548E92C5390C0304A5CE29C4A01419BE6324",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Effects/EmissivePlane_01/m_EmissivePlane_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "4EDFA88ED2C51A8B9CB299E16B99346113195625",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Bark"
+			]
+		},
+		{
+			"ShaderMapHash": "9F70278F5BB761979A29212D6DFEE5B339992E07",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/M_BaseWall_Piece_FD_Carving",
+				"/Game/ParagonProps/Agora/Props/Materials/M_BaseWall_Piece_J",
+				"/Game/ParagonProps/Agora/Props/Materials/M_BaseWall_Piece_K_Carving",
+				"/Game/ParagonProps/Agora/Props/Materials/M_Glansgruvan_Rock_Inst",
+				"/Game/ParagonProps/Agora/Props/Materials/MM_MossRocks"
+			]
+		},
+		{
+			"ShaderMapHash": "70C2688FDD26C888A50B821901D790E4303887BE",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Materials/MIC_GreystoneFur"
+			]
+		},
+		{
+			"ShaderMapHash": "8031728FB0A94AA91DC0B4C41322D65248DFF27E",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Smoke"
+			]
+		},
+		{
+			"ShaderMapHash": "FFBDB88F28C9705252ACC5177F7D87FBE45755C7",
+			"Assets": [
+				"/Game/ParagonProps/Ground/Materials/M_Waterfloor_Inst"
+			]
+		},
+		{
+			"ShaderMapHash": "212FC190F1BAC93CD8A6C0FE94AA4E79FC8333AA",
+			"Assets": [
+				"/Engine/EngineMaterials/EmissiveMeshMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "174D0D91FD0B8D184F1D4C3E83715104C711D956",
+			"Assets": [
+				"/Game/SKnight_modular/Skeleton_Knight_01/materials/M_weapon_01"
+			]
+		},
+		{
+			"ShaderMapHash": "39211C9278D88021E522AC0B77C97BA413C0421C",
+			"Assets": [
+				"/Game/Blueprint/VFX/Material/M_Smoke"
+			]
+		},
+		{
+			"ShaderMapHash": "34872A9206B5EB502B800399400C4EDA9F9CB4F4",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_ClearCoat_Mask_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "1A085B929F4BA620ABDFD04994AF99D895CDEED6",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/WhiteTiger/Materials/M_Greystone_arms_WhiteTiger"
+			]
+		},
+		{
+			"ShaderMapHash": "BA9AB0923322E8B43CB5B5C2355ACB7DA69D32C5",
+			"Assets": [
+				"/Interchange/gltf/M_Transmission"
+			]
+		},
+		{
+			"ShaderMapHash": "25C8D593CA93218CB2CB2FDDD58BBFADE36C98AF",
+			"Assets": [
+				"/Game/ParagonGreystone/FX/Materials/Heroes/Greystone/Skins/Novaborn/M_Greystone_Novaborn_ULT_Patten3"
+			]
+		},
+		{
+			"ShaderMapHash": "57C4BB95A5C8BB6B4FE880B947D0E434469091DD",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Environment/Roots_02/mi_Roots_02_01",
+				"/Game/TemplesOfCambodia/Environment/Roots_02/mi_Roots_02_02"
+			]
+		},
+		{
+			"ShaderMapHash": "2669DF959088980613D10154B132888C919862A7",
+			"Assets": [
+				"/Engine/EngineMaterials/FlattenMaterial",
+				"/Engine/EngineMaterials/FlattenMaterial_VT"
+			]
+		},
+		{
+			"ShaderMapHash": "47E20A96C555F9CD94BFF12D783F6A7F7F24FCB5",
+			"Assets": [
+				"/Engine/EngineMaterials/DefaultLightFunctionMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "FCE63B9662FDD1ECB94172D1E69420FFB4745985",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_Sheen_Opaque_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "5D321397173F293B2D1EAAA903516971764F761A",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Foliage/Tree_01/mi_TreeTile_01_01",
+				"/Game/TemplesOfCambodia/Foliage/Tree_01/mi_TreeTile_01_01_BigTree",
+				"/Game/TemplesOfCambodia/Foliage/Tree_01/mi_TreeTrunk_01_01",
+				"/Game/TemplesOfCambodia/Foliage/Tree_01/mi_TreeTrunk_01_01_BigTree",
+				"/Game/TemplesOfCambodia/Foliage/TreeDead_01/mi_TreeDeadTile_01_01",
+				"/Game/TemplesOfCambodia/Foliage/TreeDead_01/mi_TreeDeadTrunk_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "E80C2898D22E0063CB73C2E7C307F3588631542A",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Environment/RootsGround_01/mi_RootsGround_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "67A58898E3045B979B1072B497E0943213E597CD",
+			"Assets": [
+				"/Game/SuperGrid/StarterPack/Materials/Base/M_SuperGrid_HoloRefract1"
+			]
+		},
+		{
+			"ShaderMapHash": "E92CD6987D845DD8FCC2B67315FB94B344F8738D",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/WhiteTiger/Materials/M_Greystone_arms_WhiteTiger"
+			]
+		},
+		{
+			"ShaderMapHash": "9739A499D6736B0B23B5BC523BC7A5E10631D055",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Environment/Sand_01/mi_Sand_01_01_Tile"
+			]
+		},
+		{
+			"ShaderMapHash": "F068C099A4C4F0A6E0ACC1EA547125D11DCEFAB4",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Global/Mouth/Materials/M_Mouth_Master"
+			]
+		},
+		{
+			"ShaderMapHash": "6865C299BB0B51E7DE03433C363D2D5A5C6C565F",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawn_Reference",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawn_Tower",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawnside_Walls_V3_Part1",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/Monolith_DawnArchitecture_NoNormal"
+			]
+		},
+		{
+			"ShaderMapHash": "88D5E4997668AE6715DBAE773D8D7391AF872C21",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/M_Morigesh_Dreadlocks_2"
+			]
+		},
+		{
+			"ShaderMapHash": "7DEAC39A7F981C2AFD597D46823916ECCF2534F0",
+			"Assets": [
+				"/Game/SuperGrid/StarterPack/Materials/Base/M_SuperGrid_Hexagon"
+			]
+		},
+		{
+			"ShaderMapHash": "13249D9B58D8FF7AC20437CF152A679530A42BAB",
+			"Assets": [
+				"/Game/Maps/Stage_02_Map_Normal"
+			]
+		},
+		{
+			"ShaderMapHash": "0AFC509C692B20641E58203318AFC4BABEB5EED3",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Novaborn/Materials/M_Greystone_Novaborn_weapons"
+			]
+		},
+		{
+			"ShaderMapHash": "68DD919C6E38E06B79865A1052AC86DF2D2DFEDF",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Novaborn/Materials/M_Greystone_Novaborn_Weapons_Energy_Demo"
+			]
+		},
+		{
+			"ShaderMapHash": "8D07019E906B575479EBCB5F4AADFA26E3A2001E",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Trees/Materials/M_Bark_2"
+			]
+		},
+		{
+			"ShaderMapHash": "054D1C9E9E9754149E762DCB7798CD64587442C4",
+			"Assets": [
+				"/Game/MegaMagicVFXBundle/VFX/MagicShieldsVFX/Essentials/Materials/M_WindShield"
+			]
+		},
+		{
+			"ShaderMapHash": "F3FB609ECA543AF843927ECE8177771D824E7C83",
+			"Assets": [
+				"/Engine/EngineMaterials/Widget3DPassThrough_Opaque_OneSided"
+			]
+		},
+		{
+			"ShaderMapHash": "C922F69E00C6B2E58109F3F64D4014D01EA2D2E4",
+			"Assets": [
+				"/Engine/EditorLandscapeResources/SplineEditorMeshMat"
+			]
+		},
+		{
+			"ShaderMapHash": "A4A73A9F8747473B5ADB1D2BEAEC1C70FB38844A",
+			"Assets": [
+				"/Engine/VREditor/SnapGrid/SnapGridMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "48E411A029002702A99DD48BDE1990F4008CBB51",
+			"Assets": [
+				"/Engine/EngineMaterials/GizmoMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "0A4EBDA0E13719316A1F7D143528C754E7ACF339",
+			"Assets": [
+				"/SpeedTreeImporter/SpeedTree9/SpeedTreeMaster"
+			]
+		},
+		{
+			"ShaderMapHash": "0C89D3A0085B972059C7632B20BCEE601639DE63",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_Impact_Lines"
+			]
+		},
+		{
+			"ShaderMapHash": "E1701BA170A9B1046AE0725576915D2DD7C9D8B2",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/MI_Basewall_Piece_Metal_2"
+			]
+		},
+		{
+			"ShaderMapHash": "799441A110C4ED4703D45A299CC0D5D94A3F762E",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Novaborn/Materials/M_Greystone_Novaborn_Head"
+			]
+		},
+		{
+			"ShaderMapHash": "234F45A13AF952708B714B60ADE9F080296CA25F",
+			"Assets": [
+				"/Niagara/DefaultAssets/DefaultRIbbonMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "374BB7A1E762D0B97FC4B3C941B8E5176E2B36AE",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawn_Gate",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawn_Stairs"
+			]
+		},
+		{
+			"ShaderMapHash": "2B87C7A5700620484AF1B6C9E9DCABA0C0E35DCA",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Evil_Stair_Top_Inst",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Generic",
+				"/Game/ParagonProps/Monolith/Dusk/Materials/MI_Generic_BigWall"
+			]
+		},
+		{
+			"ShaderMapHash": "103B65A7F4B381219B13FD223054296B08061597",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Environment/BigRock_01/mi_BigRock_01_00",
+				"/Game/TemplesOfCambodia/Environment/BigRock_03/mi_BigRock_03_00",
+				"/Game/TemplesOfCambodia/Environment/ReliefWall_01/mi_ReliefWall_01_01",
+				"/Game/TemplesOfCambodia/Environment/Rock_02/mi_Rock_02_01",
+				"/Game/TemplesOfCambodia/Environment/Rock_05/mi_Rock_05_00",
+				"/Game/TemplesOfCambodia/Environment/Rock_06/mi_Rock_06_00",
+				"/Game/TemplesOfCambodia/Environment/Sculpture_01/mi_Sculpture_01_02",
+				"/Game/TemplesOfCambodia/Environment/Sculpture_03/mi_Sculpture_03_03",
+				"/Game/TemplesOfCambodia/Environment/StoneBlocks_02/mi_StoneBlocks_02_03",
+				"/Game/TemplesOfCambodia/Environment/TempleColumn_01/mi_TempleColumn_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "BCFCB3A7BB4E4FFE7128AC1DC88509DA66AE4A0F",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Novaborn/Materials/M_Greystone_Novaborn_Flesh_head"
+			]
+		},
+		{
+			"ShaderMapHash": "68D4D6A78CB846A8D7C5C64DB841F440660A48DA",
+			"Assets": [
+				"/Game/ParagonGreystone/FX/Materials/Heroes/M_Radial_Blur_Refraction"
+			]
+		},
+		{
+			"ShaderMapHash": "978EFEA7F61F89C5F9F7DC2EEAD5D5559A0C7EE6",
+			"Assets": [
+				"/Game/SuperGrid/TutorialLevel/Utility/Materials/M_Utility_Light"
+			]
+		},
+		{
+			"ShaderMapHash": "9F6009A8287EF4AA09D954B2E760A364C6A58CD3",
+			"Assets": [
+				"/Game/SuperGrid/TutorialLevel/MaterialInstances/M_PureBlack"
+			]
+		},
+		{
+			"ShaderMapHash": "304E52A8C7E3FA078A8E17AE4FFF9702B9229A70",
+			"Assets": [
+				"/Game/Blueprint/VFX/Material/M_Meteor_Speed"
+			]
+		},
+		{
+			"ShaderMapHash": "47BA0AAA1AD33892B311EA873FBD878972B15494",
+			"Assets": [
+				"/Game/ParagonGreystone/FX/Materials/Heroes/Greystone/Skins/Novaborn/M_Greystone_Novaborn_Shine"
+			]
+		},
+		{
+			"ShaderMapHash": "85FA17AAEA8CEB6731CD4CD69E78407DA068E831",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_Impact_Star"
+			]
+		},
+		{
+			"ShaderMapHash": "83BF2FAACE2A5A03DB2110BD8144EB4A00E5E623",
+			"Assets": [
+				"/ControlRig/Controls/ControlRigXRayMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "87C872ABE67A9E916499CEEBC8EB53EF686A6609",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Fire_Details"
+			]
+		},
+		{
+			"ShaderMapHash": "65A61AAC1866AF2CB80D4915D192441AD4A77F00",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Tough/Materials/M_Greystone_ToughTorso"
+			]
+		},
+		{
+			"ShaderMapHash": "0C288EADEEF978907A6B36E5F8C90D2A4527D9C5",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Dragonlord/Materials/M_Greystone_Dragonlord_arms"
+			]
+		},
+		{
+			"ShaderMapHash": "A73227AED2B43E3CD4B934BD0FCE04C860956A38",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Dragonlord/Materials/M_Greystone_Dragonlord_legs"
+			]
+		},
+		{
+			"ShaderMapHash": "D0EC1AB074234DEC6CF97891374F35BC2266B59A",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_Sheen_Blend_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "C9253CB07E89AA983C6AF07EC4AE4C0FBAB5CD40",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/MM_Marble_Metal_Arch"
+			]
+		},
+		{
+			"ShaderMapHash": "CFFF48B0E462CFB7E6359E04269E8CB689B2EA6B",
+			"Assets": [
+				"/Engine/VREditor/TransformGizmo/TranslucentTransformGizmoMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "AFBF29B1E0C9B3B6341B8077BBF33DC0A048EB5D",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_Unlit_Opaque_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "9D0052B152BCF5AC4865A237EB97336072B5139D",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/M_TerminusGate_Gateway"
+			]
+		},
+		{
+			"ShaderMapHash": "140852B1FBD9E817A907DFB79E423DC72C5194F6",
+			"Assets": [
+				"/Game/ParagonGreystone/FX/Materials/Heroes/Greystone/Abilities/M_Greystone_Sparks"
+			]
+		},
+		{
+			"ShaderMapHash": "C44EEAB1C9F17DAB5841954F3CC820F9DD74B9EC",
+			"Assets": [
+				"/Game/MixedVFX/Materials/MaterialInstances/MI_Dissolver_01"
+			]
+		},
+		{
+			"ShaderMapHash": "BB1B30B21CC760259E26A5C74042D1AF4F21FE7A",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/MM_Marble_Walls_Inst"
+			]
+		},
+		{
+			"ShaderMapHash": "BB106CB2CB67929FB8AF5C3D59F70BF7A0A1527D",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/M_Morigesh_TearDuct"
+			]
+		},
+		{
+			"ShaderMapHash": "91D6F4B24960D738DF2127F09DF4517F704789CD",
+			"Assets": [
+				"/Engine/EngineMaterials/NaniteHiddenSectionMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "FD881DB389C339D1EA58A8D275DD94D89067EBAF",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Foliage/Flowers/Heather/M_HeatherPatches_Inst2"
+			]
+		},
+		{
+			"ShaderMapHash": "5D81EBB3A655E6D1B78380E3E6E972DFC2566B54",
+			"Assets": [
+				"/Game/ParagonMinions/FX/Materials/Fire/M_FX_Fireball_SubUV_01"
+			]
+		},
+		{
+			"ShaderMapHash": "28C719B46BFB8BD1B882064753FA97316FE4E1AE",
+			"Assets": [
+				"/Engine/EngineMaterials/PPM_DefaultCalibrationColor"
+			]
+		},
+		{
+			"ShaderMapHash": "61784AB40AF5EFAF62A3F8CE281DCBAE9DE35E8B",
+			"Assets": [
+				"/Game/MegaMagicVFXBundle/VFX/MagicAuraVFX/Essentials/Materials/M_Meteor"
+			]
+		},
+		{
+			"ShaderMapHash": "6D7C53B4AF884468A2E0B1D32DFA8BBF4DAB415F",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Global/SpiderWebs/SpiderWebs_Set01/M_SpiderWebs_Set01"
+			]
+		},
+		{
+			"ShaderMapHash": "DD2480B5DEB6EEF6201841C85B11759D44D70773",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Fronds_Mat"
+			]
+		},
+		{
+			"ShaderMapHash": "5E15EDB5596F33B6057C44E9D1974BD1EB9691B9",
+			"Assets": [
+				"/Game/ParagonProps/Ground/Materials/M_Decal2"
+			]
+		},
+		{
+			"ShaderMapHash": "17A86BB6005E29BB470A902A427EF46658C87EE9",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Foliage/Fern_01/mi_Fern_01_01",
+				"/Game/TemplesOfCambodia/Foliage/Fern_01/mi_Fern_01_02",
+				"/Game/TemplesOfCambodia/Foliage/Grass_01/mi_Grass_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "531D32B8A90E6D3CE54657AE33F64490712A14C9",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Global/Hair/Materials/M_HairSheet_Master2"
+			]
+		},
+		{
+			"ShaderMapHash": "EAF100B912A76030E6A3FD2F1E585CF9C0780183",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Foliage/Flowers/Yarrow/M_Yarrow_Inst",
+				"/Game/KiteDemo/Environments/Foliage/Flowers/Yarrow/M_Yarrow_PP_Wind_Inst"
+			]
+		},
+		{
+			"ShaderMapHash": "868E28B9662D9AE5E1171DD2C11A3D37C2D56B47",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dawn/Materials/Grim_SpireMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "A933B4B97CFE26723349B3F05663BD6D7463B684",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_Portal"
+			]
+		},
+		{
+			"ShaderMapHash": "697A50BA495D58F3E6C37936FEF0A478E7F36EF6",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Effects/Fire_01/m_ps_Fire_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "1858E9BC8D9C2641E3E679924B4F6CE2365BC7F2",
+			"Assets": [
+				"/Paper2D/OpaqueUnlitSpriteMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "1D4CA8BDFA4F1FFA7BF1DE51935F6035DFDE71B5",
+			"Assets": [
+				"/Game/ParagonMinions/Characters/Minions/Prime_Helix/Materials/M_Prime_Helix_Limbs_02"
+			]
+		},
+		{
+			"ShaderMapHash": "1C6817BF7B54B26B197EA25B3873081C1FEC248E",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Environment/FallenTree_02/mi_FallenTree_02_01",
+				"/Game/TemplesOfCambodia/Environment/Rock_04/mi_Rock_04_01",
+				"/Game/TemplesOfCambodia/Environment/RockGround_01/mi_RockGround_01_01",
+				"/Game/TemplesOfCambodia/Environment/RockGround_01/mi_RockGround_01_02",
+				"/Game/TemplesOfCambodia/Environment/RockGround_02/mi_RockGround_02_01",
+				"/Game/TemplesOfCambodia/Environment/Sculpture_02/mi_Sculpture_02_01",
+				"/Game/TemplesOfCambodia/Environment/Sculpture_03/mi_Sculpture_03_00",
+				"/Game/TemplesOfCambodia/Environment/Sculpture_05/mi_Sculpture_05_01",
+				"/Game/TemplesOfCambodia/Environment/Stairs_01/mi_Stairs_01_00",
+				"/Game/TemplesOfCambodia/Environment/StoneBlocks_02/mi_StoneBlocks_02_01",
+				"/Game/TemplesOfCambodia/Environment/StoneBlocks_02/mi_StoneBlocks_02_02"
+			]
+		},
+		{
+			"ShaderMapHash": "2791F9BF10666B156A8C0BFF802D051083FFA1C5",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/WhiteTiger/Materials/M_Greystone_shield_WhiteTiger"
+			]
+		},
+		{
+			"ShaderMapHash": "9230FEBFCBB8CE2AE2098214D82AA34B9F679775",
+			"Assets": [
+				"/Game/TemplesOfCambodia/BaseMaterials/m_PureBlack_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "D7DA2BC0A3C2E1EB0E89811055079727C278BB5E",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_Default_Mask"
+			]
+		},
+		{
+			"ShaderMapHash": "EE369FC032F48AC7725C3F72DBD102AF24C0840F",
+			"Assets": [
+				"/Game/Kobo_Dungeon/Materials/M-Instance/MI-Gemstone-01",
+				"/Game/Kobo_Dungeon/Materials/M-Instance/MI-Potion-01-01",
+				"/Game/Kobo_Dungeon/Materials/M-Instance/MI-Potion-02-01"
+			]
+		},
+		{
+			"ShaderMapHash": "9ABAAAC0A1138A26E58FC5B4827446BDDCD318B9",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_Whirlwind_Rings"
+			]
+		},
+		{
+			"ShaderMapHash": "2B57DAC0AB502A46AEBD3431A76ACC83D41E0107",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/M_TerminusGate_Nose"
+			]
+		},
+		{
+			"ShaderMapHash": "C23CEBC0CFE9A8FD7A0A0133307E63031CD94131",
+			"Assets": [
+				"/Game/Monster/Materials/M_Monster_Armor_Skin1"
+			]
+		},
+		{
+			"ShaderMapHash": "AD7DEEC0CB2B9B8956F83E00BB8B72D4F8DC970B",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Effects/Flickering_01/m_Flickering_01_01_FireCamp"
+			]
+		},
+		{
+			"ShaderMapHash": "38322BC16CBB430FCAA5B401CBBAACC9A56FCB63",
+			"Assets": [
+				"/Game/ParagonGreystone/FX/Materials/Game/M_Shockwave_Fresnel_InverteRefract_Soft"
+			]
+		},
+		{
+			"ShaderMapHash": "9AA230C1342303A117B2EE2C74E2D1CFB7915A0A",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/M_Morigesh_Items"
+			]
+		},
+		{
+			"ShaderMapHash": "195049C14862FF9B1644225ABDB8BE28725552B3",
+			"Assets": [
+				"/Game/ParagonMinions/FX/Materials/Water/M_LiquidSplash_SubUV_Lava"
+			]
+		},
+		{
+			"ShaderMapHash": "CD6370C15526C00B3953D3E49FC0EAED9B333A40",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Novaborn/Materials/M_Greystone_Novaborn_Head"
+			]
+		},
+		{
+			"ShaderMapHash": "FCE421C29D3485DF14616E540B1C498A603EC2B9",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/M_Morigesh_HeadArmsLeg"
+			]
+		},
+		{
+			"ShaderMapHash": "EAFA48C2D8B8B5C8BFB96A636B5D0BA5E86C0C7B",
+			"Assets": [
+				"/Game/ParagonGreystone/FX/Materials/Sparks/M_hardSpark_Alpha_GPU_Random",
+				"/Game/ParagonMinions/FX/Materials/Sparks/M_hardSpark_Alpha_GPU_Random"
+			]
+		},
+		{
+			"ShaderMapHash": "660B6DC2BAA39393857BD7E9F841ADCACCD24C0E",
+			"Assets": [
+				"/Game/SKnight_modular/Skeleton_Knight_07/materials/M_weapon_07"
+			]
+		},
+		{
+			"ShaderMapHash": "94C6CEC2A1BB0270BAEEE469B9BF49F526BDAFA7",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/M_BaseWall_Piece_FD_Carving",
+				"/Game/ParagonProps/Agora/Props/Materials/M_BaseWall_Piece_J",
+				"/Game/ParagonProps/Agora/Props/Materials/M_BaseWall_Piece_K_Carving",
+				"/Game/ParagonProps/Agora/Props/Materials/M_Glansgruvan_Rock_Inst",
+				"/Game/ParagonProps/Agora/Props/Materials/MM_MossRocks"
+			]
+		},
+		{
+			"ShaderMapHash": "0F4BD8C27F62295114FB9ED88BF404E5E9D8FF25",
+			"Assets": [
+				"/Engine/EngineMaterials/DefaultMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "B61A0EC38D2AB0AE031E72C7B441D2ECC0386518",
+			"Assets": [
+				"/Game/ParagonMorigesh/FX/Materials/Flares/M_Lensflare_TB_SoftGlow"
+			]
+		},
+		{
+			"ShaderMapHash": "68E272C4D4C9F95EB1059B3B8ADF84BD79B15349",
+			"Assets": [
+				"/Game/SuperGrid/TutorialLevel/Utility/Materials/M_Particles_Lit"
+			]
+		},
+		{
+			"ShaderMapHash": "B40194C48E33D8E0760DE828C9F9EE2593D467BF",
+			"Assets": [
+				"/Game/SuperGrid/StarterPack/Materials/Palette/Advanced/M_SuperGrid_HexagonOrangeC"
+			]
+		},
+		{
+			"ShaderMapHash": "94BD33C577C90111747C2FE4F63C0CAB6B55E00A",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Props"
+			]
+		},
+		{
+			"ShaderMapHash": "D0484DC5D4E7D70008B965C38AE14A4F4DA8D157",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_01_Branches_2_Mat"
+			]
+		},
+		{
+			"ShaderMapHash": "6F0C5FC5E25D7FAFD02A089AA2A29D044E853204",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Mono_Water_Flow_Down",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Mono_WaterWalls_Master"
+			]
+		},
+		{
+			"ShaderMapHash": "531C97C559DA50FAA7F59BB694A102ABE4BF2816",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Dragonlord/Materials/M_Greystone_Dragonlord_Torso"
+			]
+		},
+		{
+			"ShaderMapHash": "839AC9C5F3002C4184213DD8A0886192B0745925",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Global/Feathers/M_Global_Feathers"
+			]
+		},
+		{
+			"ShaderMapHash": "AB1320C62A6A3DD15B627745E71D07794E6DD9FC",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_ClearCoat_Mask"
+			]
+		},
+		{
+			"ShaderMapHash": "FAECB7C62B4E8E9E652B5A5BDDFC6A97330E3673",
+			"Assets": [
+				"/Game/MixedVFX/Materials/M_DissolverMaster"
+			]
+		},
+		{
+			"ShaderMapHash": "9C60F1C6662C404B2A4D3B545AC226C250527042",
+			"Assets": [
+				"/Game/Scanned3DPeoplePack/RP_Character/00_rp_master/Materials/RP_Rigged_MasterMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "425E1FC742E88806F3D265E0D190021E90701393",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Environment/Stairs_02/mi_Stairs_02_00"
+			]
+		},
+		{
+			"ShaderMapHash": "7595B1C77734A960B7251B337FB082D4716CAAAC",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Global/Eyes/Materials/M_TearLine",
+				"/Game/ParagonMorigesh/Characters/Global/Eyes/Materials/M_TearLine"
+			]
+		},
+		{
+			"ShaderMapHash": "6E48F2C718D6BC52B0CB6B43CDD479FC6DC8AC86",
+			"Assets": [
+				"/Engine/EngineMaterials/DefaultTextMaterialOpaque"
+			]
+		},
+		{
+			"ShaderMapHash": "D6B0D0C86E9868455BB51A213D190DA7C7B74713",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/M_Morigesh_HeadArmsLeg"
+			]
+		},
+		{
+			"ShaderMapHash": "C9E159C92907B399306772B5EF8125E564A7C748",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/M_TerminusGate_Gateway"
+			]
+		},
+		{
+			"ShaderMapHash": "714F3DCB42F98014DD0F961A4D3E0C377877C189",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/MI_MountainRock"
+			]
+		},
+		{
+			"ShaderMapHash": "59B6F8CDBADB3B23A8395AE1C11B92A7990999B5",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Fire"
+			]
+		},
+		{
+			"ShaderMapHash": "F4F4FCCD5909601B57753F99A6EE964BACF31970",
+			"Assets": [
+				"/Game/SKnight_modular/Skeleton_Knight_04/materials/M_SKnigh_armor"
+			]
+		},
+		{
+			"ShaderMapHash": "FAAB0ACE544DF3F8602DC033C2DB01E8D9FFC726",
+			"Assets": [
+				"/Game/SuperGrid/StarterPack/Materials/Palette/Advanced/M_SuperGrid_MetalBar_Dark"
+			]
+		},
+		{
+			"ShaderMapHash": "110B72CF298E3BA257BD69E7527CF8474D0D68BB",
+			"Assets": [
+				"/Engine/EngineMaterials/DefaultDeferredDecalMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "C6EEC0CF5F6FCA0D60CF92414FBB796ADBDEFAC6",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Effects/Fire_01/m_ps_Fire_01_04_Glow"
+			]
+		},
+		{
+			"ShaderMapHash": "A4CC14D0A624F46B70A059E578EF0BDAB710C8D4",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_Portal_Edge"
+			]
+		},
+		{
+			"ShaderMapHash": "0A571CD09383A6245AEAF3047F67F97A46E244DE",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Effects/StillWater_01/mi_StillWater_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "9126C9D08E73CCA3063C7BDD6B665EDB5D146D8C",
+			"Assets": [
+				"/Game/KiteDemo/Environments/Foliage/BogMyrtle_01/BogMyrtle_01_Billboard_Mat"
+			]
+		},
+		{
+			"ShaderMapHash": "8A4C80D13C819B340EE36F93D5845BD699D6C26F",
+			"Assets": [
+				"/Game/ParagonMorigesh/FX/Materials/Heroes/Morigesh/M_Morigesh_Insects"
+			]
+		},
+		{
+			"ShaderMapHash": "52A4C6D1470472CE795B9C0F3F452863E8B9323D",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Environment/BigRock_02/mi_BigRock_02_00",
+				"/Game/TemplesOfCambodia/Environment/BigRock_04/mi_BigRock_04_00"
+			]
+		},
+		{
+			"ShaderMapHash": "4313D6D11F64CF5397C1767753CD106543695085",
+			"Assets": [
+				"/Engine/EngineSky/VolumetricClouds/m_SimpleVolumetricCloud"
+			]
+		},
+		{
+			"ShaderMapHash": "DEE791D2877CE097F2BE1E70B55C3CF75CBD7767",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_WaterSphere_Master"
+			]
+		},
+		{
+			"ShaderMapHash": "695C8DD36FAA47B2A444AED0A596BDF6CA4436FF",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Materials/M_Greystone_Flesh_head"
+			]
+		},
+		{
+			"ShaderMapHash": "15D490D37181DBB4D9C2F7D9C6CE121F0E002AE5",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Foliage/TreeSmall_01/mi_TreeTile_02_01"
+			]
+		},
+		{
+			"ShaderMapHash": "0AA7E6D3F007EDC95D16D1A1A5537EC92B20530F",
+			"Assets": [
+				"/Game/Blueprint/VFX/Niagara/P_DissolveEdge_Green",
+				"/Game/Blueprint/VFX/Niagara/P_DissolveEdge_Yellow"
+			]
+		},
+		{
+			"ShaderMapHash": "01AAEDD3EED149B8399DC2B18DD9821BAD5A63D7",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Dragonlord/Materials/M_Greystone_Dragonlord_legs"
+			]
+		},
+		{
+			"ShaderMapHash": "FD9938D5563D537299A7E59C7E3D6745E71F56E3",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JunglePillarBlock03A_WPO",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JunglePillarBlock03AWPO",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JunglePillarBlock03B_WPO",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JunglePillarBlockPiece01BWPO",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JungleTrim01BrokenBwpo",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JungleWall01B_wpo",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JungleWall02B_Float",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_MonolithStatue"
+			]
+		},
+		{
+			"ShaderMapHash": "43A2C7D5305284E3C53324E4825B6868F0A3BEAE",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawn_Gate",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawn_Stairs"
+			]
+		},
+		{
+			"ShaderMapHash": "9306EDD589EEC5368DA90BFC34E89575A1CD9E2B",
+			"Assets": [
+				"/Engine/EngineMaterials/PPM_DefaultCalibrationGrayscale"
+			]
+		},
+		{
+			"ShaderMapHash": "BEBFF7D6EC35FC0148BD996C1CBC3FA2BBDCFFEB",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Tough/Materials/M_Greystone_Tough_Hair_Demo"
+			]
+		},
+		{
+			"ShaderMapHash": "4A331DD7187E273973C7F75960AF6B8FD67A838A",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Environment/StoneBlocks_01/mi_StoneBlocks_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "923491D7820892CE9A85621B86404CB811ED7E71",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/M_Turret_WIP"
+			]
+		},
+		{
+			"ShaderMapHash": "6ED68CD83450FC61AA117BC35233B2FD1D43CF2D",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Fire_1"
+			]
+		},
+		{
+			"ShaderMapHash": "0F9434D9DA97F7EAE46B25F722CED0927FD01F74",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Props/Materials/MI_Basewall_Piece_Metal_2"
+			]
+		},
+		{
+			"ShaderMapHash": "25398ED975C6143281892AC2784C30AABF2BD2E1",
+			"Assets": [
+				"/Game/ParagonMinions/FX/Materials/Debris/M_Buff_Red_DebrisChunks_FakeLit"
+			]
+		},
+		{
+			"ShaderMapHash": "6D6A1ADAC7FA234CDBA7968849BAC5FB81A699DB",
+			"Assets": [
+				"/Game/SKnight_modular/Skeleton_Knight_04/materials/M_SKnigh_armor"
+			]
+		},
+		{
+			"ShaderMapHash": "179871DAF3EB3881EBFA1A275CB6307226E5EFF1",
+			"Assets": [
+				"/Engine/EngineMaterials/DefaultParticle"
+			]
+		},
+		{
+			"ShaderMapHash": "F43C33DC410FFBE38A9CCAC875F4E81427E6D36D",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Rocks_Base"
+			]
+		},
+		{
+			"ShaderMapHash": "E0C46BDC639F731B623872C10A7C7BE3AE0E8441",
+			"Assets": [
+				"/Engine/EngineDebugMaterials/M_SimpleUnlitTranslucent"
+			]
+		},
+		{
+			"ShaderMapHash": "09153FDD42B63446C798D9843C81528A94249477",
+			"Assets": [
+				"/Game/Blueprint/VFX/Niagara/P_Smoke_C_Converted"
+			]
+		},
+		{
+			"ShaderMapHash": "150070DD4EA6C04D8BE3C2CA1A3B2E4E41068B2D",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_Unlit_Mask_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "916FBFDEFAC3FED42EE107E8DF43E979436E4B44",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Global/Mouth/Materials/M_Mouth_Master"
+			]
+		},
+		{
+			"ShaderMapHash": "D06706DF6BE76CC1AF87716024FE65B4BFAC3285",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/WhiteTiger/Materials/MIC_GreystoneFur_WhiteTiger"
+			]
+		},
+		{
+			"ShaderMapHash": "43E278DF2DFB8D936EB21D983B4FF9EB719E5A05",
+			"Assets": [
+				"/Interchange/gltf/M_Unlit"
+			]
+		},
+		{
+			"ShaderMapHash": "4735EEDF1F73DC30E073376761FB7B8205822691",
+			"Assets": [
+				"/Game/ParagonProps/Ground/Materials/M_Caustics"
+			]
+		},
+		{
+			"ShaderMapHash": "614D95E11EE35EB90DD4696CE29E7C643B517F58",
+			"Assets": [
+				"/Game/ParagonMinions/FX/Materials/HeatDistort/M_ParticleRefraction_SimpleHeatDistortion_AlphaControl_Fresnel"
+			]
+		},
+		{
+			"ShaderMapHash": "4F3CD0E2F19239DF0F98AA1AA984C036C9CC680C",
+			"Assets": [
+				"/Game/ParagonMinions/FX/Materials/Sparks/M_Hotdog_Spark_VLerp_DOF_Rand_Master"
+			]
+		},
+		{
+			"ShaderMapHash": "BC8C73E4B2D8A03C28D253DF64128D77DEF3FA5B",
+			"Assets": [
+				"/Game/ParagonGreystone/FX/Materials/Game/M_Tri_Test"
+			]
+		},
+		{
+			"ShaderMapHash": "977286E473B0BAEC75AFADD2DD5B0B78F4776105",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Decals/LightRays_01/m_LightRays_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "E623DEE4ECA1C8A0D4BC229D07812E1F5652A5D3",
+			"Assets": [
+				"/SpeedTreeImporter/SpeedTree9/SpeedTreeBillboardMaster"
+			]
+		},
+		{
+			"ShaderMapHash": "5D0E29E5E592F0137DE8CCC6EA8F2F581B830749",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/MI_Global_Feathers_Morigesh"
+			]
+		},
+		{
+			"ShaderMapHash": "FC5878E509FA6F901EAD45ACA4C65D71AB5BBA7E",
+			"Assets": [
+				"/Engine/EngineMaterials/WorldGridMaterial"
+			]
+		},
+		{
+			"ShaderMapHash": "FD20A9E57482A1B31C21E150CC29C529ACA258F1",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Foliage/TreeSmall_01/mi_Branch_02_01"
+			]
+		},
+		{
+			"ShaderMapHash": "EF51A9E5F882F642A7FD387E342F66DD00DF7ADD",
+			"Assets": [
+				"/Engine/EngineMaterials/M_InvalidLightmapSettings"
+			]
+		},
+		{
+			"ShaderMapHash": "7CAA33E656D279393565ADCADE59D2A96473D34A",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Dragonlord/Materials/M_Greystone_Dragonlord_shield"
+			]
+		},
+		{
+			"ShaderMapHash": "D75910E791336ABD8D702291C55D19FD0EBF39FD",
+			"Assets": [
+				"/Game/MegaMagicVFXBundle/VFX/MagicalExplosionsVFX/Essentials/Materials/M_Lightning"
+			]
+		},
+		{
+			"ShaderMapHash": "979A60E7E11AF00A17DBE17161495D5A77F72BF1",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Environment/Debris_01/mi_Debris_01_01",
+				"/Game/TemplesOfCambodia/Environment/Debris_02/mi_Debris_02_01",
+				"/Game/TemplesOfCambodia/Environment/Debris_03/mi_Debris_03_01",
+				"/Game/TemplesOfCambodia/Environment/Debris_04/mi_Debris_04_01",
+				"/Game/TemplesOfCambodia/Environment/Debris_05/mi_Debris_05_01",
+				"/Game/TemplesOfCambodia/Environment/Roots_01/mi_Roots_01_01",
+				"/Game/TemplesOfCambodia/Environment/Roots_01/mi_Roots_01_02",
+				"/Game/TemplesOfCambodia/Environment/Torch_01/mi_Torch_01_01",
+				"/Game/TemplesOfCambodia/Environment/TreeStump_01/mi_TreeStump_01_01",
+				"/Game/TemplesOfCambodia/Environment/TreeStump_02/mi_TreeStump_02_01",
+				"/Game/TemplesOfCambodia/Environment/TreeStump_03/mi_TreeStump_03_01",
+				"/Game/TemplesOfCambodia/Environment/TreeStump_03/mi_TreeStump_03_02"
+			]
+		},
+		{
+			"ShaderMapHash": "8C0B10E9F109E9DDA6703B25326815B17C1D8D58",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Novaborn/Materials/M_Greystone_Novaborn_weapons"
+			]
+		},
+		{
+			"ShaderMapHash": "19AC4BE92ACCDE08A84ACFD069EDB1BCD66AF07E",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_Default_Opaque_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "20074FE99A0F11CF07AD83BE9A281BA750C1DA55",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Global/Hair/Materials/M_HairSheet_Master2"
+			]
+		},
+		{
+			"ShaderMapHash": "AF204BEBF38464FBED611C7153B8A04EB9D429C7",
+			"Assets": [
+				"/Game/ParagonMorigesh/FX/Materials/Environment/Bugs/Locust/M_Locust_Mesh"
+			]
+		},
+		{
+			"ShaderMapHash": "311A6DEB6C86F8D0B585CAF49A06CFF3355871D0",
+			"Assets": [
+				"/Game/TemplesOfCambodia/BaseMaterials/m_Foliage_01_01_Simple"
+			]
+		},
+		{
+			"ShaderMapHash": "7B4681EBB1A8669D8318E5F1035F44C142C34A9D",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Materials/M_Greystone_legs"
+			]
+		},
+		{
+			"ShaderMapHash": "96AB51ECA49F9120EA4A9A8D423A79981ACBD4B1",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Novaborn/Materials/M_Greystone_Novaborn_Legs"
+			]
+		},
+		{
+			"ShaderMapHash": "1ADA6DEC94F5BFEAA2209BBE8F77C24665237460",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Global/Eyelash/M_EyelashMaster"
+			]
+		},
+		{
+			"ShaderMapHash": "CF64E6EC4486A72A4946526ED031DA19EEB13297",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_Sheen_Mask"
+			]
+		},
+		{
+			"ShaderMapHash": "3DCF46EDA901C9F06506A235356D8D002F78C183",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_StarAnim"
+			]
+		},
+		{
+			"ShaderMapHash": "245B60ED435300D3146538341F53EDBC53A186B7",
+			"Assets": [
+				"/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Materials/M_Morigesh_Items"
+			]
+		},
+		{
+			"ShaderMapHash": "8EDC04EFDE79F14DFF3C7271D7ADC1CBBAAC9C92",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Trees/Materials/M_Flower_Tree_Petals_Emissive"
+			]
+		},
+		{
+			"ShaderMapHash": "CB9420EF8BD2D6601541B8DED29E0F4AF7F34E19",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_ClearCoat_Blend"
+			]
+		},
+		{
+			"ShaderMapHash": "D82B35F17CB34BA2346F93F60BB6B23F522109EF",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_SpecularGlossiness_Blend_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "140456F1FF0B7ACB56059A4FB60DE3A389FE92FA",
+			"Assets": [
+				"/Game/Blueprint/VFX/Material/M_Meteor_Spark"
+			]
+		},
+		{
+			"ShaderMapHash": "E675B8F13993B174DE79BEC189F474D2D9CFBDC3",
+			"Assets": [
+				"/Interchange/gltf/M_SpecularGlossiness"
+			]
+		},
+		{
+			"ShaderMapHash": "D01554F26769118E3E35E08F72FC7EDA9FDD10CB",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/WhiteTiger/Materials/M_Greystone_Torso_WhiteTiger"
+			]
+		},
+		{
+			"ShaderMapHash": "A13F9AF2A6B9019F1AF71D6CA52FD2D6164B93B7",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Monolith_Base_Proto"
+			]
+		},
+		{
+			"ShaderMapHash": "46838CF3A95777356653DB79602D50C943ABB39A",
+			"Assets": [
+				"/Game/Realistic_Starter_VFX_Pack_Vol2/Materials/M_Smoke_A"
+			]
+		},
+		{
+			"ShaderMapHash": "5DBE38F4FD7D42293C84E5023F7E5269F5B79494",
+			"Assets": [
+				"/Game/TemplesOfCambodia/BaseMaterials/m_BaseMaterial_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "E1F779F442467F5D8D853F0A2F0FB073FB6F1724",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Environment/FallenTree_01/mi_FallenTree_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "E67683F4B772943C36BB36951AE1A2908604343C",
+			"Assets": [
+				"/MeshModelingToolset/Materials/M_DynamicMeshComponentVtxColor"
+			]
+		},
+		{
+			"ShaderMapHash": "A14773F5FBC4FA0EF6AC090C9A8A9D112343B7B2",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Decals/LightRays_01/m_LightRays_01_02"
+			]
+		},
+		{
+			"ShaderMapHash": "616001F6BCC444ED5874AB03A6A543468DBBC9A8",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawn_Reference",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawn_Tower",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/M_Dawnside_Walls_V3_Part1",
+				"/Game/ParagonProps/Monolith/Dawn/Materials/Monolith_DawnArchitecture_NoNormal"
+			]
+		},
+		{
+			"ShaderMapHash": "040D87F679B7362ADF25D5472C5530E062F68D2E",
+			"Assets": [
+				"/Game/ParagonProps/Monolith/Ruins/Materials/M_JungleArchitecture",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JunglePillarBlock01A",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JunglePillarBlock01B",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JunglePillarBlock01C",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JunglePillarBlockCrumble01A",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JunglePillarBlockPiece01A",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JunglePillarBlockPiece01B",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JunglePillarBlockPiece02A",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JunglePillarBlockPiece02C",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JungleStairs",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JungleTrim01A",
+				"/Game/ParagonProps/Monolith/Ruins/Materials/MI_JungleTrim01B"
+			]
+		},
+		{
+			"ShaderMapHash": "FF9A3EF7BC2E8F2206E01B14E51F907A898A00AF",
+			"Assets": [
+				"/Game/MegaMagicVFXBundle/VFX/MagicShieldsVFX/Essentials/Materials/M_Fire_SubUV"
+			]
+		},
+		{
+			"ShaderMapHash": "66E89EF7D36A669DC301FD7139E783B5C24E8B98",
+			"Assets": [
+				"/Game/Cave_Ruins/Materials/M_Swamp"
+			]
+		},
+		{
+			"ShaderMapHash": "EA805BF88125F0B9C873885FEBCE1E3444B074E0",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Effects/StillWater_01/m_StillWater_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "DC969DF8EA254A1F2C0E1E5D998F6914D20E6028",
+			"Assets": [
+				"/Game/ParagonMorigesh/FX/Materials/Heroes/Morigesh/M_Morigesh_Primary_Ribbon_V02"
+			]
+		},
+		{
+			"ShaderMapHash": "410ACBF94ED248D2EB05A8DA5B9CA3F9788B1E8D",
+			"Assets": [
+				"/Game/RPGEffects/Materials/M_Glow_Dot"
+			]
+		},
+		{
+			"ShaderMapHash": "731412FAB4560DDEBA0C00A46875BFEC68C6D7C2",
+			"Assets": [
+				"/Game/Lighting/M_Sky"
+			]
+		},
+		{
+			"ShaderMapHash": "E10956FA4A798AC75E48D53678CBD973A0FF09A4",
+			"Assets": [
+				"/Game/Scanned3DPeoplePack/RP_Character/rp_sophia_rigged_003_Mobile_ue4/Materials/rp_sophia_rigged_003_Mobile_mat"
+			]
+		},
+		{
+			"ShaderMapHash": "09A0A7FA04B104FBE853DA9C1BFD90226FED648A",
+			"Assets": [
+				"/Game/Blueprint/VFX/Niagara/P_DissolveEdge"
+			]
+		},
+		{
+			"ShaderMapHash": "46016EFBE661F79D7588EB97CC348A8BB92A4EBC",
+			"Assets": [
+				"/Game/Blueprint/UI/Map/stage_02_Map/stage_02_Boss_Map/stage_02_Boss"
+			]
+		},
+		{
+			"ShaderMapHash": "3D6385FBA360F1FF9A4642E1C5A1E85738210521",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Dragonlord/Materials/M_Greystone_Dragonlord_Torso"
+			]
+		},
+		{
+			"ShaderMapHash": "8F046EFC54ABE0731CD6F82EE8C88BE0FE61DDC6",
+			"Assets": [
+				"/Game/TemplesOfCambodia/Effects/LightRay_01/m_LightRay_01_01"
+			]
+		},
+		{
+			"ShaderMapHash": "4AEBA7FCCCB1764EC71ABF8814AC2169BADE0669",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Dragonlord/Materials/M_Greystone_Dragonlord_arms"
+			]
+		},
+		{
+			"ShaderMapHash": "314497FDA099E434D099D656FA0C6D1AD8B47691",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_SpecularGlossiness_Blend"
+			]
+		},
+		{
+			"ShaderMapHash": "74ADE5FDC0B27A7BA75338921F7EB6D369922EE0",
+			"Assets": [
+				"/Game/ParagonProps/Agora/Trees/Materials/M_FlowerTree_Core_01"
+			]
+		},
+		{
+			"ShaderMapHash": "9C3A95FF877D8990EEE2BD373AF934C2AE35EED9",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_ClearCoat_Blend_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "46B5C5FFB1272D2E2B85ADB518F620D0B4B30845",
+			"Assets": [
+				"/Game/ParagonGreystone/Characters/Heroes/Greystone/Skins/Tough/Materials/M_Greystone_ToughArms"
+			]
+		},
+		{
+			"ShaderMapHash": "9A4ED7FF50934131935DF26F6D88325A37C271EE",
+			"Assets": [
+				"/Interchange/gltf/MaterialInstances/MI_ClearCoat_Opaque_DS"
+			]
+		}
+	]
+}
