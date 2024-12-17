@@ -205,7 +205,7 @@ void UMyGameInstance::SaveInventory(class UInventoryComponent *InventoryComponen
 				SavedEquipData.Add(Item.Key, ItemData);
 			}
 		}
-		_savedMoney = InventoryComponent->GetHowMuchIHave();
+		_savedMoney = InventoryComponent->GetMoney();
 
 	}
 }
@@ -258,7 +258,7 @@ void UMyGameInstance::LoadInventory(class UInventoryComponent *InventoryComponen
 				}
 			} 
 		}
-		InventoryComponent->GettingMoney(_savedMoney);
+		InventoryComponent->AddMoney(_savedMoney);
 	}
 }
 

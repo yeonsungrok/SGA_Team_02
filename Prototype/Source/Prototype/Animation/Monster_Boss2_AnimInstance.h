@@ -20,9 +20,6 @@ public:
 	UMonster_Boss2_AnimInstance();
 
 	virtual void PlaySkillMontage();
-
-	AttackDelegate _attackDelegate;
-	DeathDelegate _deathDelegate;
 	
 	FSkillDelegate _skillDelegate;
 

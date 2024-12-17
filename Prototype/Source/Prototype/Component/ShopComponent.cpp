@@ -81,7 +81,7 @@ void UShopComponent::Sale(int32 index)
 	}
 	merch->SetPlayer();
 
-	p_inventory->GettingMoney(-merch->GetPrice());
+	p_inventory->AddMoney(-merch->GetPrice());
 	p_inventory->AddItem(0, merch);
 	UIManager->GetShopUI()->ReflectInvenSlots(_customer);
 }
@@ -94,7 +94,7 @@ void UShopComponent::SalePlayerItem(int32 index, int32 amount)
 	auto p_inventory = _customer->_inventoryComponent;
 
 	p_inventory->DeleteItem(index);
-	p_inventory->GettingMoney(amount);
+	p_inventory->AddMoney(amount);
 	UIManager->GetShopUI()->ReflectInvenSlots(_customer);
 }
 

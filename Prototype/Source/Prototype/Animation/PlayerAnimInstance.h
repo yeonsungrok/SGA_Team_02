@@ -28,9 +28,6 @@ public:
 	void PlaySkill02Montage();
 	void PlaySkill03Montage();
 
-
-	AttackDelegate _attackDelegate;
-	DeathDelegate _deathDelegate_Knight;
 	ComboDelegate _comboDelegate;
 
 

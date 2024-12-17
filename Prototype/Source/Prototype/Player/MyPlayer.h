@@ -95,8 +95,6 @@ public:
 	virtual FString GetUIBaseSound() const override;
 	virtual FString GetLevelUpSound() const override;
 
-	void SavePlayerState();
-	void LoadPlayerState();
 	void ClearSkillTimer();
 
 	FINTERECT interectNPC;

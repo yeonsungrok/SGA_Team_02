@@ -115,7 +115,7 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent,
 
         if (Player)
         {
-            Player->_inventoryComponent->GettingMoney(FMath::FRand() * 100);
+            Player->_inventoryComponent->AddMoney(FMath::FRand() * 100);
             Player->_StatCom->AddExp(_StatCom->GetNextExp());
             const float RewardChance = 0.3f;
 

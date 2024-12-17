@@ -36,7 +36,9 @@ public:
 	//UFUNCTION(BlueprintCallable) 블루프린트와 연결하려면 이것사용
 	void PlayHitReactionMontage();
 
-	
+	AttackDelegate _attackDelegate;
+	DeathDelegate _deathDelegate;
+
 
 
 protected:

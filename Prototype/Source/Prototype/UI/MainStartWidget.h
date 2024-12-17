@@ -40,6 +40,8 @@ public:
 	void OpenLevel();
 
 
+
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<UUserWidget> _Keyimage;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")

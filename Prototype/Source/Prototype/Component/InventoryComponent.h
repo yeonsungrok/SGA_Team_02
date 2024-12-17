@@ -54,8 +54,8 @@ public:
 	TArray<ABaseItem*> GetItemSlots(){return _ItemSlots;}
 	TMap<FString, class AEquipItem*> GetEquipSlots(){return _EquipSlots;}
 
-	int32 GetHowMuchIHave() { return _Wallet; }
-	void GettingMoney(int32 amount);
+	int32 GetMoney() { return _money; }
+	void AddMoney(int32 amount);
 	void SetMoney(int32 amount);
 
 	void UpdateUI();
@@ -78,5 +78,5 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Inventory, meta = (AllowPrivateAccess = "true"))
 	TMap<FString, class AEquipItem*> _EquipSlots;
 
-	int32 _Wallet = 0;
+	int32 _money = 0;
 };

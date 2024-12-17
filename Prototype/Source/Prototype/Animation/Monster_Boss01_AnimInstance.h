@@ -21,9 +21,6 @@ public:
 
 	virtual void JumpToSection(int32 sectionIndex) override;
 
-	AttackDelegate _attackDelegate;
-
-	DeathDelegate _deathDelegate;
 	StunEndDelegate _stunDelegate;
 
 	UFUNCTION()
@@ -35,11 +32,7 @@ public:
 	UFUNCTION()
 	virtual void AnimNotify_StunEnd();
 
-	//UFUNCTION()
-	//virtual void AnimNotify_StunEnd();
-
 private:
-	//어퍼컷
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", Meta = (AllowPrivateAccess = true))
 	class UAnimMontage* _myUpAttackMontage;
 

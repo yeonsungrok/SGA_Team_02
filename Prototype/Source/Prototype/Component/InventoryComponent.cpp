@@ -350,11 +350,11 @@ void UInventoryComponent::ShowItemSlots()
 	}
 }
 
-void UInventoryComponent::GettingMoney(int32 amount)
+void UInventoryComponent::AddMoney(int32 amount)
 {
-	_Wallet += amount;
+	_money += amount;
 
-	UIManager->GetInventoryUI()->UpdateGold(_Wallet);
+	UIManager->GetInventoryUI()->UpdateGold(_money);
 }
 
 void UInventoryComponent::UpdateUI()
@@ -399,6 +399,6 @@ void UInventoryComponent::UpdateUI()
 
 void UInventoryComponent::SetMoney(int32 amount)
 {
-	_Wallet = amount;
-	UIManager->GetInventoryUI()->UpdateGold(_Wallet);
+	_money = amount;
+	UIManager->GetInventoryUI()->UpdateGold(_money);
 }
