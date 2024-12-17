@@ -254,6 +254,8 @@
     <None Include="..\..\Source\PrototypeEditor.Target.cs"/>
     <None Include="..\..\.ignore"/>
     <None Include="..\..\.vsconfig"/>
+    <None Include="..\..\ICON_박성우.ico"/>
+    <None Include="..\..\Prototype Title Image.png"/>
     <None Include="..\..\Config\DefaultEditor.ini"/>
     <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini"/>
     <None Include="..\..\Config\DefaultEngine.ini"/>
