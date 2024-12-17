@@ -22,7 +22,7 @@ public:
 
 	void MagicShot();
 	void SumonedMonster();
-	void testDecalSkill();
+	void PoisonFogSkill();
 	void MeleeAttackhit();
 
 	virtual void Attack_AI() override;

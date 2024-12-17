@@ -225,7 +225,7 @@ void AEpicMonster_witch::SumonedMonster()
 	}
 }
 
-void AEpicMonster_witch::testDecalSkill()
+void AEpicMonster_witch::PoisonFogSkill()
 {
 
 	if (_tedecal)

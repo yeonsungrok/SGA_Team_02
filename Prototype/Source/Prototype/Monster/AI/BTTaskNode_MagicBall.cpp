@@ -28,7 +28,7 @@ EBTNodeResult::Type UBTTaskNode_MagicBall::ExecuteTask(UBehaviorTreeComponent& O
 
 		if (count == 3)
 		{
-			character->testDecalSkill();
+			character->PoisonFogSkill();
 			count = 0;
 		}
 		
