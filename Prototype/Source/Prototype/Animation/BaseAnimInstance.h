@@ -12,10 +12,6 @@ DECLARE_MULTICAST_DELEGATE(DeathDelegate);
 DECLARE_MULTICAST_DELEGATE(StunEndDelegate);
 DECLARE_MULTICAST_DELEGATE(ComboDelegate);
 
-//DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMontageEnded, UAnimMontage*, Montage);
-
-
-
 UCLASS()
 class PROTOTYPE_API UBaseAnimInstance : public UAnimInstance
 {
@@ -33,11 +29,7 @@ public:
 	virtual void PlayAttackFarMontage();
 	virtual void PlayAttackDotrMontage();
 	
-	//UFUNCTION(BlueprintCallable) 블루프린트와 연결하려면 이것사용
 	void PlayHitReactionMontage();
-
-	
-
 
 protected:
 

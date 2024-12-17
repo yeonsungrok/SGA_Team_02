@@ -21,7 +21,6 @@ class PROTOTYPE_API ASequenceBase_Trigger : public AActor
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this actor's properties
 	ASequenceBase_Trigger();
 
 	UPROPERTY(BlueprintAssignable, Category = "Events")
@@ -31,7 +30,6 @@ public:
 	FOnMinimapVisibilityChanged OnShowMinimap;
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:

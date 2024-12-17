@@ -17,14 +17,10 @@
 #include "Item/Equip/Sword.h"
 #include "Item/Equip/Shield.h"
 
-// Sets default values for this component's properties
 UInventoryComponent::UInventoryComponent()
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true;
+	PrimaryComponentTick.bCanEverTick = false;
 
-	// ...
 }
 
 // Called when the game starts
@@ -42,8 +38,6 @@ void UInventoryComponent::BeginPlay()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("UIManager or Inventory UI is null in UInventoryComponent::BeginPlay"));
 	}
-
-	// InitSlot();
 
 	UpdateUI();
 }
@@ -64,7 +58,6 @@ void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
 }
 
 void UInventoryComponent::SlotFullCheck()
@@ -88,10 +81,9 @@ void UInventoryComponent::AddItem(int32 slot, ABaseItem *item)
 		return;
 	if (_isSlotFull)
 		return;
-	// Fill into EmptySlot First
+
 	if (!_EmptySlots.IsEmpty())
 	{
-		// TODO : Filling Already filled slot
 		int32 emptyslot;
 		_EmptySlots.HeapPop(emptyslot, true);
 		if (_ItemSlots[emptyslot] == nullptr)
@@ -102,14 +94,14 @@ void UInventoryComponent::AddItem(int32 slot, ABaseItem *item)
 			return;
 		}
 	}
-	// Fill into Selected Slot
+
 	if (_ItemSlots[slot] == nullptr)
 	{
 		_ItemSlots[slot] = item;
 		UIupdate_Add(slot, item);
 		SlotFullCheck();
 	}
-	// if Already filled, fill into next slot
+
 	else
 	{
 		for (int i = slot; i < _itemSlotMax; i++)
@@ -157,7 +149,6 @@ void UInventoryComponent::ExcuteItem(int32 slot, bool isDrop)
 
 	}
 
-
 	_ItemSlots[slot] = nullptr;
 	_EmptySlots.Add(slot);
 }
@@ -197,7 +188,6 @@ void UInventoryComponent::ExcuteEquip(FString part)
 
 void UInventoryComponent::EquipItem(int32 slot)
 {
-	// TODO : Switch-case with EquipType Enum later
 	auto equipment = Cast<AEquipItem>(_ItemSlots[slot]);
 	if (equipment == nullptr)
 		return;
@@ -229,7 +219,6 @@ void UInventoryComponent::EquipItem(int32 slot)
 
 void UInventoryComponent::TryEquip(FString part, int32 slot)
 {
-	// if there is already filled, exchange each.
 	auto equipment = Cast<AEquipItem>(_ItemSlots[slot]);
 	if (equipment == nullptr)
 		return;

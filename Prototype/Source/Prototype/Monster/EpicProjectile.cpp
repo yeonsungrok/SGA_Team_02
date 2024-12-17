@@ -12,10 +12,8 @@
 
 #include "Monster/EpicMonster_witch.h"
 
-// Sets default values
 AEpicProjectile::AEpicProjectile()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	_EpicMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
@@ -45,7 +43,6 @@ AEpicProjectile::AEpicProjectile()
 	_collider->SetupAttachment(_EpicMesh);
 }
 
-// Called when the game starts or when spawned
 void AEpicProjectile::BeginPlay()
 {
 	Super::BeginPlay();
@@ -57,7 +54,6 @@ void AEpicProjectile::BeginPlay()
 
 }
 
-// Called every frame
 void AEpicProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -103,17 +99,10 @@ void AEpicProjectile::OnMyCharacterOverlap(UPrimitiveComponent* OverlappedCompon
 			FVector direction = _Witch->GetActorForwardVector();
 			FRotator hitRotation = direction.Rotation();
 
-
-
-
 		}
 		Disable();
 	}
 
-
-	//auto player = Cast<AMyPlayer>(OtherActor);
-	//Disable();
-	
 }
 
 void AEpicProjectile::Init()

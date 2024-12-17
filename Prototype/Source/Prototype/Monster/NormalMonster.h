@@ -14,7 +14,6 @@ class PROTOTYPE_API ANormalMonster : public AMonster
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	ANormalMonster();
 
 	virtual FString GetHitSoundName() const override;
@@ -25,7 +24,6 @@ public:
 
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	virtual void PostInitializeComponents() override;
 	virtual void Attack_AI() override;

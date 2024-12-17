@@ -5,10 +5,8 @@
 #include "Components/AudioComponent.h"
 #include "Sound/SoundBase.h"
 
-// Sets default values
 ASoundEffect::ASoundEffect()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
 	_audioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("AudioComponent"));
@@ -18,14 +16,12 @@ ASoundEffect::ASoundEffect()
 
 }
 
-// Called when the game starts or when spawned
 void ASoundEffect::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-// Called every frame
 void ASoundEffect::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

@@ -56,18 +56,11 @@ void UBTService_LongFindTarget::TickNode(UBehaviorTreeComponent& OwnerComp, uint
                 if (myCharacterController != nullptr && myCharacterController->IsPlayerController())
                 {
                     OwnerComp.GetBlackboardComponent()->SetValueAsObject(FName(TEXT("LongTarget")), myCharacter);
-                    //DrawDebugSphere(world, center, searchRadius, 32, FColor::Red, false, 0.3f);
                 }
 
                 return;
             }
         }
         OwnerComp.GetBlackboardComponent()->SetValueAsObject(FName(TEXT("LongTarget")), nullptr);
-        //DrawDebugSphere(world, center, searchRadius, 32, FColor::Green, false, 0.3f);
     }
-   /* else
-    {
-        OwnerComp.GetBlackboardComponent()->SetValueAsObject(FName(TEXT("Target")), nullptr);
-        DrawDebugSphere(world, center, searchRadius, 32, FColor::Green, false, 0.3f);
-    }*/
 }

@@ -35,11 +35,7 @@ public:
 	UFUNCTION()
 	virtual void AnimNotify_StunEnd();
 
-	//UFUNCTION()
-	//virtual void AnimNotify_StunEnd();
-
 private:
-	//어퍼컷
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", Meta = (AllowPrivateAccess = true))
 	class UAnimMontage* _myUpAttackMontage;
 

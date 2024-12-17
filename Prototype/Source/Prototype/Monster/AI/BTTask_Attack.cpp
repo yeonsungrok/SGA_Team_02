@@ -24,12 +24,6 @@ EBTNodeResult::Type UBTTask_Attack::ExecuteTask(UBehaviorTreeComponent& OwnerCom
 
     monster->Attack_AI();
 
-    // character->_attackEndedDelegate.AddLambda(
-	// 	[this]() -> void
-	// 	{
-	// 		this->_isAttacking = false;
-	// 	});
-
     return result;
 }
 

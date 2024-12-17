@@ -31,11 +31,9 @@ class PROTOTYPE_API AMyPlayer : public ACreature
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	AMyPlayer();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
 
@@ -53,7 +51,6 @@ public:
 	
 	bool IsDashing() { return bIsDashing; }
 
-	//TODO: Monster로 변경
 	void OnMonsterHit(class AMonster *HitMonster, const FHitResult &Hit);
 
 	void UpdateCamera(float DeltaTime);
@@ -124,8 +121,6 @@ private:
 	void Interect(const FInputActionValue &value);
 	void OptionsOpen(const FInputActionValue& value);
 
-
-	//TODO : FIX
 	void UpdateDecalLocation();
 
     void ConfirmSkillLocation();
@@ -153,8 +148,6 @@ private:
     FTimerHandle TimerHandle_UpdateDecal;
  	FTimerHandle TimerHandle_UpdateTeleprotDecal;
 
-
-	// void CheckForClimbableWall();
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Skill, meta = (AllowPrivateAccess = "true"))
 	TArray<bool> SkillOnCooldown;
 
@@ -167,13 +160,8 @@ private:
 	float DashTimeElapsed;
 	float DashDuration;
 
-	
-
 	void PerformDash(float DeltaTime);
 	void StartScreenShake();
-
-
-	
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
@@ -233,18 +221,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* _Change;
 
-	//  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Parkour, meta = (AllowPrivateAccess = "true"))
-	//  class UParkourComponent_Test* _parkourComp;
-
-	// UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh")
-	// class USkeletalMeshComponent* _upperBodyMesh;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Inventory, meta = (AllowPrivateAccess = "true"))
 	class UInventoryComponent* _inventoryComponent;
-
-	/////////////////////////////////////////
-	///TODO : Make Default Skeletal Mesh///
-	/////////////////////////////////////////
-
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh")
 	class USkeletalMeshComponent* _lowerBodyMesh;
@@ -295,12 +273,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Skills")
 	TSubclassOf<class AFireball> _fireball;
 
-
-	//------- Dragon 변신 -------
-
 public:
-	void TransformToDragon(); // Dragon으로 변신
-	void TransformToHuman();  // Dragon에서 복귀
+	void TransformToDragon();
+	void TransformToHuman(); 
 
 	void ToggleTransformation();
 
@@ -309,14 +284,14 @@ public:
 	
 
 private:
-	class ADragon* _dragonInstance; // Dragon 참조
+	class ADragon* _dragonInstance;
 
 	UFUNCTION()
 	void HandleMontageEnd(UAnimMontage* Montage, bool bInterrupted);
 
-	bool _bCanTransform = true; // 변환 가능 상태
-	float _transformCooldown = 3.0f; // 쿨타임(초)
-	FTimerHandle _transformCooldownHandle; // 타이머 핸들
+	bool _bCanTransform = true;
+	float _transformCooldown = 3.0f; 
+	FTimerHandle _transformCooldownHandle;
 
 	void StartTransformationCooldown();
 	void ResetTransformationCooldown();

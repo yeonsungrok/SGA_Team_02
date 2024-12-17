@@ -86,9 +86,6 @@ private:
 	UFUNCTION()
 	void TargetItem11();
 
-	/// <summary>
-	/// Inventory Elements
-	/// </summary>
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Texture, meta = (AllowPrivateAccess = "true"))
 	FString _defaultText;
 

@@ -10,7 +10,6 @@
 #include "Engine/World.h"
 #include "Kismet/KismetSystemLibrary.h"
 
-// Sets default values for this component's properties
 UParkourComponent_Test::UParkourComponent_Test()
 {
     PrimaryComponentTick.bCanEverTick = true;
@@ -19,7 +18,6 @@ UParkourComponent_Test::UParkourComponent_Test()
     ClimbSpeed = 10.0f;
 }
 
-// Called when the game starts
 void UParkourComponent_Test::BeginPlay()
 {
     Super::BeginPlay();
@@ -43,7 +41,6 @@ void UParkourComponent_Test::ClimbMove(float AxisValueForward, float AxisValueRi
     {
         FVector MoveDirection = FVector::ZeroVector;
 
-        // 입력 값이 0이 아닌 경우에만 클라이밍 방향 결정
         if (FMath::Abs(AxisValueForward) > KINDA_SMALL_NUMBER || FMath::Abs(AxisValueRight) > KINDA_SMALL_NUMBER)
         {
             if (FMath::Abs(AxisValueForward) > KINDA_SMALL_NUMBER)
@@ -62,7 +59,6 @@ void UParkourComponent_Test::ClimbMove(float AxisValueForward, float AxisValueRi
         }
         else
         {
-            // 입력이 없을 때 이동을 멈추기 위해 속도를 0으로 설정
             Character->GetCharacterMovement()->Velocity = FVector::ZeroVector;
         }
     }

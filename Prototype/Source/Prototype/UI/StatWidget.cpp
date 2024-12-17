@@ -1,8 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "UI/StatWidget.h"
-
 
 #include "Base/MyGameInstance.h"
 #include "Base/Managers/UIManager.h"
@@ -13,8 +11,6 @@
 #include "Components/Image.h"
 #include "Player/MyPlayer.h"
 #include "Components/TextBlock.h"
-
-
 
 void UStatWidget::NativeConstruct()
 {

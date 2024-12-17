@@ -232,8 +232,6 @@ void ABoss2Monster::AttackHit()
 
 		
 	}
-	//DrawDebugSphere(GetWorld(), center, attackRadius, 32, drawColor, false, 0.3f);
-
 
 }
 

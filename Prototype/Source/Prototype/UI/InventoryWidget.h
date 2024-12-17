@@ -44,7 +44,6 @@ public:
 
 	void CheckCanEquip();
 
-	//Calling Once Only
 	void InitStat(TArray<int32> statTable);
 
 	void UpdateStat();

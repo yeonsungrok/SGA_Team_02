@@ -14,7 +14,6 @@
 // Sets default values
 AUIManager::AUIManager()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
 	static ConstructorHelpers::FClassFinder<UUserWidget> inventory(
@@ -66,14 +65,6 @@ AUIManager::AUIManager()
 		_options = CreateWidget<UUserWidget>(GetWorld(), OptionsWidget.Class);
 	}
 
-	/*static ConstructorHelpers::FClassFinder<UUserWidget> npcWidget(
-		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/NPC_UI.NPC_UI_C'")
-	);
-	if (npcWidget.Succeeded())
-	{
-		_NPCnameUI = CreateWidget<UNPC_NameWidget>(GetWorld(), npcWidget.Class);
-	}*/
-
 	static ConstructorHelpers::FObjectFinder<UTexture2D> defaultTexture(
 		TEXT("/Script/Engine.Texture2D'/Game/CraftResourcesIcons/Textures/T_Default.T_Default'"));
 	if (defaultTexture.Succeeded())
@@ -109,9 +100,6 @@ AUIManager::AUIManager()
 	_uiIsOpen.Add(false);
 	_isPauseWhenOpen.Add(true);
 
-	/*_uiList.Add(_NPCnameUI);
-	_uiIsOpen.Add(false);
-	_isPauseWhenOpen.Add(false);*/
 }
 
 // Called when the game starts or when spawned

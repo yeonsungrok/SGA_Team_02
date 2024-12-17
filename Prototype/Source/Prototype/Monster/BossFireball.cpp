@@ -20,7 +20,6 @@
 // Sets default values
 ABossFireball::ABossFireball()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionComponent"));
@@ -28,9 +27,6 @@ ABossFireball::ABossFireball()
 
     _niagaraBossCom = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NS_Mage_LIghtningShield"));
     _niagaraBossCom->SetupAttachment(RootComponent);
-
-    /*Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-    Mesh->SetupAttachment(RootComponent);*/
 
     ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovement"));
     ProjectileMovement->InitialSpeed = 0.0f;
@@ -40,7 +36,6 @@ ABossFireball::ABossFireball()
     ProjectileMovement->ProjectileGravityScale = 0.0f;
 }
 
-// Called when the game starts or when spawned
 void ABossFireball::BeginPlay()
 {
 	Super::BeginPlay();
@@ -48,7 +43,6 @@ void ABossFireball::BeginPlay()
     CollisionComponent->OnComponentBeginOverlap.AddDynamic(this, &ABossFireball::OnMyCharacterOverlap);	
 }
 
-// Called every frame
 void ABossFireball::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

@@ -12,8 +12,7 @@ UMonster_Boss01_AnimInstance::UMonster_Boss01_AnimInstance()
 	{
 		_myAnimMontage = BM_01.Object;
 	}
-
-	//어퍼컷
+	
 	static ConstructorHelpers::FObjectFinder<UAnimMontage> BM_02
 	(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Monster/BossMonster/BossMonster01_ThrowMontage.BossMonster01_ThrowMontage'"));
 
@@ -22,7 +21,6 @@ UMonster_Boss01_AnimInstance::UMonster_Boss01_AnimInstance()
 		_myUpAttackMontage = BM_02.Object;
 	}
 
-	//스턴
 	static ConstructorHelpers::FObjectFinder<UAnimMontage> BM_03
 	(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Monster/BossMonster/BossMonster01_Stun.BossMonster01_Stun'"));
 
@@ -35,15 +33,12 @@ UMonster_Boss01_AnimInstance::UMonster_Boss01_AnimInstance()
 		UE_LOG(LogTemp, Warning, TEXT("No stun"));
 	}
 
-	// Dash
 	static ConstructorHelpers::FObjectFinder<UAnimMontage> BM_04
 	(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Monster/BossMonster/BossMonster01_Dashing.BossMonster01_Dashing'"));
 	if (BM_04.Succeeded())
 	{
 		_myDashingMontage = BM_04.Object;
 	}
-
-
 
 }
 

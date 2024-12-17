@@ -14,10 +14,8 @@
 
 #include "Kismet/GameplayStatics.h"
 
-// Sets default values
 AMyNPC::AMyNPC()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	_trigger = CreateDefaultSubobject<USphereComponent>(TEXT("Trigger"));
@@ -39,7 +37,6 @@ AMyNPC::AMyNPC()
 	_shopComp = CreateDefaultSubobject<UShopComponent>(TEXT("Shop Component"));
 }
 
-// Called when the game starts or when spawned
 void AMyNPC::BeginPlay()
 {
 	Super::BeginPlay();
@@ -60,15 +57,12 @@ void AMyNPC::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherAc
 	if (target == nullptr)
 		return;
 
-	//UIManager->GetNPCNameUI()->SetNPC_Name(_NPCName);
 	_target = target;
 	_target->interectNPC.AddDynamic(this, &AMyNPC::Interect);
 
 	_isOverlapped = true;
 	_shopComp->SetCustomer(_target);
-	//Optional : Look Player;
 
-	//UIManager->OpenUI(UI_LIST::NPCname);
 }
 
 void AMyNPC::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
@@ -78,17 +72,14 @@ void AMyNPC::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActo
 	_isOverlapped = false;
 	_shopComp->SetCustomer(_target);
 	UIManager->CloseUI(UI_LIST::Shop);
-	//UIManager->CloseUI(UI_LIST::NPCname);
 }
 
-// Called every frame
 void AMyNPC::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
 
-// Called to bind functionality to input
 void AMyNPC::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);

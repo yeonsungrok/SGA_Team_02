@@ -37,15 +37,12 @@ class PROTOTYPE_API AUIManager : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	AUIManager();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	void OpenUI(UI_LIST ui);
@@ -59,7 +56,6 @@ public:
 	UShopWidget* GetShopUI() { return _shopUI; }
 	UMainStartWidget* GetStartUI() { return _startUI; }
 	UUserWidget* GetOptionsUI() { return _options; }
-	//UNPC_NameWidget* GetNPCNameUI() { return _NPCnameUI; }
 	UTexture2D* GetDefaultTexture() { return _defaultTexture; }
 
 
@@ -107,6 +103,4 @@ private:
 	UPROPERTY()
 	UUserWidget* _options;
 
-	//UPROPERTY()
-	//UNPC_NameWidget* _NPCnameUI;
 };

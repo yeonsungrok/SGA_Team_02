@@ -19,7 +19,6 @@ public:
 	UDragonAnimInstance();
 
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
-	/*void SetSpeed(float NewSpeed);*/
 
 	AttackDelegate _attackDelegate_Dragon;
 	DeathDelegate _deathDelegate_Dragon;
@@ -31,7 +30,6 @@ public:
 	UFUNCTION()
 	virtual void AnimNotify_Death();
 
-	//추가시도...
 	void SetJumping(bool bJumping) { bIsJumping = bJumping; }
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "Animation")

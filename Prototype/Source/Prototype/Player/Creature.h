@@ -15,16 +15,13 @@ class PROTOTYPE_API ACreature : public ACharacter
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	ACreature();
 	Delegate_AttackEnded _attackEndedDelegate;
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void PostInitializeComponents() override;
@@ -68,7 +65,6 @@ public:
 	float GetHorizontal() {return _horizontal;}
 	int32 GetCurHp() { return _StatCom->GetCurHp(); }
 
-	// cheol
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stat, meta = (AllowPrivateAccess = "true"))
 	UStatComponent* _StatCom;
 

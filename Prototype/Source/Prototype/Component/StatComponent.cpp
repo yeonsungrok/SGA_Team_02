@@ -17,7 +17,6 @@
 #include "NiagaraFunctionLibrary.h"
 #include "NiagaraComponent.h"
 
-// Sets default values for this component's properties
 UStatComponent::UStatComponent()
 {
 	PrimaryComponentTick.bCanEverTick = true;
@@ -25,7 +24,6 @@ UStatComponent::UStatComponent()
 	InitStats();
 }
 
-// Called when the game starts
 void UStatComponent::BeginPlay()
 {
 	Super::BeginPlay();

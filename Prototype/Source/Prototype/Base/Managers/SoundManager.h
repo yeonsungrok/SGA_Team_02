@@ -15,14 +15,12 @@ class PROTOTYPE_API ASoundManager : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	ASoundManager();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	void Destroy();
-	void CreateSound(FString name, FString path);				// Sound종류
+	void CreateSound(FString name, FString path);
 
 public:	
 	virtual void Tick(float DeltaTime) override;

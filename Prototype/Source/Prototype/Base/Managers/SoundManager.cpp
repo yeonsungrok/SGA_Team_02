@@ -13,7 +13,6 @@
 // Sets default values
 ASoundManager::ASoundManager()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
 	_rootComponent = CreateDefaultSubobject<USceneComponent>("RootComponent");
@@ -95,8 +94,6 @@ void ASoundManager::Destroy()
 
 void ASoundManager::PlaySound(FString name, FVector location)
 {
-
-
 	if (_soundEffectTable.Contains(name) == false)
 		return;
 
@@ -136,24 +133,21 @@ void ASoundManager::PlaySoundOnce(FString name, FVector location)
 			{
 				TempSoundEffect->Play(location);
 
-				// Duration을 가져와서 재생 시간을 계산
 				float Duration = TempSoundEffect->GetDuration();
 				UE_LOG(LogTemp, Warning, TEXT("Playing sound for %f seconds."), Duration);
 
-				// 재생 중인 사운드 등록
 				ActiveSounds.Add(name, TempSoundEffect);
 
-				// 수명 종료 후 맵에서 제거 (타이머 사용)
 				FTimerHandle TimerHandle;
 				GetWorld()->GetTimerManager().SetTimer(
-					TimerHandle, // 타이머 핸들
-					[this, name, TempSoundEffect]() {
-						// ActiveSounds에서 제거하고, 소멸
+					TimerHandle,
+					[this, name, TempSoundEffect]() 
+					{
 						ActiveSounds.Remove(name);
 						TempSoundEffect->Destroy();
 					},
-					Duration, // Duration 후 실행
-					false // 반복 안함
+					Duration,
+					false
 				);
 			}
 		}
@@ -177,7 +171,7 @@ void ASoundManager::PlaySoundWithDuration(FString name, FVector location, float 
 	auto findSound = _soundEffectTable[name].FindByPredicate(
 		[](ASoundEffect* soundEffect)-> bool
 		{
-			return !soundEffect->IsPlaying();  // 현재 재생 중이 아닌 소리만 찾기
+			return !soundEffect->IsPlaying();
 		});
 
 	if (findSound)
@@ -185,7 +179,6 @@ void ASoundManager::PlaySoundWithDuration(FString name, FVector location, float 
 		ASoundEffect* soundEffect = *findSound;
 		soundEffect->Play(location);
 
-		// 소리가 재생된 후, 지정된 duration 시간이 지나면 soundEffect의 Stop 함수를 호출하도록 타이머 설정
 		GetWorld()->GetTimerManager().SetTimer(
 			SoundDurationTimerHandle,
 			FTimerDelegate::CreateLambda([soundEffect]() {

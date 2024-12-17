@@ -8,9 +8,6 @@
 #include "BehaviorTree/BlackboardData.h"
 #include "BehaviorTree/BlackboardComponent.h"
 
-//const FName AAIController_Epic::TargetKey(TEXT("Target"));
-
-
 AAIController_Epic::AAIController_Epic()
 {
 	static ConstructorHelpers::FObjectFinder<UBlackboardData> BB(TEXT("/Script/AIModule.BlackboardData'/Game/Blueprint/AI/EpicMonster_BB.EpicMonster_BB'"));

@@ -22,7 +22,6 @@ void UIconTestWidget::UpdateLocation(FVector2D& InPosition)
 	float FinalX = Final.X * -0.12 + 196;
 	float FinalY = Final.Y * 0.12 + -196;
 
-	//InPosition.SloatasCanvasClot
 	UPROPERTY(meta = (BindWidget))
 
 		if (UCanvasPanelSlot* CanvasSlot = Cast<UCanvasPanelSlot>(conImage->Slot))

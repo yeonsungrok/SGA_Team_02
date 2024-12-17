@@ -24,7 +24,6 @@ class PROTOTYPE_API AEquipItem : public ABaseItem
     GENERATED_BODY()
     
 public:    
-    // Sets default values for this actor's properties
     AEquipItem();
 
     virtual void SetItemWithCode(int32 itemCode)override;
@@ -34,10 +33,8 @@ public:
     void SetEquipType(int num);
 
 public:
-    // Called when the game starts or when spawned
     virtual void BeginPlay() override;
   
-    // Called every frame
     virtual void Tick(float DeltaTime) override;
 
     virtual void EquipPlayer();

@@ -16,17 +16,14 @@ class PROTOTYPE_API UInventoryComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:	
-	// Sets default values for this component's properties
 	UInventoryComponent();
 
 protected:
-	// Called when the game starts
 	virtual void BeginPlay() override;
 
 public:	
 	void InitSlot();
 
-	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void AddItem(int32 slot = 0, ABaseItem* item = nullptr);
@@ -63,7 +60,6 @@ public:
 	bool IsSlotFull() { return _isSlotFull; }
 
 private:
-	//Trigger
 	bool _isSlotFull = false;
 	int32 _itemSlotMax = 12;
 	int32 _equipSlotMax = 6;

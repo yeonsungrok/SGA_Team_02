@@ -14,15 +14,12 @@ class PROTOTYPE_API ABossObstacle : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	ABossObstacle();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(BlueprintAssignable, Category = "Events")
@@ -40,9 +37,4 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh", meta = (AllowPrivateAccess = "true"))
     class UStaticMeshComponent* ObstacleMesh;
 
-
-	// UPROPERTY()
-	// class AEffectManager* EffectManager;
-
-	
 };

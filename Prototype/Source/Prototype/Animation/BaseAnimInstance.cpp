@@ -33,12 +33,10 @@ void UBaseAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 		{
 			if (Dragon->GetCharacterMovement()->IsFalling())
 			{
-				// 점프 상태에서의 비행 속도 동기화
 				Dragon->GetCharacterMovement()->MaxFlySpeed = _speed;
 			}
 			else
 			{
-				// 지상에서는 MaxSpeed를 기존 값으로 설정
 				Dragon->GetCharacterMovement()->MaxFlySpeed = 600.0f; // 기본 속도
 			}
 		}
@@ -58,7 +56,6 @@ void UBaseAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 
 	}
 
-	//추가시도...
 	APawn* OwningPawn = TryGetPawnOwner();
 	if (OwningPawn && OwningPawn->GetMovementComponent())
 	{
@@ -75,13 +72,9 @@ void UBaseAnimInstance::JumpToSection(int32 sectionIndex)
 
 void UBaseAnimInstance::PlayAttackMontage()
 {
-	//Montage_IsActive(_myAnimMontage);
-
 	if ( !Montage_IsPlaying(_myAnimMontage))
 	{
-	
 			Montage_Play(_myAnimMontage);
-
 	}
 
 }
