@@ -40,7 +40,7 @@ void AStartGameModeBase::BeginPlay()
 	//	
 	//}
 
-
+	GAMEINSTANCE->InitializeManagers();
 
 
 
