@@ -14,7 +14,10 @@
 #include "Player/MyPlayer.h"
 #include "Components/TextBlock.h"
 
+#include "UI/PlayerBarWidget.h"
 
+
+#include "Components/ProgressBar.h"
 
 void UStatWidget::NativeConstruct()
 {
@@ -229,7 +232,44 @@ void UStatWidget::HPUpClick()
 			player->_StatCom->SetMaxHp(StatHp + 100);
 			player->_StatCom->SetBonusPoint(BonusPoints - 1);
 
+			auto TePlWidget = Cast<UPlayerBarWidget>(_Widget);
+
+			if (TePlWidget)
+			{
+
+			
+			int32 tePlMaxHP = player->_StatCom->GetMaxHp();
+			int32 tePlMaxMP = player->_StatCom->GetMaxHp();
+			int32 tePlCurHP = player->_StatCom->GetCurHp();
+			int32 tePlCurMP = player->_StatCom->GetCurMp();
+
+
+			float HPPercent = float(tePlCurHP) / float(tePlMaxHP);
+			float MPPercent = float(tePlCurHP) / float(tePlMaxMP);
+
+			// Bar 제한 범위
+			float MinHPScaleX = 1.0f;
+			float MaxHPScaleX = 1.8f;
+			float MinMPScaleX = 1.0f;
+			float MaxMPScaleX = 1.5f;
+
+			float NewHPScaleX = FMath::Clamp(float(tePlMaxHP) / 1000.0f, MinHPScaleX, MaxHPScaleX);
+			float NewMPScaleX = FMath::Clamp(float(tePlMaxMP) / 50.0f, MinMPScaleX, MaxMPScaleX);
+
+			if (player->_StatCom->GetMaxHp() > player->_StatCom->GetCurHp())
+			{
+				TePlWidget->Pl_HPBar->SetPercent(HPPercent);
+				TePlWidget->Pl_HPBar->SetRenderScale(FVector2D(NewHPScaleX, 3.0f));
+			}
+
+			if (player->_StatCom->GetMaxMp() > player->_StatCom->GetCurMp())
+			{
+				TePlWidget->Pl_MPBar->SetPercent(MPPercent);
+				TePlWidget->Pl_MPBar->SetRenderScale(FVector2D(NewMPScaleX, 3.0f));
+			}
+			}
 		}
+
 		UpdateStatDisplay();
 
 

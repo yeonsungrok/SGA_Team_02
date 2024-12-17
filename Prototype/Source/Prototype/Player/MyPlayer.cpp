@@ -263,41 +263,41 @@ void AMyPlayer::Tick(float DeltaTime)
 	}
 
 
-	if (_Widget)
-	{
-		auto PlWidget = Cast<UPlayerBarWidget>(_Widget);
-		if (PlWidget)
-		{
-			int32 PlMaxHp = _StatCom->GetMaxHp();
-			int32 PlMaxMp = _StatCom->GetMaxMp();
-			int32 PlCurHp = _StatCom->GetCurHp();
-			int32 PlCurMp = _StatCom->GetCurMp();
+	//if (_Widget)
+	//{
+	//	auto PlWidget = Cast<UPlayerBarWidget>(_Widget);
+	//	if (PlWidget)
+	//	{
+	//		int32 PlMaxHp = _StatCom->GetMaxHp();
+	//		int32 PlMaxMp = _StatCom->GetMaxMp();
+	//		int32 PlCurHp = _StatCom->GetCurHp();
+	//		int32 PlCurMp = _StatCom->GetCurMp();
 
-			float HPPercent = float(PlCurHp) / float(PlMaxHp);
-			float MPPercent = float(PlCurMp) / float(PlMaxMp);
+	//		float HPPercent = float(PlCurHp) / float(PlMaxHp);
+	//		float MPPercent = float(PlCurMp) / float(PlMaxMp);
 
-			// Bar 제한 범위
-			float MinHPScaleX = 1.0f;  
-			float MaxHPScaleX = 1.8f;  
-			float MinMPScaleX = 1.0f; 
-			float MaxMPScaleX = 1.5f; 
+	//		// Bar 제한 범위
+	//		float MinHPScaleX = 1.0f;  
+	//		float MaxHPScaleX = 1.8f;  
+	//		float MinMPScaleX = 1.0f; 
+	//		float MaxMPScaleX = 1.5f; 
 
-			float NewHPScaleX = FMath::Clamp(float(PlMaxHp) / 1000.0f, MinHPScaleX, MaxHPScaleX);
-			float NewMPScaleX = FMath::Clamp(float(PlMaxMp) / 50.0f, MinMPScaleX, MaxMPScaleX);
+	//		float NewHPScaleX = FMath::Clamp(float(PlMaxHp) / 1000.0f, MinHPScaleX, MaxHPScaleX);
+	//		float NewMPScaleX = FMath::Clamp(float(PlMaxMp) / 50.0f, MinMPScaleX, MaxMPScaleX);
 
-			if (_StatCom->GetMaxHp() > _StatCom->GetCurHp())
-			{
-				PlWidget->Pl_HPBar->SetPercent(HPPercent);
-				PlWidget->Pl_HPBar->SetRenderScale(FVector2D(NewHPScaleX, 3.0f));
-			}
+	//		if (_StatCom->GetMaxHp() > _StatCom->GetCurHp())
+	//		{
+	//			PlWidget->Pl_HPBar->SetPercent(HPPercent);
+	//			PlWidget->Pl_HPBar->SetRenderScale(FVector2D(NewHPScaleX, 3.0f));
+	//		}
 
-			if (_StatCom->GetMaxMp() > _StatCom->GetCurMp())
-			{
-				PlWidget->Pl_MPBar->SetPercent(MPPercent);
-				PlWidget->Pl_MPBar->SetRenderScale(FVector2D(NewMPScaleX, 3.0f));
-			}
-		}
-	}
+	//		if (_StatCom->GetMaxMp() > _StatCom->GetCurMp())
+	//		{
+	//			PlWidget->Pl_MPBar->SetPercent(MPPercent);
+	//			PlWidget->Pl_MPBar->SetRenderScale(FVector2D(NewMPScaleX, 3.0f));
+	//		}
+	//	}
+	//}
 }
 
 float AMyPlayer::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent, AController *EventInstigator, AActor *DamageCauser)

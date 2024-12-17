@@ -254,6 +254,7 @@
     <None Include="..\..\Source\PrototypeEditor.Target.cs"/>
     <None Include="..\..\.ignore"/>
     <None Include="..\..\.vsconfig"/>
+    <None Include="..\..\ICON_박철우.ico"/>
     <None Include="..\..\Config\DefaultEditor.ini"/>
     <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini"/>
     <None Include="..\..\Config\DefaultEngine.ini"/>
@@ -424,10 +425,6 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\Prototype\Monster\BossSunder.h"/>
-    <ClCompile Include="..\..\Source\Prototype\Monster\EpicMonster2.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Prototype\Monster\EpicMonster2.h"/>
     <ClCompile Include="..\..\Source\Prototype\Monster\EpicMonster_witch.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>

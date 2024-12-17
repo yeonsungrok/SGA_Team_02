@@ -108,5 +108,6 @@ public:
 
 	class UTextBlock* PlName;
 
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = "true"))
+	class UUserWidget* _Widget;
 };
