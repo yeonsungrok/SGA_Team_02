@@ -104,7 +104,7 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent,
 
     float damaged = -_StatCom->AddCurHp(-Damage);
 
-    if (this->_StatCom->IsDead() && Player != nullptr)
+    if (this->_StatCom->IsDead())
     {
         SetActorEnableCollision(false);
         auto controller = GetController();
