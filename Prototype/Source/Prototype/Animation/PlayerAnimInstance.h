@@ -20,10 +20,9 @@ class PROTOTYPE_API UPlayerAnimInstance : public UBaseAnimInstance
 public:
 	UPlayerAnimInstance();
 
-	// 방어 애니메이션 재생 함수 (시작/해제)
 	void PlayGuardMontage(bool bIsGuarding);
 	void StopGuardMontage();
-	// 스킬 애니메이션 재생함수
+	
 	void PlaySkill01Montage();
 	void PlaySkill02Montage();
 	void PlaySkill03Montage();

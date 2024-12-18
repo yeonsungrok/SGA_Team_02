@@ -9,7 +9,6 @@
 #include "Item/Equip/EquipItem.h"
 #include "Item/Consumes/ConsumeItem.h"
 #include "../UI/InventoryWidget.h"
-#include "../Item/BaseItem.h"
 #include "../Item/Equip/EquipItem.h"
 #include "../Component/InventoryComponent.h"
 #include "Base/Managers/UIManager.h"

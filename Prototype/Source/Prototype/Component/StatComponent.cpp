@@ -49,8 +49,8 @@ void UStatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 
 void UStatComponent::Reset()
 {
-	_curHp = _maxHp;
-	_curMp = _maxMp;
+	SetHp(_maxHp);
+	SetMp(_maxMp);
 }
 
 
@@ -539,12 +539,6 @@ void UStatComponent::AddExp(int32 amount)
 		_level++;
 		_nextExp = 100 + (_level * 50); 
 		_PILevelDelegate.Broadcast(_level);
-
-		_ogHp = _maxHp;
-		_ogMp = _maxMp;
-		_ogStr = _str;
-		_ogDex = _dex;
-		_ogInt = _int;
 
 		_bonusPoint += 6;
 

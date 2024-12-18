@@ -104,7 +104,7 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent,
 
     float damaged = -_StatCom->AddCurHp(-Damage);
 
-    if (this->_StatCom->IsDead() && Player != nullptr)
+    if (this->_StatCom->IsDead())
     {
         SetActorEnableCollision(false);
         auto controller = GetController();
@@ -119,12 +119,14 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent,
             Player->_StatCom->AddExp(_StatCom->GetNextExp());
             const float RewardChance = 0.3f;
 
-            //if (FMath::FRand() <= RewardChance)
-            //{
+            if (FMath::FRand() <= RewardChance)
+            {
             Player->_inventoryComponent->AddItemToSlot(NewItem);
-            //}
+            }
         }
     }
+
+    
 
     return 0.0f;
 }

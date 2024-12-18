@@ -22,14 +22,11 @@ public:
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
 	virtual void JumpToSection(int32 sectionIndex);
 	virtual void PlayAttackMontage();
-	// BossMonster
 	virtual void PlayStunMontage();
 	virtual void PlayDashMontage();
-	//EpicMonster
 	virtual void PlayAttackFarMontage();
 	virtual void PlayAttackDotrMontage();
-	
-	//UFUNCTION(BlueprintCallable) 블루프린트와 연결하려면 이것사용
+
 	void PlayHitReactionMontage();
 
 	AttackDelegate _attackDelegate;

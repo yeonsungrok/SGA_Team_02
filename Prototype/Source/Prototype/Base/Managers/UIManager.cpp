@@ -73,41 +73,12 @@ AUIManager::AUIManager()
 		_defaultTexture = defaultTexture.Object;
 	}
 
-
-
-
-	
-
-	_uiList.Add(_inventoryUI);
-	_uiIsOpen.Add(false);
-	_isPauseWhenOpen.Add(true);
-
-	_uiList.Add(_bossUI);
-	_uiIsOpen.Add(false);
-	_isPauseWhenOpen.Add(false);
-
-	_uiList.Add(_boss2UI);
-	_uiIsOpen.Add(false);
-	_isPauseWhenOpen.Add(false);
-
-	_uiList.Add(_shopUI);
-	_uiIsOpen.Add(false);
-	_isPauseWhenOpen.Add(true);
-
-	_uiList.Add(_startUI);
-	_uiIsOpen.Add(false);
-	_isPauseWhenOpen.Add(true);
-
-	_uiList.Add(_loadUI);
-	_uiIsOpen.Add(false);
-	_isPauseWhenOpen.Add(false);
-
-	_uiList.Add(_options);
-	_uiIsOpen.Add(false);
-	_isPauseWhenOpen.Add(true);
+	_uiList = {_inventoryUI, _bossUI, _boss2UI, _shopUI, _startUI, _loadUI, _options};
+    _uiIsOpen.Init(false, _uiList.Num());
+    _isPauseWhenOpen.Init(true, _uiList.Num()); 
 }
 
-// Called when the game starts or when spawned
+
 void AUIManager::BeginPlay()
 {
 	Super::BeginPlay();

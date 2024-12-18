@@ -24,7 +24,6 @@ public:
 	UFUNCTION()
 	virtual void AnimNotify_Death()override;
 
-	//추가시도...
 	void SetJumping(bool bJumping) { bIsJumping = bJumping; }
 
 protected:

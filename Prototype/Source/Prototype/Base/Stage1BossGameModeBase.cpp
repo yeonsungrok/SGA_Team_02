@@ -71,7 +71,6 @@ void AStage1BossGameModeBase::BeginPlay()
 			BossAI->OnPossess(Boss);
 		}
 
-		UIManager->OpenUI(UI_LIST::Boss);
 		APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
 		if (PlayerController)
 		{
@@ -107,6 +106,7 @@ void AStage1BossGameModeBase::BossClear()
 void AStage1BossGameModeBase::BossStart()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Boss Start"));
+	UIManager->OpenUI(UI_LIST::Boss);
 	AMyPlayer *player = Cast<AMyPlayer>(UGameplayStatics::GetPlayerCharacter(this, 0));
 	if (player)
 	{

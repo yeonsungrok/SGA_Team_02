@@ -22,7 +22,6 @@ ASoundManager::ASoundManager()
 	CreateSound("SwingSound_Sword_01", "/Script/Engine.Blueprint'/Game/Blueprint/Sound/PlayerSwingSound_BP.PlayerSwingSound_BP_C'");
 	// Player AttackHit Sound
 	CreateSound("TakeSound_Sword_01", "/Script/Engine.Blueprint'/Game/Blueprint/Sound/PlayerAtkHitSound_BP.PlayerAtkHitSound_BP_C'");
-	// Player GuardShield On / Off
 	CreateSound("ShieldGuard_Off", "/Script/Engine.Blueprint'/Game/Blueprint/Sound/PlayerGuardOff_BP.PlayerGuardOff_BP_C'");
 	CreateSound("ShieldGuard_On", "/Script/Engine.Blueprint'/Game/Blueprint/Sound/PlayerGuardOn_BP.PlayerGuardOn_BP_C'");
 
@@ -95,8 +94,6 @@ void ASoundManager::Destroy()
 
 void ASoundManager::PlaySound(FString name, FVector location)
 {
-
-
 	if (_soundEffectTable.Contains(name) == false)
 		return;
 
@@ -120,11 +117,10 @@ void ASoundManager::PlaySoundOnce(FString name, FVector location)
 		ASoundEffect* ExistingSound = ActiveSounds[name];
 		if (ExistingSound && ExistingSound->IsPlaying())
 		{
-			return; // 중복 재생 방지
+			return; 
 		}
 	}
 
-	// 사운드 생성 및 재생
 	if (_soundTable.Contains(name))
 	{
 		TSubclassOf<ASoundEffect> SoundEffectClass = _soundTable[name];
@@ -136,24 +132,20 @@ void ASoundManager::PlaySoundOnce(FString name, FVector location)
 			{
 				TempSoundEffect->Play(location);
 
-				// Duration을 가져와서 재생 시간을 계산
 				float Duration = TempSoundEffect->GetDuration();
 				UE_LOG(LogTemp, Warning, TEXT("Playing sound for %f seconds."), Duration);
 
-				// 재생 중인 사운드 등록
 				ActiveSounds.Add(name, TempSoundEffect);
 
-				// 수명 종료 후 맵에서 제거 (타이머 사용)
 				FTimerHandle TimerHandle;
 				GetWorld()->GetTimerManager().SetTimer(
-					TimerHandle, // 타이머 핸들
+					TimerHandle,
 					[this, name, TempSoundEffect]() {
-						// ActiveSounds에서 제거하고, 소멸
 						ActiveSounds.Remove(name);
 						TempSoundEffect->Destroy();
 					},
-					Duration, // Duration 후 실행
-					false // 반복 안함
+					Duration,
+					false 
 				);
 			}
 		}
@@ -177,7 +169,7 @@ void ASoundManager::PlaySoundWithDuration(FString name, FVector location, float 
 	auto findSound = _soundEffectTable[name].FindByPredicate(
 		[](ASoundEffect* soundEffect)-> bool
 		{
-			return !soundEffect->IsPlaying();  // 현재 재생 중이 아닌 소리만 찾기
+			return !soundEffect->IsPlaying(); 
 		});
 
 	if (findSound)
@@ -185,7 +177,6 @@ void ASoundManager::PlaySoundWithDuration(FString name, FVector location, float 
 		ASoundEffect* soundEffect = *findSound;
 		soundEffect->Play(location);
 
-		// 소리가 재생된 후, 지정된 duration 시간이 지나면 soundEffect의 Stop 함수를 호출하도록 타이머 설정
 		GetWorld()->GetTimerManager().SetTimer(
 			SoundDurationTimerHandle,
 			FTimerDelegate::CreateLambda([soundEffect]() {
@@ -212,7 +203,7 @@ void ASoundManager::CreateSound(FString name, FString path)
 
 }
 
-// Called every frame
+
 void ASoundManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
