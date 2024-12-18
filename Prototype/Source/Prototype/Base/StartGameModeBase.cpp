@@ -18,6 +18,7 @@ void AStartGameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//GAMEINSTANCE->InitializeManagers();
 	if (UIManager)
 	{
 		auto startUI = UIManager->GetStartUI();

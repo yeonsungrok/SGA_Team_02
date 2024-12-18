@@ -22,6 +22,7 @@ public:
 	virtual void PostInitializeComponents() override;
 
 	void LockSkill();
+	void ShowDragonUI();
 
 	void SpawnMonster(FVector BaseLocation, FVector AddLocation);
 
@@ -31,4 +32,7 @@ private:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class ANormalMonster> _monster;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<class UUserWidget> _dragonUI;
 };

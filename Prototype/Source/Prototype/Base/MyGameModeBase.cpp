@@ -4,6 +4,7 @@
 #include "../Component/StatComponent.h"
 #include "MyGameInstance.h"
 #include "../Player/MyPlayerController.h"
+#include "Blueprint/UserWidget.h"
 #include "UI/SkillWidget_test.h"
 #include "../Player/MyPlayer.h"
 #include "../Player/Portal/Portal_Stage2_Normal.h"
@@ -26,6 +27,13 @@ AMyGameModeBase::AMyGameModeBase()
 	{
 		_monster = NM.Class;
 	}
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> UW(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Dragon_UI.Dragon_UI_C'"));
+	if (UW.Succeeded())
+	{
+		_dragonUI = UW.Class;
+	}
+	
 }
 
 void AMyGameModeBase::BeginPlay()
@@ -95,6 +103,11 @@ void AMyGameModeBase::BeginPlay()
 					}
 				}
 
+				if(GameInstance->GetStage2Clear())
+				{
+					ShowDragonUI();
+				}
+
 			}
 		}
 	}
@@ -112,6 +125,24 @@ void AMyGameModeBase::LockSkill()
 	{
 		PlayerController->SkillWidgetInstance->LockAllSkill();
 	}
+}
+
+void AMyGameModeBase::ShowDragonUI()
+{
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+    if (PlayerController && _dragonUI)
+    {
+        UUserWidget* DragonWidget = CreateWidget<UUserWidget>(PlayerController, _dragonUI);
+        if (DragonWidget)
+        {
+            DragonWidget->AddToViewport();
+
+            FTimerHandle TimerHandle;
+            GetWorldTimerManager().SetTimer(TimerHandle, FTimerDelegate::CreateLambda([DragonWidget]() {
+                DragonWidget->RemoveFromViewport();
+            }), 5.0f, false);
+        }
+    }
 }
 
 void AMyGameModeBase::SpawnMonster(FVector BaseLocation, FVector AddLocation)

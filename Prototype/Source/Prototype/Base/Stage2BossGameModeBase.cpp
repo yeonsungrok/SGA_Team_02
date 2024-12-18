@@ -104,6 +104,7 @@ void AStage2BossGameModeBase::BossClear()
 {
 	if (_portal)
 	{
+		GAMEINSTANCE->SetStage2Clear(true);
 		FActorSpawnParameters SpawnParams;
 		SpawnParams.Name = TEXT("PortalHome");
 
