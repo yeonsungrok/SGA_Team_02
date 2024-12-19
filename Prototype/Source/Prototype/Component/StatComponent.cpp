@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Component/StatComponent.h"
 #include "Base/MyGameInstance.h"
 #include "Base/Managers/UIManager.h"
@@ -23,11 +22,7 @@ UStatComponent::UStatComponent()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
 }
-
-
-
 
 // Called when the game starts
 void UStatComponent::BeginPlay()
@@ -37,10 +32,8 @@ void UStatComponent::BeginPlay()
 	// ...
 }
 
-
-
 // Called every frame
-void UStatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void UStatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
@@ -53,11 +46,9 @@ void UStatComponent::Reset()
 	SetMp(_maxMp);
 }
 
-
-
 void UStatComponent::SetLevelInit(int level)
 {
-	FMyStatData* Data = nullptr;
+	FMyStatData *Data = nullptr;
 
 	if (GAMEINSTANCE)
 	{
@@ -88,12 +79,11 @@ void UStatComponent::SetLevelInit(int level)
 		}
 		UpdateUI();
 	}
-
 }
 
 void UStatComponent::SetMonsterLevelInit(int level)
 {
-	FMyStatData* Data = nullptr;
+	FMyStatData *Data = nullptr;
 
 	if (GAMEINSTANCE)
 	{
@@ -120,13 +110,12 @@ void UStatComponent::SetMonsterLevelInit(int level)
 		SetMp(_maxMp);
 		_bonusPoint = Data->BonusPoint;
 		_PILevelDelegate.Broadcast(_level);
-
 	}
 }
 
 void UStatComponent::SetEpicLevelInit(int level)
 {
-	FMyStatData* Data = nullptr;
+	FMyStatData *Data = nullptr;
 
 	if (GAMEINSTANCE)
 	{
@@ -153,13 +142,12 @@ void UStatComponent::SetEpicLevelInit(int level)
 		SetMp(_maxMp);
 		_bonusPoint = Data->BonusPoint;
 		_PILevelDelegate.Broadcast(_level);
-
 	}
 }
 
 void UStatComponent::SetBossLevelInit(int level)
 {
-	FMyStatData* Data = nullptr;
+	FMyStatData *Data = nullptr;
 
 	if (GAMEINSTANCE)
 	{
@@ -186,15 +174,14 @@ void UStatComponent::SetBossLevelInit(int level)
 		SetMp(_maxMp);
 		_bonusPoint = Data->BonusPoint;
 		_PILevelDelegate.Broadcast(_level);
-
 	}
 }
 
 void UStatComponent::UpdateUI()
 {
 	if (Cast<AMyPlayer>(GetOwner()))
-	{ 
-		TArray<int32> statPack4UI = { _ogHp, _ogMp, _ogStr, _ogDex, _ogInt };
+	{
+		TArray<int32> statPack4UI = {_ogHp, _ogMp, _ogStr, _ogDex, _ogInt};
 		UIManager->GetInventoryUI()->InitStat(statPack4UI);
 	}
 }
@@ -265,12 +252,10 @@ FString UStatComponent::GetLevelUpSound() const
 	return "LevelupSound_Cue";
 }
 
-
-
 void UStatComponent::SetLevel(int32 newLevel)
 {
 	auto myGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
-	FMyStatData* Data = nullptr;
+	FMyStatData *Data = nullptr;
 
 	_level = Data->level;
 	_level = FMath::Clamp(newLevel, 0, 100);
@@ -278,13 +263,12 @@ void UStatComponent::SetLevel(int32 newLevel)
 
 void UStatComponent::SetMaxHp(int32 newMaxHp)
 {
-
 	auto myGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
-	FMyStatData* Data = nullptr;
+	FMyStatData *Data = nullptr;
 
 	_maxHp = Data->MaxHP;
 	_maxHp = FMath::Clamp(newMaxHp, 0, 10000);
-	SetHp(_maxHp);
+	AddCurHp(newMaxHp);
 
 	_PlMaxHPDelegate.Broadcast(_maxHp);
 
@@ -300,11 +284,11 @@ void UStatComponent::SetOgHp(int32 newMaxHp)
 void UStatComponent::SetMaxMp(int32 newMaxMp)
 {
 	auto myGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
-	FMyStatData* Data = nullptr;
+	FMyStatData *Data = nullptr;
 
 	_maxMp = Data->MaxMP;
 	_maxMp = FMath::Clamp(newMaxMp, 0, 10000);
-	 SetMp(_maxMp);
+	AddCurMp(newMaxMp);
 
 	_PlMaxMPDelegate.Broadcast(_maxMp);
 	UIManager->GetInventoryUI()->UpdateOriginStat((int32)StatType::MP, _maxMp);
@@ -320,18 +304,17 @@ void UStatComponent::SetBonusPoint(int32 newBp)
 {
 
 	auto myGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
-	FMyStatData* Data = nullptr;
+	FMyStatData *Data = nullptr;
 
-		_bonusPoint = Data->BonusPoint;
-		_bonusPoint = FMath::Clamp(newBp, 0, 10000);
+	_bonusPoint = Data->BonusPoint;
+	_bonusPoint = FMath::Clamp(newBp, 0, 10000);
 }
 
 void UStatComponent::SetStr(int32 newstr)
 {
 
 	auto myGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
-	FMyStatData* Data = nullptr;
-
+	FMyStatData *Data = nullptr;
 
 	_str = Data->STR;
 	_str = FMath::Clamp(newstr, 0, 100);
@@ -354,8 +337,7 @@ void UStatComponent::SetDex(int32 newdex)
 {
 
 	auto myGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
-	FMyStatData* Data = nullptr;
-
+	FMyStatData *Data = nullptr;
 
 	_dex = Data->DEX;
 	_dex = FMath::Clamp(newdex, 0, 100);
@@ -377,8 +359,7 @@ void UStatComponent::SetModDex(int32 newdex)
 void UStatComponent::SetInt(int32 newint)
 {
 	auto myGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
-	FMyStatData* Data = nullptr;
-
+	FMyStatData *Data = nullptr;
 
 	_int = Data->INT;
 	_int = FMath::Clamp(newint, 0, 100);
@@ -400,7 +381,7 @@ void UStatComponent::SetModInt(int32 newint)
 void UStatComponent::SetExp(int32 newexp)
 {
 	auto myGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
-	FMyStatData* Data = nullptr;
+	FMyStatData *Data = nullptr;
 
 	_curExp = FMath::Clamp(newexp, 0, 100);
 }
@@ -408,7 +389,7 @@ void UStatComponent::SetExp(int32 newexp)
 void UStatComponent::SetNextExp(int32 newnextexp)
 {
 	_nextExp = newnextexp;
-	//float ratio = EXpRatio();
+	// float ratio = EXpRatio();
 	//_PlEXPDelegate.Broadcast(ratio);
 }
 
@@ -417,7 +398,7 @@ void UStatComponent::AddStat(StatType type, int32 amount)
 	switch (type)
 	{
 	case StatType::HP:
-		//TODO : statUI += amount
+		// TODO : statUI += amount
 		break;
 	case StatType::MP:
 		break;
@@ -436,32 +417,27 @@ void UStatComponent::AddStat(StatType type, int32 amount)
 	}
 }
 
-
-
 void UStatComponent::SetStatBoost(int32 rate)
 {
-    float boostFactor = 1.0f + (rate / 100.0f);
+	float boostFactor = 1.0f + (rate / 100.0f);
 
-    int32 originalStr = _str;
-    int32 originalDex = _dex;
-    int32 originalInt = _int;
+	int32 originalStr = _str;
+	int32 originalDex = _dex;
+	int32 originalInt = _int;
 
-    _str = FMath::Clamp(_str * boostFactor, 0, 100); 
-    _dex = FMath::Clamp(_dex * boostFactor, 0, 100);
-    _int = FMath::Clamp(_int * boostFactor, 0, 100);
-
+	_str = FMath::Clamp(_str * boostFactor, 0, 100);
+	_dex = FMath::Clamp(_dex * boostFactor, 0, 100);
+	_int = FMath::Clamp(_int * boostFactor, 0, 100);
 
 	FTimerHandle StatBoostTimerHandle;
 
-    GetWorld()->GetTimerManager().SetTimer(StatBoostTimerHandle, [this, originalStr, originalDex, originalInt]()
-    {
+	GetWorld()->GetTimerManager().SetTimer(StatBoostTimerHandle, [this, originalStr, originalDex, originalInt]()
+										   {
 		UE_LOG(LogTemp, Warning, TEXT("End Boost"));
         _str = originalStr;
         _dex = originalDex;
-        _int = originalInt;
-    }, 5.0f, false); 
+        _int = originalInt; }, 5.0f, false);
 }
-
 
 void UStatComponent::SetHp(int32 hp)
 {
@@ -477,9 +453,8 @@ void UStatComponent::SetHp(int32 hp)
 		_curHp = _maxHp;
 	}
 
-	float ratio = HpRatio();
+	float ratio = _curHp / (float)_maxHp;
 	_PlHPDelegate.Broadcast(ratio);
-
 }
 
 void UStatComponent::SetMp(int32 mp)
@@ -534,19 +509,19 @@ void UStatComponent::AddExp(int32 amount)
 	while (_curExp >= _nextExp)
 	{
 		_curExp -= _nextExp;
-		UE_LOG(LogTemp, Warning, TEXT("exp : %d level up"),amount);
+		UE_LOG(LogTemp, Warning, TEXT("exp : %d level up"), amount);
 		Reset();
 		_level++;
-		_nextExp = 100 + (_level * 50); 
+		_nextExp = 100 + (_level * 50);
 		_PILevelDelegate.Broadcast(_level);
 
 		_bonusPoint += 6;
 
-		UMyGameInstance* GameInstance = Cast<UMyGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
+		UMyGameInstance *GameInstance = Cast<UMyGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
 		if (GameInstance && GameInstance->GetEffectManager())
 		{
 			GameInstance->GetEffectManager()->Play(*GetLevelUpName(), GetOwner()->GetActorLocation(), FRotator::ZeroRotator);
-			
+
 			GameInstance->GetSoundManager()->PlaySound(*GetLevelUpSound(), GetOwner()->GetActorLocation());
 		}
 	}
@@ -600,7 +575,7 @@ void UStatComponent::ModStat(StatType stat, int32 amount)
 
 void UStatComponent::SetDragonLevelInit(int level)
 {
-	FMyStatData* Data = nullptr;
+	FMyStatData *Data = nullptr;
 
 	if (GAMEINSTANCE)
 	{
