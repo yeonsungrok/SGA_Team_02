@@ -1133,6 +1133,9 @@ void AMyPlayer::TransformToDragon()
 	//	_StatCom->SetDragonLevelInit(1);
 	//}
 
+	if(!GAMEINSTANCE->GetStage2Clear())
+		return;
+		
 	if (!_dragonInstance)
 	{
 		// 드래곤 인스턴스 생성

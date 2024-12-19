@@ -69,6 +69,10 @@ void AMyNPC::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherAc
 
 void AMyNPC::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
+	auto target = Cast<AMyPlayer>(OtherActor);
+	if (target == nullptr)
+		return;
+		
 	_target->interectNPC.RemoveDynamic(this, &AMyNPC::Interect);
 	_target = nullptr;
 	_isOverlapped = false;
