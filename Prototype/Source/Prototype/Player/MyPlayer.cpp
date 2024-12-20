@@ -1127,8 +1127,8 @@ void AMyPlayer::OptionsOpen(const FInputActionValue& value)
 
 	if (isPressed && OptionsUI != nullptr)
 	{
-		//UIManager->ToggleUI(UI_LIST::Options);
-		UIManager->OpenUI(UI_LIST::Options);
+		UIManager->ToggleUI(UI_LIST::Options);
+		//UIManager->OpenUI(UI_LIST::Options);
 	}
 
 }

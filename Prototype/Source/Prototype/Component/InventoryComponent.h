@@ -78,5 +78,5 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Inventory, meta = (AllowPrivateAccess = "true"))
 	TMap<FString, class AEquipItem*> _EquipSlots;
 
-	int32 _money = 1000;
+	int32 _money = 0;
 };

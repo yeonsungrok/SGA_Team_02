@@ -102,8 +102,7 @@ void AUIManager::OpenUI(UI_LIST ui)
 	if (_isPauseWhenOpen[UIindex])
 		pauseGame.Broadcast();
 
-	if(ui == UI_LIST::Options)
-		UGameplayStatics::SetGamePaused(GetWorld(), true);
+
 
 	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
 	if (PlayerController)
@@ -114,7 +113,7 @@ void AUIManager::OpenUI(UI_LIST ui)
 	}
 
 	_uiList[UIindex]->SetVisibility(ESlateVisibility::Visible);
-	int32 ZOrder = (ui == UI_LIST::Options) ? 10 : 0;
+	int32 ZOrder = (ui == UI_LIST::Inventory) ? 10 : 0;
 	_uiList[UIindex]->AddToViewport(ZOrder);
 
 	_uiIsOpen[UIindex] = true;
