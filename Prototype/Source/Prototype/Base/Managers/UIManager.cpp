@@ -117,6 +117,7 @@ void AUIManager::OpenUI(UI_LIST ui)
 	_uiList[UIindex]->AddToViewport(ZOrder);
 
 	_uiIsOpen[UIindex] = true;
+
 }
 
 void AUIManager::CloseUI(UI_LIST ui)
@@ -133,12 +134,14 @@ void AUIManager::CloseUI(UI_LIST ui)
 
 	_uiIsOpen[UIindex] = false;
 
-	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
-	if (PlayerController)
-	{
-		PlayerController->bShowMouseCursor = false;
-		PlayerController->SetInputMode(FInputModeGameOnly());
-	}
+		APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+		if (PlayerController)
+		{
+			PlayerController->bShowMouseCursor = false;
+			PlayerController->SetInputMode(FInputModeGameOnly());
+		}
+
+	
 }
 
 void AUIManager::CloseAll()

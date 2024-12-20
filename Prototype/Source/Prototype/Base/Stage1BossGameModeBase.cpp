@@ -55,6 +55,13 @@ void AStage1BossGameModeBase::BeginPlay()
 			}
 			GameInstance->LoadPlayerSkeletal(player);
 		}
+
+		APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+		if (PlayerController)
+		{
+			PlayerController->bShowMouseCursor = false;
+			PlayerController->SetInputMode(FInputModeGameOnly());
+		}
 		
 	}
 
