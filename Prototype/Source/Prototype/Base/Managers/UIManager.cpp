@@ -114,9 +114,11 @@ void AUIManager::OpenUI(UI_LIST ui)
 	}
 
 	_uiList[UIindex]->SetVisibility(ESlateVisibility::Visible);
-	int32 ZOrder = (ui == UI_LIST::Inventory) ? 10 : 0;
-	_uiList[UIindex]->AddToViewport(ZOrder);
+	//int32 ZOrder = (ui == UI_LIST::Inventory) ? 10 : 0;
+	//_uiList[UIindex]->AddToViewport(ZOrder);
 
+	int32 ZOrder = (ui == UI_LIST::Options) ? 10 : 0;
+	_uiList[UIindex]->AddToViewport(ZOrder);
 	_uiIsOpen[UIindex] = true;
 }
 
@@ -170,6 +172,8 @@ void AUIManager::ToggleUI(UI_LIST ui)
 	else
 		OpenUI(ui);
 }
+
+
 
 bool AUIManager::InventoryMutual(UI_LIST invenUI)
 {
