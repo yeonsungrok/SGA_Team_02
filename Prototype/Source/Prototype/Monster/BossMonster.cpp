@@ -6,6 +6,7 @@
 #include "../Player/Creature.h"
 #include "../Player/Fireball.h"
 #include "../Player/MyDecal.h"
+#include "LandDecal.h"
 #include "Components/DecalComponent.h"
 #include "Engine/DamageEvents.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -29,7 +30,7 @@ ABossMonster::ABossMonster()
 		GetMesh()->SetSkeletalMesh(SM.Object);
 	}
 
-	static ConstructorHelpers::FClassFinder<AMyDecal> DA(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/VFX/LandDecal_BP.LandDecal_BP_C'"));
+	static ConstructorHelpers::FClassFinder<ALandDecal> DA(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/VFX/LandDecal_BP.LandDecal_BP_C'"));
 	if (DA.Succeeded())
 	{
 		_landDecal = DA.Class;
@@ -173,7 +174,7 @@ void ABossMonster::JumpAttack(FVector TargetLocation)
 
 	if (_landDecal)
 	{
-		AMyDecal *Decal = GetWorld()->SpawnActor<AMyDecal>(_landDecal, LandingLocation, FRotator::ZeroRotator);
+		ALandDecal* Decal = GetWorld()->SpawnActor<ALandDecal>(_landDecal, LandingLocation, FRotator::ZeroRotator);
 	}
 }
 

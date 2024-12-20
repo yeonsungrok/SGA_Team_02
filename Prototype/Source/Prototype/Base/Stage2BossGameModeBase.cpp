@@ -68,29 +68,7 @@ void AStage2BossGameModeBase::BeginPlay()
 		}
 	}
 
-	FActorSpawnParameters SpawnParams;
-	SpawnParams.Name = TEXT("Boss2");
 	
-	ABoss2Monster *Boss = GetWorld()->SpawnActor<ABoss2Monster>(_boss, FVector(141.0f, -3893.1f, 429.9f), FRotator::ZeroRotator, SpawnParams);
-	if (Boss)
-	{
-		Boss->_StatCom->SetBossLevelInit(1);
-		AAIController_Boss2 *BossAI = GetWorld()->SpawnActor<AAIController_Boss2>(AAIController_Boss2::StaticClass());
-		if (BossAI)
-		{
-			BossAI->OnPossess(Boss);
-		}
-
-		APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
-		if (PlayerController)
-		{
-			PlayerController->bShowMouseCursor = false;
-			PlayerController->SetInputMode(FInputModeGameOnly());
-		}
-
-		Boss->_StatCom->_PlHPDelegate.AddUObject(UIManager->GetBoss2UI(), &UBoss2Widget::UpdateBossHPBar);
-		Boss->_StatCom->_deathDelegate.AddUObject(this, &AStage2BossGameModeBase::BossClear);
-	}
 
 
 }
@@ -133,6 +111,30 @@ void AStage2BossGameModeBase::BossStart()
 		}
 		player->_skillWidgetInstance->UnLockAllSkill();
 		player->SetActorLocationAndRotation(NewLocation, NewRotation);
+	}
+
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.Name = TEXT("Boss2");
+
+	ABoss2Monster* Boss = GetWorld()->SpawnActor<ABoss2Monster>(_boss, FVector(141.0f, -3893.1f, 429.9f), FRotator::ZeroRotator, SpawnParams);
+	if (Boss)
+	{
+		Boss->_StatCom->SetBossLevelInit(1);
+		AAIController_Boss2* BossAI = GetWorld()->SpawnActor<AAIController_Boss2>(AAIController_Boss2::StaticClass());
+		if (BossAI)
+		{
+			BossAI->OnPossess(Boss);
+		}
+
+		APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+		if (PlayerController)
+		{
+			PlayerController->bShowMouseCursor = false;
+			PlayerController->SetInputMode(FInputModeGameOnly());
+		}
+
+		Boss->_StatCom->_PlHPDelegate.AddUObject(UIManager->GetBoss2UI(), &UBoss2Widget::UpdateBossHPBar);
+		Boss->_StatCom->_deathDelegate.AddUObject(this, &AStage2BossGameModeBase::BossClear);
 	}
 
 }

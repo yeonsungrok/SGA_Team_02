@@ -266,7 +266,63 @@ void AMyPlayer::Tick(float DeltaTime)
 
 float AMyPlayer::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent, AController *EventInstigator, AActor *DamageCauser)
 {
-	Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
+
+	FVector AttackDirection = DamageCauser->GetActorLocation() - GetActorLocation();
+	AttackDirection.Z = 0.0f;
+	AttackDirection.Normalize();
+
+	FVector GuardDirection = GetActorForwardVector();
+
+	float DotProduct = FVector::DotProduct(GuardDirection, AttackDirection);
+	float Angle = FMath::Acos(DotProduct) * (180.0f / PI);
+
+	const float GuardAngle = 90.0f;
+
+	if (bIsGuarding && Angle <= GuardAngle)
+	{
+		SoundManager->PlaySound(*GetGuardOn(), _hitPoint);
+	}
+	else
+	{
+		UBaseAnimInstance* AnimInstance = Cast<UBaseAnimInstance>(GetMesh()->GetAnimInstance());
+		if (AnimInstance)
+		{
+			AnimInstance->PlayHitReactionMontage();
+		}
+
+		SoundManager->PlaySound(*GetGuardOff(), _hitPoint);
+
+		FVector KnockbackDirection = GetActorLocation() - DamageCauser->GetActorLocation();
+		KnockbackDirection.Z = 0.0f;
+		KnockbackDirection.Normalize();
+		LaunchCharacter(KnockbackDirection * 1000.f, true, true);
+		_StatCom->AddCurHp(-Damage);
+
+		if (_StatCom->IsDead())
+		{
+			SoundManager->PlaySound(*GetDeadSoundName(), this->GetActorLocation());
+
+			SetActorEnableCollision(false);
+			auto controller = GetController();
+			if (controller)
+				GetController()->UnPossess();
+
+			GetWorld()->GetTimerManager().SetTimer(TimerHandle_Destroy, this, &ACreature::DelayedDestroy, 2.0f, false);
+
+			UMyGameInstance* GameInstance = Cast<UMyGameInstance>(GetGameInstance());
+			if (GameInstance)
+			{
+				UIManager->CloseAll();
+				UIManager->OpenUI(UI_LIST::Load);
+				GameInstance->SavePlayerStats(_StatCom);
+				GameInstance->SaveInventory(_inventoryComponent);
+				GameInstance->SavePlayerSkeletal(this);
+				FName Map = TEXT("NewMap");
+				UGameplayStatics::OpenLevel(GetWorld(), Map);
+			}
+		}
+	}
+
 	return 0.0f;
 }
 

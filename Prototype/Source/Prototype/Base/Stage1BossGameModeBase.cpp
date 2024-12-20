@@ -58,29 +58,7 @@ void AStage1BossGameModeBase::BeginPlay()
 		
 	}
 
-	FActorSpawnParameters SpawnParams;
-	SpawnParams.Name = TEXT("Boss");
-
-	ABossMonster *Boss = GetWorld()->SpawnActor<ABossMonster>(_boss, FVector(-7787.8f, -191.5f, 171.1f), FRotator::ZeroRotator, SpawnParams);
-	if (Boss)
-	{
-		Boss->_StatCom->SetBossLevelInit(1);
-		AAIController_BossMonster *BossAI = GetWorld()->SpawnActor<AAIController_BossMonster>(AAIController_BossMonster::StaticClass());
-		if (BossAI)
-		{
-			BossAI->OnPossess(Boss);
-		}
-
-		APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
-		if (PlayerController)
-		{
-			PlayerController->bShowMouseCursor = false;
-			PlayerController->SetInputMode(FInputModeGameOnly());
-		}
-
-		Boss->_StatCom->_PlHPDelegate.AddUObject(UIManager->GetBossUI(), &UBoss1Widget::UpdateBossHPBar);
-		Boss->_StatCom->_deathDelegate.AddUObject(this, &AStage1BossGameModeBase::BossClear);
-	}
+	
 }
 
 void AStage1BossGameModeBase::PostInitializeComponents()
@@ -121,6 +99,30 @@ void AStage1BossGameModeBase::BossStart()
 		}
 		player->_skillWidgetInstance->UnLockAllSkill();
 		player->SetActorLocationAndRotation(NewLocation, NewRotation);
+	}
+
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.Name = TEXT("Boss");
+
+	ABossMonster* Boss = GetWorld()->SpawnActor<ABossMonster>(_boss, FVector(-7787.8f, -191.5f, 171.1f), FRotator::ZeroRotator, SpawnParams);
+	if (Boss)
+	{
+		Boss->_StatCom->SetBossLevelInit(1);
+		AAIController_BossMonster* BossAI = GetWorld()->SpawnActor<AAIController_BossMonster>(AAIController_BossMonster::StaticClass());
+		if (BossAI)
+		{
+			BossAI->OnPossess(Boss);
+		}
+
+		APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+		if (PlayerController)
+		{
+			PlayerController->bShowMouseCursor = false;
+			PlayerController->SetInputMode(FInputModeGameOnly());
+		}
+
+		Boss->_StatCom->_PlHPDelegate.AddUObject(UIManager->GetBossUI(), &UBoss1Widget::UpdateBossHPBar);
+		Boss->_StatCom->_deathDelegate.AddUObject(this, &AStage1BossGameModeBase::BossClear);
 	}
 }
 

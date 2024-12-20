@@ -26,7 +26,7 @@ EBTNodeResult::Type UBTTaskNode_MagicBall::ExecuteTask(UBehaviorTreeComponent& O
 		character->MagicShot();
 		count++;
 
-		if (count == 3)
+		if (count == 2)
 		{
 			character->testDecalSkill();
 			count = 0;
