@@ -81,13 +81,16 @@ void UPlayerAnimInstance::PlayGuardMontage(bool bIsGuarding)
 	{
 		if (!Montage_IsPlaying(_shieldMontage))
 		{
+			// 방어 애니메이션 시작 (GuardStart 섹션)
 			Montage_Play(_shieldMontage, 1.0f);
 			Montage_JumpToSection(FName("GuardStart"), _shieldMontage);
 		}
+		// 방어 상태일 때 GuardLoop 섹션으로 이동 (루프)
 		Montage_JumpToSection(FName("GuardLoop"), _shieldMontage);
 	}
 	else
 	{
+		// 방어가 해제될 때 GuardEnd 섹션으로 이동
 		Montage_JumpToSection(FName("GuardEnd"), _shieldMontage);
 	}
 

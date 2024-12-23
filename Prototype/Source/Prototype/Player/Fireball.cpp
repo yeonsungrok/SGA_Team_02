@@ -12,6 +12,7 @@
 #include "Base/MyGameInstance.h"
 #include "Base/Managers/EffectManager.h"
 
+// Sets default values
 AFireball::AFireball()
 {
     PrimaryActorTick.bCanEverTick = true;
@@ -36,6 +37,7 @@ AFireball::AFireball()
     _damage = 50.f;
 }
 
+// Called when the game starts or when spawned
 void AFireball::BeginPlay()
 {
     Super::BeginPlay();
@@ -52,6 +54,7 @@ void AFireball::InitializeOrbit(float InRadius, float InAngle, int InTotalFireba
     TotalFireballCount = InTotalFireballCount;
 }
 
+// Called every frame
 void AFireball::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);

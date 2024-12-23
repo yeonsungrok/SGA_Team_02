@@ -5,6 +5,8 @@
 
 UMonster_Epic01_Anim::UMonster_Epic01_Anim()
 {
+
+	// 근접공격 몽타주
 	static ConstructorHelpers::FObjectFinder<UAnimMontage> Monster_Epic_01_AttackNear
 	(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Monster/EpicMonster/EpicMonster01_AnimMontage_Near.EpicMonster01_AnimMontage_Near'"));
 
@@ -13,6 +15,7 @@ UMonster_Epic01_Anim::UMonster_Epic01_Anim()
 		_myAnimMontage = Monster_Epic_01_AttackNear.Object;
 	}
 
+	// 원거리공격, 도트마법 몽타주
 	static ConstructorHelpers::FObjectFinder<UAnimMontage> Monster_Epic_01_AttackFar
 	(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Monster/EpicMonster/EpicMonster01_AnimMontage_Far.EpicMonster01_AnimMontage_Far'"));
 

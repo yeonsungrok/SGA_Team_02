@@ -87,6 +87,7 @@ void AMonster::AttackHit()
         SoundManager->PlaySound(*GetSwingSoundName(), missLocation);
     }
 
+   // DrawDebugSphere(GetWorld(), center, attackRadius, 32, drawColor, false, 0.3f);
 }
 
 void AMonster::DropReword()
@@ -118,7 +119,10 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent,
             Player->_StatCom->AddExp(_StatCom->GetNextExp());
             const float RewardChance = 0.3f;
 
+            //if (FMath::FRand() <= RewardChance)
+            //{
             Player->_inventoryComponent->AddItemToSlot(NewItem);
+            //}
         }
     }
 

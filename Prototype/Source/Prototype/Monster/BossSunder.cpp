@@ -9,15 +9,19 @@
 #include "GameFramework/Character.h"
 #include "Kismet/GameplayStatics.h"
 
+// Sets default values
 ABossSunder::ABossSunder()
 {
+ 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionBox"));
-
+    //RootComponent = CollisionBox;
     CollisionBox->SetCollisionProfileName(TEXT("Trigger"));
 
     LightningEffect = CreateDefaultSubobject<UNiagaraComponent>(TEXT("LightningEffect"));
+   // LightningEffect->SetupAttachment(CollisionBox);
+
 
 }
 

@@ -13,6 +13,7 @@
 // Sets default values
 ABossObstacle::ABossObstacle()
 {
+ 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionBox"));
@@ -29,6 +30,11 @@ void ABossObstacle::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// for (TActorIterator<AEffectManager> It(GetWorld()); It; ++It)
+    // {
+    //     EffectManager = *It;
+    //     break;
+    // }	
 }
 
 // Called every frame
@@ -43,6 +49,10 @@ void ABossObstacle::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor,
 	ABossMonster* boss = Cast<ABossMonster>(OtherActor);
 	if(boss != nullptr &&(boss->GetIsJumping() || boss->GetIsDashing()))
 	{
+		// if (EffectManager)
+		// {
+		// 	EffectManager->Play(TEXT("P_BossObstacleDestroy"), GetActorLocation(), GetActorRotation());
+		// }
 		boss->DashEnd();
 		boss->DestroyObstacle();
 		boss->_StatCom->SetStun(true);

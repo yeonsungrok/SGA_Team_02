@@ -13,22 +13,26 @@
 #include "../Player/MyPlayer.h"
 #include "../Player/Dragon.h"
 
+// Sets default values
 ACreature::ACreature()
 {
+	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	bIsGuarding = false;
-
+	// cheol
 	_StatCom = CreateDefaultSubobject<UStatComponent>(TEXT("StatCom"));
 
 	_isTransformed = false;
 }
 
+// Called when the game starts or when spawned
 void ACreature::BeginPlay()
 {
 	Super::BeginPlay();
 }
 
+// Called every frame
 void ACreature::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -95,6 +99,15 @@ void ACreature::AttackHit()
 		SoundManager->PlaySound(*GetSwingSoundName(), missLocation);
 	}
 
+	/*DrawDebugCapsule(
+		GetWorld(),
+		capsuleCenter,
+		attackRange * 0.5f,
+		attackRadius,
+		capsuleRotation,
+		drawColor,
+		false,
+		0.3f);*/
 }
 
 FString ACreature::GetHitSoundName() const

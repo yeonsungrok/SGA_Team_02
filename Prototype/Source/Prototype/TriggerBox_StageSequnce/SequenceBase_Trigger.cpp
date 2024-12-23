@@ -24,8 +24,10 @@
 #include "GameFramework/PlayerController.h"
 #include "Player/MyPlayerController.h"
 
+// Sets default values
 ASequenceBase_Trigger::ASequenceBase_Trigger()
 {
+ 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerBox"));
@@ -39,6 +41,7 @@ ASequenceBase_Trigger::ASequenceBase_Trigger()
 
 }
 
+// Called when the game starts or when spawned
 void ASequenceBase_Trigger::BeginPlay()
 {
 	Super::BeginPlay();
@@ -67,6 +70,7 @@ void ASequenceBase_Trigger::BeginPlay()
 	
 }
 
+// Called every frame
 void ASequenceBase_Trigger::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

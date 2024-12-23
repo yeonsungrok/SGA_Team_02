@@ -72,6 +72,15 @@ void AMyGameModeBase::BeginPlay()
 				FVector AddLocation(-300.f,1200.f,0.0f);
 				SpawnMonster(BaseLocation,AddLocation);
 
+				/*if (_obstacle)
+				{
+					FActorSpawnParameters SpawnParams;
+					SpawnParams.Name = FName((TEXT("Obstacle")));
+
+					FVector SpawnLocation = (630.f, -667.f, 179.f);
+
+					ABossObstacle* obstacle = GetWorld()->SpawnActor<ABossObstacle>(_obstacle, SpawnLocation, FRotator::ZeroRotator, SpawnParams);
+				}*/
 				GameInstance->SetFirst(false);
 			}
 			else

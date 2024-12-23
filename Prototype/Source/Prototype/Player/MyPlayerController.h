@@ -37,4 +37,8 @@ public:
     UPROPERTY(EditAnywhere, Category = "UI")
     TSubclassOf<class USkillWidget_test> SkillWidgetClass;
 
+
+
+
+
 };

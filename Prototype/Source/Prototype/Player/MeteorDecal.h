@@ -40,6 +40,13 @@ protected:
 
     virtual void DeActiveEvent(FVector location) override;
 
+
+	// TODO: 이펙트
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Meteor", meta = (AllowPrivateAccess = "true"))
+	// class UParticleSystem* _explosionEffect;
+
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Meteor", meta = (AllowPrivateAccess = "true"))
+	// class USoundBase* _explosionSound;
 };
 	
 

@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Player/Creature.h"
-
+//-----추가-----
 #include "Creature.h"
 #include "../Animation/DragonAnimInstance.h"
 #include "../Player/MyPlayer.h"
@@ -23,6 +23,7 @@ class PROTOTYPE_API ADragon : public ACreature
 	GENERATED_BODY()
 
 public:
+    // 생성자
     ADragon();
 
 protected:
@@ -30,6 +31,7 @@ protected:
 
  
 public:
+    // 상태 전환 함수
     void TransformToHuman();
     void TransformToDragon();
 
@@ -79,8 +81,11 @@ private:
     UPROPERTY(EditDefaultsOnly, Category = "Animation")
     TSubclassOf<UAnimInstance> DragonAnimInstanceClass;
 
+   
     class AMyPlayer* _knightInstance;
 
+
+    // 추가 필요 스텟 등
 public:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = UI, meta = (AllowPrivateAccess = "true"))

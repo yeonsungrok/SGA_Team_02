@@ -67,6 +67,8 @@ public:
 	TArray<class UButton*> _slotBtns;
 	TArray<class UTextBlock*> _slotBtnText;
 	
+	// 현재 Button, Textblock slotGrid 산하에 있음 
+	//button
 	UPROPERTY(meta = (BindWidget))
 	class UButton* HPDown;
 	UPROPERTY(meta = (BindWidget))
@@ -88,6 +90,7 @@ public:
 	UPROPERTY(meta = (BindWidget))
 	class UButton* INTUp;
 
+	// stat Num
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* HPNum;
 	UPROPERTY(meta = (BindWidget))

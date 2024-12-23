@@ -60,6 +60,7 @@ AEffectManager::AEffectManager()
 
 void AEffectManager::CreateNiagaraClass(FString name, FString path)
 {
+	//ConstructorHelpers::FClassFinder<UNiagaraSystem> effect(*path);
 	ConstructorHelpers::FClassFinder<AParticleEffect> effect(*path);
 	if (effect.Succeeded())
 	{

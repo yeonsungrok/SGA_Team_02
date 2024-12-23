@@ -8,6 +8,7 @@
 #include "Components/SphereComponent.h"
 #include "Kismet/GameplayStatics.h"
 
+// Sets default values
 AEquipItem::AEquipItem()
 {
     PrimaryActorTick.bCanEverTick = true;
@@ -66,11 +67,13 @@ void AEquipItem::SetEquipType(int num)
     }
 }
 
+// Called when the game starts or when spawned
 void AEquipItem::BeginPlay()
 {
     Super::BeginPlay();
 }
 
+// Called every frame
 void AEquipItem::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);

@@ -80,6 +80,7 @@ void UShopWidget::ReflectInvenSlots(AMyPlayer* player)
 			_isSlotFull = false;
 	}
 
+	//TODO : Get Wallet too & Call this every opening
 	int32 Gold = player->_inventoryComponent->GetHowMuchIHave();
 	p_gold = Gold;
 	GoldAmount->SetText(FText::FromString(FString::FromInt(Gold)));

@@ -9,8 +9,10 @@
 #include "Base/MyGameInstance.h"
 #include "../Base/Managers/EffectManager.h"
 
+// Sets default values
 ANormalMonster::ANormalMonster()
 {
+	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> PS(TEXT("/Script/Engine.SkeletalMesh'/Game/SKnight_modular/Skeleton_Knight_07/mesh/SK_SKnight_07_full.SK_SKnight_07_full'"));
@@ -51,6 +53,7 @@ void ANormalMonster::PlayFindEffect()
 	first = false;
 }
 
+// Called when the game starts or when spawned
 void ANormalMonster::BeginPlay()
 {
 	Super::BeginPlay();

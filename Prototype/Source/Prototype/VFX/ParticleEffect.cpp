@@ -15,10 +15,11 @@ AParticleEffect::AParticleEffect()
 {
 
 	PrimaryActorTick.bCanEverTick = false;
-
+	//나이아가라
 	_niagaraCom = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NiagaraComponent"));
 	RootComponent = _niagaraCom;
 
+	// 파티클
 	_particleCom = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("ParticleComponent"));
 	_particleCom->SetupAttachment(RootComponent);
 }
@@ -27,10 +28,11 @@ AParticleEffect::AParticleEffect()
 void AParticleEffect::BeginPlay()
 {
 	Super::BeginPlay();
-
+	// 나이아가라
 	_niagaraCom->OnSystemFinished.AddDynamic(this, &AParticleEffect::End);
 	End(_niagaraCom);
 
+	// 파티클
 	_particleCom->OnSystemFinished.AddDynamic(this, &AParticleEffect::EndParticle);
 	EndParticle(_particleCom);
 }
@@ -51,6 +53,8 @@ void AParticleEffect::Play(FVector location, FRotator rotator)
 	_niagaraCom->ActivateSystem();
 	_particleCom->ActivateSystem();
 
+
+
 }
 
 bool AParticleEffect::IsPlaying()
@@ -62,6 +66,8 @@ bool AParticleEffect::IsPlaying()
 		return true;
 
 	return false;
+
+	// return _niagaraCom->IsActive();
 }
 
 void AParticleEffect::PlayOnSkeletalMesh(USkeletalMeshComponent* mesh, FName socketName)
@@ -69,6 +75,7 @@ void AParticleEffect::PlayOnSkeletalMesh(USkeletalMeshComponent* mesh, FName soc
 	if (!_niagaraCom && !_particleCom)
 		return;
 
+	// 파티클 효과를 스켈레탈 메쉬의 소켓에 부착
 	if (_niagaraCom)
 	{
 		_niagaraCom->AttachToComponent(mesh, FAttachmentTransformRules::SnapToTargetNotIncludingScale, socketName);

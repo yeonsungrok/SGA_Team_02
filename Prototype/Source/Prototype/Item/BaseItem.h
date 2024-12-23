@@ -60,6 +60,7 @@ class PROTOTYPE_API ABaseItem : public AActor
 	GENERATED_BODY()
 	
 public:	
+	// Sets default values for this actor's properties
 	ABaseItem();
 
 	virtual void SetItemWithCode(int32 itemCode);
@@ -68,9 +69,11 @@ public:
 	void Disable();
 
 protected:
+	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	virtual void PostInitializeComponents() override;
 public:	
+	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION()

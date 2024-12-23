@@ -14,6 +14,9 @@ class PROTOTYPE_API UMiniMapWidget : public UUserWidget
 {
 	GENERATED_BODY()
 public:
+
+	//UPROPERTY(meta = (BindWidget))
+	//class UImage* MiniMapImage;
 	UPROPERTY(meta = (BindWidget))
 	class UImage* MapImage;
 protected:

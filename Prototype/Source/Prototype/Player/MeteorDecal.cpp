@@ -13,9 +13,10 @@
 AMeteorDecal::AMeteorDecal()
 {
     PrimaryActorTick.bCanEverTick = true;
-    _fallDuration = 3.0f;
+    _fallDuration = 3.0f;  // Default fall duration
     _elapsedTime = 0.0f;
 
+    // Initialize Static Mesh for Meteor
     _niagaraCom = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NiagaraComponent"));
     _niagaraCom->SetupAttachment(RootComponent);
 
@@ -33,6 +34,7 @@ void AMeteorDecal::BeginPlay()
 
     SetActorScale3D(FVector(1.0f, 20.0f, 20.0f));
 
+    // Niagara 크기 설정
     if (_niagaraCom)
     {
         _niagaraCom->SetWorldScale3D(FVector(1.0f, 1.0f, 1.0f));
@@ -116,6 +118,7 @@ void AMeteorDecal::OnMeteorImpact()
         true
     );
 
+    // 데칼 폭발 처리
     DeActiveEvent(GetActorLocation());
 }
 

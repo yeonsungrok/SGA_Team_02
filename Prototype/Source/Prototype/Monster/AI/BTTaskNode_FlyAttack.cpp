@@ -17,12 +17,14 @@ UBTTaskNode_FlyAttack::UBTTaskNode_FlyAttack()
 EBTNodeResult::Type UBTTaskNode_FlyAttack::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
 	EBTNodeResult::Type result = Super::ExecuteTask(OwnerComp, NodeMemory);
+	//auto character = Cast<AEpicMonster>(OwnerComp.GetAIOwner()->GetPawn());
 	auto character = Cast<AEpicMonster_witch>(OwnerComp.GetAIOwner()->GetPawn());
 
 	if (character == nullptr)
 		return EBTNodeResult::Failed;
 
 	character->Attack_AI();
+	//character->MeleeAttackhit();
 
 	_isAttacking = true;
 

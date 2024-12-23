@@ -20,7 +20,7 @@ public:
 	void SetPlMPBar(float ratio);
 	void SetPlExpBar(float ratio);
 
-public:
+//private:
 	UPROPERTY(meta = (BindWidget))
 	class UProgressBar* Pl_HPBar;
 
