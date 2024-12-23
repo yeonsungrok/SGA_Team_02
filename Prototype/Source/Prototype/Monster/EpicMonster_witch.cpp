@@ -213,9 +213,9 @@ void AEpicMonster_witch::SumonedMonster()
 				USkeletalMeshComponent* MeshComponent = Noram->GetMesh();  
 				if (MeshComponent)
 				{
-					FName SocketName = FName("head");
+				/*	FName SocketName = FName("head");
 					EffectManager->PlayOnSkeletalMesh(*GetEpicSkeletonEffect(), MeshComponent, SocketName);
-					SoundManager->PlaySound(*GetEpicSpawnSound(), GetActorLocation());
+					SoundManager->PlaySound(*GetEpicSpawnSound(), GetActorLocation());*/
 				}
 				Noram->SpawnDefaultController();
 			}

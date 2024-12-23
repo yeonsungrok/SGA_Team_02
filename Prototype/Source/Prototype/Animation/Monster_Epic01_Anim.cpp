@@ -53,4 +53,7 @@ void UMonster_Epic01_Anim::PlayAttackFarMontage()
 void UMonster_Epic01_Anim::PlayAttackDotrMontage()
 {
 	Super::PlayAttackDotrMontage();
+	// 아이콘 문제
+	// stage1 아이콘이 두개임
+	// 컴포넌트랑 몬스터BP랑 서로 ico ui가 다름 
 }

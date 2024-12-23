@@ -110,7 +110,7 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent,
         auto controller = GetController();
         if (controller)
             GetController()->UnPossess();
-        MonsterEvent.Broadcast();
+        //MonsterEvent.Broadcast();
 
 
         if (Player)
