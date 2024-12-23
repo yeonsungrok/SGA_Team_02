@@ -52,6 +52,9 @@ void UInventoryComponent::InitSlot()
 	_EquipSlots.Add(TEXT("LowerArmor"));
 	_EquipSlots.Add(TEXT("Sword"));
 	_EquipSlots.Add(TEXT("Shield"));
+
+	for (int i = 0; i < 12; i++)
+		_ItemStacks.Add(0);
 }
 // Called every frame
 void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
@@ -81,6 +84,18 @@ void UInventoryComponent::AddItem(int32 slot, ABaseItem *item)
 		return;
 	if (_isSlotFull)
 		return;
+
+	if (item->GetType() == ItemType::Consume)
+	{
+		for (int32 i = 0; i < 12; i++)
+		{
+			if (_ItemSlots[i] == nullptr || _ItemSlots[i]->GetCode() != item->GetCode())
+				continue;
+			_ItemStacks[i]++;
+			UIupdate_Add(i, item, _ItemStacks[i]);
+			return;
+		}
+	}
 
 	if (!_EmptySlots.IsEmpty())
 	{
@@ -130,6 +145,7 @@ void UInventoryComponent::ExcuteItem(int32 slot, bool isDrop)
 	if (slot >= _itemSlotMax)
 		return;
 
+
 	FVector playerPlos = GetOwner()->GetActorLocation();
 
 	float randFloat = FMath::FRandRange(0, PI * 2.0f);
@@ -139,7 +155,6 @@ void UInventoryComponent::ExcuteItem(int32 slot, bool isDrop)
 	FVector itemPos = playerPlos + FVector(X, Y, 0.0f);
 	itemPos.Z = 50.0f;
 
-	UIupdate_Pop(slot);
 
 	if (isDrop)
 		_ItemSlots[slot]->DropItem(itemPos);
@@ -148,6 +163,16 @@ void UInventoryComponent::ExcuteItem(int32 slot, bool isDrop)
 		_ItemSlots[slot]->UseItem();
 
 	}
+
+	if (_ItemSlots[slot]->GetType() == ItemType::Consume)
+		if (_ItemStacks[slot] > 0)
+		{
+			_ItemStacks[slot]--;
+			UIupdate_Add(slot, nullptr, _ItemStacks[slot]);
+			return;
+		}
+
+	UIupdate_Pop(slot);
 
 	_ItemSlots[slot] = nullptr;
 	_EmptySlots.Add(slot);
@@ -258,14 +283,14 @@ void UInventoryComponent::StripEquip(FString part)
 	_EquipSlots[part] = nullptr;
 }
 
-void UInventoryComponent::UIupdate_Add(int32 slot, ABaseItem *item)
+void UInventoryComponent::UIupdate_Add(int32 slot, ABaseItem *item, int32 stack)
 {
-	UIManager->GetInventoryUI()->UpdateItemSlot(slot, item);
+	UIManager->GetInventoryUI()->UpdateItemSlot(slot, item, stack);
 }
 
 void UInventoryComponent::UIupdate_Pop(int32 slot)
 {
-	UIManager->GetInventoryUI()->UpdateItemSlot(slot, nullptr);
+	UIManager->GetInventoryUI()->UpdateItemSlot(slot, nullptr, -1);
 }
 
 void UInventoryComponent::UIupdate_Pop(FString part)
@@ -288,6 +313,18 @@ void UInventoryComponent::AddItemToSlot(ABaseItem *Item)
 		return;
 	if (_isSlotFull)
 		return;
+
+	if (Item->GetType() == ItemType::Consume)
+	{
+		for (int32 i = 0; i < 12; i++)
+		{
+			if (_ItemSlots[i] == nullptr || _ItemSlots[i]->GetCode() != Item->GetCode())
+				continue;
+			_ItemStacks[i]++;
+			UIupdate_Add(i, Item, _ItemStacks[i]);
+			return;
+		}
+	}
 
 	for (int i = 0; i < _itemSlotMax; i++)
 	{

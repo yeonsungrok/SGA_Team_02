@@ -49,6 +49,7 @@ public:
 	void CloseUI(UI_LIST ui);
 	void CloseAll();
 	void ToggleUI(UI_LIST ui);
+	void CloseStacked();
 
 	UInventoryWidget* GetInventoryUI() { return _inventoryUI; }
 	UBoss1Widget* GetBossUI() {return _bossUI;}
@@ -69,6 +70,9 @@ private:
 private:
 	UPROPERTY()
 	TArray<UUserWidget*> _uiList;
+
+	UPROPERTY()
+	TArray<UI_LIST> _popUpList;
 
 	UPROPERTY()
 	TArray<bool> _uiIsOpen;

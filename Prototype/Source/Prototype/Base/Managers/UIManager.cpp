@@ -116,6 +116,23 @@ void AUIManager::Tick(float DeltaTime)
 
 void AUIManager::OpenUI(UI_LIST ui)
 {
+	switch (ui)
+	{
+	case UI_LIST::Inventory:
+	case UI_LIST::Shop:
+	case UI_LIST::Options:
+	case UI_LIST::Status:
+	{
+		_popUpList.Add(ui);
+	}
+
+	default:
+		break;
+	}
+
+	if (ui == UI_LIST::Status)
+		return;
+
 	int32 UIindex = (int32)ui;
 	if (UIindex > _uiList.Num())
 		return;
@@ -126,8 +143,9 @@ void AUIManager::OpenUI(UI_LIST ui)
 	if (_isPauseWhenOpen[UIindex])
 		pauseGame.Broadcast();
 
-	if(ui == UI_LIST::Options)
-		UGameplayStatics::SetGamePaused(GetWorld(), true);
+	// 한일
+	//if(ui == UI_LIST::Options)
+		//UGameplayStatics::SetGamePaused(GetWorld(), true);
 
 	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
 	if (PlayerController)
@@ -138,28 +156,35 @@ void AUIManager::OpenUI(UI_LIST ui)
 	}
 
 	_uiList[UIindex]->SetVisibility(ESlateVisibility::Visible);
-	int32 ZOrder = (ui == UI_LIST::Inventory) ? 10 : 0;
+	int32 ZOrder = (int32)ui;
 	_uiList[UIindex]->AddToViewport(ZOrder);
+	
 
 	_uiIsOpen[UIindex] = true;
 }
 
 void AUIManager::CloseUI(UI_LIST ui)
 {
-	int32 UIindex = (int32)ui;
-	if (UIindex > _uiList.Num())
-		return;
+	int index = _popUpList.Find(ui);
+	_popUpList.RemoveAt(index);
 
-	if (_isPauseWhenOpen[UIindex])
-		resumGame.Broadcast();
+	if (ui != UI_LIST::Status)
+	{
+		int32 UIindex = (int32)ui;
+		if (UIindex > _uiList.Num())
+			return;
 
-	_uiList[UIindex]->SetVisibility(ESlateVisibility::Hidden);
-	_uiList[UIindex]->RemoveFromParent();
+		if (_isPauseWhenOpen[UIindex])
+			resumGame.Broadcast();
 
-	_uiIsOpen[UIindex] = false;
+		_uiList[UIindex]->SetVisibility(ESlateVisibility::Hidden);
+		_uiList[UIindex]->RemoveFromParent();
+
+		_uiIsOpen[UIindex] = false;
+	}
 
 	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
-	if (PlayerController)
+	if (PlayerController && _popUpList.Num() == 0)
 	{
 		PlayerController->bShowMouseCursor = false;
 		PlayerController->SetInputMode(FInputModeGameOnly());
@@ -190,9 +215,17 @@ void AUIManager::ToggleUI(UI_LIST ui)
 		return;
 
 	if (_uiIsOpen[UIindex])
-		CloseUI(ui);
+	{
+		if (UIindex == (int32)_popUpList.Top())
+			CloseStacked();
+	}
 	else
 		OpenUI(ui);
+}
+
+void AUIManager::CloseStacked()
+{
+	CloseUI(_popUpList.Top());
 }
 
 bool AUIManager::InventoryMutual(UI_LIST invenUI)

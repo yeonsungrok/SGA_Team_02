@@ -43,7 +43,7 @@ public:
 	void TryEquip(FString part, int32 slot);
 	void StripEquip(FString part);
 
-	void UIupdate_Add(int32 slot, ABaseItem* item);
+	void UIupdate_Add(int32 slot, ABaseItem* item, int32 stack = 0);
 	void UIupdate_Pop(int32 slot);
 	void UIupdate_Pop(FString part);
 	void UIupdate_equip(FString slot, ABaseItem* item);
@@ -68,6 +68,11 @@ private:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Inventory, meta = (AllowPrivateAccess = "true"))
 	TArray<ABaseItem*> _ItemSlots;
+	TArray<int32> _ItemStacks;
+	//현재 에러 :
+	// 아이템 드롭시 하나만 드롭됨(스택이 남아있는 동안 새 아이템 객체 생성하고 드롭할것)
+	// 상점 UI에서도 아이템 스택되는게 눈에 보이게 수정
+	//
 
 	TArray<int32> _EmptySlots;
 

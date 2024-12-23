@@ -61,18 +61,23 @@ bool UInventoryWidget::Initialize()
 void UInventoryWidget::SetItemButtons()
 {
 	TArray<UWidget*> widgets;
+	TArray<UWidget*> stacks;
 	widgets = ItemSlots->GetAllChildren();
+	stacks = ItemStacks->GetAllChildren();
 
 	int32 index = 0;
 	for (UWidget* widget : widgets)
 	{
 		UIndexedButton* button = Cast<UIndexedButton>(widget);
-		if (button)
+		UTextBlock* stack = Cast<UTextBlock>(stacks[index]);
+
+		if (button&&stack)
 		{
 			button->SetIndex(index);
 			button->SetSlotType(SlotType::Inventory);
 			button->SetIsEnabled(true);
 			Button_.Add(button);
+			Stacks_.Add(stack);
 
 			index++;
 		}
@@ -109,8 +114,16 @@ void UInventoryWidget::SetStats()
 	}
 }
 
-void UInventoryWidget::UpdateItemSlot(int32 slotIndex, ABaseItem* item)
+void UInventoryWidget::UpdateItemSlot(int32 slotIndex, ABaseItem* item, int32 stack)
 {
+	if (stack > 0)
+	{
+		Stacks_[slotIndex]->SetText(FText::FromString(FString::FromInt(stack)));
+		Stacks_[slotIndex]->SetVisibility(ESlateVisibility::Visible);
+		return;
+	}
+	Stacks_[slotIndex]->SetText(FText::FromString(FString(TEXT("0"))));
+	Stacks_[slotIndex]->SetVisibility(ESlateVisibility::Hidden);
 	Button_[slotIndex]->SetItem(item);
 	Button_[slotIndex]->ButtonUpdate();
 }
@@ -239,11 +252,12 @@ void UInventoryWidget::DropItem()
 		if (!part.IsEmpty())
 			EquipDrop.Broadcast(part);
 	}
-
-	_targetItem = nullptr;
+	if ((Stacks_[_targetIndex]->GetText()).ToString() == FString(TEXT("0")))
+	{
+		_targetItem = nullptr;
+		_targetIndex = -1;
+	}
 	ShowItem();
-	_targetIndex = -1;
-	
 }
 
 void UInventoryWidget::UseItem()
@@ -304,7 +318,8 @@ void UInventoryWidget::UseItem()
 	{
 		ItemDrop.Broadcast(_targetIndex, false);
 		ItemUse.Broadcast(_targetIndex);
-		_targetItem = nullptr;
+		if ((Stacks_[_targetIndex]->GetText()).ToString() == FString(TEXT("0")))
+			_targetItem = nullptr;
 	}
 
 	ShowItem();

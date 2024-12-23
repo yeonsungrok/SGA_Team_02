@@ -32,7 +32,7 @@ public:
 	void SetItemButtons();
 	void SetStats();
 
-	void UpdateItemSlot(int32 slotIndex, ABaseItem* item = nullptr);
+	void UpdateItemSlot(int32 slotIndex, ABaseItem* item = nullptr, int32 stack = 0);
 	void UpdateAllEquipBtn();
 	void UpdateEquipSlot(FString slot, ABaseItem* item = nullptr);
 	void ShowItem();
@@ -125,6 +125,10 @@ private:
 	class UUniformGridPanel* ItemSlots;
 	UPROPERTY(meta = (BindWidget))
 	TArray<UIndexedButton*> Button_;
+
+	UPROPERTY(meta = (BindWidget))
+	class UUniformGridPanel* ItemStacks;
+	TArray<class UTextBlock*> Stacks_;
 
 	UPROPERTY(meta = (BindWidget))
 	class UImage* ItemTexture;

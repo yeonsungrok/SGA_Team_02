@@ -170,7 +170,6 @@ void AMyPlayer::BeginPlay()
 	if (_statWidget)
 	{
 		_statWidget->AddToViewport(10);
-
 		_statWidget->SetVisibility(ESlateVisibility::Hidden);
 	}
 
@@ -1041,9 +1040,10 @@ void AMyPlayer::StatUIOpen(const FInputActionValue &value)
 		{
 			if (PlayerController)
 			{
-				PlayerController->bShowMouseCursor = false;
-				PlayerController->SetInputMode(FInputModeGameOnly());
+				//PlayerController->bShowMouseCursor = false;
+				//PlayerController->SetInputMode(FInputModeGameOnly());
 			}
+			UIManager->CloseUI(UI_LIST::Status);
 			_statWidget->SetVisibility(ESlateVisibility::Hidden);
 		}
 		else
@@ -1051,11 +1051,12 @@ void AMyPlayer::StatUIOpen(const FInputActionValue &value)
 			if (PlayerController)
 			{
 				bool bIsCursorVisible = PlayerController->bShowMouseCursor;
-				PlayerController->bShowMouseCursor = true;
-				PlayerController->SetInputMode(FInputModeGameAndUI().SetHideCursorDuringCapture(false));
+				//PlayerController->bShowMouseCursor = true;
+				//PlayerController->SetInputMode(FInputModeGameAndUI().SetHideCursorDuringCapture(false));
 			}
 
 			_statWidget->UpdateStatDisplay();
+			UIManager->OpenUI(UI_LIST::Status);
 			_statWidget->SetVisibility(ESlateVisibility::Visible);
 		}
 	}
