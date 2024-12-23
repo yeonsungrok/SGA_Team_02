@@ -20,55 +20,30 @@
 // Sets default values for this component's properties
 UStatComponent::UStatComponent()
 {
+	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
+	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	InitStats();
+
+
 }
+
+
+
 
 // Called when the game starts
 void UStatComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// ...
+
+
+	
+
 }
 
-void UStatComponent::InitStats()
-{
-	TMap<ModType, int32> modTypes;
-	modTypes.Add(ModType::NOW);
-	modTypes.Add(ModType::OG);
-	modTypes.Add(ModType::STAT);
-	modTypes.Add(ModType::ARMOR);
 
-	_stats.Add(StatType::HP);
-	_stats.Add(StatType::MP);
-	_stats.Add(StatType::STR);
-	_stats.Add(StatType::DEX);
-	_stats.Add(StatType::INT);
-
-	_stats[StatType::HP] = modTypes;
-	_stats[StatType::MP] = modTypes;
-	_stats[StatType::STR] = modTypes;
-	_stats[StatType::DEX] = modTypes;
-	_stats[StatType::INT] = modTypes;
-}
-
-void UStatComponent::UpdateNowStat(StatType statType)
-{
-	_stats[statType][ModType::NOW]
-		= _stats[statType][ModType::OG]
-		+ _stats[statType][ModType::STAT]
-		+ _stats[statType][ModType::ARMOR];
-}
-
-void UStatComponent::UpdateNowStatAll()
-{
-	UpdateNowStat(StatType::HP);
-	UpdateNowStat(StatType::MP);
-	UpdateNowStat(StatType::STR);
-	UpdateNowStat(StatType::DEX);
-	UpdateNowStat(StatType::INT);
-}
 
 // Called every frame
 void UStatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -94,21 +69,11 @@ void UStatComponent::SetLevelInit(int level)
 	{
 		Data = GAMEINSTANCE->GetStatDataByLevel(level);
 		_level = level;
-	
 		_maxHp = Data->MaxHP;
 		_maxMp = Data->MaxMP;
 		_str = Data->STR;
 		_dex = Data->DEX;
 		_int = Data->INT;
-		//////////////////////////
-		_stats[StatType::HP][ModType::OG] = Data->MaxHP;
-		_stats[StatType::MP][ModType::OG] = Data->MaxMP;
-		_stats[StatType::STR][ModType::OG] = Data->STR;
-		_stats[StatType::DEX][ModType::OG] = Data->DEX;
-		_stats[StatType::INT][ModType::OG] = Data->INT;
-
-		UpdateNowStatAll();
-		/////////////////////////
 
 		_nextExp = Data->EXP;
 		_curExp = 0;
@@ -127,7 +92,6 @@ void UStatComponent::SetLevelInit(int level)
 			_ogDex = _dex;
 			_ogInt = _int;
 		}
-
 		UpdateUI();
 	}
 
@@ -151,16 +115,6 @@ void UStatComponent::SetMonsterLevelInit(int level)
 		_ogDex = _dex;
 		_int = Data->INT;
 		_ogInt = _int;
-
-		//////////////////////////
-		_stats[StatType::HP][ModType::OG] = Data->MaxHP;
-		_stats[StatType::MP][ModType::OG] = Data->MaxMP;
-		_stats[StatType::STR][ModType::OG] = Data->STR;
-		_stats[StatType::DEX][ModType::OG] = Data->DEX;
-		_stats[StatType::INT][ModType::OG] = Data->INT;
-
-		UpdateNowStatAll();
-		/////////////////////////
 
 		_nextExp = Data->EXP;
 		_curExp = 0;
@@ -195,16 +149,6 @@ void UStatComponent::SetEpicLevelInit(int level)
 		_int = Data->INT;
 		_ogInt = _int;
 
-		//////////////////////////
-		_stats[StatType::HP][ModType::OG] = Data->MaxHP;
-		_stats[StatType::MP][ModType::OG] = Data->MaxMP;
-		_stats[StatType::STR][ModType::OG] = Data->STR;
-		_stats[StatType::DEX][ModType::OG] = Data->DEX;
-		_stats[StatType::INT][ModType::OG] = Data->INT;
-
-		UpdateNowStatAll();
-		/////////////////////////
-
 		_nextExp = Data->EXP;
 		_curExp = 0;
 
@@ -238,16 +182,6 @@ void UStatComponent::SetBossLevelInit(int level)
 		_ogDex = _dex;
 		_int = Data->INT;
 		_ogInt = _int;
-
-		//////////////////////////
-		_stats[StatType::HP][ModType::OG] = Data->MaxHP;
-		_stats[StatType::MP][ModType::OG] = Data->MaxMP;
-		_stats[StatType::STR][ModType::OG] = Data->STR;
-		_stats[StatType::DEX][ModType::OG] = Data->DEX;
-		_stats[StatType::INT][ModType::OG] = Data->INT;
-
-		UpdateNowStatAll();
-		/////////////////////////
 
 		_nextExp = Data->EXP;
 

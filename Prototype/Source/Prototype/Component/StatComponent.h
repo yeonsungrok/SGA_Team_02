@@ -64,6 +64,16 @@ struct FMyStatData : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 EXP;
 
+	//FMyStatData()
+	//	: level(1)
+	//	, MaxHP(100)
+	//	, MaxMP(50)
+	//	, STR(10)
+	//	, DEX(10)
+	//	, INT(10)
+	//	,BonusPoint(3)
+	//	,EXP(100) {}
+
 };
 
 
@@ -80,18 +90,12 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	void InitStats();
-	void UpdateNowStat(StatType statType);
-	void UpdateNowStatAll();
-
 public:	
 	/*void SetStat();*/
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	void Reset();
-
-	int32 GetStatVal(StatType statType, ModType modType) { return _stats[statType][modType]; }
-	void SetStatVal(StatType statType, ModType modType, int32 value) { _stats[statType][modType] = value; }
+	void SetUI();
 
 	int32 GetCurHp() { return _curHp; }
 	int32 GetMaxHp() { return _maxHp; }
@@ -120,18 +124,19 @@ public:
 	int32 GetOgInt()  { return _ogInt; }
 	int32 GetModInt()  { return _modInt; }
 
-
 	float GetAttackRange(){return _attackRange;}
 	float GetAttackRadius(){return _attackRadius;}
 
 	int32 GetBonusPoint() { return _bonusPoint; }
 
+	
 
 	void SetLevel(int32 newLevel);
 	void SetMaxHp(int32 newMaxHp);
 	void SetOgHp(int32 newMaxHp);
 	void SetMaxMp(int32 newMaxMp);
 	void SetOgMp(int32 newMaxMp);
+	void SetBonusPoint(int32 newBp);
 	void SetStr(int32 newstr);
 	void SetOgStr(int32 newstr);
 	void SetModStr(int32 newstr);
@@ -141,9 +146,6 @@ public:
 	void SetInt(int32 newint);
 	void SetOgInt(int32 newint);
 	void SetModInt(int32 newint);
-
-
-	void SetBonusPoint(int32 newBp);
 	void SetExp(int32 newexp);
 	void SetNextExp(int32 newnextexp);
 
@@ -198,7 +200,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stat, meta = (AllowPrivateAccess = true))
 	int32 _level;
 
-	TMap<StatType, TMap<ModType, int32>> _stats;
+	TArray<TMap<StatType, ModType>> _stats;
 	/// _stats ::
 	/// [HP][now] [HP][level_og] [HP][statUI] [HP][armor]
 	/// [MP][now] [MP][level_og] [MP][statUI] [MP][armor]
