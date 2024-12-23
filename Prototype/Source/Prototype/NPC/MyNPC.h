@@ -62,4 +62,6 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Shop", meta = (AllowPrivateAccess = "true"))
 	class UShopComponent* _shopComp;
+
+	class UNPC_NameWidget* _nameWidget;
 };

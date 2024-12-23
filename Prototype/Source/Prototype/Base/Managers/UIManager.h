@@ -16,8 +16,7 @@ enum class UI_LIST
 	StartUI,
 	Load,
 	Options,
-	Status,
-	NPCname,
+	Status
 };
 
 DECLARE_MULTICAST_DELEGATE(PAUSE_GAME);
@@ -29,7 +28,6 @@ class UBoss1Widget;
 class UBoss2Widget;
 class UShopWidget;
 class UMainStartWidget;
-class UNPC_NameWidget;
 
 UCLASS()
 class PROTOTYPE_API AUIManager : public AActor
@@ -59,7 +57,6 @@ public:
 	UShopWidget* GetShopUI() { return _shopUI; }
 	UMainStartWidget* GetStartUI() { return _startUI; }
 	UUserWidget* GetOptionsUI() { return _options; }
-	//UNPC_NameWidget* GetNPCNameUI() { return _NPCnameUI; }
 	UTexture2D* GetDefaultTexture() { return _defaultTexture; }
 
 
@@ -106,7 +103,4 @@ private:
 
 	UPROPERTY()
 	UUserWidget* _options;
-
-	//UPROPERTY()
-	//UNPC_NameWidget* _NPCnameUI;
 };

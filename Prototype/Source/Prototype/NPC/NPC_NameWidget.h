@@ -19,5 +19,5 @@ public:
 
 private:
 	UPROPERTY(meta = (BindWidget))
-	class  UTextBlock* NPC_name;
+	class  UTextBlock* NPC_Name;
 };

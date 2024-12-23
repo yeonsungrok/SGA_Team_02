@@ -27,14 +27,6 @@ enum class StatType
 	Other
 };
 
-enum class ModType
-{
-	NOW,
-	OG,
-	STAT,
-	ARMOR
-};
-
 USTRUCT()
 struct FMyStatData : public FTableRowBase
 {
@@ -200,7 +192,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stat, meta = (AllowPrivateAccess = true))
 	int32 _level;
 
-	TArray<TMap<StatType, ModType>> _stats;
+	TArray<TMap<FString, int32>> _stats;
 	/// _stats ::
 	/// [HP][now] [HP][level_og] [HP][statUI] [HP][armor]
 	/// [MP][now] [MP][level_og] [MP][statUI] [MP][armor]
