@@ -13,8 +13,6 @@
     </None>
     <None Include="..\..\.ignore" />
     <None Include="..\..\.vsconfig" />
-    <None Include="..\..\ICON_박성우.ico" />
-    <None Include="..\..\Prototype Title Image.png" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
