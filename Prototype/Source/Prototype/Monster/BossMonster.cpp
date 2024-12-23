@@ -133,7 +133,7 @@ float ABossMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEv
 			GetController()->UnPossess();
 		UE_LOG(LogTemp, Warning, TEXT("Boss exp : %d"),_StatCom->GetNextExp());
 		player->_StatCom->AddExp(_StatCom->GetNextExp());
-		player->_inventoryComponent->AddMoney(1000);
+		player->GetInventory()->AddMoney(1000);
 
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle_Destroy, this, &ACreature::DelayedDestroy, 2.0f, false);
 	}

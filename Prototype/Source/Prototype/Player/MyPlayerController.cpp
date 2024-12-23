@@ -3,7 +3,7 @@
 #include "MyPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "MeteorDecal.h"
-#include "../UI/SkillWidget_test.h"
+#include "UI/SkillWidget.h"
 
 
 AMyPlayerController::AMyPlayerController()
@@ -25,7 +25,7 @@ void AMyPlayerController::BeginPlay()
 
     if (SkillWidgetClass)
     {
-        SkillWidgetInstance = CreateWidget<USkillWidget_test>(this, SkillWidgetClass);
+        SkillWidgetInstance = CreateWidget<USkillWidget>(this, SkillWidgetClass);
         if (SkillWidgetInstance)
         {
              SkillWidgetInstance->LockAllSkill();

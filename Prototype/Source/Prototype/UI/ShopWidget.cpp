@@ -71,7 +71,7 @@ void UShopWidget::UpdateShopList(TArray<ABaseItem*> list)
 void UShopWidget::ReflectInvenSlots(AMyPlayer* player)
 {
 	_isSlotFull = true;
-	TArray<ABaseItem*> itemList = player->_inventoryComponent->GetItemSlots();
+	TArray<ABaseItem*> itemList = player->GetInventory()->GetItemSlots();
 	for (int i = 0; i < Button_.Num(); i++)
 	{
 		Button_[i]->SetItem(itemList[i]);
@@ -81,7 +81,7 @@ void UShopWidget::ReflectInvenSlots(AMyPlayer* player)
 	}
 
 	//TODO : Get Wallet too & Call this every opening
-	int32 Gold = player->_inventoryComponent->GetMoney();
+	int32 Gold = player->GetInventory()->GetMoney();
 	p_gold = Gold;
 	GoldAmount->SetText(FText::FromString(FString::FromInt(Gold)));
 }

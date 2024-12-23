@@ -354,7 +354,7 @@ void UInventoryComponent::AddMoney(int32 amount)
 {
 	_money += amount;
 
-	UIManager->GetInventoryUI()->UpdateGold(_money);
+	SetMoney(_money);
 }
 
 void UInventoryComponent::UpdateUI()

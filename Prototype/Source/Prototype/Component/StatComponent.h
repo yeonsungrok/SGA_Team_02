@@ -101,11 +101,10 @@ public:
 
 	int32 GetCurMp() { return _curMp; }
 	int32 GetMaxMp() { return _maxMp; }
-	int32 GetOhMp()  { return _ogMp; }
+	int32 GetOgMp()  { return _ogMp; }
 	int32 GetModMp()  { return _modMp; }
 
 	int32 GetNextExp() { return _nextExp; }
-	//test
 	int32 GetStr()  { return _str; }
 	int32 GetOgStr()  { return _ogStr; }
 	int32 GetModStr()  { return _modStr; }
@@ -127,8 +126,10 @@ public:
 
 	void SetLevel(int32 newLevel);
 	void SetMaxHp(int32 newMaxHp);
+	void SetModHp(int32 newModHp);
 	void SetOgHp(int32 newMaxHp);
 	void SetMaxMp(int32 newMaxMp);
+	void SetModMp(int32 newModMp);
 	void SetOgMp(int32 newMaxMp);
 	void SetBonusPoint(int32 newBp);
 	void SetStr(int32 newstr);

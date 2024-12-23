@@ -11,7 +11,7 @@
 #include "../Monster/BossMonster.h"
 #include "../Monster/AI/AIController_BossMonster.h"
 #include "UI/Boss1Widget.h"
-#include "UI/SkillWidget_test.h"
+#include "UI/SkillWidget.h"
 #include "Kismet/GameplayStatics.h"
 
 AStage1BossGameModeBase::AStage1BossGameModeBase()
@@ -104,7 +104,7 @@ void AStage1BossGameModeBase::BossStart()
 			PlayerController->bShowMouseCursor = false;
 			PlayerController->SetInputMode(FInputModeGameOnly());
 		}
-		player->_skillWidgetInstance->UnLockAllSkill();
+		player->GetSkillWidgetInstance()->UnLockAllSkill();
 		player->SetActorLocationAndRotation(NewLocation, NewRotation);
 	}
 

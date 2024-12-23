@@ -64,7 +64,7 @@ void UShopComponent::Sale(int32 index)
 	if (_customer == nullptr)
 		return;
 	
-	auto p_inventory = _customer->_inventoryComponent;
+	auto p_inventory = _customer->GetInventory();
 
 	ABaseItem* merch = nullptr;
 	if (_sallings[index]->GetType() == ItemType::Consume)
@@ -91,7 +91,7 @@ void UShopComponent::SalePlayerItem(int32 index, int32 amount)
 	if (_customer == nullptr)
 		return;
 
-	auto p_inventory = _customer->_inventoryComponent;
+	auto p_inventory = _customer->GetInventory();
 
 	p_inventory->DeleteItem(index);
 	p_inventory->AddMoney(amount);

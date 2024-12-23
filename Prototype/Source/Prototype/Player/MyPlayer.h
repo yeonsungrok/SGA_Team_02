@@ -99,6 +99,15 @@ public:
 
 	FINTERECT interectNPC;
 
+	USkeletalMeshComponent* GetLowerBodyMesh() {return _lowerBodyMesh;}
+	USkeletalMeshComponent* GetShoulderBodyMesh() {return _shoulderBodyMesh;}
+	USkeletalMeshComponent* GetSwordBodyMesh() {return _swordBodyMesh;}
+	USkeletalMeshComponent* GetShieldBodyMesh() {return _shieldBodyMesh;}
+
+	class UInventoryComponent* GetInventory(){return _inventoryComponent;}
+	class USkillWidget* GetSkillWidgetInstance(){return _skillWidgetInstance;}
+
+
 private:
 	void Move(const FInputActionValue &value);
 	void Look(const FInputActionValue &value);
@@ -166,9 +175,9 @@ private:
 	void StartScreenShake();
 
 
-	
 
-public:
+
+private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction *_lookAction;
 
@@ -221,7 +230,7 @@ public:
 	class UCameraComponent *_camera;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = UI, meta = (AllowPrivateAccess = "true"))
-	class USkillWidget_test *_skillWidgetInstance;
+	class USkillWidget *_skillWidgetInstance;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* _Change;
@@ -239,16 +248,16 @@ public:
 	/////////////////////////////////////////
 
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh", meta = (AllowPrivateAccess = "true"))
 	class USkeletalMeshComponent* _lowerBodyMesh;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh", meta = (AllowPrivateAccess = "true"))
 	class USkeletalMeshComponent* _shoulderBodyMesh;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh", meta = (AllowPrivateAccess = "true"))
 	class USkeletalMeshComponent* _swordBodyMesh;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh", meta = (AllowPrivateAccess = "true"))
 	class USkeletalMeshComponent* _shieldBodyMesh;
 
 
@@ -259,13 +268,13 @@ public:
 	class UStatWidget *_statWidget;
 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dash")
+	UPROPERTY(EditAnywhere, Category = "Dash")
 	float _dashDistance;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dash")
+	UPROPERTY(EditAnywhere, Category = "Dash")
 	float _dashSpeed;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dash")
+	UPROPERTY(EditAnywhere, Category = "Dash")
 	FVector2D _moveVector;
 
 	
@@ -282,7 +291,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Enemy", meta = (AllowPrivateAccess = "true"))
 	class AMonster* _lockOnMonster;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera")
+	UPROPERTY(EditAnywhere, Category="Camera")
     bool _fixedCamera = false;
 
 	UPROPERTY(EditAnywhere, Category = "Skills")

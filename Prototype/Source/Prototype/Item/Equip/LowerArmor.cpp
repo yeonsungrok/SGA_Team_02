@@ -7,7 +7,6 @@
 ALowerArmor::ALowerArmor()
 {
     _equipItemType = EItemType::LowerArmor;
-    AttachSocketName = FName(TEXT("pelvisSocket"));
 }
 
 void ALowerArmor::BeginPlay()

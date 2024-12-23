@@ -7,7 +7,6 @@
 AUpperArmor::AUpperArmor()
 {
     _equipItemType = EItemType::UpperArmor;
-    AttachSocketName = FName(TEXT("spine_03Socket"));
 }
 
 void AUpperArmor::BeginPlay()

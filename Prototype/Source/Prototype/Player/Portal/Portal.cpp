@@ -46,7 +46,7 @@ void APortal::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherA
             UIManager->CloseAll();
             UIManager->OpenUI(UI_LIST::Load);
             GameInstance->SavePlayerStats(player->_StatCom);
-            GameInstance->SaveInventory(player->_inventoryComponent);
+            GameInstance->SaveInventory(player->GetInventory());
             GameInstance->SavePlayerSkeletal(player);
             UGameplayStatics::OpenLevel(this,_mapName);
         }

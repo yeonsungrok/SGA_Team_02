@@ -276,6 +276,12 @@ void UStatComponent::SetMaxHp(int32 newMaxHp)
 	UIManager->GetInventoryUI()->UpdateStat();
 }
 
+void UStatComponent::SetModHp(int32 newModHp)
+{
+	_modHp = FMath::Clamp(newModHp, 0 , 1000);
+}
+
+
 void UStatComponent::SetOgHp(int32 newMaxHp)
 {
 	_ogHp = FMath::Clamp(newMaxHp, 0, 1000);
@@ -293,6 +299,11 @@ void UStatComponent::SetMaxMp(int32 newMaxMp)
 	_PlMaxMPDelegate.Broadcast(_maxMp);
 	UIManager->GetInventoryUI()->UpdateOriginStat((int32)StatType::MP, _maxMp);
 	UIManager->GetInventoryUI()->UpdateStat();
+}
+
+void UStatComponent::SetModMp(int32 newModMp)
+{
+	_modMp = FMath::Clamp(newModMp,0,1000);
 }
 
 void UStatComponent::SetOgMp(int32 newMaxMp)
@@ -335,7 +346,6 @@ void UStatComponent::SetModStr(int32 newstr)
 
 void UStatComponent::SetDex(int32 newdex)
 {
-
 	auto myGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
 	FMyStatData *Data = nullptr;
 
@@ -398,7 +408,6 @@ void UStatComponent::AddStat(StatType type, int32 amount)
 	switch (type)
 	{
 	case StatType::HP:
-		// TODO : statUI += amount
 		break;
 	case StatType::MP:
 		break;

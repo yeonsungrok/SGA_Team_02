@@ -86,37 +86,45 @@ UMyGameInstance::UMyGameInstance()
 	{
 		_ShopLists.Add(shopList4.Object);
 	}
+
+	SavedPlayerStats.SetNum(22);
+	SavedSkeletalMeshes.SetNum(6);
+
 }
 
 void UMyGameInstance::SavePlayerStats(class UStatComponent *StatComponent)
 {
 	if (StatComponent)
 	{
-		_savedLevel = StatComponent->GetLevel();
-		_savedMaxHp = StatComponent->GetMaxHp();
-		_savedOgHp = StatComponent->GetOgHp();
-		_savedMaxMp = StatComponent->GetMaxMp();
-		_savedOgMp = StatComponent->GetOhMp();
-		_savedStr = StatComponent->GetStr();
-		_savedOgStr = StatComponent->GetOgStr();
-		_savedModStr = StatComponent->GetModStr();
+		SavedPlayerStats[0] = StatComponent->GetLevel();
+		SavedPlayerStats[1] = StatComponent->GetMaxHp();
+		SavedPlayerStats[2] = StatComponent->GetCurHp();
+		SavedPlayerStats[3] = StatComponent->GetOgHp();
+		SavedPlayerStats[4] = StatComponent->GetModHp();
+
+		SavedPlayerStats[5] = StatComponent->GetMaxMp();
+		SavedPlayerStats[6] = StatComponent->GetCurMp();
+		SavedPlayerStats[7] = StatComponent->GetOgMp();
+		SavedPlayerStats[8] = StatComponent->GetModMp();
+
+		SavedPlayerStats[9] = StatComponent->GetStr();
+		SavedPlayerStats[10] = StatComponent->GetOgStr();
+		SavedPlayerStats[11] = StatComponent->GetModStr();
+
+		SavedPlayerStats[12] = StatComponent->GetDex();
+		SavedPlayerStats[13] = StatComponent->GetOgDex();
+		SavedPlayerStats[14] = StatComponent->GetModDex();
+
+		SavedPlayerStats[15] = StatComponent->GetInt();
+		SavedPlayerStats[16] = StatComponent->GetOgInt();
+		SavedPlayerStats[17] = StatComponent->GetModInt();
+
+		SavedPlayerStats[18] = StatComponent->GetExp();
+		SavedPlayerStats[19] = StatComponent->GetNextExp();
+		SavedPlayerStats[20] = StatComponent->GetBonusPoint();
 		
-		_savedDex = StatComponent->GetDex();
-		_savedOgDex = StatComponent->GetOgDex();
-		_savedModDex = StatComponent->GetModDex();
-
-		_savedInt = StatComponent->GetInt();
-		_savedOgInt = StatComponent->GetOgInt();
-		_savedModInt = StatComponent->GetModInt();
-
 		_savedAttackRadius = StatComponent->GetAttackRadius();
-		_savedAttackRange = StatComponent->GetAttackRange();
-
-		_savedCurHp = StatComponent->GetCurHp();
-		_savedCurMp = StatComponent->GetCurMp();
-		_savedExp = StatComponent->GetExp();
-		_savedNextExp = StatComponent->GetNextExp();
-		_savedBonus = StatComponent->GetBonusPoint();
+		_savedAttackRange = StatComponent->GetAttackRadius();
 	}
 }
 
@@ -124,31 +132,34 @@ void UMyGameInstance::LoadPlayerStats(class UStatComponent *StatComponent)
 {
 	if (StatComponent)
 	{
-		StatComponent->SetLevel(_savedLevel);
-		StatComponent->SetMaxHp(_savedMaxHp);
-		StatComponent->SetOgHp(_savedOgHp);
-		StatComponent->SetMaxMp(_savedMaxMp);
-		StatComponent->SetOgMp(_savedOgMp);
-		StatComponent->SetStr(_savedStr);
-		StatComponent->SetOgStr(_savedOgStr);
-		StatComponent->SetModStr(_savedModStr);
+		StatComponent->SetLevel(SavedPlayerStats[0]);
+		StatComponent->SetMaxHp(SavedPlayerStats[1]);
+		StatComponent->SetHp(SavedPlayerStats[2]);
+		StatComponent->SetOgHp(SavedPlayerStats[3]);
+		StatComponent->SetModHp(SavedPlayerStats[4]);
 
-		StatComponent->SetDex(_savedDex);
-		StatComponent->SetOgDex(_savedOgDex);
-		StatComponent->SetModDex(_savedModDex);
+		StatComponent->SetMaxMp(SavedPlayerStats[5]);
+		StatComponent->SetMp(SavedPlayerStats[6]);
+		StatComponent->SetOgMp(SavedPlayerStats[7]);
+		StatComponent->SetModMp(SavedPlayerStats[8]);
 
-		StatComponent->SetInt(_savedInt);
-		StatComponent->SetOgInt(_savedOgInt);
-		StatComponent->SetModInt(_savedModInt);
+		StatComponent->SetStr(SavedPlayerStats[9]);
+		StatComponent->SetOgStr(SavedPlayerStats[10]);
+		StatComponent->SetModStr(SavedPlayerStats[11]);
 
+		StatComponent->SetDex(SavedPlayerStats[12]);
+		StatComponent->SetOgDex(SavedPlayerStats[13]);
+		StatComponent->SetModDex(SavedPlayerStats[14]);
+
+		StatComponent->SetInt(SavedPlayerStats[15]);
+		StatComponent->SetOgInt(SavedPlayerStats[16]);
+		StatComponent->SetModInt(SavedPlayerStats[17]);
+
+		StatComponent->SetExp(SavedPlayerStats[18]);
+		StatComponent->SetNextExp(SavedPlayerStats[19]);
+		StatComponent->SetBonusPoint(SavedPlayerStats[20]);
 		StatComponent->SetAttackRange(_savedAttackRange);
 		StatComponent->SetAttackRadius(_savedAttackRadius);
-
-		StatComponent->SetHp(_savedCurHp);
-		StatComponent->SetMp(_savedCurMp);
-		StatComponent->SetNextExp(_savedNextExp);
-		StatComponent->SetBonusPoint(_savedBonus);
-		StatComponent->AddExp(_savedExp);
 
 		StatComponent->UpdateUI();
 	}
@@ -204,7 +215,7 @@ void UMyGameInstance::SaveInventory(class UInventoryComponent *InventoryComponen
 				SavedEquipData.Add(Item.Key, ItemData);
 			}
 		}
-		_savedMoney = InventoryComponent->GetMoney();
+		SavedPlayerStats[21]= InventoryComponent->GetMoney();
 
 	}
 }
@@ -257,51 +268,33 @@ void UMyGameInstance::LoadInventory(class UInventoryComponent *InventoryComponen
 				}
 			} 
 		}
-		InventoryComponent->AddMoney(_savedMoney);
+		InventoryComponent->AddMoney(SavedPlayerStats[21]);
 	}
 }
 
 void UMyGameInstance::SavePlayerSkeletal(class AMyPlayer* player)
 {
-    if (player)
-    {
-		_savedBodyMesh = player->GetMesh() ? Cast<USkeletalMesh>(player->GetMesh()->GetSkinnedAsset()) : nullptr;
-		_savedLowerBodyMesh = player->_lowerBodyMesh ? Cast<USkeletalMesh>(player->_lowerBodyMesh->GetSkinnedAsset()) : nullptr;
-		_savedShoulderBodyMesh = player->_shoulderBodyMesh ? Cast<USkeletalMesh>(player->_shoulderBodyMesh->GetSkinnedAsset()) : nullptr;
-		_savedSwordBodyMesh = player->_swordBodyMesh ? Cast<USkeletalMesh>(player->_swordBodyMesh->GetSkinnedAsset()) : nullptr;
-		_savedShieldBodyMesh = player->_shieldBodyMesh ? Cast<USkeletalMesh>(player->_shieldBodyMesh->GetSkinnedAsset()) : nullptr;
-    }
+   if (player)
+	{
+		SavedSkeletalMeshes[0] = Cast<USkeletalMesh>(player->GetMesh()->GetSkinnedAsset()); 
+		SavedSkeletalMeshes[1] = Cast<USkeletalMesh>(player->GetLowerBodyMesh()->GetSkinnedAsset());  
+		SavedSkeletalMeshes[2] = Cast<USkeletalMesh>(player->GetShoulderBodyMesh()->GetSkinnedAsset()); 
+		SavedSkeletalMeshes[3] = Cast<USkeletalMesh>(player->GetSwordBodyMesh()->GetSkinnedAsset()); 
+		SavedSkeletalMeshes[4] = Cast<USkeletalMesh>(player->GetShieldBodyMesh()->GetSkinnedAsset()); 
+	}
+
 }
 
 void UMyGameInstance::LoadPlayerSkeletal(class AMyPlayer* player)
 {
-    if (player)
-    {
-        if (_savedBodyMesh && player->GetMesh())
-        {
-            player->GetMesh()->SetSkeletalMesh(_savedBodyMesh);
-        }
-
-        if (_savedLowerBodyMesh && player->_lowerBodyMesh)
-        {
-            player->_lowerBodyMesh->SetSkeletalMesh(_savedLowerBodyMesh);
-        }
-
-        if (_savedShoulderBodyMesh && player->_shoulderBodyMesh)
-        {
-            player->_shoulderBodyMesh->SetSkeletalMesh(_savedShoulderBodyMesh);
-        }
-
-        if (_savedSwordBodyMesh && player->_swordBodyMesh)
-        {
-            player->_swordBodyMesh->SetSkeletalMesh(_savedSwordBodyMesh);
-        }
-
-        if (_savedShieldBodyMesh && player->_shieldBodyMesh)
-        {
-            player->_shieldBodyMesh->SetSkeletalMesh(_savedShieldBodyMesh);
-        }
-    }
+    if (player && SavedSkeletalMeshes.Num() > 0)
+	{
+		player->GetMesh()->SetSkeletalMesh(SavedSkeletalMeshes[0]);
+		player->GetLowerBodyMesh()->SetSkeletalMesh(SavedSkeletalMeshes[1]);
+		player->GetShoulderBodyMesh()->SetSkeletalMesh(SavedSkeletalMeshes[2]);
+		player->GetSwordBodyMesh()->SetSkeletalMesh(SavedSkeletalMeshes[3]);
+		player->GetShieldBodyMesh()->SetSkeletalMesh(SavedSkeletalMeshes[4]);
+	}
 }
 
 TArray<ABaseItem*> UMyGameInstance::GetInvenItemList()

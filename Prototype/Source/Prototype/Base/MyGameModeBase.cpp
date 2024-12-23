@@ -66,7 +66,7 @@ void AMyGameModeBase::BeginPlay()
 				}
 				if (InvenComponent)
 				{
-					player->_inventoryComponent->InitSlot();
+					player->GetInventory()->InitSlot();
 				}
 
 				FVector BaseLocation(-4120.f, -3620.f, 18.f);

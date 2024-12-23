@@ -115,13 +115,13 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent,
 
         if (Player)
         {
-            Player->_inventoryComponent->AddMoney(FMath::FRand() * 100);
+            Player->GetInventory()->AddMoney(FMath::FRand() * 100);
             Player->_StatCom->AddExp(_StatCom->GetNextExp());
             const float RewardChance = 0.3f;
 
             if (FMath::FRand() <= RewardChance)
             {
-            Player->_inventoryComponent->AddItemToSlot(NewItem);
+            Player->GetInventory()->AddItemToSlot(NewItem);
             }
         }
     }

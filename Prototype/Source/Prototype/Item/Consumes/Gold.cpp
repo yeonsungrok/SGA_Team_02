@@ -23,5 +23,5 @@ void AGold::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherAct
 
 void AGold::GetItem()
 {
-	_player->_inventoryComponent->AddMoney(_Value);
+	_player->GetInventory()->AddMoney(_Value);
 }

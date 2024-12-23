@@ -116,50 +116,12 @@ private:
 	UPROPERTY()
 	UDataTable* _DragonStatTable;
 
-
-
 	UPROPERTY()
-	int32 _savedLevel;
+	TArray<int32> SavedPlayerStats; // [Level, MaxHp, CurHp, OgHp, ModHp, MaxMp, CurMp, OgMp, ModMp, Str, OgStr, ModStr, Dex, OgDex, ModDex, Int, OgInt, ModInt, Exp, NextExp, Bonus, Money]
 
 	UPROPERTY()
-	int32 _savedMaxHp;
-	UPROPERTY()
-	int32 _savedCurHp;
-	UPROPERTY()
-	int32 _savedOgHp;
-	UPROPERTY()
-	int32 _savedModHp;
+	TArray<class USkeletalMesh*> SavedSkeletalMeshes;
 
-	UPROPERTY()
-	int32 _savedMaxMp;
-	UPROPERTY()
-	int32 _savedCurMp;
-	UPROPERTY()
-	int32 _savedOgMp;
-	UPROPERTY()
-	int32 _savedModMp;
-
-
-	UPROPERTY()
-	int32 _savedStr;
-	UPROPERTY()
-	int32 _savedOgStr;
-	UPROPERTY()
-	int32 _savedModStr;
-
-	UPROPERTY()
-	int32 _savedDex;
-	UPROPERTY()
-	int32 _savedOgDex;
-	UPROPERTY()
-	int32 _savedModDex;
-
-	UPROPERTY()
-	int32 _savedInt;
-	UPROPERTY()
-	int32 _savedOgInt;
-	UPROPERTY()
-	int32 _savedModInt;
 
 	UPROPERTY()
 	float _savedAttackRadius;
@@ -167,26 +129,8 @@ private:
 	UPROPERTY()
 	float _savedAttackRange;
 
-	UPROPERTY()
-	int32 _savedExp;
-	UPROPERTY()
-	int32 _savedNextExp;
-	UPROPERTY()
-	int32 _savedBonus;
-
-	UPROPERTY()
-	int32 _savedMoney;
-
-	UPROPERTY()
-	class USkeletalMesh* _savedBodyMesh;
-	UPROPERTY()
-	class USkeletalMesh* _savedLowerBodyMesh;
-	UPROPERTY()
-	class USkeletalMesh* _savedShoulderBodyMesh;
-	UPROPERTY()
-	class USkeletalMesh*_savedSwordBodyMesh;
-	UPROPERTY()
-	class USkeletalMesh* _savedShieldBodyMesh;
+	
+	
 	
 	UPROPERTY()
 	bool _firstIn = true;

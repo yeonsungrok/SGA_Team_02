@@ -109,7 +109,7 @@ void AStage2BossGameModeBase::BossStart()
 			PlayerController->bShowMouseCursor = false;
 			PlayerController->SetInputMode(FInputModeGameOnly());
 		}
-		player->_skillWidgetInstance->UnLockAllSkill();
+		player->GetSkillWidgetInstance()->UnLockAllSkill();
 		player->SetActorLocationAndRotation(NewLocation, NewRotation);
 	}
 

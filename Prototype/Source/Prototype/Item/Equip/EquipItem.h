@@ -47,10 +47,6 @@ public:
     virtual void DropItem(FVector location, FRotator rotation = FRotator::ZeroRotator) override;
 
 protected:
-
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Socket")
-    FName AttachSocketName;
-
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "EquipItem")
     EItemType _equipItemType;
 

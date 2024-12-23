@@ -98,19 +98,19 @@ void AEquipItem::EquipPlayer()
             break;
         case EItemType::LowerArmor:
             UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer :: Lower"));
-            _player->_lowerBodyMesh->SetSkeletalMesh(_equipItem);
+            _player->GetLowerBodyMesh()->SetSkeletalMesh(_equipItem);
             break;
         case EItemType::ShoulderArmor:
             UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer :: Shoulder"));
-            _player->_shoulderBodyMesh->SetSkeletalMesh(_equipItem);
+            _player->GetShoulderBodyMesh()->SetSkeletalMesh(_equipItem);
             break;
         case EItemType::Sword:
             UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer :: Sword"));
-            _player->_swordBodyMesh->SetSkeletalMesh(_equipItem);
+            _player->GetSwordBodyMesh()->SetSkeletalMesh(_equipItem);
             break;
         case EItemType::Shield:
             UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer :: Shield"));
-            _player->_shieldBodyMesh->SetSkeletalMesh(_equipItem);
+            _player->GetShieldBodyMesh()->SetSkeletalMesh(_equipItem);
             break;
         default:
             break;
@@ -147,10 +147,10 @@ void AEquipItem::UnEquip()
         _player->EquipBaseShoulder();
         break;
     case EItemType::Sword:
-        _player->_swordBodyMesh->SetSkeletalMesh(nullptr);
+        _player->GetSwordBodyMesh()->SetSkeletalMesh(nullptr);
         break;
     case EItemType::Shield:
-        _player->_shieldBodyMesh->SetSkeletalMesh(nullptr);
+        _player->GetShieldBodyMesh()->SetSkeletalMesh(nullptr);
         break;
     default:
         break;

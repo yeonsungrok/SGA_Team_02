@@ -7,7 +7,6 @@
 AHelmet::AHelmet()
 {
     _equipItemType = EItemType::Helmet;
-     AttachSocketName = FName(TEXT("headSocket"));
 }
 
 void AHelmet::BeginPlay()
