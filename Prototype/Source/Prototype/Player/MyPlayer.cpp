@@ -1,8 +1,6 @@
 #include "MyPlayer.h"
-
 #include "Base/MyGameInstance.h"
 #include "Base/MyPlayerSaveGame.h"
-
 #include "Components/CapsuleComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Component/InventoryComponent.h"
@@ -19,44 +17,27 @@
 #include "MeteorDecal.h"
 #include "Fireball.h"
 #include "Kismet/KismetMathLibrary.h"
-
-// chelo
 #include "Base/Managers/UIManager.h"
 #include "UI/InventoryWidget.h"
 #include "UI/StatWidget.h"
 #include "Components/WidgetComponent.h"
-
-// MiniMap
 #include "GameFramework/Actor.h"
-#include "Components/SceneCaptureComponent2D.h"
-#include "PaperSpriteComponent.h"
 #include "UI/MiniMapWidget.h"
-
-// te
 #include "GameFramework/Actor.h"
-
-// Animation
 #include "../Animation/PlayerAnimInstance.h"
 #include "GameFramework/CharacterMovementComponent.h"
-
-// hp
 #include "Components/ProgressBar.h"
-
 #include "../Base/Managers/SoundManager.h"
 #include "../Base/Managers/EffectManager.h"
 #include "NiagaraSystem.h"
 #include "NiagaraFunctionLibrary.h"
 #include "NiagaraComponent.h"
-
 #include "Components/AudioComponent.h"
 #include "Components/DecalComponent.h"
-
 #include "Player/Dragon.h"
-
 #include "UI/StatWidget.h"
 #include "UI/PlayerBarWidget.h"
 
-// Sets default values
 AMyPlayer::AMyPlayer()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -69,7 +50,6 @@ AMyPlayer::AMyPlayer()
 	_camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	_inventoryComponent = CreateDefaultSubobject<UInventoryComponent>(TEXT("Inventory"));
 
-	//_upperBodyMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("UpperSkeletal"));
 	_lowerBodyMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("LowerSkeletal"));
 	_shoulderBodyMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("ShoulderSkeletal"));
 	_swordBodyMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SwordSkeletal"));
@@ -99,17 +79,6 @@ AMyPlayer::AMyPlayer()
 		_shoulderBodyMesh->SetSkeletalMesh(SHSM.Object);
 	}
 
-	// static ConstructorHelpers::FObjectFinder<USkeletalMesh> SWSM(TEXT("/Script/Engine.SkeletalMesh'/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/WhiteTiger_Detach/Sward_Pos.Sward_Pos'"));
-	// if (SWSM.Succeeded())
-	// {
-	// 	_swordBodyMesh->SetSkeletalMesh(SWSM.Object);
-	// }
-
-	// static ConstructorHelpers::FObjectFinder<USkeletalMesh> SSM(TEXT("/Script/Engine.SkeletalMesh'/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/WhiteTiger_Detach/Shield_Pos.Shield_Pos'"));
-	// if (SSM.Succeeded())
-	// {
-	// 	_shieldBodyMesh->SetSkeletalMesh(SSM.Object);
-	// }
 
 	_lowerBodyMesh->SetupAttachment(GetMesh());
 	_shoulderBodyMesh->SetupAttachment(GetMesh());
@@ -117,8 +86,6 @@ AMyPlayer::AMyPlayer()
 	_shieldBodyMesh->SetupAttachment(GetMesh());
 
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
-
-	//_parkourComp = CreateDefaultSubobject<UParkourComponent_Test>(TEXT("ParkourComponent"));
 
 	static ConstructorHelpers::FClassFinder<UStatWidget> StatClass(
 		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/PlayerStat_UI.PlayerStat_UI_C'"));
@@ -179,7 +146,6 @@ AMyPlayer::AMyPlayer()
 	DashTimeElapsed = 0.f;
 }
 
-// Called when the game starts or when spawned
 void AMyPlayer::BeginPlay()
 {
 	Super::BeginPlay();
@@ -200,13 +166,11 @@ void AMyPlayer::BeginPlay()
 
 	if (DragonClass)
 	{
-		// DragonClass가 설정되었으면 DragonInstance를 생성
 		FVector SpawnLocation = GetActorLocation();
 		FRotator SpawnRotation = GetActorRotation();
 		FActorSpawnParameters SpawnParams;
 		SpawnParams.Owner = this;
 
-		// 드래곤 인스턴스 스폰
 		_dragonInstance = GetWorld()->SpawnActor<ADragon>(DragonClass, SpawnLocation, SpawnRotation, SpawnParams);
 	}
 }
@@ -241,13 +205,9 @@ void AMyPlayer::PostInitializeComponents()
 		_KnightanimInstance->_attackDelegate.AddUObject(this, &ACreature::AttackHit);
 		_KnightanimInstance->_deathDelegate_Knight.AddUObject(this, &AMyPlayer::Disable);
 		_KnightanimInstance->_comboDelegate.AddUObject(this, &AMyPlayer::NextCombo);
-		
-		/*_KnightanimInstance->_changeDelegate.AddUObject(this, &AMyPlayer::EndMontage);*/
-		//_KnightanimInstance->_endMontageDelegate.AddDynamic(this, &AMyPlayer::TransformToDragon);
 	}
 }
 
-// Called every frame
 void AMyPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -276,7 +236,6 @@ void AMyPlayer::Tick(float DeltaTime)
 			float HPPercent = float(PlCurHp) / float(PlMaxHp);
 			float MPPercent = float(PlCurMp) / float(PlMaxMp);
 
-			// Bar 제한 범위
 			float MinHPScaleX = 1.0f;  
 			float MaxHPScaleX = 1.8f;  
 			float MinMPScaleX = 1.0f; 
@@ -306,7 +265,6 @@ float AMyPlayer::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent
 	return 0.0f;
 }
 
-// Called to bind functionality to input
 void AMyPlayer::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -328,7 +286,6 @@ void AMyPlayer::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 		EnhancedInputComponent->BindAction(_guardAction, ETriggerEvent::Completed, this, &AMyPlayer::GuardEnd);
 		EnhancedInputComponent->BindAction(_LockOnAction, ETriggerEvent::Started, this, &AMyPlayer::LockOn);
 		EnhancedInputComponent->BindAction(_InteractAction, ETriggerEvent::Started, this, &AMyPlayer::Interect);
-
 		EnhancedInputComponent->BindAction(_OptionsAction, ETriggerEvent::Started, this, &AMyPlayer::OptionsOpen);
 		EnhancedInputComponent->BindAction(_Change, ETriggerEvent::Started, this, &AMyPlayer::ToggleTransformation);
 
@@ -418,7 +375,7 @@ void AMyPlayer::UnLockAllSkill()
 
 void AMyPlayer::OnAttackEnded(UAnimMontage* Montage, bool bInterrupted)
 {
-	_isAttacking = false;  // 공격 중 상태 해제
+	_isAttacking = false; 
 	
 	_curAttackIndex = 1;
 }
@@ -1047,7 +1004,6 @@ void AMyPlayer::GuardStart(const FInputActionValue &value)
 {
 	bIsGuarding = true;
 
-	// Animation
 	UPlayerAnimInstance *PlayerAnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 	if (PlayerAnimInstance)
 	{
@@ -1055,7 +1011,6 @@ void AMyPlayer::GuardStart(const FInputActionValue &value)
 	}
 }
 
-// cheol
 void AMyPlayer::StatUIOpen(const FInputActionValue &value)
 {
 	bool isPressed = value.Get<bool>();
@@ -1180,20 +1135,15 @@ void AMyPlayer::ClearSkillTimer()
 
 void AMyPlayer::TransformToDragon()
 {
-	//if (_StatCom)
-	//{
-	//	_StatCom->SetDragonLevelInit(1);
-	//}
+
 
 	if (!_dragonInstance)
 	{
-		// 드래곤 인스턴스 생성
 		FVector SpawnLocation = GetActorLocation();
 		FRotator SpawnRotation = GetActorRotation();
 		FActorSpawnParameters SpawnParams;
 		SpawnParams.Owner = this;
 
-		// 드래곤 스폰
 		_dragonInstance = GetWorld()->SpawnActor<ADragon>(DragonClass, SpawnLocation, SpawnRotation, SpawnParams);
 		if (!_dragonInstance)
 		{
@@ -1202,22 +1152,18 @@ void AMyPlayer::TransformToDragon()
 		}
 	}
 
-	// 상태 저장 및 변환 로직
 	if (APlayerController *PC = Cast<APlayerController>(GetController()))
 	{
 
-		// Dragon 활성화
 		_dragonInstance->SetActorHiddenInGame(false);
 		_dragonInstance->SetActorEnableCollision(true);
 
-		_dragonInstance->SetActorLocation(GetActorLocation()); // 동일한 위치
-		_dragonInstance->SetActorRotation(GetActorRotation()); // 동일한 회전
+		_dragonInstance->SetActorLocation(GetActorLocation()); 
+		_dragonInstance->SetActorRotation(GetActorRotation()); 
 
-		// MyPlayer 비활성화
 		SetActorHiddenInGame(true);
 		SetActorEnableCollision(false);
 
-		// 컨트롤 전환
 		PC->Possess(_dragonInstance);
 
 		_isTransformed = true;
@@ -1229,7 +1175,6 @@ void AMyPlayer::TransformToDragon()
 
 void AMyPlayer::TransformToHuman()
 {
-	// Dragon에서 MyPlayer로 복귀
 	_dragonInstance->TransformToHuman();
 }
 
@@ -1241,19 +1186,17 @@ void AMyPlayer::ToggleTransformation()
 		return;
 	}
 
-	if (_isTransformed) // 현재 변환된 상태이면 인간으로 복귀
+	if (_isTransformed) 
 	{
 		TransformToHuman();
 	}
-	else // 그렇지 않으면 드래곤으로 변환
+	else 
 	{
 		UPlayerAnimInstance* AnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 		if (AnimInstance)
 		{
-			// 몽타주 재생
 			AnimInstance->PlayChangeMontage();
 
-			// 몽타주 종료 이벤트와 연결
 			AnimInstance->OnMontageEnded.AddDynamic(this, &AMyPlayer::HandleMontageEnd);
 			StartTransformationCooldown();
 		}
@@ -1265,12 +1208,11 @@ void AMyPlayer::HandleMontageEnd(UAnimMontage* Montage, bool bInterrupted)
 	UPlayerAnimInstance* AnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 	if (AnimInstance && Montage == AnimInstance->GetChangeMontage())
 	{
-		if (!bInterrupted && !_isTransformed) // 몽타주가 정상 종료되었고 변환 상태가 아닌 경우
+		if (!bInterrupted && !_isTransformed) 
 		{
 			TransformToDragon();
 		}
 
-		// 델리게이트 연결 해제
 		AnimInstance->OnMontageEnded.RemoveDynamic(this, &AMyPlayer::HandleMontageEnd);
 	}
 }
@@ -1279,7 +1221,6 @@ void AMyPlayer::StartTransformationCooldown()
 {
 	_bCanTransform = false;
 
-	// 타이머 설정
 	GetWorldTimerManager().SetTimer(
 		_transformCooldownHandle,
 		this,
