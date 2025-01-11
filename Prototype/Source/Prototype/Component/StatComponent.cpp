@@ -547,28 +547,28 @@ void UStatComponent::ModStat(StatType stat, int32 amount)
 	case StatType::HP:
 		_modHp = amount;
 		SetHp(_curHp + amount);
-		_maxHp = _ogHp + _modHp;
+		SetMaxHp(_ogHp+_modHp);
 		invenUI->UpdateOriginStat((int32)(StatType::HP), _maxHp);
 		break;
 	case StatType::MP:
 		_modMp = amount;
 		SetMp(_curMp + amount);
-		_maxMp = _ogMp + _modMp;
+		SetMaxMp(_ogMp + _modMp);
 		invenUI->UpdateOriginStat((int32)(StatType::MP), _maxMp);
 		break;
 	case StatType::STR:
 		_modStr = amount;
-		_str = _ogStr + _modStr;
+		SetStr(_ogStr + _modStr);
 		invenUI->UpdateOriginStat((int32)(StatType::STR), _str);
 		break;
 	case StatType::DEX:
 		_modDex = amount;
-		_dex = _ogDex + _modDex;
+		SetDex(_ogDex + _modDex);
 		invenUI->UpdateOriginStat((int32)(StatType::DEX), _dex);
 		break;
 	case StatType::INT:
 		_modInt = amount;
-		_int = _ogInt + _modInt;
+		SetInt(_ogInt + _modInt);
 		invenUI->UpdateOriginStat((int32)(StatType::INT), _int);
 		break;
 	case StatType::CurHP:

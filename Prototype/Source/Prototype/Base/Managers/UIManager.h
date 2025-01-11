@@ -10,6 +10,7 @@ UENUM()
 enum class UI_LIST
 {
 	Inventory,
+	Stat,
 	Boss,
 	Boss2,
 	Shop,
@@ -23,6 +24,7 @@ DECLARE_MULTICAST_DELEGATE(PAUSE_GAME);
 DECLARE_MULTICAST_DELEGATE(RESUM_GAME);
 
 class UInventoryWidget;
+class UStatWidget;
 class UTexture2D;
 class UBoss1Widget;
 class UBoss2Widget;
@@ -52,6 +54,7 @@ public:
 	void ToggleUI(UI_LIST ui);
 
 	UInventoryWidget* GetInventoryUI() { return _inventoryUI; }
+	UStatWidget* GetStatUI(){return _statUI;}
 	UBoss1Widget* GetBossUI() {return _bossUI;}
 	UBoss2Widget* GetBoss2UI() {return _boss2UI;}
 	UShopWidget* GetShopUI() { return _shopUI; }
@@ -84,6 +87,9 @@ private:
 	UInventoryWidget* _statusUI;
 
 	UPROPERTY()
+	UStatWidget* _statUI;
+
+	UPROPERTY()
 	UTexture2D* _defaultTexture;
 
 	UPROPERTY()
@@ -103,4 +109,7 @@ private:
 
 	UPROPERTY()
 	UUserWidget* _options;
+
+	UPROPERTY()
+	int32 cnt = 0;
 };

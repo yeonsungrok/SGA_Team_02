@@ -81,6 +81,7 @@ void UStatWidget::NativeConstruct()
 	{
 		INTDown->OnClicked.AddDynamic(this, &UStatWidget::INTDownClick);
 	}
+	UpdateStatDisplay();
 }
 
 void UStatWidget::StatUpdate(StatType type, int amount)

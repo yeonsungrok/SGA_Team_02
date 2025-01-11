@@ -1065,33 +1065,12 @@ void AMyPlayer::StatUIOpen(const FInputActionValue &value)
 {
 	bool isPressed = value.Get<bool>();
 
+	auto statUI = UIManager->GetStatUI();
 	SoundManager->PlaySound(*GetUIBaseSound(), GetActorLocation());
 
-	APlayerController *PlayerController = Cast<APlayerController>(GetController());
-
-	if (isPressed && _statWidget != nullptr)
+	if (isPressed && statUI != nullptr)
 	{
-		if (_statWidget->IsVisible())
-		{
-			if (PlayerController)
-			{
-				PlayerController->bShowMouseCursor = false;
-				PlayerController->SetInputMode(FInputModeGameOnly());
-			}
-			_statWidget->SetVisibility(ESlateVisibility::Hidden);
-		}
-		else
-		{
-			if (PlayerController)
-			{
-				bool bIsCursorVisible = PlayerController->bShowMouseCursor;
-				PlayerController->bShowMouseCursor = true;
-				PlayerController->SetInputMode(FInputModeGameAndUI().SetHideCursorDuringCapture(false));
-			}
-
-			_statWidget->UpdateStatDisplay();
-			_statWidget->SetVisibility(ESlateVisibility::Visible);
-		}
+		UIManager->ToggleUI(UI_LIST::Stat);
 	}
 }
 

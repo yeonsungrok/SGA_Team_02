@@ -2,6 +2,7 @@
 
 #include "Base/Managers/UIManager.h"
 
+#include "UI/StatWidget.h"
 #include "UI/InventoryWidget.h"
 #include "UI/Boss1Widget.h"
 #include "UI/Boss2Widget.h"
@@ -22,6 +23,13 @@ AUIManager::AUIManager()
 	if (inventory.Succeeded())
 	{
 		_inventoryUI = CreateWidget<UInventoryWidget>(GetWorld(), inventory.Class);
+	}
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> stat(
+		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/PlayerStat_UI.PlayerStat_UI_C'"));
+	if (stat.Succeeded())
+	{
+		_statUI = CreateWidget<UStatWidget>(GetWorld(), stat.Class);
 	}
 
 	static ConstructorHelpers::FClassFinder<UUserWidget> boss1widget(
@@ -73,11 +81,10 @@ AUIManager::AUIManager()
 		_defaultTexture = defaultTexture.Object;
 	}
 
-	_uiList = {_inventoryUI, _bossUI, _boss2UI, _shopUI, _startUI, _loadUI, _options};
-    _uiIsOpen.Init(false, _uiList.Num());
-    _isPauseWhenOpen.Init(true, _uiList.Num()); 
+	_uiList = {_inventoryUI,_statUI, _bossUI, _boss2UI, _shopUI, _startUI, _loadUI, _options};
+	_uiIsOpen.Init(false, _uiList.Num());
+	_isPauseWhenOpen.Init(true, _uiList.Num());
 }
-
 
 void AUIManager::BeginPlay()
 {
@@ -93,6 +100,7 @@ void AUIManager::Tick(float DeltaTime)
 void AUIManager::OpenUI(UI_LIST ui)
 {
 	int32 UIindex = (int32)ui;
+
 	if (UIindex > _uiList.Num())
 		return;
 
@@ -102,7 +110,11 @@ void AUIManager::OpenUI(UI_LIST ui)
 	if (_isPauseWhenOpen[UIindex])
 		pauseGame.Broadcast();
 
-
+	if (ui == UI_LIST::Inventory || ui == UI_LIST::Shop || ui == UI_LIST::Options || ui == UI_LIST::Stat)
+	{
+		cnt++;
+		UE_LOG(LogTemp,Warning,TEXT("cnt : %d"),cnt);
+	}
 
 	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
 	if (PlayerController)
@@ -113,11 +125,9 @@ void AUIManager::OpenUI(UI_LIST ui)
 	}
 
 	_uiList[UIindex]->SetVisibility(ESlateVisibility::Visible);
-	int32 ZOrder = (ui == UI_LIST::Inventory) ? 10 : 0;
-	_uiList[UIindex]->AddToViewport(ZOrder);
+	_uiList[UIindex]->AddToViewport(UIindex);
 
 	_uiIsOpen[UIindex] = true;
-
 }
 
 void AUIManager::CloseUI(UI_LIST ui)
@@ -129,19 +139,27 @@ void AUIManager::CloseUI(UI_LIST ui)
 	if (_isPauseWhenOpen[UIindex])
 		resumGame.Broadcast();
 
+	if (ui == UI_LIST::Inventory || ui == UI_LIST::Shop || ui == UI_LIST::Options || ui == UI_LIST::Stat)
+	{
+		cnt--;
+		UE_LOG(LogTemp,Warning,TEXT("cnt : %d"),cnt);
+	
+	}
+
 	_uiList[UIindex]->SetVisibility(ESlateVisibility::Hidden);
 	_uiList[UIindex]->RemoveFromParent();
 
 	_uiIsOpen[UIindex] = false;
 
-		APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	if (cnt == 0)
+	{
+		APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
 		if (PlayerController)
 		{
 			PlayerController->bShowMouseCursor = false;
 			PlayerController->SetInputMode(FInputModeGameOnly());
 		}
-
-	
+	}
 }
 
 void AUIManager::CloseAll()
@@ -150,12 +168,11 @@ void AUIManager::CloseAll()
 
 	for (auto widget : _uiList)
 	{
-		if(widget)
+		if (widget)
 		{
 			widget->SetVisibility(ESlateVisibility::Hidden);
 			widget->RemoveFromParent();
 		}
-		
 	}
 	for (bool isopen : _uiIsOpen)
 		isopen = false;
@@ -175,7 +192,7 @@ void AUIManager::ToggleUI(UI_LIST ui)
 
 bool AUIManager::InventoryMutual(UI_LIST invenUI)
 {
-	if(invenUI != UI_LIST::Inventory)
+	if (invenUI != UI_LIST::Inventory)
 		return false;
 	if (_uiIsOpen[(int32)UI_LIST::Shop])
 		return true;

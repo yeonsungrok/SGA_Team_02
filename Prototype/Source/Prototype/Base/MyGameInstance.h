@@ -117,20 +117,16 @@ private:
 	UDataTable* _DragonStatTable;
 
 	UPROPERTY()
-	TArray<int32> SavedPlayerStats; // [Level, MaxHp, CurHp, OgHp, ModHp, MaxMp, CurMp, OgMp, ModMp, Str, OgStr, ModStr, Dex, OgDex, ModDex, Int, OgInt, ModInt, Exp, NextExp, Bonus, Money]
+	TArray<int32> SavedPlayerStats;
 
 	UPROPERTY()
 	TArray<class USkeletalMesh*> SavedSkeletalMeshes;
-
 
 	UPROPERTY()
 	float _savedAttackRadius;
 
 	UPROPERTY()
 	float _savedAttackRange;
-
-	
-	
 	
 	UPROPERTY()
 	bool _firstIn = true;
