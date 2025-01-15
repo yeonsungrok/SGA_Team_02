@@ -442,7 +442,6 @@ void UStatComponent::SetStatBoost(int32 rate)
 
 	GetWorld()->GetTimerManager().SetTimer(StatBoostTimerHandle, [this, originalStr, originalDex, originalInt]()
 										   {
-		UE_LOG(LogTemp, Warning, TEXT("End Boost"));
         _str = originalStr;
         _dex = originalDex;
         _int = originalInt; }, 5.0f, false);
@@ -518,7 +517,6 @@ void UStatComponent::AddExp(int32 amount)
 	while (_curExp >= _nextExp)
 	{
 		_curExp -= _nextExp;
-		UE_LOG(LogTemp, Warning, TEXT("exp : %d level up"), amount);
 		Reset();
 		_level++;
 		_nextExp = 100 + (_level * 50);

@@ -224,8 +224,6 @@ void AMyPlayer::PostInitializeComponents()
 			float CurrentMP = _StatCom->GetCurMp();
 			float CurrentEXP = _StatCom->GetExp();
 
-			UE_LOG(LogTemp, Warning, TEXT("Current HP: %f, Current MP: %f, Current EXP: %f"), CurrentHP, CurrentMP, CurrentEXP);
-
 			_StatCom->_PlHPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetPlHPBar);
 			_StatCom->_PlMPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetPlMPBar);
 			_StatCom->_PlEXPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetPlExpBar);
@@ -689,7 +687,6 @@ void AMyPlayer::Skill1(const FInputActionValue &value)
 				bIsDashing = true;
 
 				FVector2D MovementInput = _moveVector;
-				UE_LOG(LogTemp, Warning, TEXT("%f"), GetVelocity().Size());
 
 				if (GetVelocity().Size() > 300.f)
 				{
@@ -1038,7 +1035,6 @@ void AMyPlayer::LockOn(const FInputActionValue &value)
 					AMonster *monster = Cast<AMonster>(HitResult.GetActor());
 					if (monster != nullptr)
 					{
-						UE_LOG(LogTemp, Warning, TEXT("LockOnMonster"));
 						_lockOnMonster = monster;
 						break;
 					}
@@ -1184,7 +1180,6 @@ void AMyPlayer::TransformToDragon()
 		_dragonInstance = GetWorld()->SpawnActor<ADragon>(DragonClass, SpawnLocation, SpawnRotation, SpawnParams);
 		if (!_dragonInstance)
 		{
-			UE_LOG(LogTemp, Error, TEXT("Failed to spawn DragonInstance!"));
 			return;
 		}
 	}
@@ -1210,7 +1205,6 @@ void AMyPlayer::TransformToDragon()
 		_isTransformed = true;
 		_dragonInstance->_isTransformed = true;
 
-		UE_LOG(LogTemp, Warning, TEXT("Transformed to Dragon!"));
 	}
 }
 
@@ -1224,7 +1218,6 @@ void AMyPlayer::ToggleTransformation()
 {
 	if (!_bCanTransform)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Transformation is on cooldown."));
 		return;
 	}
 

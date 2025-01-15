@@ -96,18 +96,14 @@ void ADragon::BeginPlay()
         _knightInstance = *It;
         if (_knightInstance)
         {
-            UE_LOG(LogTemp, Warning, TEXT("KnightInstance found and assigned!"));
             break;
         }
     }
 
     if (!_knightInstance)
     {
-        UE_LOG(LogTemp, Error, TEXT("KnightInstance not found in the world!"));
         return;
     }
-
-    // Dragon 초기화
     SetActorHiddenInGame(true);
     SetActorEnableCollision(false);
     _isTransformed = false;

@@ -38,6 +38,7 @@ ABossFireball::ABossFireball()
     ProjectileMovement->bRotationFollowsVelocity = true;
     ProjectileMovement->bShouldBounce = false;
     ProjectileMovement->ProjectileGravityScale = 0.0f;
+    bIsInactive = true;
 }
 
 // Called when the game starts or when spawned
@@ -59,6 +60,15 @@ void ABossFireball::LaunchTowards(FVector TargetLocation)
 {
 	FVector Direction = (TargetLocation - GetActorLocation()).GetSafeNormal();
     ProjectileMovement->Velocity = Direction * 2000.f;
+    bIsInactive = false;
+
+    FTimerHandle TimerHandle;
+    GetWorldTimerManager().SetTimer(TimerHandle, [this]()
+    {
+        SetActorHiddenInGame(false);
+        SetActorEnableCollision(true);
+        bIsInactive = true;
+    }, 3.0f, false);
 }
 
 FString ABossFireball::GetBoss2_HitEffect() const

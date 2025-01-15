@@ -10,8 +10,6 @@
 #include "../Player/MyPlayerController.h"
 #include "Base/Managers/UIManager.h"
 #include "../Monster/Boss2Monster.h"
-#include "../Monster/SunderPool.h"
-#include "../Monster/BossSunder.h"
 #include "../Monster/AI/AIController_Boss2.h"
 #include "UI/Boss2Widget.h"
 #include "UI/SkillWidget_test.h"
@@ -95,7 +93,6 @@ void AStage2BossGameModeBase::BossClear()
 
 void AStage2BossGameModeBase::BossStart()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Boss Start"));
 	UIManager->OpenUI(UI_LIST::Boss2);
 	AMyPlayer *player = Cast<AMyPlayer>(UGameplayStatics::GetPlayerCharacter(this, 0));
 	if (player)

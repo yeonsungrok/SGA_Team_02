@@ -130,19 +130,15 @@ void UShopWidget::TryBuyItem(int32 slot)
 	switch (result)
 	{
 	case DealContext::Error:
-		UE_LOG(LogTemp, Error, TEXT("Item Buy Error!"));
 		break;
 	case DealContext::Succeed:
 		BuySucceed.Broadcast(slot);
 		break;
 	case DealContext::MoneyNotEnough:
-		UE_LOG(LogTemp, Warning, TEXT("Doenst have enough money"));
 		break;
 	case DealContext::InventoryIsFull:
-		UE_LOG(LogTemp, Warning, TEXT("Inventory is full!!"));
 		break;
 	case DealContext::EmptySlot:
-		UE_LOG(LogTemp, Warning, TEXT("You cant buy Air"));
 		break;
 	default:
 		break;

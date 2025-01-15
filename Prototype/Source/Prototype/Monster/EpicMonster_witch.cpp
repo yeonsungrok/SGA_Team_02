@@ -184,9 +184,8 @@ void AEpicMonster_witch::MagicShot()
 			if (projectile)
 			{
 				projectile->WitchMa(this);
-				projectile->SetDamage(_StatCom->GetInt()); // 데미지 추후 수정 
+				projectile->SetDamage(_StatCom->GetInt());
 				projectile->FireInDirection(forward);
-				UE_LOG(LogTemp, Error, TEXT("MagicShot"));
 			}
 			
 			
@@ -249,7 +248,6 @@ void AEpicMonster_witch::testDecalSkill()
 		if (decal)
 		{
 			SoundManager->PlaySound(*GetEpicAttackMagicDotSound(), this->GetActorLocation());
-			UE_LOG(LogTemp, Error, TEXT("Test Decal"));
 			
 			_monster_Epic_AnimInstance->PlayAttackDotrMontage();
 			_curAttackIndex = 0;

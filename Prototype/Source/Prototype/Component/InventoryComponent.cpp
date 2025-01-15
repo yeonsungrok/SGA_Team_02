@@ -38,12 +38,7 @@ void UInventoryComponent::BeginPlay()
 		UIManager->GetInventoryUI()->EquipDrop.AddUObject(this, &UInventoryComponent::ExcuteEquip);
 		UIManager->GetInventoryUI()->EquipStrip.AddUObject(this, &UInventoryComponent::StripEquip);
 	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("UIManager or Inventory UI is null in UInventoryComponent::BeginPlay"));
-	}
-
-	// InitSlot();
+	
 
 	UpdateUI();
 }
@@ -363,7 +358,6 @@ void UInventoryComponent::UpdateUI()
 	{
 		if (_ItemSlots.IsValidIndex(i) && _ItemSlots[i] != nullptr)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("updateUi itemslot : %d"), i);
 			UIupdate_Add(i, _ItemSlots[i]);
 		}
 	}
@@ -383,12 +377,10 @@ void UInventoryComponent::UpdateUI()
         
         if (EquipItem != nullptr)
         {
-            UE_LOG(LogTemp, Warning, TEXT("updateUi equip slot : %s"), *SlotName);
             UIupdate_equip(SlotName, EquipItem);
         }
         else
         {
-            UE_LOG(LogTemp, Warning, TEXT("updateUi equip slot : %s is empty"), *SlotName);
             UIupdate_equip(SlotName, nullptr);
         }
     }

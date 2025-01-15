@@ -27,7 +27,6 @@ void AEquipItem::SetItemWithCode(int32 itemCode)
         FItemData* data = gameinstance->GetEquipItemData(itemCode);
         if (data == nullptr || data->_Name == TEXT(""))
         {
-            UE_LOG(LogTemp, Error, TEXT("Data Load Faild!"));
             return;
         }
 
@@ -55,15 +54,12 @@ void AEquipItem::SetEquipType(int num)
 
         FString EnumValueAsString = UEnum::GetValueAsString(_equipItemType);
 
-        UE_LOG(LogTemp, Warning, TEXT("SetEquipType = %d, %s"), num, *EnumValueAsString);
-
     }
     else
     {
         _equipItemType = EItemType::Helmet;
 
         FString EnumValueAsString = UEnum::GetValueAsString(_equipItemType);
-        UE_LOG(LogTemp, Warning, TEXT("Invalid num. Defaulting to Helmet. SetEquipType = %d, %s"), num, *EnumValueAsString);
     }
 }
 
@@ -83,33 +79,26 @@ void AEquipItem::EquipPlayer()
 {
     if (_player == nullptr)
     {
-        UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer = nullptr"));
         return;
     }
-    UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer"));
 
     if (_equipItem)
     {
         switch (_equipItemType)
         {
         case EItemType::UpperArmor:
-            UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer :: UPPER"));
             _player->GetMesh()->SetSkeletalMesh(_equipItem);
             break;
         case EItemType::LowerArmor:
-            UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer :: Lower"));
             _player->GetLowerBodyMesh()->SetSkeletalMesh(_equipItem);
             break;
         case EItemType::ShoulderArmor:
-            UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer :: Shoulder"));
             _player->GetShoulderBodyMesh()->SetSkeletalMesh(_equipItem);
             break;
         case EItemType::Sword:
-            UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer :: Sword"));
             _player->GetSwordBodyMesh()->SetSkeletalMesh(_equipItem);
             break;
         case EItemType::Shield:
-            UE_LOG(LogTemp, Warning, TEXT("EquipItem EquipPlayer :: Shield"));
             _player->GetShieldBodyMesh()->SetSkeletalMesh(_equipItem);
             break;
         default:

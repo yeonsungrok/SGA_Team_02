@@ -113,7 +113,6 @@ void AUIManager::OpenUI(UI_LIST ui)
 	if (ui == UI_LIST::Inventory || ui == UI_LIST::Shop || ui == UI_LIST::Options || ui == UI_LIST::Stat)
 	{
 		cnt++;
-		UE_LOG(LogTemp,Warning,TEXT("cnt : %d"),cnt);
 	}
 
 	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
@@ -125,7 +124,9 @@ void AUIManager::OpenUI(UI_LIST ui)
 	}
 
 	_uiList[UIindex]->SetVisibility(ESlateVisibility::Visible);
-	_uiList[UIindex]->AddToViewport(UIindex);
+	static int32 LastZOrder = 0;
+    LastZOrder++;
+    _uiList[UIindex]->AddToViewport(LastZOrder);
 
 	_uiIsOpen[UIindex] = true;
 }
@@ -142,8 +143,6 @@ void AUIManager::CloseUI(UI_LIST ui)
 	if (ui == UI_LIST::Inventory || ui == UI_LIST::Shop || ui == UI_LIST::Options || ui == UI_LIST::Stat)
 	{
 		cnt--;
-		UE_LOG(LogTemp,Warning,TEXT("cnt : %d"),cnt);
-	
 	}
 
 	_uiList[UIindex]->SetVisibility(ESlateVisibility::Hidden);

@@ -24,6 +24,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	 void LaunchTowards(FVector TargetLocation);
+     bool IsActive() const { return !bIsInactive; }
 
      virtual FString GetBoss2_HitEffect() const;
      virtual FString GetBoss2MissileTakeSound() const;
@@ -48,4 +49,5 @@ private:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
     class UNiagaraComponent* _niagaraBossCom;
 
+    bool bIsInactive;
 };

@@ -11,8 +11,6 @@
 #include "Engine/DamageEvents.h"
 #include "../Animation/Monster_Boss2_AnimInstance.h"
 #include "BossFireball.h"
-#include "SunderPool.h"
-#include "BossSunder.h"
 #include "NiagaraSystem.h"
 #include "NiagaraFunctionLibrary.h"
 #include "NiagaraComponent.h"
@@ -33,13 +31,7 @@ ABoss2Monster::ABoss2Monster()
 		_fireball = BF.Class;
 	}
 
-	static ConstructorHelpers::FClassFinder<ABossSunder> BS(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/Monster/BossMonster/BossSunder_BP.BossSunder_BP_C'"));
-	if (BS.Succeeded())
-	{
-		_sunder = BS.Class;
-	}
-	
-	SunderPool = NewObject<USunderPool>();
+
 
 	GetCapsuleComponent()->SetCapsuleHalfHeight(310.0f);
 	GetCapsuleComponent()->SetCapsuleRadius(100.0f);
@@ -51,6 +43,7 @@ ABoss2Monster::ABoss2Monster()
 void ABoss2Monster::BeginPlay()
 {
 	Super::BeginPlay();
+	InitializeFireballPool();
 
 }
 
@@ -73,48 +66,53 @@ void ABoss2Monster::PostInitializeComponents()
 void ABoss2Monster::FireballAttack(FVector Location)
 {
 	Isfire = true;
-	float FireballSpacing = 200.0f;
-	FVector InitialLocation = GetActorLocation() + FVector(0, 0, 300.0f);
-	FRotator SpawnRotation = FRotator::ZeroRotator;
+    float FireballSpacing = 200.0f;
+    FVector InitialLocation = GetActorLocation() + FVector(0, 0, 300.0f);
+    FRotator SpawnRotation = FRotator::ZeroRotator;
 
-	int FireballCount = 5;
-	float MiddleIndex = (FireballCount - 1) / 2.0f;
+    int FireballCount = 5;
+    float MiddleIndex = (FireballCount - 1) / 2.0f;
 
-	TArray<class ABossFireball *> Fireballs;
+    TArray<class ABossFireball*> Fireballs;
 
-	FVector ForwardVector = GetActorForwardVector();
-	FVector RightVector = GetActorRightVector();
+    FVector ForwardVector = GetActorForwardVector();
+    FVector RightVector = GetActorRightVector();
 
+    for (int i = 0; i < FireballCount; i++)
+    {
+        FVector Offset = RightVector * (i - MiddleIndex) * FireballSpacing;
+        FVector SpawnLocation = InitialLocation + Offset;
 
-	for (int i = 0; i < FireballCount; i++)
-	{
-		FVector Offset = RightVector * (i - MiddleIndex) * FireballSpacing;
-		FVector SpawnLocation = InitialLocation + Offset;
-
-		ABossFireball *Fireball = GetWorld()->SpawnActor<ABossFireball>(_fireball, SpawnLocation, SpawnRotation);
-		if (Fireball)
-		{
-			Fireballs.Add(Fireball);
-		}
-	}
-
+        ABossFireball* Fireball = FireballPool[i];
+        if (Fireball)
+        {
+            Fireball->SetActorLocation(SpawnLocation);
+            Fireball->SetActorHiddenInGame(false);
+            Fireball->SetActorEnableCollision(true);
+            Fireballs.Add(Fireball);
+        }
+    }
+	
 	if (Fireballs.IsValidIndex(0))
-	{
-		Fireballs[0]->LaunchTowards(Location);
-	}
+    {
+        Fireballs[0]->LaunchTowards(Location);
+    }
 
-	for (int i = 1; i < Fireballs.Num(); i++)
-	{
-		FTimerHandle TimerHandle;
+    for (int i = 1; i < Fireballs.Num(); i++)
+    {
+        FTimerHandle TimerHandle;
 
-		GetWorldTimerManager().SetTimer(TimerHandle, [this, Fireballs, i, Location]()
-										{
+        GetWorldTimerManager().SetTimer(TimerHandle, [this, Fireballs, i, Location]()
+        {
             if (Fireballs.IsValidIndex(i) && Fireballs[i])
             {
-                Fireballs[i]->LaunchTowards(UpdatedLocation());
-            } }, i * 0.5f, false);
-	}
-	Isfire = false;
+                FVector TargetLocation = UpdatedLocation();
+                Fireballs[i]->LaunchTowards(TargetLocation);
+            }
+        }, i * 0.5f, false);
+    }
+
+    Isfire = false;
 }
 
 FVector ABoss2Monster::UpdatedLocation()
@@ -232,9 +230,48 @@ void ABoss2Monster::AttackHit()
 
 		
 	}
-	//DrawDebugSphere(GetWorld(), center, attackRadius, 32, drawColor, false, 0.3f);
 
 
+}
+
+void ABoss2Monster::InitializeFireballPool()
+{
+	if (!_fireball) return;
+
+    for (int32 i = 0; i < PoolSize; ++i)
+    {
+        ABossFireball* Fireball = GetWorld()->SpawnActor<ABossFireball>(_fireball, FVector::ZeroVector, FRotator::ZeroRotator);
+        if (Fireball)
+        {
+            Fireball->SetActorEnableCollision(false);
+            Fireball->SetActorHiddenInGame(true);
+            FireballPool.Add(Fireball);
+        }
+    }
+}
+
+ABossFireball* ABoss2Monster::GetPooledFireball()
+{
+	for (ABossFireball* Fireball : FireballPool)
+    {
+        if (!Fireball->IsActive())
+        {
+            return Fireball;
+        }
+		else
+		{
+			continue;
+		}
+    }
+
+    ABossFireball* NewFireball = GetWorld()->SpawnActor<ABossFireball>(_fireball, FVector::ZeroVector, FRotator::ZeroRotator);
+    if (NewFireball)
+    {
+        NewFireball->SetActorEnableCollision(false);
+        NewFireball->SetActorHiddenInGame(true);
+        FireballPool.Add(NewFireball);
+    }
+    return NewFireball;
 }
 
 void ABoss2Monster::Skill_AI(FVector location)

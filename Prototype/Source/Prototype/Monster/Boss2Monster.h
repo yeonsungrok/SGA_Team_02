@@ -31,6 +31,10 @@ private:
 	virtual void Attack_AI() override;
 	virtual void AttackHit() override;
 	
+	void InitializeFireballPool();
+	class ABossFireball* GetPooledFireball();
+
+	
 
 	UFUNCTION()
 	void FireballAttack(FVector Location);
@@ -45,10 +49,9 @@ private:
 	TSubclassOf<class ABossFireball> _fireball;	
 
 	UPROPERTY()
-    class USunderPool* SunderPool;
+    TArray<class ABossFireball*> FireballPool;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	TSubclassOf<class ABossSunder> _sunder;
+    int32 PoolSize = 10;
 
 	bool Isfire;
 };

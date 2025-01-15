@@ -94,10 +94,6 @@ void USkillWidget::LockAllSkill()
         {
             CooldownOverlays[i]->SetOpacity(0.8f);
         }
-        else
-        {
-            UE_LOG(LogTemp, Warning, TEXT("CooldownOverlay[%d] is invalid!"), i);
-        }
     }
 
 }

@@ -180,17 +180,6 @@ void UStatWidget::UpdateStatDisplay()
 
 		BonusPointUpdate(player->_StatCom->GetBonusPoint());
 		PlLevelUpdate(player->_StatCom->GetLevel());
-
-		// 스탯 Log
-		UE_LOG(LogTemp, Warning, TEXT("HP: %d, MP: %d, STR: %d, DEX: %d, INT: %d, EXP: %d, BonusPoint: %d"),
-			player->_StatCom->GetMaxHp(),
-			player->_StatCom->GetMaxMp(),
-			player->_StatCom->GetStr(),
-			player->_StatCom->GetDex(),
-			player->_StatCom->GetInt(),
-			player->_StatCom->GetExp(),
-			player->_StatCom->GetBonusPoint());
-
 	}
 }
 

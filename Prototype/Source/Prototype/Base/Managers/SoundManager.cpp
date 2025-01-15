@@ -133,7 +133,6 @@ void ASoundManager::PlaySoundOnce(FString name, FVector location)
 				TempSoundEffect->Play(location);
 
 				float Duration = TempSoundEffect->GetDuration();
-				UE_LOG(LogTemp, Warning, TEXT("Playing sound for %f seconds."), Duration);
 
 				ActiveSounds.Add(name, TempSoundEffect);
 

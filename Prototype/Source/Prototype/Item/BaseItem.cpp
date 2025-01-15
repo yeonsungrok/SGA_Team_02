@@ -43,7 +43,6 @@ void ABaseItem::SetItemWithCode(int32 itemCode)
 		FItemData* data = gameinstance->GetConsumeItemData(itemCode);
 		if (data == nullptr || data->_Name == TEXT(""))
 		{
-			UE_LOG(LogTemp, Error, TEXT("Data Load Faild!"));
 			return;
 		}
 
@@ -106,7 +105,6 @@ void ABaseItem::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Othe
 	_player = Cast<AMyPlayer>(OtherActor);
 	if (_player == nullptr)
 		return;
-	UE_LOG(LogTemp, Warning, TEXT("Player Collision!"));
 	_player->GetItem(this);
 	Disable();
 }
@@ -139,11 +137,6 @@ void ABaseItem::SetPlayer()
         if (CurrentPlayer)
         {
             _player = CurrentPlayer;
-            UE_LOG(LogTemp, Warning, TEXT("Player set to: %s"), *_player->GetName());
-        }
-        else
-        {
-            UE_LOG(LogTemp, Warning, TEXT("Failed to find the current player."));
         }
     }
 }
