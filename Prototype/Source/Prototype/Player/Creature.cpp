@@ -20,7 +20,6 @@ ACreature::ACreature()
 	PrimaryActorTick.bCanEverTick = true;
 
 	bIsGuarding = false;
-	// cheol
 	_StatCom = CreateDefaultSubobject<UStatComponent>(TEXT("StatCom"));
 
 	_isTransformed = false;

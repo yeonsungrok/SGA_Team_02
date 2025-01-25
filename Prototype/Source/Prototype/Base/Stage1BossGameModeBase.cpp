@@ -110,7 +110,7 @@ void AStage1BossGameModeBase::BossStart()
 	ABossMonster *Boss = GetWorld()->SpawnActor<ABossMonster>(_boss, FVector(-7787.8f, -191.5f, 171.1f), FRotator::ZeroRotator, SpawnParams);
 	if (Boss)
 	{
-		Boss->_StatCom->SetBossLevelInit(1);
+		Boss->GetStatComponent()->SetBossLevelInit(1);
 		AAIController_BossMonster *BossAI = GetWorld()->SpawnActor<AAIController_BossMonster>(AAIController_BossMonster::StaticClass());
 		if (BossAI)
 		{
@@ -124,8 +124,8 @@ void AStage1BossGameModeBase::BossStart()
 			PlayerController->SetInputMode(FInputModeGameOnly());
 		}
 
-		Boss->_StatCom->_PlHPDelegate.AddUObject(UIManager->GetBossUI(), &UBoss1Widget::UpdateBossHPBar);
-		Boss->_StatCom->_deathDelegate.AddUObject(this, &AStage1BossGameModeBase::BossClear);
+		Boss->GetStatComponent()->_PlHPDelegate.AddUObject(UIManager->GetBossUI(), &UBoss1Widget::UpdateBossHPBar);
+		Boss->GetStatComponent()->_deathDelegate.AddUObject(this, &AStage1BossGameModeBase::BossClear);
 	}
 }
 

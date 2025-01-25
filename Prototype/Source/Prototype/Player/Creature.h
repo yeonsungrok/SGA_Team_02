@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -57,6 +57,8 @@ public:
 
 	bool GetIsAttacking() { return _isAttacking; }
 
+	UStatComponent *GetStatComponent() { return _StatCom; }
+
 	UFUNCTION()
 	virtual void OnAttackEnded(class UAnimMontage *Montage, bool bInterrupted);
 
@@ -65,9 +67,6 @@ public:
 	float GetVertical() { return _vertical; }
 	float GetHorizontal() { return _horizontal; }
 	int32 GetCurHp() { return _StatCom->GetCurHp(); }
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stat, meta = (AllowPrivateAccess = "true"))
-	UStatComponent *_StatCom;
 
 	FTimerHandle TimerHandle_Destroy;
 
@@ -95,6 +94,9 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Guard, meta = (AllowPrivateAccess = "true"))
 	bool bIsGuarding;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stat, meta = (AllowPrivateAccess = "true"))
+	UStatComponent *_StatCom;
 
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = "true"))

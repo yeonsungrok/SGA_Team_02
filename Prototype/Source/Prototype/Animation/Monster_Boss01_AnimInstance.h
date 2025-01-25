@@ -7,14 +7,14 @@
 #include "Monster_Boss01_AnimInstance.generated.h"
 
 /**
- * 
+ *
  */
 DECLARE_MULTICAST_DELEGATE(StunDelegate);
 UCLASS()
 class PROTOTYPE_API UMonster_Boss01_AnimInstance : public UBaseAnimInstance
 {
 	GENERATED_BODY()
-	
+
 public:
 	UMonster_Boss01_AnimInstance();
 
@@ -33,10 +33,7 @@ public:
 	UFUNCTION()
 	virtual void AnimNotify_Death() override;
 
-
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", Meta = (AllowPrivateAccess = true))
-	class UAnimMontage* _myUpAttackMontage;
-
-
+	class UAnimMontage *_myUpAttackMontage;
 };

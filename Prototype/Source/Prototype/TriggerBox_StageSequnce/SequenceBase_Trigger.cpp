@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "TriggerBox_StageSequnce/SequenceBase_Trigger.h"
 #include "LevelSequence.h"
 #include "LevelSequencePlayer.h"
@@ -27,10 +26,10 @@
 // Sets default values
 ASequenceBase_Trigger::ASequenceBase_Trigger()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+    // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+    PrimaryActorTick.bCanEverTick = true;
 
-	TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerBox"));
+    TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerBox"));
     RootComponent = TriggerBox;
 
     TriggerBox->SetBoxExtent(FVector(200.0f, 200.0f, 100.0f));
@@ -38,13 +37,12 @@ ASequenceBase_Trigger::ASequenceBase_Trigger()
     TriggerBox->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
     TriggerBox->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
     TriggerBox->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap);
-
 }
 
 // Called when the game starts or when spawned
 void ASequenceBase_Trigger::BeginPlay()
 {
-	Super::BeginPlay();
+    Super::BeginPlay();
 
     TriggerBox->OnComponentBeginOverlap.AddDynamic(this, &ASequenceBase_Trigger::OnTriggerEnter);
 
@@ -64,22 +62,21 @@ void ASequenceBase_Trigger::BeginPlay()
         {
             SequenceActor = OutActor;
 
-            Player->OnFinished.AddDynamic(this,&ASequenceBase_Trigger::OnSequenceFinished);
+            Player->OnFinished.AddDynamic(this, &ASequenceBase_Trigger::OnSequenceFinished);
         }
     }
-	
 }
 
 // Called every frame
 void ASequenceBase_Trigger::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
+    Super::Tick(DeltaTime);
 }
 
-void ASequenceBase_Trigger::OnTriggerEnter(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void ASequenceBase_Trigger::OnTriggerEnter(UPrimitiveComponent *OverlappedComponent, AActor *OtherActor,
+                                           UPrimitiveComponent *OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult &SweepResult)
 {
-	UIManager->CloseAll();
+    UIManager->CloseAll();
 
     ACreature *Creature = Cast<ACreature>(OtherActor);
     if (Creature)
@@ -104,7 +101,7 @@ void ASequenceBase_Trigger::OnTriggerEnter(UPrimitiveComponent* OverlappedCompon
 
 void ASequenceBase_Trigger::PlaySequence()
 {
-	if (SequenceActor)
+    if (SequenceActor)
     {
         ULevelSequencePlayer *Player = SequenceActor->GetSequencePlayer();
         if (Player)
@@ -134,7 +131,7 @@ void ASequenceBase_Trigger::OnSequenceFinished()
 
 void ASequenceBase_Trigger::HideSkillWidget()
 {
-	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
+    APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
     if (PlayerController)
     {
         AMyPlayerController *MyPlayerController = Cast<AMyPlayerController>(PlayerController);
@@ -147,7 +144,7 @@ void ASequenceBase_Trigger::HideSkillWidget()
 
 void ASequenceBase_Trigger::ShowSkillWidget()
 {
-	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
+    APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
     if (PlayerController)
     {
         AMyPlayerController *MyPlayerController = Cast<AMyPlayerController>(PlayerController);
@@ -157,4 +154,3 @@ void ASequenceBase_Trigger::ShowSkillWidget()
         }
     }
 }
-

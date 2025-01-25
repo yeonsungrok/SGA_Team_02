@@ -7,13 +7,12 @@
 #include "Monster_N_AnimInstance.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API UMonster_N_AnimInstance : public UBaseAnimInstance
 {
 	GENERATED_BODY()
-	
 
 public:
 	UMonster_N_AnimInstance();
@@ -23,6 +22,4 @@ public:
 
 	UFUNCTION()
 	virtual void AnimNotify_Death() override;
-
-
 };

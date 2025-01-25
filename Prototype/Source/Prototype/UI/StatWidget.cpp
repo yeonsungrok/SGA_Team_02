@@ -1,8 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "UI/StatWidget.h"
-
 
 #include "Base/MyGameInstance.h"
 #include "Base/Managers/UIManager.h"
@@ -14,11 +12,9 @@
 #include "Player/MyPlayer.h"
 #include "Components/TextBlock.h"
 
-
-
 void UStatWidget::NativeConstruct()
 {
-	
+
 	Super::NativeConstruct();
 
 	auto array = SlotGrid->GetAllChildren();
@@ -46,7 +42,6 @@ void UStatWidget::NativeConstruct()
 	if (STRUp)
 	{
 		STRUp->OnClicked.AddDynamic(this, &UStatWidget::STRUpClick);
-
 	}
 	if (DEXUp)
 	{
@@ -61,7 +56,7 @@ void UStatWidget::NativeConstruct()
 	{
 		HPDown->OnClicked.AddDynamic(this, &UStatWidget::HPDownClick);
 	}
-	
+
 	if (MPDown)
 	{
 		MPDown->OnClicked.AddDynamic(this, &UStatWidget::MPDownClick);
@@ -121,7 +116,6 @@ void UStatWidget::HPUpdate(int32 HP)
 	if (HPNum)
 	{
 		HPNum->SetText(FText::AsNumber(HP));
-
 	}
 }
 
@@ -165,81 +159,76 @@ void UStatWidget::BonusPointUpdate(int32 BonusPoint)
 	}
 }
 
-
 void UStatWidget::UpdateStatDisplay()
 {
-	AMyPlayer* player = Cast<AMyPlayer>(GetOwningPlayerPawn());
+	AMyPlayer *player = Cast<AMyPlayer>(GetOwningPlayerPawn());
 
-	if (player && player->_StatCom)
+	if (player && player->GetStatComponent())
 	{
-		HPUpdate(player->_StatCom->GetMaxHp());
-		MPUpdate(player->_StatCom->GetMaxMp());
-		STRUpdate(player->_StatCom->GetStr());
-		DEXUpdate(player->_StatCom->GetDex());
-		INTUpdate(player->_StatCom->GetInt());
+		HPUpdate(player->GetStatComponent()->GetMaxHp());
+		MPUpdate(player->GetStatComponent()->GetMaxMp());
+		STRUpdate(player->GetStatComponent()->GetStr());
+		DEXUpdate(player->GetStatComponent()->GetDex());
+		INTUpdate(player->GetStatComponent()->GetInt());
 
-		BonusPointUpdate(player->_StatCom->GetBonusPoint());
-		PlLevelUpdate(player->_StatCom->GetLevel());
+		BonusPointUpdate(player->GetStatComponent()->GetBonusPoint());
+		PlLevelUpdate(player->GetStatComponent()->GetLevel());
 	}
 }
 
 void UStatWidget::HPDownClick()
 {
 
-	AMyPlayer* player = Cast<AMyPlayer>(GetOwningPlayerPawn());
+	AMyPlayer *player = Cast<AMyPlayer>(GetOwningPlayerPawn());
 
-	if (player && player->_StatCom)
+	if (player && player->GetStatComponent())
 	{
-		int32 StatHp = player->_StatCom->GetMaxHp();
-		int32 baseHp = player->_StatCom->GetBaseStat(StatType::HP);
-		int32 bonusPoints = player->_StatCom->GetBonusPoint();
+		int32 StatHp = player->GetStatComponent()->GetMaxHp();
+		int32 baseHp = player->GetStatComponent()->GetBaseStat(StatType::HP);
+		int32 bonusPoints = player->GetStatComponent()->GetBonusPoint();
 
 		if (StatHp > baseHp)
 		{
-			player->_StatCom->SetMaxHp(StatHp - 100);
-			player->_StatCom->SetBonusPoint(bonusPoints + 1);
+			player->GetStatComponent()->SetMaxHp(StatHp - 100);
+			player->GetStatComponent()->SetBonusPoint(bonusPoints + 1);
 		}
 		UpdateStatDisplay();
 	}
 }
 
-
 void UStatWidget::HPUpClick()
 {
 
-	AMyPlayer* player = Cast<AMyPlayer>(GetOwningPlayerPawn());
+	AMyPlayer *player = Cast<AMyPlayer>(GetOwningPlayerPawn());
 
-	if (player && player->_StatCom)
+	if (player && player->GetStatComponent())
 	{
-		int32 StatHp = player->_StatCom->GetMaxHp();
-		int32 BonusPoints = player->_StatCom->GetBonusPoint();
+		int32 StatHp = player->GetStatComponent()->GetMaxHp();
+		int32 BonusPoints = player->GetStatComponent()->GetBonusPoint();
 
 		if (BonusPoints > 0)
 		{
-			player->_StatCom->SetMaxHp(StatHp + 100);
-			player->_StatCom->SetBonusPoint(BonusPoints - 1);
-
+			player->GetStatComponent()->SetMaxHp(StatHp + 100);
+			player->GetStatComponent()->SetBonusPoint(BonusPoints - 1);
 		}
 		UpdateStatDisplay();
-
-
 	}
 }
 
 void UStatWidget::MPDownClick()
 {
-	AMyPlayer* player = Cast<AMyPlayer>(GetOwningPlayerPawn());
+	AMyPlayer *player = Cast<AMyPlayer>(GetOwningPlayerPawn());
 
-	if (player && player->_StatCom)
+	if (player && player->GetStatComponent())
 	{
-		int32 StatMp = player->_StatCom->GetMaxMp();
-		int32 baseHp = player->_StatCom->GetBaseStat(StatType::MP);
-		int32 bonusPoints = player->_StatCom->GetBonusPoint();
+		int32 StatMp = player->GetStatComponent()->GetMaxMp();
+		int32 baseHp = player->GetStatComponent()->GetBaseStat(StatType::MP);
+		int32 bonusPoints = player->GetStatComponent()->GetBonusPoint();
 
 		if (StatMp > baseHp)
 		{
-			player->_StatCom->SetMaxMp(StatMp - 10);
-			player->_StatCom->SetBonusPoint(bonusPoints + 1);
+			player->GetStatComponent()->SetMaxMp(StatMp - 10);
+			player->GetStatComponent()->SetBonusPoint(bonusPoints + 1);
 		}
 		UpdateStatDisplay();
 	}
@@ -247,57 +236,54 @@ void UStatWidget::MPDownClick()
 
 void UStatWidget::MpUpClick()
 {
-	AMyPlayer* player = Cast<AMyPlayer>(GetOwningPlayerPawn());
+	AMyPlayer *player = Cast<AMyPlayer>(GetOwningPlayerPawn());
 
-	if (player && player->_StatCom)
+	if (player && player->GetStatComponent())
 	{
-		int32 StatMp = player->_StatCom->GetMaxMp();
-		int32 BonusPoints = player->_StatCom->GetBonusPoint();
+		int32 StatMp = player->GetStatComponent()->GetMaxMp();
+		int32 BonusPoints = player->GetStatComponent()->GetBonusPoint();
 
 		if (BonusPoints > 0)
 		{
-			player->_StatCom->SetMaxMp(StatMp + 10);
-			player->_StatCom->SetBonusPoint(BonusPoints - 1);
+			player->GetStatComponent()->SetMaxMp(StatMp + 10);
+			player->GetStatComponent()->SetBonusPoint(BonusPoints - 1);
 		}
 		UpdateStatDisplay();
-
-
 	}
 }
 
 void UStatWidget::STRDownClick()
 {
-	AMyPlayer* player = Cast<AMyPlayer>(GetOwningPlayerPawn());
+	AMyPlayer *player = Cast<AMyPlayer>(GetOwningPlayerPawn());
 
-	if (player && player->_StatCom)
+	if (player && player->GetStatComponent())
 	{
-		int32 StatStr = player->_StatCom->GetStr();
-		int32 baseHp = player->_StatCom->GetBaseStat(StatType::STR);
-		int32 bonusPoints = player->_StatCom->GetBonusPoint();
+		int32 StatStr = player->GetStatComponent()->GetStr();
+		int32 baseHp = player->GetStatComponent()->GetBaseStat(StatType::STR);
+		int32 bonusPoints = player->GetStatComponent()->GetBonusPoint();
 
 		if (StatStr > baseHp)
 		{
-			player->_StatCom->SetStr(StatStr - 1);
-			player->_StatCom->SetBonusPoint(bonusPoints + 1);
+			player->GetStatComponent()->SetStr(StatStr - 1);
+			player->GetStatComponent()->SetBonusPoint(bonusPoints + 1);
 		}
 		UpdateStatDisplay();
 	}
 }
 
-
 void UStatWidget::STRUpClick()
 {
-	AMyPlayer* player = Cast<AMyPlayer>(GetOwningPlayerPawn());
+	AMyPlayer *player = Cast<AMyPlayer>(GetOwningPlayerPawn());
 
-	if (player && player->_StatCom)
+	if (player && player->GetStatComponent())
 	{
-		int32 StatStr = player->_StatCom->GetStr();
-		int32 BonusPoints = player->_StatCom->GetBonusPoint();
+		int32 StatStr = player->GetStatComponent()->GetStr();
+		int32 BonusPoints = player->GetStatComponent()->GetBonusPoint();
 
 		if (BonusPoints > 0)
 		{
-			player->_StatCom->SetStr(StatStr + 1);
-			player->_StatCom->SetBonusPoint(BonusPoints - 1);
+			player->GetStatComponent()->SetStr(StatStr + 1);
+			player->GetStatComponent()->SetBonusPoint(BonusPoints - 1);
 		}
 		UpdateStatDisplay();
 	}
@@ -305,18 +291,18 @@ void UStatWidget::STRUpClick()
 
 void UStatWidget::DEXDownClick()
 {
-	AMyPlayer* player = Cast<AMyPlayer>(GetOwningPlayerPawn());
+	AMyPlayer *player = Cast<AMyPlayer>(GetOwningPlayerPawn());
 
-	if (player && player->_StatCom)
+	if (player && player->GetStatComponent())
 	{
-		int32 StatDex = player->_StatCom->GetDex();
-		int32 baseHp = player->_StatCom->GetBaseStat(StatType::DEX);
-		int32 bonusPoints = player->_StatCom->GetBonusPoint();
+		int32 StatDex = player->GetStatComponent()->GetDex();
+		int32 baseHp = player->GetStatComponent()->GetBaseStat(StatType::DEX);
+		int32 bonusPoints = player->GetStatComponent()->GetBonusPoint();
 
 		if (StatDex > baseHp)
 		{
-			player->_StatCom->SetDex(StatDex - 1);
-			player->_StatCom->SetBonusPoint(bonusPoints + 1);
+			player->GetStatComponent()->SetDex(StatDex - 1);
+			player->GetStatComponent()->SetBonusPoint(bonusPoints + 1);
 		}
 		UpdateStatDisplay();
 	}
@@ -324,17 +310,17 @@ void UStatWidget::DEXDownClick()
 
 void UStatWidget::DEXUpClick()
 {
-	AMyPlayer* player = Cast<AMyPlayer>(GetOwningPlayerPawn());
+	AMyPlayer *player = Cast<AMyPlayer>(GetOwningPlayerPawn());
 
-	if (player && player->_StatCom)
+	if (player && player->GetStatComponent())
 	{
-		int32 StatDex = player->_StatCom->GetDex();
-		int32 StatBonusPoints = player->_StatCom->GetBonusPoint();
+		int32 StatDex = player->GetStatComponent()->GetDex();
+		int32 StatBonusPoints = player->GetStatComponent()->GetBonusPoint();
 
 		if (StatBonusPoints > 0)
 		{
-			player->_StatCom->SetDex(StatDex + 1);
-			player->_StatCom->SetBonusPoint(StatBonusPoints - 1);
+			player->GetStatComponent()->SetDex(StatDex + 1);
+			player->GetStatComponent()->SetBonusPoint(StatBonusPoints - 1);
 		}
 		UpdateStatDisplay();
 	}
@@ -342,18 +328,18 @@ void UStatWidget::DEXUpClick()
 
 void UStatWidget::INTDownClick()
 {
-	AMyPlayer* player = Cast<AMyPlayer>(GetOwningPlayerPawn());
+	AMyPlayer *player = Cast<AMyPlayer>(GetOwningPlayerPawn());
 
-	if (player && player->_StatCom)
+	if (player && player->GetStatComponent())
 	{
-		int32 StatInt = player->_StatCom->GetInt();
-		int32 baseHp = player->_StatCom->GetBaseStat(StatType::INT);
-		int32 bonusPoints = player->_StatCom->GetBonusPoint();
+		int32 StatInt = player->GetStatComponent()->GetInt();
+		int32 baseHp = player->GetStatComponent()->GetBaseStat(StatType::INT);
+		int32 bonusPoints = player->GetStatComponent()->GetBonusPoint();
 
 		if (StatInt > baseHp)
 		{
-			player->_StatCom->SetInt(StatInt - 1);
-			player->_StatCom->SetBonusPoint(bonusPoints + 1);
+			player->GetStatComponent()->SetInt(StatInt - 1);
+			player->GetStatComponent()->SetBonusPoint(bonusPoints + 1);
 		}
 		UpdateStatDisplay();
 	}
@@ -361,17 +347,17 @@ void UStatWidget::INTDownClick()
 
 void UStatWidget::INTUpClick()
 {
-	AMyPlayer* player = Cast<AMyPlayer>(GetOwningPlayerPawn());
+	AMyPlayer *player = Cast<AMyPlayer>(GetOwningPlayerPawn());
 
-	if (player && player->_StatCom)
+	if (player && player->GetStatComponent())
 	{
-		int32 StatInt = player->_StatCom->GetInt();
-		int32 StatBonusPoints = player->_StatCom->GetBonusPoint();
+		int32 StatInt = player->GetStatComponent()->GetInt();
+		int32 StatBonusPoints = player->GetStatComponent()->GetBonusPoint();
 
 		if (StatBonusPoints > 0)
 		{
-			player->_StatCom->SetInt(StatInt + 1);
-			player->_StatCom->SetBonusPoint(StatBonusPoints - 1);
+			player->GetStatComponent()->SetInt(StatInt + 1);
+			player->GetStatComponent()->SetBonusPoint(StatBonusPoints - 1);
 		}
 		UpdateStatDisplay();
 	}

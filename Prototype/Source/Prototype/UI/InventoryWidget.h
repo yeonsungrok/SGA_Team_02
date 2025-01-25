@@ -22,19 +22,18 @@ UCLASS()
 class PROTOTYPE_API UInventoryWidget : public UUserWidget
 {
 	GENERATED_BODY()
-	
-	UInventoryWidget(const FObjectInitializer& ObjectInitializer);
+
+	UInventoryWidget(const FObjectInitializer &ObjectInitializer);
 
 	virtual bool Initialize() override;
 
 public:
-
 	void SetItemButtons();
 	void SetStats();
 
-	void UpdateItemSlot(int32 slotIndex, ABaseItem* item = nullptr);
+	void UpdateItemSlot(int32 slotIndex, ABaseItem *item = nullptr);
 	void UpdateAllEquipBtn();
-	void UpdateEquipSlot(FString slot, ABaseItem* item = nullptr);
+	void UpdateEquipSlot(FString slot, ABaseItem *item = nullptr);
 	void ShowItem();
 
 	UFUNCTION()
@@ -52,7 +51,7 @@ public:
 
 	void UpdateGold(int32 amount);
 
-	TArray<ABaseItem*> GetInvenContents();
+	TArray<ABaseItem *> GetInvenContents();
 
 private:
 	void SetTargetItem(int32 slotIndex);
@@ -102,8 +101,8 @@ private:
 	void TargetShield();
 
 public:
-	ItemDropDelegate  ItemDrop;
-	ItemUseDelegate   ItemUse;
+	ItemDropDelegate ItemDrop;
+	ItemUseDelegate ItemUse;
 	ItemEquipDelegate ItemEquip;
 	EquipDropDelegate EquipDrop;
 	EquipStripDelegate EquipStrip;
@@ -113,60 +112,59 @@ private:
 	FString _defaultText;
 
 	UPROPERTY()
-	ABaseItem* _targetItem = nullptr;
+	ABaseItem *_targetItem = nullptr;
 	UPROPERTY()
 	int32 _targetIndex = -1;
 
 	bool _isThisAlreadyTargetted = false;
 
 	UPROPERTY(meta = (BindWidget))
-	class UUniformGridPanel* ItemSlots;
+	class UUniformGridPanel *ItemSlots;
 	UPROPERTY(meta = (BindWidget))
-	TArray<UIndexedButton*> Button_;
+	TArray<UIndexedButton *> Button_;
 
 	UPROPERTY(meta = (BindWidget))
-	class UImage* ItemTexture;
+	class UImage *ItemTexture;
 	UPROPERTY(meta = (BindWidget))
-	class UTextBlock* ItemName;
+	class UTextBlock *ItemName;
 	UPROPERTY(meta = (BindWidget))
-	class UTextBlock* ItemDesc;
+	class UTextBlock *ItemDesc;
 
 	UPROPERTY(meta = (BindWidget))
-	class UButton* DropBtn;
+	class UButton *DropBtn;
 	UPROPERTY(meta = (BindWidget))
-	class UTextBlock* DropBtnText;
+	class UTextBlock *DropBtnText;
 	UPROPERTY(meta = (BindWidget))
-	class UButton* UseBtn;
+	class UButton *UseBtn;
 	UPROPERTY(meta = (BindWidget))
-	class UTextBlock* UseBtnText;
+	class UTextBlock *UseBtnText;
 
 	UPROPERTY(meta = (BindWidget))
-	TArray<UIndexedButton*> _EquipSlots;
+	TArray<UIndexedButton *> _EquipSlots;
 	UPROPERTY(meta = (BindWidget))
-	UIndexedButton* Helmet;
+	UIndexedButton *Helmet;
 	UPROPERTY(meta = (BindWidget))
-	UIndexedButton* ShoulderGuard;
+	UIndexedButton *ShoulderGuard;
 	UPROPERTY(meta = (BindWidget))
-	UIndexedButton* UpperArmor;
+	UIndexedButton *UpperArmor;
 	UPROPERTY(meta = (BindWidget))
-	UIndexedButton* LowerArmor;
+	UIndexedButton *LowerArmor;
 	UPROPERTY(meta = (BindWidget))
-	UIndexedButton* Sword;
+	UIndexedButton *Sword;
 	UPROPERTY(meta = (BindWidget))
-	UIndexedButton* Shield;
-
-
-	UPROPERTY(meta = (BindWidget))
-	class UUniformGridPanel* StatSlots;
-	
-	UPROPERTY(meta = (BindWidget))
-	TArray<class UTextBlock*> _originStat;
-	
-	UPROPERTY(meta = (BindWidget))
-	TArray<class UTextBlock*> _modStat;
+	UIndexedButton *Shield;
 
 	UPROPERTY(meta = (BindWidget))
-	class UTextBlock* GoldAmount;
+	class UUniformGridPanel *StatSlots;
+
+	UPROPERTY(meta = (BindWidget))
+	TArray<class UTextBlock *> _originStat;
+
+	UPROPERTY(meta = (BindWidget))
+	TArray<class UTextBlock *> _modStat;
+
+	UPROPERTY(meta = (BindWidget))
+	class UTextBlock *GoldAmount;
 
 	TArray<int32> _VogStat;
 };

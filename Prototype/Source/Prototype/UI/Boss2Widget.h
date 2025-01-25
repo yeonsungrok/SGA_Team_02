@@ -7,7 +7,7 @@
 #include "Boss2Widget.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API UBoss2Widget : public UUserWidget
@@ -20,5 +20,4 @@ public:
 private:
 	UPROPERTY(meta = (BindWidget))
 	class UProgressBar *BossHPBar;
-	
 };

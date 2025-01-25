@@ -1,13 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Player/MyDecal.h"
 #include "Engine/DecalActor.h"
 #include "Components/DecalComponent.h"
 #include "Engine/DamageEvents.h"
 #include "Kismet/GameplayStatics.h"
 #include "MyPlayer.h"
-
 
 AMyDecal::AMyDecal()
 {
@@ -63,5 +61,4 @@ void AMyDecal::Active(FVector location)
 
 void AMyDecal::DeActiveEvent(FVector location)
 {
-    
 }

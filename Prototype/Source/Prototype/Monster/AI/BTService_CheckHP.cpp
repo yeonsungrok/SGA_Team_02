@@ -24,13 +24,12 @@ void UBTService_CheckHP::TickNode(UBehaviorTreeComponent &OwnerComp, uint8 *Node
         return;
         
     ABossMonster *boss = Cast<ABossMonster>(AIController->GetPawn());
-    if (boss == nullptr || boss->_StatCom == nullptr)
+    if (boss == nullptr || boss->GetStatComponent() == nullptr)
     {
-        UE_LOG(LogTemp, Warning, TEXT("Boss or StatComponent is missing."));
         return;
     }
 
-    UStatComponent *stat = boss->_StatCom;
+    UStatComponent *stat = boss->GetStatComponent();
     float HealthPercentage = stat->HpRatio();
     
     OwnerComp.GetBlackboardComponent()->SetValueAsFloat("HpPersent", HealthPercentage);

@@ -45,7 +45,7 @@ void ABossObstacle::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor,
 	{
 		boss->DashEnd();
 		boss->DestroyObstacle();
-		boss->_StatCom->SetStun(true);
+		boss->GetStatComponent()->SetStun(true);
 
 		EffectManager->Play(*GetObstacleBreakEffect(), ObstacleMesh->GetComponentLocation());
 		SoundManager->PlaySound(*GetObstacleBreakSound(), ObstacleMesh->GetComponentLocation());

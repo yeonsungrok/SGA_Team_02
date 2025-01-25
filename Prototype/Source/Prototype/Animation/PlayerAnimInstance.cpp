@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "PlayerAnimInstance.h"
 #include "../Player/Creature.h"
 #include "../Player/MyPlayer.h"
@@ -9,21 +8,17 @@
 #include "Animation/AnimInstance.h"
 #include "Animation/AnimMontage.h"
 
-
 UPlayerAnimInstance::UPlayerAnimInstance()
 {
 
-
-	static ConstructorHelpers::FObjectFinder<UAnimMontage> Knignt
-	(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Player/Knight_Montage.Knight_Montage'"));
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> Knignt(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Player/Knight_Montage.Knight_Montage'"));
 
 	if (Knignt.Succeeded())
 	{
 		_myAnimMontage = Knignt.Object;
 	}
 
-	static ConstructorHelpers::FObjectFinder<UAnimMontage> Guard
-	(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Player/Shield_Montage.Shield_Montage'"));
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> Guard(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Player/Shield_Montage.Shield_Montage'"));
 	if (Guard.Succeeded())
 	{
 		_shieldMontage = Guard.Object;
@@ -33,51 +28,40 @@ UPlayerAnimInstance::UPlayerAnimInstance()
 	GuardEndSectionName = TEXT("GuardEnd");
 	GuardStartSectionName = TEXT("GuardStart");
 
-	static ConstructorHelpers::FObjectFinder<UAnimMontage> HitReaction
-	(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Player/HitMotionMontage.HitMotionMontage'"));
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> HitReaction(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Player/HitMotionMontage.HitMotionMontage'"));
 	if (HitReaction.Succeeded())
 	{
 		HitReactionMontage = HitReaction.Object;
 	}
 
-
-	static ConstructorHelpers::FObjectFinder<UAnimMontage> Skill01Montage
-	(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Player/Skill_01_Mongtage.Skill_01_Mongtage'"));
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> Skill01Montage(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Player/Skill_01_Mongtage.Skill_01_Mongtage'"));
 	if (Skill01Montage.Succeeded())
 	{
 		_skill01Montage = Skill01Montage.Object;
 	}
 
-	static ConstructorHelpers::FObjectFinder<UAnimMontage> Skill02Montage
-	(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Player/Skill_02_Mongtage.Skill_02_Mongtage'"));
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> Skill02Montage(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Player/Skill_02_Mongtage.Skill_02_Mongtage'"));
 	if (Skill02Montage.Succeeded())
 	{
 		_skill02Montage = Skill02Montage.Object;
 	}
 
-	static ConstructorHelpers::FObjectFinder<UAnimMontage> Skill03Montage
-	(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Player/Skill_03_Montage.Skill_03_Montage'"));
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> Skill03Montage(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Player/Skill_03_Montage.Skill_03_Montage'"));
 	if (Skill03Montage.Succeeded())
 	{
 		_skill03Montage = Skill03Montage.Object;
 	}
 
-
-
-	static ConstructorHelpers::FObjectFinder<UAnimMontage> ChangeMontage
-	(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Player/ChangeDragonMontage.ChangeDragonMontage'"));
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> ChangeMontage(TEXT("/Script/Engine.AnimMontage'/Game/Blueprint/Animation/Player/ChangeDragonMontage.ChangeDragonMontage'"));
 	if (ChangeMontage.Succeeded())
 	{
 		_changeMontage = ChangeMontage.Object;
 	}
-
-
-	
 }
 
 void UPlayerAnimInstance::PlayGuardMontage(bool bIsGuarding)
 {
-	if(bIsGuarding)
+	if (bIsGuarding)
 	{
 		if (!Montage_IsPlaying(_shieldMontage))
 		{
@@ -90,9 +74,7 @@ void UPlayerAnimInstance::PlayGuardMontage(bool bIsGuarding)
 	{
 		Montage_JumpToSection(FName("GuardEnd"), _shieldMontage);
 	}
-
 }
-
 
 void UPlayerAnimInstance::StopGuardMontage()
 {
@@ -126,7 +108,6 @@ void UPlayerAnimInstance::PlaySkill03Montage()
 	}
 }
 
-
 void UPlayerAnimInstance::PlayChangeMontage()
 {
 	if (_changeMontage)
@@ -149,6 +130,3 @@ void UPlayerAnimInstance::AnimNotify_Death()
 {
 	Super::AnimNotify_Death();
 }
-
-
-

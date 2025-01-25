@@ -9,7 +9,7 @@
 UCLASS()
 class PROTOTYPE_API AMiniMapActor : public AActor
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
     AMiniMapActor();
@@ -24,7 +24,5 @@ private:
     TSubclassOf<UUserWidget> MiniMapWidgetClass;
 
     UPROPERTY()
-    UUserWidget* MiniMapWidget;
-
-
+    UUserWidget *MiniMapWidget;
 };

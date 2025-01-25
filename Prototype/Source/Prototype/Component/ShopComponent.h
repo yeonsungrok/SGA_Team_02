@@ -23,19 +23,20 @@ struct FSellings : public FTableRowBase
 	int32 Code;
 };
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class PROTOTYPE_API UShopComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
+public:
 	// Sets default values for this component's properties
 	UShopComponent();
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
-public:	
+
+public:
 	void Init();
 
 	UFUNCTION()
@@ -48,10 +49,10 @@ public:
 	UFUNCTION()
 	void SalePlayerItem(int32 index, int32 amount);
 
-	void SetCustomer(AMyPlayer* target);
+	void SetCustomer(AMyPlayer *target);
 
 private:
-	TArray<ABaseItem*> _sallings;
+	TArray<ABaseItem *> _sallings;
 
-	AMyPlayer* _customer;
+	AMyPlayer *_customer;
 };

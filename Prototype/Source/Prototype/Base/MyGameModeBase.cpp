@@ -61,7 +61,7 @@ void AMyGameModeBase::BeginPlay()
 
 				if (StatComponent)
 				{
-					player->_StatCom->SetLevelInit(1);
+					player->GetStatComponent()->SetLevelInit(1);
 				}
 				if (InvenComponent)
 				{
@@ -87,7 +87,7 @@ void AMyGameModeBase::BeginPlay()
 					GameInstance->LoadInventory(InvenComponent);
 				}
 				GameInstance->LoadPlayerSkeletal(player);
-				player->_StatCom->Reset();
+				player->GetStatComponent()->Reset();
 
 				if (GameInstance->GetStage1Clear())
 				{
@@ -157,7 +157,7 @@ void AMyGameModeBase::SpawnMonster(FVector BaseLocation, FVector AddLocation)
 			ANormalMonster *Monster = GetWorld()->SpawnActor<ANormalMonster>(_monster, SpawnLocation, FRotator::ZeroRotator, SpawnParams);
 			if (Monster)
 			{
-				Monster->_StatCom->SetMonsterLevelInit(1);
+				Monster->GetStatComponent()->SetMonsterLevelInit(1);
 				AAIController_NormalMonster *MonsterAI = GetWorld()->SpawnActor<AAIController_NormalMonster>(AAIController_NormalMonster::StaticClass());
 				if (MonsterAI)
 				{

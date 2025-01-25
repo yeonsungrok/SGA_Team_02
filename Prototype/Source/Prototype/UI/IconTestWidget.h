@@ -7,7 +7,7 @@
 #include "IconTestWidget.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API UIconTestWidget : public UUserWidget
@@ -17,11 +17,8 @@ class PROTOTYPE_API UIconTestWidget : public UUserWidget
 public:
 	virtual void NativeConstruct() override;
 
-	void UpdateLocation( FVector2D& InPosition);
+	void UpdateLocation(FVector2D &InPosition);
 
 	UPROPERTY(meta = (BindWidget))
-	class UImage* conImage;
-
-
-	
+	class UImage *conImage;
 };

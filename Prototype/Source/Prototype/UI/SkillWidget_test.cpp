@@ -30,11 +30,9 @@ void USkillWidget_test::NativeConstruct()
     }
 }
 
-
-
 void USkillWidget_test::StartCooldown(int32 SkillIndex, float InMaxCooldownTime)
 {
-    if (SkillIndex < 0 || SkillIndex >= CooldownOverlays.Num()|| SkillLocked[SkillIndex])
+    if (SkillIndex < 0 || SkillIndex >= CooldownOverlays.Num() || SkillLocked[SkillIndex])
         return;
 
     MaxCooldownTimes[SkillIndex] = InMaxCooldownTime;
@@ -67,12 +65,12 @@ void USkillWidget_test::StartCooldown(int32 SkillIndex, float InMaxCooldownTime)
         {
             Player->SetSkillOnCooldown(SkillIndex, false);
         }
-    } }, GetWorld()->GetDeltaSeconds(), true); 
+    } }, GetWorld()->GetDeltaSeconds(), true);
 }
 
 void USkillWidget_test::ClearAll()
 {
-     for (int32 i = 0; i < CooldownTimerHandles.Num(); ++i)
+    for (int32 i = 0; i < CooldownTimerHandles.Num(); ++i)
     {
         if (GetWorld() && GetWorld()->GetTimerManager().IsTimerActive(CooldownTimerHandles[i]))
         {
@@ -92,7 +90,6 @@ void USkillWidget_test::LockAllSkill()
             CooldownOverlays[i]->SetOpacity(0.8f);
         }
     }
-
 }
 
 void USkillWidget_test::UnLockAllSkill()
@@ -150,5 +147,4 @@ void USkillWidget_test::UpdateCooldown(int32 SkillIndex)
             CooldownOverlays[SkillIndex]->SetOpacity(0.5f);
         }
     }
-
 }

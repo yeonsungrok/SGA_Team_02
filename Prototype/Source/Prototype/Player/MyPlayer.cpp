@@ -180,13 +180,10 @@ void AMyPlayer::BeginPlay()
 
 	if (DragonClass)
 	{
-		// DragonClass가 설정되었으면 DragonInstance를 생성
 		FVector SpawnLocation = GetActorLocation();
 		FRotator SpawnRotation = GetActorRotation();
 		FActorSpawnParameters SpawnParams;
 		SpawnParams.Owner = this;
-
-		// 드래곤 인스턴스 스폰
 		_dragonInstance = GetWorld()->SpawnActor<ADragon>(DragonClass, SpawnLocation, SpawnRotation, SpawnParams);
 	}
 }
@@ -219,9 +216,6 @@ void AMyPlayer::PostInitializeComponents()
 		_KnightanimInstance->_attackDelegate.AddUObject(this, &ACreature::AttackHit);
 		_KnightanimInstance->_deathDelegate.AddUObject(this, &AMyPlayer::Disable);
 		_KnightanimInstance->_comboDelegate.AddUObject(this, &AMyPlayer::NextCombo);
-		
-		/*_KnightanimInstance->_changeDelegate.AddUObject(this, &AMyPlayer::EndMontage);*/
-		//_KnightanimInstance->_endMontageDelegate.AddDynamic(this, &AMyPlayer::TransformToDragon);
 	}
 }
 
@@ -239,8 +233,6 @@ void AMyPlayer::Tick(float DeltaTime)
 	{
 		PerformDash(DeltaTime);
 	}
-
-
 }
 
 float AMyPlayer::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent, AController *EventInstigator, AActor *DamageCauser)
@@ -263,7 +255,7 @@ float AMyPlayer::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent
 	}
 	else
 	{
-		UBaseAnimInstance* AnimInstance = Cast<UBaseAnimInstance>(GetMesh()->GetAnimInstance());
+		UBaseAnimInstance *AnimInstance = Cast<UBaseAnimInstance>(GetMesh()->GetAnimInstance());
 		if (AnimInstance)
 		{
 			AnimInstance->PlayHitReactionMontage();
@@ -288,7 +280,7 @@ float AMyPlayer::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent
 
 			GetWorld()->GetTimerManager().SetTimer(TimerHandle_Destroy, this, &ACreature::DelayedDestroy, 2.0f, false);
 
-			UMyGameInstance* GameInstance = Cast<UMyGameInstance>(GetGameInstance());
+			UMyGameInstance *GameInstance = Cast<UMyGameInstance>(GetGameInstance());
 			if (GameInstance)
 			{
 				UIManager->CloseAll();
@@ -304,7 +296,6 @@ float AMyPlayer::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent
 
 	return 0.0f;
 }
-
 
 void AMyPlayer::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 {
@@ -330,8 +321,6 @@ void AMyPlayer::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 
 		EnhancedInputComponent->BindAction(_OptionsAction, ETriggerEvent::Started, this, &AMyPlayer::OptionsOpen);
 		EnhancedInputComponent->BindAction(_Change, ETriggerEvent::Started, this, &AMyPlayer::ToggleTransformation);
-
-	
 	}
 }
 
@@ -348,7 +337,7 @@ void AMyPlayer::UpdateCamera(float DeltaTime)
 {
 	if (_lockOnMonster)
 	{
-		if (_lockOnMonster->_StatCom->IsDead())
+		if (_lockOnMonster->GetStatComponent()->IsDead())
 		{
 			_lockOnMonster = nullptr;
 			_fixedCamera = false;
@@ -364,8 +353,6 @@ void AMyPlayer::UpdateCamera(float DeltaTime)
 	}
 }
 
-
-
 void AMyPlayer::GetItem(ABaseItem *item)
 {
 	if (item == nullptr)
@@ -373,21 +360,18 @@ void AMyPlayer::GetItem(ABaseItem *item)
 	_inventoryComponent->AddItem(0, item);
 }
 
-
-
 void AMyPlayer::Silent()
 {
-    LockAllSkill();
+	LockAllSkill();
 
-    FTimerHandle TimerHandle;
+	FTimerHandle TimerHandle;
 
-    GetWorld()->GetTimerManager().SetTimer(
-        TimerHandle, 
-        this, 
-        &AMyPlayer::UnLockAllSkill, 
-        3.0f, 
-        false
-    );
+	GetWorld()->GetTimerManager().SetTimer(
+		TimerHandle,
+		this,
+		&AMyPlayer::UnLockAllSkill,
+		3.0f,
+		false);
 }
 
 void AMyPlayer::LockAllSkill()
@@ -400,10 +384,10 @@ void AMyPlayer::UnLockAllSkill()
 	_skillWidgetInstance->UnLockAllSkill();
 }
 
-void AMyPlayer::OnAttackEnded(UAnimMontage* Montage, bool bInterrupted)
+void AMyPlayer::OnAttackEnded(UAnimMontage *Montage, bool bInterrupted)
 {
 	_isAttacking = false;
-	
+
 	_curAttackIndex = 1;
 }
 
@@ -597,23 +581,20 @@ void AMyPlayer::AttackA(const FInputActionValue &value)
 
 		_isAttacking = true;
 
-		
 		if (_curAttackIndex < 5)
 		{
 			_KnightanimInstance->PlayAttackMontage();
 			_KnightanimInstance->JumpToSection(_curAttackIndex);
 			_curAttackIndex++;
 		}
-	
+
 		else if (_curAttackIndex >= 5)
 		{
 			_KnightanimInstance->PlayAttackMontage();
-			_curAttackIndex = 1; 
+			_curAttackIndex = 1;
 			_KnightanimInstance->JumpToSection(_curAttackIndex);
 		}
 	}
-
-
 }
 
 void AMyPlayer::Skill1(const FInputActionValue &value)
@@ -622,7 +603,7 @@ void AMyPlayer::Skill1(const FInputActionValue &value)
 
 	if (isPressed && _skillWidgetInstance != nullptr)
 	{
-		if (SkillOnCooldown[0]|| _skillWidgetInstance->IsSkillLocked(0) || _StatCom->GetCurMp() < 10)
+		if (SkillOnCooldown[0] || _skillWidgetInstance->IsSkillLocked(0) || _StatCom->GetCurMp() < 10)
 			return;
 		else
 		{
@@ -693,7 +674,6 @@ void AMyPlayer::Skill1(const FInputActionValue &value)
 	}
 }
 
-
 void AMyPlayer::UpdateTeleportLocation()
 {
 	AMyPlayerController *PlayerController = Cast<AMyPlayerController>(GetController());
@@ -721,27 +701,26 @@ void AMyPlayer::UpdateTeleportLocation()
 void AMyPlayer::ConfirmTeleportLocation()
 {
 	_StatCom->AddCurMp(-10);
-	 AMyPlayerController* PlayerController = Cast<AMyPlayerController>(GetController());
-    if (PlayerController)
-    {
+	AMyPlayerController *PlayerController = Cast<AMyPlayerController>(GetController());
+	if (PlayerController)
+	{
 		TargetSkillLocation.Z += 100.f;
-        SetActorLocation(TargetSkillLocation);
-		EffectManager->Play("NS_Teleport",TargetSkillLocation);
+		SetActorLocation(TargetSkillLocation);
+		EffectManager->Play("NS_Teleport", TargetSkillLocation);
 
-        bIsTeleportReadyToCast = false;
+		bIsTeleportReadyToCast = false;
 
-        PlayerController->bShowMouseCursor = false;
-        PlayerController->SetInputMode(FInputModeGameOnly());
+		PlayerController->bShowMouseCursor = false;
+		PlayerController->SetInputMode(FInputModeGameOnly());
 
-        GetWorld()->GetTimerManager().ClearTimer(TimerHandle_UpdateTeleprotDecal);
+		GetWorld()->GetTimerManager().ClearTimer(TimerHandle_UpdateTeleprotDecal);
 
-        if (_skillWidgetInstance)
-        {
-            _skillWidgetInstance->StartCooldown(0, 5.0f); 
-        }
+		if (_skillWidgetInstance)
+		{
+			_skillWidgetInstance->StartCooldown(0, 5.0f);
+		}
 	}
 }
-
 
 void AMyPlayer::Skill2(const FInputActionValue &value)
 {
@@ -749,7 +728,7 @@ void AMyPlayer::Skill2(const FInputActionValue &value)
 
 	if (isPressed)
 	{
-		if (SkillOnCooldown[1]|| _skillWidgetInstance->IsSkillLocked(1)|| _StatCom->GetCurMp() < 10)
+		if (SkillOnCooldown[1] || _skillWidgetInstance->IsSkillLocked(1) || _StatCom->GetCurMp() < 10)
 			return;
 
 		if (_skillWidgetInstance != nullptr)
@@ -878,7 +857,7 @@ void AMyPlayer::Skill3(const FInputActionValue &value)
 
 	if (isPressed && _skillWidgetInstance != nullptr)
 	{
-		if (SkillOnCooldown[2] || _skillWidgetInstance->IsSkillLocked(2)|| _StatCom->GetCurMp() < 10)
+		if (SkillOnCooldown[2] || _skillWidgetInstance->IsSkillLocked(2) || _StatCom->GetCurMp() < 10)
 			return;
 		else
 		{
@@ -925,7 +904,7 @@ void AMyPlayer::Skill4(const FInputActionValue &value)
 
 	if (isPressed && _skillWidgetInstance != nullptr)
 	{
-		if (SkillOnCooldown[3]|| _skillWidgetInstance->IsSkillLocked(3)|| _StatCom->GetCurMp() < 10)
+		if (SkillOnCooldown[3] || _skillWidgetInstance->IsSkillLocked(3) || _StatCom->GetCurMp() < 10)
 			return;
 		else
 		{
@@ -939,8 +918,6 @@ void AMyPlayer::Skill4(const FInputActionValue &value)
 			SoundManager->PlaySound(*GetSkillSound04Start(), GetActorLocation());
 
 			EffectManager->PlayOnSkeletalMesh(*GetPlayerSkillEffect04_Durring(), _lowerBodyMesh, "root");
-			// SoundManager->PlaySound(*GetSkillSound04Durring(), GetActorLocation());
-			// SoundManager->StopSound(*GetSkillSound04Durring());
 			SoundManager->PlaySoundWithDuration(*GetSkillSound04Durring(), GetActorLocation(), 5.0f);
 		}
 	}
@@ -1028,7 +1005,6 @@ void AMyPlayer::GuardStart(const FInputActionValue &value)
 {
 	bIsGuarding = true;
 
-	// Animation
 	UPlayerAnimInstance *PlayerAnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 	if (PlayerAnimInstance)
 	{
@@ -1036,7 +1012,6 @@ void AMyPlayer::GuardStart(const FInputActionValue &value)
 	}
 }
 
-// cheol
 void AMyPlayer::StatUIOpen(const FInputActionValue &value)
 {
 	bool isPressed = value.Get<bool>();
@@ -1075,7 +1050,7 @@ void AMyPlayer::Interect(const FInputActionValue &value)
 	}
 }
 
-void AMyPlayer::OptionsOpen(const FInputActionValue& value)
+void AMyPlayer::OptionsOpen(const FInputActionValue &value)
 {
 	bool isPressed = value.Get<bool>();
 
@@ -1084,9 +1059,7 @@ void AMyPlayer::OptionsOpen(const FInputActionValue& value)
 	if (isPressed && OptionsUI != nullptr)
 	{
 		UIManager->ToggleUI(UI_LIST::Options);
-		//UIManager->OpenUI(UI_LIST::Options);
 	}
-
 }
 
 void AMyPlayer::PerformDash(float DeltaTime)
@@ -1140,23 +1113,16 @@ void AMyPlayer::ClearSkillTimer()
 
 void AMyPlayer::TransformToDragon()
 {
-	//if (_StatCom)
-	//{
-	//	_StatCom->SetDragonLevelInit(1);
-	//}
-
-	if(!GAMEINSTANCE->GetStage2Clear())
+	if (!GAMEINSTANCE->GetStage2Clear())
 		return;
-		
+
 	if (!_dragonInstance)
 	{
-		// 드래곤 인스턴스 생성
 		FVector SpawnLocation = GetActorLocation();
 		FRotator SpawnRotation = GetActorRotation();
 		FActorSpawnParameters SpawnParams;
 		SpawnParams.Owner = this;
 
-		// 드래곤 스폰
 		_dragonInstance = GetWorld()->SpawnActor<ADragon>(DragonClass, SpawnLocation, SpawnRotation, SpawnParams);
 		if (!_dragonInstance)
 		{
@@ -1164,33 +1130,26 @@ void AMyPlayer::TransformToDragon()
 		}
 	}
 
-	// 상태 저장 및 변환 로직
 	if (APlayerController *PC = Cast<APlayerController>(GetController()))
 	{
-
-		// Dragon 활성화
 		_dragonInstance->SetActorHiddenInGame(false);
 		_dragonInstance->SetActorEnableCollision(true);
 
-		_dragonInstance->SetActorLocation(GetActorLocation()); // 동일한 위치
-		_dragonInstance->SetActorRotation(GetActorRotation()); // 동일한 회전
+		_dragonInstance->SetActorLocation(GetActorLocation());
+		_dragonInstance->SetActorRotation(GetActorRotation());
 
-		// MyPlayer 비활성화
 		SetActorHiddenInGame(true);
 		SetActorEnableCollision(false);
 
-		// 컨트롤 전환
 		PC->Possess(_dragonInstance);
 
 		_isTransformed = true;
 		_dragonInstance->_isTransformed = true;
-
 	}
 }
 
 void AMyPlayer::TransformToHuman()
 {
-	// Dragon에서 MyPlayer로 복귀
 	_dragonInstance->TransformToHuman();
 }
 
@@ -1201,36 +1160,33 @@ void AMyPlayer::ToggleTransformation()
 		return;
 	}
 
-	if (_isTransformed) // 현재 변환된 상태이면 인간으로 복귀
+	if (_isTransformed)
 	{
 		TransformToHuman();
 	}
-	else // 그렇지 않으면 드래곤으로 변환
+	else
 	{
-		UPlayerAnimInstance* AnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
+		UPlayerAnimInstance *AnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 		if (AnimInstance)
 		{
-			// 몽타주 재생
 			AnimInstance->PlayChangeMontage();
 
-			// 몽타주 종료 이벤트와 연결
 			AnimInstance->OnMontageEnded.AddDynamic(this, &AMyPlayer::HandleMontageEnd);
 			StartTransformationCooldown();
 		}
 	}
 }
 
-void AMyPlayer::HandleMontageEnd(UAnimMontage* Montage, bool bInterrupted)
+void AMyPlayer::HandleMontageEnd(UAnimMontage *Montage, bool bInterrupted)
 {
-	UPlayerAnimInstance* AnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
+	UPlayerAnimInstance *AnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 	if (AnimInstance && Montage == AnimInstance->GetChangeMontage())
 	{
-		if (!bInterrupted && !_isTransformed) // 몽타주가 정상 종료되었고 변환 상태가 아닌 경우
+		if (!bInterrupted && !_isTransformed)
 		{
 			TransformToDragon();
 		}
 
-		// 델리게이트 연결 해제
 		AnimInstance->OnMontageEnded.RemoveDynamic(this, &AMyPlayer::HandleMontageEnd);
 	}
 }
@@ -1239,14 +1195,12 @@ void AMyPlayer::StartTransformationCooldown()
 {
 	_bCanTransform = false;
 
-	// 타이머 설정
 	GetWorldTimerManager().SetTimer(
 		_transformCooldownHandle,
 		this,
 		&AMyPlayer::ResetTransformationCooldown,
 		_transformCooldown,
-		false
-	);
+		false);
 }
 
 void AMyPlayer::ResetTransformationCooldown()

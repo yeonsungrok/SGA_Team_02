@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "UI/Elements/IndexedButton.h"
 #include "Base/MyGameInstance.h"
 #include "Base/Managers/UIManager.h"
@@ -27,6 +26,6 @@ void UIndexedButton::ButtonUpdate()
 	btnStyle.SetNormal(imageBrush);
 	btnStyle.SetHovered(imageBrush);
 	btnStyle.SetPressed(imageBrush);
-	
+
 	this->SetStyle(btnStyle);
 }

@@ -131,7 +131,7 @@ float ABossMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEv
 		auto controller = GetController();
 		if (controller)
 			GetController()->UnPossess();
-		player->_StatCom->AddExp(_StatCom->GetNextExp());
+		player->GetStatComponent()->AddExp(_StatCom->GetNextExp());
 		player->GetInventory()->AddMoney(1000);
 
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle_Destroy, this, &ACreature::DelayedDestroy, 2.0f, false);

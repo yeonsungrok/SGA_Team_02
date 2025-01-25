@@ -44,8 +44,6 @@ public:
 
 	virtual void SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent) override;
 
-	UStatComponent *GetStatComponent() { return _StatCom; }
-
 	UPROPERTY(BlueprintAssignable, Category = "Equipment")
 	FOnItemEquipped ItemEquipped;
 
@@ -118,7 +116,6 @@ private:
 	void Interect(const FInputActionValue &value);
 	void OptionsOpen(const FInputActionValue &value);
 
-	// TODO : FIX
 	void UpdateDecalLocation();
 
 	void ConfirmSkillLocation();

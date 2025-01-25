@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "UI/InventoryWidget.h"
 
 #include "Base/MyGameInstance.h"
@@ -18,7 +17,7 @@
 #include "Item/Equip/EquipItem.h"
 #include "Component/StatComponent.h"
 
-UInventoryWidget::UInventoryWidget(const FObjectInitializer& ObjectInitializer)
+UInventoryWidget::UInventoryWidget(const FObjectInitializer &ObjectInitializer)
 	: UUserWidget(ObjectInitializer)
 {
 }
@@ -60,13 +59,13 @@ bool UInventoryWidget::Initialize()
 
 void UInventoryWidget::SetItemButtons()
 {
-	TArray<UWidget*> widgets;
+	TArray<UWidget *> widgets;
 	widgets = ItemSlots->GetAllChildren();
 
 	int32 index = 0;
-	for (UWidget* widget : widgets)
+	for (UWidget *widget : widgets)
 	{
-		UIndexedButton* button = Cast<UIndexedButton>(widget);
+		UIndexedButton *button = Cast<UIndexedButton>(widget);
 		if (button)
 		{
 			button->SetIndex(index);
@@ -94,22 +93,22 @@ void UInventoryWidget::SetItemButtons()
 
 void UInventoryWidget::SetStats()
 {
-	TArray<UWidget*> widgets;
+	TArray<UWidget *> widgets;
 	widgets = StatSlots->GetAllChildren();
 
 	for (int i = 5; i < 10; i++)
 	{
-		UTextBlock* textblock = Cast<UTextBlock>(widgets[i]);
+		UTextBlock *textblock = Cast<UTextBlock>(widgets[i]);
 		_originStat.Add(textblock);
 	}
 	for (int i = 15; i < widgets.Num(); i++)
 	{
-		UTextBlock* textblock = Cast<UTextBlock>(widgets[i]);
+		UTextBlock *textblock = Cast<UTextBlock>(widgets[i]);
 		_modStat.Add(textblock);
 	}
 }
 
-void UInventoryWidget::UpdateItemSlot(int32 slotIndex, ABaseItem* item)
+void UInventoryWidget::UpdateItemSlot(int32 slotIndex, ABaseItem *item)
 {
 	Button_[slotIndex]->SetItem(item);
 	Button_[slotIndex]->ButtonUpdate();
@@ -125,48 +124,47 @@ void UInventoryWidget::UpdateAllEquipBtn()
 	Shield->ButtonUpdate();
 }
 
-void UInventoryWidget::UpdateEquipSlot(FString slot, ABaseItem* item)
+void UInventoryWidget::UpdateEquipSlot(FString slot, ABaseItem *item)
 {
 	if (item)
-    {
-        UE_LOG(LogTemp, Warning, TEXT("UpdateEquipSlot: %s - Item: %s"), *slot, *item->GetName());
-    }
-    else
-    {
-        UE_LOG(LogTemp, Warning, TEXT("UpdateEquipSlot: %s - Item: None"), *slot);
-    }
-	
-    if (slot == TEXT("Helmet"))
-    {
-        Helmet->SetItem(item);
+	{
+		UE_LOG(LogTemp, Warning, TEXT("UpdateEquipSlot: %s - Item: %s"), *slot, *item->GetName());
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("UpdateEquipSlot: %s - Item: None"), *slot);
+	}
+
+	if (slot == TEXT("Helmet"))
+	{
+		Helmet->SetItem(item);
 		Helmet->ButtonUpdate();
-    }
-    else if (slot == TEXT("UpperArmor"))
-    {
-        UpperArmor->SetItem(item);
+	}
+	else if (slot == TEXT("UpperArmor"))
+	{
+		UpperArmor->SetItem(item);
 		UpperArmor->ButtonUpdate();
-    }
-    else if (slot == TEXT("ShoulderArmor"))
-    {
-        ShoulderGuard->SetItem(item);
+	}
+	else if (slot == TEXT("ShoulderArmor"))
+	{
+		ShoulderGuard->SetItem(item);
 		ShoulderGuard->ButtonUpdate();
-    }
-    else if (slot == TEXT("LowerArmor"))
-    {
-        LowerArmor->SetItem(item);
+	}
+	else if (slot == TEXT("LowerArmor"))
+	{
+		LowerArmor->SetItem(item);
 		LowerArmor->ButtonUpdate();
-    }
-    else if (slot == TEXT("Sword"))
-    {
-        Sword->SetItem(item);
+	}
+	else if (slot == TEXT("Sword"))
+	{
+		Sword->SetItem(item);
 		Sword->ButtonUpdate();
-    }
-    else if (slot == TEXT("Shield"))
-    {
-        Shield->SetItem(item);
+	}
+	else if (slot == TEXT("Shield"))
+	{
+		Shield->SetItem(item);
 		Shield->ButtonUpdate();
-    }
-    
+	}
 }
 
 void UInventoryWidget::ShowItem()
@@ -212,7 +210,7 @@ void UInventoryWidget::DropItem()
 	else
 	{
 		FString part;
-		AEquipItem* target = Cast<AEquipItem>(_targetItem);
+		AEquipItem *target = Cast<AEquipItem>(_targetItem);
 		switch (target->GetEquipType())
 		{
 		case EItemType::Helmet:
@@ -243,7 +241,6 @@ void UInventoryWidget::DropItem()
 	_targetItem = nullptr;
 	ShowItem();
 	_targetIndex = -1;
-	
 }
 
 void UInventoryWidget::UseItem()
@@ -255,7 +252,7 @@ void UInventoryWidget::UseItem()
 		if (_targetIndex == -1)
 		{
 			FString part;
-			AEquipItem* target = Cast<AEquipItem>(_targetItem);
+			AEquipItem *target = Cast<AEquipItem>(_targetItem);
 			switch (target->GetEquipType())
 			{
 			case EItemType::Helmet:
@@ -312,9 +309,10 @@ void UInventoryWidget::UseItem()
 
 void UInventoryWidget::CheckCanEquip()
 {
-	AEquipItem* target = Cast<AEquipItem>(_targetItem);
+	AEquipItem *target = Cast<AEquipItem>(_targetItem);
 
-	if (target == nullptr) UE_LOG(LogTemp, Error, TEXT("Equip Missed!"));
+	if (target == nullptr)
+		UE_LOG(LogTemp, Error, TEXT("Equip Missed!"));
 
 	switch (target->GetEquipType())
 	{
@@ -404,9 +402,9 @@ void UInventoryWidget::UpdateGold(int32 amount)
 	GoldAmount->SetText(FText::FromString(FString::FromInt(amount)));
 }
 
-TArray<ABaseItem*> UInventoryWidget::GetInvenContents()
+TArray<ABaseItem *> UInventoryWidget::GetInvenContents()
 {
-	TArray<ABaseItem*> ItemList;
+	TArray<ABaseItem *> ItemList;
 
 	for (auto itemBTN : Button_)
 	{
@@ -420,8 +418,9 @@ void UInventoryWidget::SetTargetItem(int32 slotIndex)
 	if (Button_[slotIndex] == nullptr)
 		return;
 
-	ABaseItem* item = Button_[slotIndex]->GetItem();
-	if (item == nullptr) return;
+	ABaseItem *item = Button_[slotIndex]->GetItem();
+	if (item == nullptr)
+		return;
 
 	if (_targetItem == item)
 		_isThisAlreadyTargetted = true;
@@ -435,7 +434,7 @@ void UInventoryWidget::SetTargetItem(int32 slotIndex)
 
 void UInventoryWidget::SetTargetEquip(EItemType equip)
 {
-	ABaseItem* item = nullptr;
+	ABaseItem *item = nullptr;
 
 	switch (equip)
 	{
@@ -458,7 +457,8 @@ void UInventoryWidget::SetTargetEquip(EItemType equip)
 		item = Shield->GetItem();
 		break;
 	}
-	if (item == nullptr) return;
+	if (item == nullptr)
+		return;
 
 	if (_targetItem == item)
 		_isThisAlreadyTargetted = true;

@@ -21,7 +21,7 @@ AFireball::AFireball()
     _sphereCom->InitSphereRadius(15.0f);
     _sphereCom->SetCollisionProfileName(TEXT("Projectile"));
     RootComponent = _sphereCom;
-       
+
     _niagaraCom = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NS_Projectile_01"));
     _niagaraCom->SetupAttachment(RootComponent);
 
@@ -31,9 +31,9 @@ AFireball::AFireball()
     _moveCom->bRotationFollowsVelocity = true;
     _moveCom->ProjectileGravityScale = 0.0f;
 
-    InitialLifeSpan = 5.0f; 
-    OrbitRadius = 100.0f;  
-    OrbitSpeed = 2.0f;    
+    InitialLifeSpan = 5.0f;
+    OrbitRadius = 100.0f;
+    OrbitSpeed = 2.0f;
     _damage = 50.f;
 }
 
@@ -59,7 +59,7 @@ void AFireball::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
-    if(Player ==nullptr)
+    if (Player == nullptr)
     {
         return;
     }
@@ -76,20 +76,20 @@ void AFireball::Tick(float DeltaTime)
 
     SetActorLocation(NewLocation);
 
-    AMonster* NearestMonster = FindNearestMonster();
+    AMonster *NearestMonster = FindNearestMonster();
     if (NearestMonster)
     {
         Player = nullptr;
         FVector Direction = (NearestMonster->GetActorLocation() - GetActorLocation()).GetSafeNormal();
 
-        _moveCom->Velocity = Direction * 1500.0f; 
+        _moveCom->Velocity = Direction * 1500.0f;
 
         OrbitSpeed = 0.0f;
         OrbitRadius = 0.0f;
     }
 }
 
-AMonster* AFireball::FindNearestMonster()
+AMonster *AFireball::FindNearestMonster()
 {
 
     float SearchRadius = OrbitRadius + 150.0f;
@@ -104,19 +104,18 @@ AMonster* AFireball::FindNearestMonster()
         FireballLocation,
         FireballLocation,
         FQuat::Identity,
-        ECC_GameTraceChannel2, 
+        ECC_GameTraceChannel2,
         FCollisionShape::MakeSphere(SearchRadius),
-        QueryParams
-    );
+        QueryParams);
 
-    AMonster* NearestMonster = nullptr;
+    AMonster *NearestMonster = nullptr;
     float ShortestDistance = SearchRadius;
 
     if (bHit)
     {
-        for (const FHitResult& Hit : HitResults)
+        for (const FHitResult &Hit : HitResults)
         {
-            AMonster* Monster = Cast<AMonster>(Hit.GetActor());
+            AMonster *Monster = Cast<AMonster>(Hit.GetActor());
             if (Monster)
             {
                 float Distance = FVector::Dist(FireballLocation, Monster->GetActorLocation());
@@ -132,8 +131,7 @@ AMonster* AFireball::FindNearestMonster()
     return NearestMonster;
 }
 
-
-void AFireball::OnMyCharacterOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AFireball::OnMyCharacterOverlap(UPrimitiveComponent *OverlappedComponent, AActor *OtherActor, UPrimitiveComponent *OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult &SweepResult)
 {
     auto monster = Cast<AMonster>(OtherActor);
     if (monster)
