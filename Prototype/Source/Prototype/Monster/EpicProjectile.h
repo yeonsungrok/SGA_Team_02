@@ -10,8 +10,8 @@ UCLASS()
 class PROTOTYPE_API AEpicProjectile : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AEpicProjectile();
 
@@ -19,43 +19,36 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void PostInitializeComponents() override;
 
-	void FireInDirection(const FVector& ShootDirection);
+	void FireInDirection(const FVector &ShootDirection);
 
 	UFUNCTION()
-	void OnMyCharacterOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromWeep, const FHitResult& SweepResult);
-	void WitchMa(class AEpicMonster_witch* archer) { _Witch = archer; }
+	void OnMyCharacterOverlap(UPrimitiveComponent *OverlappedComponent, AActor *OtherActor, UPrimitiveComponent *OtherComp, int32 OtherBodyIndex, bool bFromWeep, const FHitResult &SweepResult);
+	void WitchMa(class AEpicMonster_witch *archer) { _Witch = archer; }
 	void SetDamage(int32 Amount) { _damage = Amount; }
 
 	void Init();
 	void Disable();
-	
-
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Mesh, meta = (AllowPrivateAccess = "true"))
-	class USkeletalMeshComponent* _EpicMesh;
+	class USkeletalMeshComponent *_EpicMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Mesh, meta = (AllowPrivateAccess = "true"))
-	class UCapsuleComponent* _collider;
+	class UCapsuleComponent *_collider;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Mesh, meta = (AllowPrivateAccess = "true"))
-	class UProjectileMovementComponent* _movementCom;
-	
+	class UProjectileMovementComponent *_movementCom;
 
-
-
-	// witch	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Damage, meta = (AllowPrivateAccess = "true"))
-	class AEpicMonster_witch* _Witch;
+	class AEpicMonster_witch *_Witch;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Mesh, meta = (AllowPrivateAccess = "true"))
 	int32 _damage;
 
 	FTimerHandle _timerHandle;
-
 };

@@ -14,15 +14,13 @@
 #include "Blueprint/UserWidget.h"
 #include "StageSequence_Trigger.generated.h"
 
-
-
 class UUserWidget;
 UCLASS()
 class PROTOTYPE_API AStageSequence_Trigger : public ASequenceBase_Trigger
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AStageSequence_Trigger();
 
@@ -30,5 +28,5 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-    virtual void OnSequenceFinished() override;
+	virtual void OnSequenceFinished() override;
 };

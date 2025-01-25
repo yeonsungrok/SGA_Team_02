@@ -7,7 +7,7 @@
 #include "Portal_Home.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API APortal_Home : public APortal
@@ -15,5 +15,4 @@ class PROTOTYPE_API APortal_Home : public APortal
 	GENERATED_BODY()
 public:
 	APortal_Home();
-	
 };

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "../BaseItem.h" 
+#include "../BaseItem.h"
 #include "EquipItem.generated.h"
 
 UENUM(BlueprintType)
@@ -19,24 +19,24 @@ enum class EItemType : uint8
 };
 
 UCLASS()
-class PROTOTYPE_API AEquipItem : public ABaseItem 
+class PROTOTYPE_API AEquipItem : public ABaseItem
 {
     GENERATED_BODY()
-    
-public:    
+
+public:
     // Sets default values for this actor's properties
     AEquipItem();
 
-    virtual void SetItemWithCode(int32 itemCode)override;
+    virtual void SetItemWithCode(int32 itemCode) override;
 
-    ItemType GetArmorType(){return _Type;}
-    EItemType GetEquipType(){return _equipItemType;}
+    ItemType GetArmorType() { return _Type; }
+    EItemType GetEquipType() { return _equipItemType; }
     void SetEquipType(int num);
 
 public:
     // Called when the game starts or when spawned
     virtual void BeginPlay() override;
-  
+
     // Called every frame
     virtual void Tick(float DeltaTime) override;
 
@@ -53,7 +53,7 @@ protected:
 private:
     bool _isEquipped = false;
 
-public:  
+public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "EquipItem")
-    class USkeletalMesh* _equipItem;
+    class USkeletalMesh *_equipItem;
 };

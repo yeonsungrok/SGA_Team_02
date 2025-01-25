@@ -10,8 +10,7 @@
 #include "NiagaraSystem.h"
 #include "MyPlayer.generated.h"
 
-
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnItemEquipped, AEquipItem*, EquipItem);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnItemEquipped, AEquipItem *, EquipItem);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FINTERECT);
 
 struct FInputActionValue;
@@ -37,44 +36,38 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	
 
 public:
 	virtual void PostInitializeComponents() override;
 	virtual void Tick(float DeltaTime) override;
-	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)override;
+	virtual float TakeDamage(float Damage, struct FDamageEvent const &DamageEvent, AController *EventInstigator, AActor *DamageCauser) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent) override;
 
-	UStatComponent* GetStatComponent() { return _StatCom; }
+	UStatComponent *GetStatComponent() { return _StatCom; }
 
-	UPROPERTY(BlueprintAssignable,Category = "Equipment")
+	UPROPERTY(BlueprintAssignable, Category = "Equipment")
 	FOnItemEquipped ItemEquipped;
-	
-	bool IsDashing() { return bIsDashing; }
 
-	//TODO: Monster로 변경
+	bool IsDashing() { return bIsDashing; }
 	void OnMonsterHit(class AMonster *HitMonster, const FHitResult &Hit);
 
 	void UpdateCamera(float DeltaTime);
 
 	void SetSkillOnCooldown(int32 index, bool cool) { SkillOnCooldown[index] = cool; }
-	void GetItem(ABaseItem* item);
+	void GetItem(ABaseItem *item);
 
 	void Silent();
 	void LockAllSkill();
 	void UnLockAllSkill();
 
-
-
-	virtual void OnAttackEnded(class UAnimMontage* Montage, bool bInterrupted) override;
+	virtual void OnAttackEnded(class UAnimMontage *Montage, bool bInterrupted) override;
 	void NextCombo();
 
 	void EquipBaseBody();
 	void EquipBaseLower();
 	void EquipBaseShoulder();
 
-	// Animation
 	float GetVertical() { return _vertical; }
 	float GetHorizontal() { return _horizontal; }
 
@@ -83,7 +76,7 @@ public:
 	virtual FString GetGuardOn() const override;
 	virtual FString GetGuardOff() const override;
 	virtual FString GetSkillSound01() const override;
-	virtual FString GetSkillSound02()const override;
+	virtual FString GetSkillSound02() const override;
 	virtual FString GetSkillParticleEffect02() const override;
 	virtual FString GetPlayerAttackHitEffect() const override;
 	virtual FString GetSkillSound03() const override;
@@ -99,14 +92,13 @@ public:
 
 	FINTERECT interectNPC;
 
-	USkeletalMeshComponent* GetLowerBodyMesh() {return _lowerBodyMesh;}
-	USkeletalMeshComponent* GetShoulderBodyMesh() {return _shoulderBodyMesh;}
-	USkeletalMeshComponent* GetSwordBodyMesh() {return _swordBodyMesh;}
-	USkeletalMeshComponent* GetShieldBodyMesh() {return _shieldBodyMesh;}
+	USkeletalMeshComponent *GetLowerBodyMesh() { return _lowerBodyMesh; }
+	USkeletalMeshComponent *GetShoulderBodyMesh() { return _shoulderBodyMesh; }
+	USkeletalMeshComponent *GetSwordBodyMesh() { return _swordBodyMesh; }
+	USkeletalMeshComponent *GetShieldBodyMesh() { return _shieldBodyMesh; }
 
-	class UInventoryComponent* GetInventory(){return _inventoryComponent;}
-	class USkillWidget* GetSkillWidgetInstance(){return _skillWidgetInstance;}
-
+	class UInventoryComponent *GetInventory() { return _inventoryComponent; }
+	class USkillWidget *GetSkillWidgetInstance() { return _skillWidgetInstance; }
 
 private:
 	void Move(const FInputActionValue &value);
@@ -124,13 +116,12 @@ private:
 	void StatUIOpen(const FInputActionValue &value);
 	void InvenUIOpen(const FInputActionValue &value);
 	void Interect(const FInputActionValue &value);
-	void OptionsOpen(const FInputActionValue& value);
+	void OptionsOpen(const FInputActionValue &value);
 
-
-	//TODO : FIX
+	// TODO : FIX
 	void UpdateDecalLocation();
 
-    void ConfirmSkillLocation();
+	void ConfirmSkillLocation();
 
 	void UpdateTeleportLocation();
 
@@ -140,28 +131,26 @@ private:
 
 	FRotator SkillRotation;
 
-    bool bIsSkillReadyToCast;
+	bool bIsSkillReadyToCast;
 	bool bIsTeleportReadyToCast;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Decal, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class ADecalActor> SkillDecalActor;
-	
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Decal, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class ADecalActor> _teleportDecal;
 
-	class ADecalActor* SpawnedDecalActor = nullptr;
-	class ADecalActor* SpawnedDecalTeleport = nullptr;
+	class ADecalActor *SpawnedDecalActor = nullptr;
+	class ADecalActor *SpawnedDecalTeleport = nullptr;
 
-    FTimerHandle TimerHandle_UpdateDecal;
- 	FTimerHandle TimerHandle_UpdateTeleprotDecal;
+	FTimerHandle TimerHandle_UpdateDecal;
+	FTimerHandle TimerHandle_UpdateTeleprotDecal;
 
-
-	// void CheckForClimbableWall();
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Skill, meta = (AllowPrivateAccess = "true"))
 	TArray<bool> SkillOnCooldown;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Equipment" , meta = (AllowPrivateAccess = "true"))
-    TMap<EItemType, AEquipItem*> _EquipItems;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Equipment", meta = (AllowPrivateAccess = "true"))
+	TMap<EItemType, AEquipItem *> _EquipItems;
 
 	bool bIsLockOn = false;
 	bool bIsDashing;
@@ -169,13 +158,8 @@ private:
 	float DashTimeElapsed;
 	float DashDuration;
 
-	
-
 	void PerformDash(float DeltaTime);
 	void StartScreenShake();
-
-
-
 
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
@@ -209,19 +193,19 @@ private:
 	UInputAction *_StatOpenAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	UInputAction* _InvenOpenAction;
+	UInputAction *_InvenOpenAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction *_guardAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction *_LockOnAction;
-	
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction *_InteractAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	UInputAction* _OptionsAction;
+	UInputAction *_OptionsAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent *_springArm;
@@ -233,40 +217,28 @@ private:
 	class USkillWidget *_skillWidgetInstance;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	UInputAction* _Change;
+	UInputAction *_Change;
 
-	//  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Parkour, meta = (AllowPrivateAccess = "true"))
-	//  class UParkourComponent_Test* _parkourComp;
-
-	// UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh")
-	// class USkeletalMeshComponent* _upperBodyMesh;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Inventory, meta = (AllowPrivateAccess = "true"))
-	class UInventoryComponent* _inventoryComponent;
-
-	/////////////////////////////////////////
-	///TODO : Make Default Skeletal Mesh///
-	/////////////////////////////////////////
-
+	class UInventoryComponent *_inventoryComponent;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh", meta = (AllowPrivateAccess = "true"))
-	class USkeletalMeshComponent* _lowerBodyMesh;
+	class USkeletalMeshComponent *_lowerBodyMesh;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh", meta = (AllowPrivateAccess = "true"))
-	class USkeletalMeshComponent* _shoulderBodyMesh;
+	class USkeletalMeshComponent *_shoulderBodyMesh;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh", meta = (AllowPrivateAccess = "true"))
-	class USkeletalMeshComponent* _swordBodyMesh;
+	class USkeletalMeshComponent *_swordBodyMesh;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh", meta = (AllowPrivateAccess = "true"))
-	class USkeletalMeshComponent* _shieldBodyMesh;
-
+	class USkeletalMeshComponent *_shieldBodyMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Decal, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class AMyDecal> _decal;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = UI, meta = (AllowPrivateAccess = "true"))
 	class UStatWidget *_statWidget;
-
 
 	UPROPERTY(EditAnywhere, Category = "Dash")
 	float _dashDistance;
@@ -277,10 +249,8 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Dash")
 	FVector2D _moveVector;
 
-	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Animation", meta = (AllowPrivateAccess = "true"))
-	class UPlayerAnimInstance* _KnightanimInstance;
-
+	class UPlayerAnimInstance *_KnightanimInstance;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<UCameraShakeBase> _cameraShakeClass;
@@ -289,38 +259,35 @@ private:
 	FTimerHandle MeteorTimerHandle;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Enemy", meta = (AllowPrivateAccess = "true"))
-	class AMonster* _lockOnMonster;
+	class AMonster *_lockOnMonster;
 
-	UPROPERTY(EditAnywhere, Category="Camera")
-    bool _fixedCamera = false;
+	UPROPERTY(EditAnywhere, Category = "Camera")
+	bool _fixedCamera = false;
 
 	UPROPERTY(EditAnywhere, Category = "Skills")
 	TSubclassOf<class AFireball> _fireball;
 
-
 	//------- Dragon 변신 -------
 
 public:
-	void TransformToDragon(); // Dragon으로 변신
-	void TransformToHuman();  // Dragon에서 복귀
+	void TransformToDragon();
+	void TransformToHuman();
 
 	void ToggleTransformation();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Transformation")
 	TSubclassOf<ADragon> DragonClass;
-	
 
 private:
-	class ADragon* _dragonInstance; // Dragon 참조
+	class ADragon *_dragonInstance;
 
 	UFUNCTION()
-	void HandleMontageEnd(UAnimMontage* Montage, bool bInterrupted);
+	void HandleMontageEnd(UAnimMontage *Montage, bool bInterrupted);
 
-	bool _bCanTransform = true; // 변환 가능 상태
-	float _transformCooldown = 3.0f; // 쿨타임(초)
-	FTimerHandle _transformCooldownHandle; // 타이머 핸들
+	bool _bCanTransform = true;
+	float _transformCooldown = 3.0f;
+	FTimerHandle _transformCooldownHandle;
 
 	void StartTransformationCooldown();
 	void ResetTransformationCooldown();
-
 };

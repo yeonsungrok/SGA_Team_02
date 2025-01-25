@@ -11,14 +11,14 @@ UCLASS()
 class PROTOTYPE_API ASoundEffect : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	ASoundEffect();
 
 protected:
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	virtual void Tick(float DeltaTime) override;
 	void Play(FVector location);
 	bool IsPlaying() const;
@@ -28,8 +28,8 @@ public:
 
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	class USoundBase* _soundCom;
-	
+	class USoundBase *_soundCom;
+
 	UPROPERTY(VisibleAnywhere)
-	 UAudioComponent* _audioComponent;
+	UAudioComponent *_audioComponent;
 };

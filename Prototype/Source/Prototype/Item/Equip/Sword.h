@@ -7,7 +7,7 @@
 #include "Sword.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API ASword : public AEquipItem
@@ -16,6 +16,6 @@ class PROTOTYPE_API ASword : public AEquipItem
 
 public:
 	ASword();
-	
-	virtual void BeginPlay()override;
+
+	virtual void BeginPlay() override;
 };

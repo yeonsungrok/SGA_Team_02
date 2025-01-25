@@ -28,25 +28,13 @@ protected:
     float _elapsedTime;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-    UNiagaraComponent* _niagaraCom;
+    UNiagaraComponent *_niagaraCom;
 
     UPROPERTY(EditAnywhere, Category = "MeteorEffects")
-    UNiagaraSystem* _additionalEffect;
+    UNiagaraSystem *_additionalEffect;
 
     UFUNCTION()
     void OnMeteorImpact();
 
-	void UpdateMeteorPosition(float DeltaTime);
-
-    virtual void DeActiveEvent(FVector location) override;
-
-
-	// TODO: 이펙트
-	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Meteor", meta = (AllowPrivateAccess = "true"))
-	// class UParticleSystem* _explosionEffect;
-
-	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Meteor", meta = (AllowPrivateAccess = "true"))
-	// class USoundBase* _explosionSound;
+    void UpdateMeteorPosition(float DeltaTime);
 };
-	
-

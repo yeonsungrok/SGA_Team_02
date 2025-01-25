@@ -896,22 +896,6 @@
 		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
 	},
 	{
-		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/BossSunder.cpp",
-		"arguments": [
-			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
-			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
-		],
-		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
-	},
-	{
-		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/BossSunder.h",
-		"arguments": [
-			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
-			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
-		],
-		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
-	},
-	{
 		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/EpicMonster2.cpp",
 		"arguments": [
 			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
@@ -1017,30 +1001,6 @@
 	},
 	{
 		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/NormalMonster.h",
-		"arguments": [
-			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
-			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
-		],
-		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
-	},
-	{
-		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/SunderPool.cpp",
-		"arguments": [
-			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
-			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
-		],
-		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
-	},
-	{
-		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/SunderPool.h",
-		"arguments": [
-			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
-			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"
-		],
-		"directory": "/Users/Shared/Epic Games/UE_5.4/Engine/Source"
-	},
-	{
-		"file": "/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/Source/Prototype/Monster/test_monster.h",
 		"arguments": [
 			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
 			"@/Users/kim/Documents/GitHub/SGA_Team_02/Prototype/.vscode/compileCommands_Prototype/Prototype.1.rsp"

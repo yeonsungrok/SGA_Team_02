@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Animation/BaseAnimInstance.h"
 
 #include "KismetAnimationLibrary.h"
@@ -23,29 +22,23 @@ UBaseAnimInstance::UBaseAnimInstance()
 
 void UBaseAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 {
-	ACreature* myCharacter = Cast<ACreature>(TryGetPawnOwner());
+	ACreature *myCharacter = Cast<ACreature>(TryGetPawnOwner());
 
 	if (myCharacter != nullptr)
 	{
 		_speed = myCharacter->GetVelocity().Size();
 
-		if(ADragon* Dragon = Cast<ADragon>(myCharacter))
+		if (ADragon *Dragon = Cast<ADragon>(myCharacter))
 		{
 			if (Dragon->GetCharacterMovement()->IsFalling())
 			{
-				// 점프 상태에서의 비행 속도 동기화
 				Dragon->GetCharacterMovement()->MaxFlySpeed = _speed;
 			}
 			else
 			{
-				// 지상에서는 MaxSpeed를 기존 값으로 설정
-				Dragon->GetCharacterMovement()->MaxFlySpeed = 600.0f; // 기본 속도
+				Dragon->GetCharacterMovement()->MaxFlySpeed = 600.0f;
 			}
 		}
-
-
-
-
 
 		_isFalling = myCharacter->GetMovementComponent()->IsFalling();
 		_Direction = UKismetAnimationLibrary::CalculateDirection(myCharacter->GetVelocity(), myCharacter->GetActorRotation());
@@ -55,16 +48,13 @@ void UBaseAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 		_isDead = (myCharacter->GetCurHp() <= 0);
 
 		_vertical = _vertical + (myCharacter->GetVertical() - _vertical) * (DeltaSeconds);
-
 	}
 
-	//추가시도...
-	APawn* OwningPawn = TryGetPawnOwner();
+	APawn *OwningPawn = TryGetPawnOwner();
 	if (OwningPawn && OwningPawn->GetMovementComponent())
 	{
 		_isFalling = OwningPawn->GetMovementComponent()->IsFalling();
 	}
-
 }
 
 void UBaseAnimInstance::JumpToSection(int32 sectionIndex)
@@ -75,15 +65,11 @@ void UBaseAnimInstance::JumpToSection(int32 sectionIndex)
 
 void UBaseAnimInstance::PlayAttackMontage()
 {
-	//Montage_IsActive(_myAnimMontage);
-
-	if ( !Montage_IsPlaying(_myAnimMontage))
+	if (!Montage_IsPlaying(_myAnimMontage))
 	{
-	
-			Montage_Play(_myAnimMontage);
 
+		Montage_Play(_myAnimMontage);
 	}
-
 }
 
 void UBaseAnimInstance::PlayStunMontage()
@@ -135,6 +121,3 @@ void UBaseAnimInstance::AnimNotify_Death()
 {
 	_deathDelegate.Broadcast();
 }
-
-
-

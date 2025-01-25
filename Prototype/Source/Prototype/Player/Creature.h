@@ -7,7 +7,6 @@
 #include "../Component/StatComponent.h"
 #include "Creature.generated.h"
 
-
 DECLARE_MULTICAST_DELEGATE(Delegate_AttackEnded);
 UCLASS()
 class PROTOTYPE_API ACreature : public ACharacter
@@ -23,7 +22,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -31,8 +30,7 @@ public:
 	virtual void Init();
 	virtual void Disable();
 	virtual void AttackHit();
-		
-	//VFX
+
 	virtual FString GetHitSoundName() const;
 	virtual FString GetSwingSoundName() const;
 	virtual FString GetGuardOn() const;
@@ -57,20 +55,19 @@ public:
 	virtual FString GetEpicSpawnSound() const;
 	virtual FString GetLevelUpSound() const;
 
-	bool GetIsAttacking() {return _isAttacking;}
+	bool GetIsAttacking() { return _isAttacking; }
 
 	UFUNCTION()
-	virtual  void OnAttackEnded(class UAnimMontage* Montage, bool bInterrupted);
+	virtual void OnAttackEnded(class UAnimMontage *Montage, bool bInterrupted);
 
-	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser);
+	virtual float TakeDamage(float Damage, struct FDamageEvent const &DamageEvent, AController *EventInstigator, AActor *DamageCauser);
 
-	float GetVertical() {return _vertical;}
-	float GetHorizontal() {return _horizontal;}
+	float GetVertical() { return _vertical; }
+	float GetHorizontal() { return _horizontal; }
 	int32 GetCurHp() { return _StatCom->GetCurHp(); }
 
-	// cheol
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stat, meta = (AllowPrivateAccess = "true"))
-	UStatComponent* _StatCom;
+	UStatComponent *_StatCom;
 
 	FTimerHandle TimerHandle_Destroy;
 
@@ -94,26 +91,23 @@ protected:
 	FVector _hitPoint;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stat, meta = (AllowPrivateAccess = "true"))
-	class UWidgetComponent* _hpWidget;
+	class UWidgetComponent *_hpWidget;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Guard, meta = (AllowPrivateAccess = "true"))
 	bool bIsGuarding;
 
 public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = "true"))
+	class UWidgetComponent *_WidgetCom;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = "true"))
-	class UWidgetComponent* _WidgetCom;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = "true"))
-	class UUserWidget* _Widget;
+	class UUserWidget *_Widget;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<UUserWidget> WidgetClass;
 
-	
 	bool _isTransformed;
 
 	UFUNCTION(BlueprintCallable, Category = "UI")
-	UUserWidget* GetWidget() const { return _Widget; }
-
+	UUserWidget *GetWidget() const { return _Widget; }
 };

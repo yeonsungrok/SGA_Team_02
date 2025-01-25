@@ -4,10 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "MeteorDecalPool.h"
 #include "UI/SkillWidget.h"
 #include "MyPlayerController.generated.h"
-
 
 /**
  *
@@ -19,9 +17,8 @@ class PROTOTYPE_API AMyPlayerController : public APlayerController
 public:
 	AMyPlayerController();
 
-
 	UPROPERTY()
-	USkillWidget* SkillWidgetInstance;
+	USkillWidget *SkillWidgetInstance;
 
 protected:
 	UPROPERTY(EditAnyWhere, BlueprintReadOnly, Category = Input)
@@ -33,14 +30,6 @@ protected:
 	TSubclassOf<class AMeteorDecal> MeteorDecalClass;
 
 public:
- 	UPROPERTY(EditAnywhere, Category = "Decal")
-	AMeteorDecalPool* MeteorDecalPool;
-
-    UPROPERTY(EditAnywhere, Category = "UI")
-    TSubclassOf<USkillWidget> SkillWidgetClass;
-
-
-
-
-
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<USkillWidget> SkillWidgetClass;
 };

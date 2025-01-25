@@ -32,7 +32,7 @@ AStage1BossGameModeBase::AStage1BossGameModeBase()
 void AStage1BossGameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	AMyPlayer *player = Cast<AMyPlayer>(UGameplayStatics::GetPlayerCharacter(this, 0));
 	if (player)
 	{
@@ -56,16 +56,13 @@ void AStage1BossGameModeBase::BeginPlay()
 			GameInstance->LoadPlayerSkeletal(player);
 		}
 
-		APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+		APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
 		if (PlayerController)
 		{
 			PlayerController->bShowMouseCursor = false;
 			PlayerController->SetInputMode(FInputModeGameOnly());
 		}
-		
 	}
-
-	
 }
 
 void AStage1BossGameModeBase::PostInitializeComponents()
@@ -110,17 +107,17 @@ void AStage1BossGameModeBase::BossStart()
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.Name = TEXT("Boss");
 
-	ABossMonster* Boss = GetWorld()->SpawnActor<ABossMonster>(_boss, FVector(-7787.8f, -191.5f, 171.1f), FRotator::ZeroRotator, SpawnParams);
+	ABossMonster *Boss = GetWorld()->SpawnActor<ABossMonster>(_boss, FVector(-7787.8f, -191.5f, 171.1f), FRotator::ZeroRotator, SpawnParams);
 	if (Boss)
 	{
 		Boss->_StatCom->SetBossLevelInit(1);
-		AAIController_BossMonster* BossAI = GetWorld()->SpawnActor<AAIController_BossMonster>(AAIController_BossMonster::StaticClass());
+		AAIController_BossMonster *BossAI = GetWorld()->SpawnActor<AAIController_BossMonster>(AAIController_BossMonster::StaticClass());
 		if (BossAI)
 		{
 			BossAI->OnPossess(Boss);
 		}
 
-		APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+		APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
 		if (PlayerController)
 		{
 			PlayerController->bShowMouseCursor = false;
@@ -134,9 +131,9 @@ void AStage1BossGameModeBase::BossStart()
 
 void AStage1BossGameModeBase::LockSkill()
 {
-	AMyPlayerController* PlayerController = Cast<AMyPlayerController>(GetWorld()->GetFirstPlayerController());
+	AMyPlayerController *PlayerController = Cast<AMyPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PlayerController && PlayerController->SkillWidgetInstance)
 	{
-		PlayerController->SkillWidgetInstance->LockAllSkill(); 
+		PlayerController->SkillWidgetInstance->LockAllSkill();
 	}
 }

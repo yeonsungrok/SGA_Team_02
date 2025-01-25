@@ -20,26 +20,21 @@
 #include "Fireball.h"
 #include "Kismet/KismetMathLibrary.h"
 
-// chelo
 #include "Base/Managers/UIManager.h"
 #include "UI/InventoryWidget.h"
 #include "UI/StatWidget.h"
 #include "Components/WidgetComponent.h"
 
-// MiniMap
 #include "GameFramework/Actor.h"
 #include "Components/SceneCaptureComponent2D.h"
 #include "PaperSpriteComponent.h"
 #include "UI/MiniMapWidget.h"
 
-// te
 #include "GameFramework/Actor.h"
 
-// Animation
 #include "../Animation/PlayerAnimInstance.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
-// hp
 #include "Components/ProgressBar.h"
 
 #include "../Base/Managers/SoundManager.h"
@@ -69,7 +64,6 @@ AMyPlayer::AMyPlayer()
 	_camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	_inventoryComponent = CreateDefaultSubobject<UInventoryComponent>(TEXT("Inventory"));
 
-	//_upperBodyMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("UpperSkeletal"));
 	_lowerBodyMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("LowerSkeletal"));
 	_shoulderBodyMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("ShoulderSkeletal"));
 	_swordBodyMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SwordSkeletal"));
@@ -99,26 +93,12 @@ AMyPlayer::AMyPlayer()
 		_shoulderBodyMesh->SetSkeletalMesh(SHSM.Object);
 	}
 
-	// static ConstructorHelpers::FObjectFinder<USkeletalMesh> SWSM(TEXT("/Script/Engine.SkeletalMesh'/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/WhiteTiger_Detach/Sward_Pos.Sward_Pos'"));
-	// if (SWSM.Succeeded())
-	// {
-	// 	_swordBodyMesh->SetSkeletalMesh(SWSM.Object);
-	// }
-
-	// static ConstructorHelpers::FObjectFinder<USkeletalMesh> SSM(TEXT("/Script/Engine.SkeletalMesh'/Game/ParagonGreystone/Characters/Heroes/Greystone/Source/WhiteTiger_Detach/Shield_Pos.Shield_Pos'"));
-	// if (SSM.Succeeded())
-	// {
-	// 	_shieldBodyMesh->SetSkeletalMesh(SSM.Object);
-	// }
-
 	_lowerBodyMesh->SetupAttachment(GetMesh());
 	_shoulderBodyMesh->SetupAttachment(GetMesh());
 	_swordBodyMesh->SetupAttachment(GetMesh());
 	_shieldBodyMesh->SetupAttachment(GetMesh());
 
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
-
-	//_parkourComp = CreateDefaultSubobject<UParkourComponent_Test>(TEXT("ParkourComponent"));
 
 	static ConstructorHelpers::FClassFinder<UStatWidget> StatClass(
 		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/PlayerStat_UI.PlayerStat_UI_C'"));

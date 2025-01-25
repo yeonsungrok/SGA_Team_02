@@ -7,7 +7,7 @@
 #include "MyGameModeBase.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API AMyGameModeBase : public AGameModeBase

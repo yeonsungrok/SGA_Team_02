@@ -29,17 +29,17 @@ UCLASS()
 class PROTOTYPE_API UShopWidget : public UUserWidget
 {
 	GENERATED_BODY()
-	
+
 	virtual bool Initialize() override;
 
 public:
-	void UpdateShopList(TArray<ABaseItem*> list);
-	void ReflectInvenSlots(class AMyPlayer* player);
+	void UpdateShopList(TArray<ABaseItem *> list);
+	void ReflectInvenSlots(class AMyPlayer *player);
 
 	ItemBuy BuySucceed;
 	ItemSale SaleItem;
+
 private:
-	
 	void SetInvenButtons();
 
 	DealContext BuyResult(int32 slot);
@@ -86,60 +86,52 @@ private:
 	UFUNCTION()
 	void TargetItem11();
 
-	/// <summary>
-	/// Inventory Elements
-	/// </summary>
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Texture, meta = (AllowPrivateAccess = "true"))
 	FString _defaultText;
 
 	UPROPERTY()
-	ABaseItem* _targetItem = nullptr;
+	ABaseItem *_targetItem = nullptr;
 	UPROPERTY()
 	int32 _targetIndex = -1;
 
-	//UI Elememts
 	UPROPERTY(meta = (BindWidget))
-	class UUniformGridPanel* ItemSlots;
+	class UUniformGridPanel *ItemSlots;
 	UPROPERTY(meta = (BindWidget))
-	TArray<UIndexedButton*> Button_;
+	TArray<UIndexedButton *> Button_;
 	bool _isSlotFull = true;
 
 	UPROPERTY(meta = (BindWidget))
-	class UImage* ItemTexture;
+	class UImage *ItemTexture;
 	UPROPERTY(meta = (BindWidget))
-	class UTextBlock* ItemName;
+	class UTextBlock *ItemName;
 	UPROPERTY(meta = (BindWidget))
-	class UTextBlock* Price;
+	class UTextBlock *Price;
 
 	UPROPERTY(meta = (BindWidget))
-	class UButton* SellBtn;
+	class UButton *SellBtn;
 	UPROPERTY(meta = (BindWidget))
-	class UTextBlock* SellBtnText;
-	
+	class UTextBlock *SellBtnText;
+
 	int32 p_gold;
 	UPROPERTY(meta = (BindWidget))
-	class UTextBlock* GoldAmount;
+	class UTextBlock *GoldAmount;
 
-	//////////////////////////////////
-	///Shop Elements
-
-	TArray<UCanvasPanel*> _SellPanels;
+	TArray<UCanvasPanel *> _SellPanels;
 
 	UPROPERTY(meta = (BindWidget))
-	UCanvasPanel* SellPanel_0;
-	
+	UCanvasPanel *SellPanel_0;
+
 	UPROPERTY(meta = (BindWidget))
-	UCanvasPanel* SellPanel_1;
-	
+	UCanvasPanel *SellPanel_1;
+
 	UPROPERTY(meta = (BindWidget))
-	UCanvasPanel* SellPanel_2;
-	
+	UCanvasPanel *SellPanel_2;
+
 	UPROPERTY(meta = (BindWidget))
-	UCanvasPanel* SellPanel_3;
-	
+	UCanvasPanel *SellPanel_3;
+
 	UPROPERTY(meta = (BindWidget))
-	UCanvasPanel* SellPanel_4;
+	UCanvasPanel *SellPanel_4;
 
 	int32 _tempPrice;
-
 };

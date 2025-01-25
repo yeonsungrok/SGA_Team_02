@@ -13,40 +13,31 @@ UCLASS()
 class PROTOTYPE_API AParticleEffect : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
 
+public:
 	AParticleEffect();
 
 protected:
-
 	virtual void BeginPlay() override;
 
-public:	
-
+public:
 	virtual void Tick(float DeltaTime) override;
 
 	void Play(FVector location, FRotator rotator);
 	bool IsPlaying();
 
-	// 스켈레톤 붙여보기 시도.
-	void PlayOnSkeletalMesh(USkeletalMeshComponent* mesh, FName socketName);
-	
+	void PlayOnSkeletalMesh(USkeletalMeshComponent *mesh, FName socketName);
+
 private:
-	
 	UFUNCTION()
-	void EndParticle(class UParticleSystemComponent* particleComponent);
+	void EndParticle(class UParticleSystemComponent *particleComponent);
 
 	UFUNCTION()
-	void End(UNiagaraComponent* niagaraComponent);
+	void End(UNiagaraComponent *niagaraComponent);
 
-	// 나이아가라
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	class UNiagaraComponent* _niagaraCom;
-	
-	// 파티클
+	class UNiagaraComponent *_niagaraCom;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	class UParticleSystemComponent* _particleCom;
-
-
+	class UParticleSystemComponent *_particleCom;
 };

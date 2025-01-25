@@ -23,7 +23,6 @@ UMyGameInstance::UMyGameInstance()
 		_statTable = StatData.Object;
 	}
 
-	// 현재 에픽 스탯데이터테이블 까지완
 	static ConstructorHelpers::FObjectFinder<UDataTable> EpicStatData(TEXT("/Script/Engine.DataTable'/Game/Data/EpicMonsterDataTable.EpicMonsterDataTable'"));
 
 	if (EpicStatData.Succeeded())
@@ -65,7 +64,7 @@ UMyGameInstance::UMyGameInstance()
 	{
 		_DragonStatTable = DragonStat.Object;
 	}
-	
+
 	static ConstructorHelpers::FObjectFinder<UDataTable> shopList1(TEXT("/Script/Engine.DataTable'/Game/Data/Postion_ShopKeeper.Postion_ShopKeeper'"));
 	if (shopList1.Succeeded())
 	{
@@ -89,7 +88,6 @@ UMyGameInstance::UMyGameInstance()
 
 	SavedPlayerStats.SetNum(22);
 	SavedSkeletalMeshes.SetNum(6);
-
 }
 
 void UMyGameInstance::SavePlayerStats(class UStatComponent *StatComponent)
@@ -122,7 +120,7 @@ void UMyGameInstance::SavePlayerStats(class UStatComponent *StatComponent)
 		SavedPlayerStats[18] = StatComponent->GetExp();
 		SavedPlayerStats[19] = StatComponent->GetNextExp();
 		SavedPlayerStats[20] = StatComponent->GetBonusPoint();
-		
+
 		_savedAttackRadius = StatComponent->GetAttackRadius();
 		_savedAttackRange = StatComponent->GetAttackRadius();
 	}
@@ -165,14 +163,13 @@ void UMyGameInstance::LoadPlayerStats(class UStatComponent *StatComponent)
 	}
 }
 
-
 void UMyGameInstance::SaveInventory(class UInventoryComponent *InventoryComponent)
 {
 	if (InventoryComponent)
 	{
 		SavedInventoryData.Empty();
 		SavedEquipData.Empty();
-		
+
 		TArray<ABaseItem *> Items = InventoryComponent->GetItemSlots();
 		TMap<FString, AEquipItem *> EquipItems = InventoryComponent->GetEquipSlots();
 
@@ -211,12 +208,11 @@ void UMyGameInstance::SaveInventory(class UInventoryComponent *InventoryComponen
 				ItemData._Mesh = Item.Value->GetSkeletalMesh();
 				ItemData._Texture = Item.Value->GetTexture();
 				ItemData._Equip = static_cast<int>(Item.Value->GetEquipType());
-				
+
 				SavedEquipData.Add(Item.Key, ItemData);
 			}
 		}
-		SavedPlayerStats[21]= InventoryComponent->GetMoney();
-
+		SavedPlayerStats[21] = InventoryComponent->GetMoney();
 	}
 }
 
@@ -248,7 +244,7 @@ void UMyGameInstance::LoadInventory(class UInventoryComponent *InventoryComponen
 				InventoryComponent->AddItemToSlot(NewItem);
 			}
 		}
-		
+
 		for (const auto &Item : SavedEquipData)
 		{
 			AEquipItem *NewItem = nullptr;
@@ -257,37 +253,36 @@ void UMyGameInstance::LoadInventory(class UInventoryComponent *InventoryComponen
 
 			if (ItemData._Type == ItemType::Equipment)
 			{
-				AEquipItem* EquipItem = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+				AEquipItem *EquipItem = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
 				if (EquipItem)
 				{
 					EquipItem->SetItemWithCode(ItemData._Code);
 					EquipItem->SetEquipType(ItemData._Equip);
 					NewItem = EquipItem;
 
-                    InventoryComponent->AddItemToEquip(EquipType,NewItem);
+					InventoryComponent->AddItemToEquip(EquipType, NewItem);
 				}
-			} 
+			}
 		}
 		InventoryComponent->AddMoney(SavedPlayerStats[21]);
 	}
 }
 
-void UMyGameInstance::SavePlayerSkeletal(class AMyPlayer* player)
+void UMyGameInstance::SavePlayerSkeletal(class AMyPlayer *player)
 {
-   if (player)
+	if (player)
 	{
-		SavedSkeletalMeshes[0] = Cast<USkeletalMesh>(player->GetMesh()->GetSkinnedAsset()); 
-		SavedSkeletalMeshes[1] = Cast<USkeletalMesh>(player->GetLowerBodyMesh()->GetSkinnedAsset());  
-		SavedSkeletalMeshes[2] = Cast<USkeletalMesh>(player->GetShoulderBodyMesh()->GetSkinnedAsset()); 
-		SavedSkeletalMeshes[3] = Cast<USkeletalMesh>(player->GetSwordBodyMesh()->GetSkinnedAsset()); 
-		SavedSkeletalMeshes[4] = Cast<USkeletalMesh>(player->GetShieldBodyMesh()->GetSkinnedAsset()); 
+		SavedSkeletalMeshes[0] = Cast<USkeletalMesh>(player->GetMesh()->GetSkinnedAsset());
+		SavedSkeletalMeshes[1] = Cast<USkeletalMesh>(player->GetLowerBodyMesh()->GetSkinnedAsset());
+		SavedSkeletalMeshes[2] = Cast<USkeletalMesh>(player->GetShoulderBodyMesh()->GetSkinnedAsset());
+		SavedSkeletalMeshes[3] = Cast<USkeletalMesh>(player->GetSwordBodyMesh()->GetSkinnedAsset());
+		SavedSkeletalMeshes[4] = Cast<USkeletalMesh>(player->GetShieldBodyMesh()->GetSkinnedAsset());
 	}
-
 }
 
-void UMyGameInstance::LoadPlayerSkeletal(class AMyPlayer* player)
+void UMyGameInstance::LoadPlayerSkeletal(class AMyPlayer *player)
 {
-    if (player && SavedSkeletalMeshes.Num() > 0)
+	if (player && SavedSkeletalMeshes.Num() > 0)
 	{
 		player->GetMesh()->SetSkeletalMesh(SavedSkeletalMeshes[0]);
 		player->GetLowerBodyMesh()->SetSkeletalMesh(SavedSkeletalMeshes[1]);
@@ -297,7 +292,7 @@ void UMyGameInstance::LoadPlayerSkeletal(class AMyPlayer* player)
 	}
 }
 
-TArray<ABaseItem*> UMyGameInstance::GetInvenItemList()
+TArray<ABaseItem *> UMyGameInstance::GetInvenItemList()
 {
 	return UIManager->GetInventoryUI()->GetInvenContents();
 }
@@ -330,7 +325,7 @@ FMyStatData *UMyGameInstance::GetStatDataByLevel(int level)
 	return statData;
 }
 
-FMyStatData* UMyGameInstance::GetMonsterDataByLevel(int level)
+FMyStatData *UMyGameInstance::GetMonsterDataByLevel(int level)
 {
 	auto MonsterData = _MonsterstatTable->FindRow<FMyStatData>(*FString::FromInt(level), TEXT(""));
 	return MonsterData;
@@ -348,7 +343,7 @@ FMyStatData *UMyGameInstance::GetBossDataByLevel(int level)
 	return BossStatData;
 }
 
-FMyStatData* UMyGameInstance::GetDragonDataByLevel(int level)
+FMyStatData *UMyGameInstance::GetDragonDataByLevel(int level)
 {
 	auto DragonStatData = _DragonStatTable->FindRow<FMyStatData>(*FString::FromInt(level), TEXT(""));
 	return DragonStatData;
@@ -366,11 +361,11 @@ FItemData *UMyGameInstance::GetEquipItemData(int code)
 	return EquipData;
 }
 
-TArray<FSellings*> UMyGameInstance::GetSellingData(int32 shop)
+TArray<FSellings *> UMyGameInstance::GetSellingData(int32 shop)
 {
-	TArray<FSellings*> sellingList;
-	FSellings* sellingData = nullptr;
-	
+	TArray<FSellings *> sellingList;
+	FSellings *sellingData = nullptr;
+
 	for (int i = 0; i < SHOP_LIST_MAX; i++)
 	{
 		sellingData = _ShopLists[shop]->FindRow<FSellings>(*FString::FromInt(i), TEXT(""));
@@ -380,19 +375,18 @@ TArray<FSellings*> UMyGameInstance::GetSellingData(int32 shop)
 	return sellingList;
 }
 
-ABaseItem* UMyGameInstance::SellDataToItemData(FSellings* data)
+ABaseItem *UMyGameInstance::SellDataToItemData(FSellings *data)
 {
 	if (data->Type == ItemType::Equipment)
 	{
-		AEquipItem* equip = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+		AEquipItem *equip = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
 		equip->SetItemWithCode(data->Code);
 		return Cast<ABaseItem>(equip);
 	}
 	else
 	{
-		ABaseItem* consume = GetWorld()->SpawnActor<ABaseItem>(ABaseItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+		ABaseItem *consume = GetWorld()->SpawnActor<ABaseItem>(ABaseItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
 		consume->SetItemWithCode(data->Code);
 		return consume;
 	}
-
 }

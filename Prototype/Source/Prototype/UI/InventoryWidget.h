@@ -44,7 +44,6 @@ public:
 
 	void CheckCanEquip();
 
-	//Calling Once Only
 	void InitStat(TArray<int32> statTable);
 
 	void UpdateStat();
@@ -103,7 +102,6 @@ private:
 	void TargetShield();
 
 public:
-	//Delegate
 	ItemDropDelegate  ItemDrop;
 	ItemUseDelegate   ItemUse;
 	ItemEquipDelegate ItemEquip;
@@ -121,7 +119,6 @@ private:
 
 	bool _isThisAlreadyTargetted = false;
 
-	//UI Elememts
 	UPROPERTY(meta = (BindWidget))
 	class UUniformGridPanel* ItemSlots;
 	UPROPERTY(meta = (BindWidget))

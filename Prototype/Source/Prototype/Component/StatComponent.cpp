@@ -28,16 +28,12 @@ UStatComponent::UStatComponent()
 void UStatComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
-	// ...
 }
 
 // Called every frame
 void UStatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
 }
 
 void UStatComponent::Reset()
@@ -399,8 +395,6 @@ void UStatComponent::SetExp(int32 newexp)
 void UStatComponent::SetNextExp(int32 newnextexp)
 {
 	_nextExp = newnextexp;
-	// float ratio = EXpRatio();
-	//_PlEXPDelegate.Broadcast(ratio);
 }
 
 void UStatComponent::AddStat(StatType type, int32 amount)

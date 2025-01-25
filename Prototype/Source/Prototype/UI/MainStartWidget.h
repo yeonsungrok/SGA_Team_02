@@ -7,26 +7,26 @@
 #include "MainStartWidget.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API UMainStartWidget : public UUserWidget
 {
 	GENERATED_BODY()
-	
+
 public:
-	UMainStartWidget(const FObjectInitializer& ObjectInitializer);
+	UMainStartWidget(const FObjectInitializer &ObjectInitializer);
 
 	virtual void NativeConstruct() override;
 
 	UPROPERTY(meta = (BindWidget))
-	class UButton* StartButton;
+	class UButton *StartButton;
 
 	UPROPERTY(meta = (BindWidget))
-	class UButton* QuitButton;
+	class UButton *QuitButton;
 
 	UPROPERTY(meta = (BindWidget))
-	class UButton* OptionsButton;
+	class UButton *OptionsButton;
 
 	UFUNCTION()
 	void StartButtonClick();
@@ -39,12 +39,8 @@ public:
 
 	void OpenLevel();
 
-
-
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<UUserWidget> _Keyimage;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<UUserWidget> _OptionsButton;
-
 };

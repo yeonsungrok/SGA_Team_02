@@ -23,8 +23,6 @@ UInventoryComponent::UInventoryComponent()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
 }
 
 // Called when the game starts
@@ -38,7 +36,6 @@ void UInventoryComponent::BeginPlay()
 		UIManager->GetInventoryUI()->EquipDrop.AddUObject(this, &UInventoryComponent::ExcuteEquip);
 		UIManager->GetInventoryUI()->EquipStrip.AddUObject(this, &UInventoryComponent::StripEquip);
 	}
-	
 
 	UpdateUI();
 }
@@ -58,8 +55,6 @@ void UInventoryComponent::InitSlot()
 void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
 }
 
 void UInventoryComponent::SlotFullCheck()
@@ -83,10 +78,8 @@ void UInventoryComponent::AddItem(int32 slot, ABaseItem *item)
 		return;
 	if (_isSlotFull)
 		return;
-	// Fill into EmptySlot First
 	if (!_EmptySlots.IsEmpty())
 	{
-		// TODO : Filling Already filled slot
 		int32 emptyslot;
 		_EmptySlots.HeapPop(emptyslot, true);
 		if (_ItemSlots[emptyslot] == nullptr)
@@ -97,14 +90,12 @@ void UInventoryComponent::AddItem(int32 slot, ABaseItem *item)
 			return;
 		}
 	}
-	// Fill into Selected Slot
 	if (_ItemSlots[slot] == nullptr)
 	{
 		_ItemSlots[slot] = item;
 		UIupdate_Add(slot, item);
 		SlotFullCheck();
 	}
-	// if Already filled, fill into next slot
 	else
 	{
 		for (int i = slot; i < _itemSlotMax; i++)
@@ -151,7 +142,6 @@ void UInventoryComponent::ExcuteItem(int32 slot, bool isDrop)
 		_ItemSlots[slot]->UseItem();
 	}
 
-
 	_ItemSlots[slot] = nullptr;
 	_EmptySlots.Add(slot);
 }
@@ -191,7 +181,6 @@ void UInventoryComponent::ExcuteEquip(FString part)
 
 void UInventoryComponent::EquipItem(int32 slot)
 {
-	// TODO : Switch-case with EquipType Enum later
 	auto equipment = Cast<AEquipItem>(_ItemSlots[slot]);
 	if (equipment == nullptr)
 		return;
@@ -223,7 +212,6 @@ void UInventoryComponent::EquipItem(int32 slot)
 
 void UInventoryComponent::TryEquip(FString part, int32 slot)
 {
-	// if there is already filled, exchange each.
 	auto equipment = Cast<AEquipItem>(_ItemSlots[slot]);
 	if (equipment == nullptr)
 		return;
@@ -248,7 +236,7 @@ void UInventoryComponent::StripEquip(FString part)
 	if (_EquipSlots[part] == nullptr)
 		return;
 
-	AEquipItem* equipment = _EquipSlots[part];
+	AEquipItem *equipment = _EquipSlots[part];
 
 	if (_isSlotFull)
 	{
@@ -281,11 +269,10 @@ void UInventoryComponent::UIupdate_Pop(FString part)
 void UInventoryComponent::UIupdate_equip(FString slot, ABaseItem *item)
 {
 	if (UIManager && UIManager->GetInventoryUI())
-    {
-        UIManager->GetInventoryUI()->UpdateEquipSlot(slot,item);
-    }
+	{
+		UIManager->GetInventoryUI()->UpdateEquipSlot(slot, item);
+	}
 }
-
 
 void UInventoryComponent::AddItemToSlot(ABaseItem *Item)
 {
@@ -305,16 +292,15 @@ void UInventoryComponent::AddItemToSlot(ABaseItem *Item)
 	}
 }
 
-void UInventoryComponent::AddItemToEquip(FString EquipSlot,class ABaseItem* NewItem)
+void UInventoryComponent::AddItemToEquip(FString EquipSlot, class ABaseItem *NewItem)
 {
-	AEquipItem* EquipItem = Cast<AEquipItem>(NewItem);
-	if(EquipItem)
+	AEquipItem *EquipItem = Cast<AEquipItem>(NewItem);
+	if (EquipItem)
 	{
-		_EquipSlots.Add(EquipSlot,EquipItem);
+		_EquipSlots.Add(EquipSlot, EquipItem);
 		_EquipSlots[EquipSlot]->UseItem();
 		UIupdate_equip(EquipSlot, _EquipSlots[EquipSlot]);
 	}
-	
 }
 
 void UInventoryComponent::ShowItemSlots()
@@ -370,24 +356,21 @@ void UInventoryComponent::UpdateUI()
 		}
 	}
 
-	for (const auto& EquipSlot : _EquipSlots)
-    {
-        FString SlotName = EquipSlot.Key;
-        AEquipItem* EquipItem = EquipSlot.Value;
-        
-        if (EquipItem != nullptr)
-        {
-            UIupdate_equip(SlotName, EquipItem);
-        }
-        else
-        {
-            UIupdate_equip(SlotName, nullptr);
-        }
-    }
+	for (const auto &EquipSlot : _EquipSlots)
+	{
+		FString SlotName = EquipSlot.Key;
+		AEquipItem *EquipItem = EquipSlot.Value;
 
-
+		if (EquipItem != nullptr)
+		{
+			UIupdate_equip(SlotName, EquipItem);
+		}
+		else
+		{
+			UIupdate_equip(SlotName, nullptr);
+		}
+	}
 }
-
 
 void UInventoryComponent::SetMoney(int32 amount)
 {

@@ -12,8 +12,8 @@ UCLASS()
 class PROTOTYPE_API ABossObstacle : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	ABossObstacle();
 
@@ -21,7 +21,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -29,20 +29,15 @@ public:
 	FOnDestroyedDelegate OnDestroyedEvent;
 
 	UFUNCTION()
-    void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+	void OnHit(UPrimitiveComponent *HitComponent, AActor *OtherActor, UPrimitiveComponent *OtherComponent, FVector NormalImpulse, const FHitResult &Hit);
 
 	virtual FString GetObstacleBreakEffect() const;
 	virtual FString GetObstacleBreakSound() const;
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Collision", meta = (AllowPrivateAccess = "true"))
-    class UBoxComponent* CollisionBox;
+	class UBoxComponent *CollisionBox;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh", meta = (AllowPrivateAccess = "true"))
-    class UStaticMeshComponent* ObstacleMesh;
-
-
-	// UPROPERTY()
-	// class AEffectManager* EffectManager;
-
-	
+	class UStaticMeshComponent *ObstacleMesh;
 };

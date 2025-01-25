@@ -7,7 +7,7 @@
 #include "LowerArmor.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API ALowerArmor : public AEquipItem
@@ -16,6 +16,6 @@ class PROTOTYPE_API ALowerArmor : public AEquipItem
 
 public:
 	ALowerArmor();
-	
+
 	virtual void BeginPlay() override;
 };

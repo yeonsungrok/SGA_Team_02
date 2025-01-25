@@ -8,51 +8,35 @@
 #include "NiagaraComponent.h"
 #include "EffectManager.generated.h"
 
-
-
-
 class AParticleEffect;
-
-
 
 UCLASS()
 class PROTOTYPE_API AEffectManager : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
 
+public:
 	AEffectManager();
 
 	void CreateNiagaraClass(FString name, FString path);
 	void CreateEffect();
 	void Play(FString name, FVector location, FRotator rotator = FRotator::ZeroRotator);
-	void PlayOnSkeletalMesh(FString name, USkeletalMeshComponent* mesh, FName socketName);
-	// levelup
-	void PlayEffect(UParticleSystem* Particle, FVector Location);
+	void PlayOnSkeletalMesh(FString name, USkeletalMeshComponent *mesh, FName socketName);
 
-
+	void PlayEffect(UParticleSystem *Particle, FVector Location);
 
 	virtual void Tick(float DeltaTime) override;
 
-
-
 protected:
-
 	virtual void BeginPlay() override;
 
-
 private:
-
 	UPROPERTY()
 	TMap<FString, TSubclassOf<AParticleEffect>> _classTable;
-	TMap<FString, TArray<AParticleEffect*>> _effectTable;
+	TMap<FString, TArray<AParticleEffect *>> _effectTable;
 
 	int32 _poolCount = 5;
 
 	UPROPERTY()
-	class USceneComponent* _rootComponent;
-
-
-
+	class USceneComponent *_rootComponent;
 };

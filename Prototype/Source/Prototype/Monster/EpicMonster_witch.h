@@ -9,15 +9,14 @@
 #include "EpicMonster_witch.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API AEpicMonster_witch : public AMonster
 {
 	GENERATED_BODY()
-	
-public:
 
+public:
 	AEpicMonster_witch();
 
 	void MagicShot();
@@ -40,11 +39,7 @@ protected:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-
-
-
+	virtual void SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent) override;
 
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Projectile, meta = (AllowPrivateAccess = "true"))
@@ -56,8 +51,6 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Decal, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class AMagicDecal> _tedecal;
 
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Animation", meta = (AllowPrivateAccess = "true"))
-	class UMonster_Epic01_Anim* _monster_Epic_AnimInstance;
-
+	class UMonster_Epic01_Anim *_monster_Epic_AnimInstance;
 };

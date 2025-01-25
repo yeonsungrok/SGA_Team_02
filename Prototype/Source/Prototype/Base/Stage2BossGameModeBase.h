@@ -7,7 +7,7 @@
 #include "Stage2BossGameModeBase.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API AStage2BossGameModeBase : public AGameModeBase
@@ -27,12 +27,10 @@ public:
 
 	void LockSkill();
 
-
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class ABoss2Monster> _boss;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class APortal_Home> _portal;
-
 };

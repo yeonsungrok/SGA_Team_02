@@ -86,8 +86,6 @@ void AMonster::AttackHit()
         FVector missLocation = GetActorLocation();
         SoundManager->PlaySound(*GetSwingSoundName(), missLocation);
     }
-
-   // DrawDebugSphere(GetWorld(), center, attackRadius, 32, drawColor, false, 0.3f);
 }
 
 void AMonster::DropReword()
@@ -112,7 +110,6 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent,
             GetController()->UnPossess();
         MonsterEvent.Broadcast();
 
-
         if (Player)
         {
             Player->GetInventory()->AddMoney(FMath::FRand() * 100);
@@ -121,12 +118,10 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent,
 
             if (FMath::FRand() <= RewardChance)
             {
-            Player->GetInventory()->AddItemToSlot(NewItem);
+                Player->GetInventory()->AddItemToSlot(NewItem);
             }
         }
     }
-
-    
 
     return 0.0f;
 }

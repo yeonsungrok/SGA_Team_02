@@ -22,9 +22,8 @@ ANormalMonster::ANormalMonster()
 		GetMesh()->SetSkeletalMesh(PS.Object);
 	}
 
-
 	_launchLength = 1000.0f;
-	_upVector = {0.0f,0.0f,200.f};
+	_upVector = {0.0f, 0.0f, 200.f};
 }
 
 FString ANormalMonster::GetHitSoundName() const
@@ -57,22 +56,20 @@ void ANormalMonster::PlayFindEffect()
 void ANormalMonster::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 void ANormalMonster::PostInitializeComponents()
 {
-	 Super::PostInitializeComponents();
+	Super::PostInitializeComponents();
 
-	 _monster_N_AnimInstance = Cast<UMonster_N_AnimInstance>(GetMesh()->GetAnimInstance());
-	 if (_monster_N_AnimInstance->IsValidLowLevelFast())
-	 {
-		 _monster_N_AnimInstance->OnMontageEnded.AddDynamic(this, &ACreature::OnAttackEnded);
-		 _monster_N_AnimInstance->_attackDelegate.AddUObject(this, &ACreature::AttackHit);
-		 _monster_N_AnimInstance->_deathDelegate.AddUObject(this, &AMonster::Disable);
-	 }
-	  _StatCom->SetMonsterLevelInit(1);
-
+	_monster_N_AnimInstance = Cast<UMonster_N_AnimInstance>(GetMesh()->GetAnimInstance());
+	if (_monster_N_AnimInstance->IsValidLowLevelFast())
+	{
+		_monster_N_AnimInstance->OnMontageEnded.AddDynamic(this, &ACreature::OnAttackEnded);
+		_monster_N_AnimInstance->_attackDelegate.AddUObject(this, &ACreature::AttackHit);
+		_monster_N_AnimInstance->_deathDelegate.AddUObject(this, &AMonster::Disable);
+	}
+	_StatCom->SetMonsterLevelInit(1);
 }
 
 void ANormalMonster::Attack_AI()
@@ -87,9 +84,4 @@ void ANormalMonster::Attack_AI()
 
 		_monster_N_AnimInstance->JumpToSection(_curAttackIndex);
 	}
-
 }
-
-
-
-

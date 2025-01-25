@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Monster/MagicDecal.h"
 #include "Engine/DecalActor.h"
 
@@ -13,11 +12,10 @@
 
 AMagicDecal::AMagicDecal()
 {
-	PrimaryActorTick.bCanEverTick = true;
+    PrimaryActorTick.bCanEverTick = true;
     _damageInterval = 1.0f;
     _damageAmount = 100.0f;
     _MagicDecalNiargar = CreateDefaultSubobject<UNiagaraComponent>(TEXT("MagicNiagaraComponent"));
-
 }
 
 void AMagicDecal::BeginPlay()
@@ -26,34 +24,31 @@ void AMagicDecal::BeginPlay()
 
     _runTime = 0.0f;
     _bIsPlay = true;
-  
 
     GetWorldTimerManager().SetTimer(_damageTimerHandle, this, &AMagicDecal::ApplyDamageToOverlappingPlayers, _damageInterval, true);
-
 }
 
 void AMagicDecal::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
-
 }
 
 void AMagicDecal::ApplyDamageToOverlappingPlayers()
 {
 
-    TArray<AActor*> OverlappingActors;
+    TArray<AActor *> OverlappingActors;
     FVector DecalLocation = GetActorLocation();
 
     UGameplayStatics::GetAllActorsOfClass(GetWorld(), AMyPlayer::StaticClass(), OverlappingActors);
 
-    for (AActor* Actor : OverlappingActors)
+    for (AActor *Actor : OverlappingActors)
     {
         FVector ActorLocation = Actor->GetActorLocation();
         float DistanceToDecal = FVector::Dist(DecalLocation, ActorLocation);
 
         if (DistanceToDecal <= _damageRadius)
         {
-            AMyPlayer* Player = Cast<AMyPlayer>(Actor);
+            AMyPlayer *Player = Cast<AMyPlayer>(Actor);
             if (Player)
             {
                 FDamageEvent DamageEvent;
@@ -73,5 +68,4 @@ void AMagicDecal::Active(FVector location)
 void AMagicDecal::DeActiveEvent(FVector location)
 {
     GetWorldTimerManager().ClearTimer(_damageTimerHandle);
-
 }

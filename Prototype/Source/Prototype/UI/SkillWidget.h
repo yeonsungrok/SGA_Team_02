@@ -7,13 +7,13 @@
 #include "SkillWidget.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API USkillWidget : public UUserWidget
 {
-	GENERATED_BODY()
-	public:
+    GENERATED_BODY()
+public:
     UFUNCTION(BlueprintCallable, Category = "Skill")
     void StartCooldown(int32 SkillIndex, float InMaxCooldownTime);
 
@@ -25,32 +25,32 @@ class PROTOTYPE_API USkillWidget : public UUserWidget
 protected:
     virtual void NativeConstruct() override;
 
-	UFUNCTION()
+    UFUNCTION()
     void UpdateCooldown(int32 SkillIndex);
 
     UPROPERTY(meta = (BindWidget))
-    class UImage* SkillImage1;
+    class UImage *SkillImage1;
 
     UPROPERTY(meta = (BindWidget))
-    class UImage* SkillImage2;
+    class UImage *SkillImage2;
 
     UPROPERTY(meta = (BindWidget))
-    class UImage* SkillImage3;
+    class UImage *SkillImage3;
 
     UPROPERTY(meta = (BindWidget))
-    class UImage* SkillImage4;
+    class UImage *SkillImage4;
 
     UPROPERTY(meta = (BindWidget))
-    class UImage* Cooldown1;
+    class UImage *Cooldown1;
 
     UPROPERTY(meta = (BindWidget))
-    class UImage* Cooldown2;
+    class UImage *Cooldown2;
 
     UPROPERTY(meta = (BindWidget))
-    class UImage* Cooldown3;
+    class UImage *Cooldown3;
 
     UPROPERTY(meta = (BindWidget))
-    class UImage* Cooldown4;
+    class UImage *Cooldown4;
 
     TArray<bool> SkillLocked;
 
@@ -58,7 +58,6 @@ protected:
     TArray<float> MaxCooldownTimes;
     TArray<FTimerHandle> CooldownTimerHandles;
 
-    TArray<UImage*> SkillImages;
-    TArray<UImage*> CooldownOverlays;
-	
+    TArray<UImage *> SkillImages;
+    TArray<UImage *> CooldownOverlays;
 };

@@ -7,7 +7,7 @@
 #include "Portal_Stage2_Boss.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API APortal_Stage2_Boss : public APortal
@@ -16,5 +16,4 @@ class PROTOTYPE_API APortal_Stage2_Boss : public APortal
 
 public:
 	APortal_Stage2_Boss();
-	
 };

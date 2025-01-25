@@ -2,7 +2,6 @@
 
 
 #include "Player/Dragon.h"
-//-----추가-----
 #include "Base/MyGameInstance.h"
 #include "Player/MyPlayer.h"
 #include "EngineUtils.h"
@@ -37,8 +36,6 @@ ADragon::ADragon()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	_knightInstance = nullptr;
-
-    // 드래곤의 비행을 위해 중력 제거
     
     GetCapsuleComponent()->InitCapsuleSize(230.0f, 230.0f);
     GetCharacterMovement()->bOrientRotationToMovement = false;
@@ -64,7 +61,7 @@ ADragon::ADragon()
         GetMesh()->SetSkeletalMesh(DragonMeshAsset.Object);
     }
 
-    GetMesh()->SetRelativeLocation(FVector(0.0f, 0.0f, -230.0f)); // 예: 메쉬를 살짝 아래로 배치
+    GetMesh()->SetRelativeLocation(FVector(0.0f, 0.0f, -230.0f));
     GetMesh()->SetRelativeRotation(FRotator(0.0f, -90.0f, 0.0f));
 
 
@@ -117,19 +114,15 @@ void ADragon::TransformToHuman()
 {
      if (APlayerController* PC = Cast<APlayerController>(GetController()))
     {
-        // 상태 복원
-        _knightInstance->SetActorLocation(GetActorLocation());  // 현재 Dragon의 위치로 복원
+        _knightInstance->SetActorLocation(GetActorLocation()); 
         _knightInstance->SetActorRotation(GetActorRotation());
 
-        // MyPlayer 활성화
         _knightInstance->SetActorHiddenInGame(false);
         _knightInstance->SetActorEnableCollision(true);
 
-        // Dragon 비활성화
         SetActorHiddenInGame(true);
         SetActorEnableCollision(false);
 
-        // 컨트롤 전환
         PC->Possess(_knightInstance);
 
         // 상태 업데이트

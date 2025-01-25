@@ -7,13 +7,13 @@
 #include "Portal_Stage2_Normal.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API APortal_Stage2_Normal : public APortal
 {
 	GENERATED_BODY()
-	
+
 public:
 	APortal_Stage2_Normal();
 };

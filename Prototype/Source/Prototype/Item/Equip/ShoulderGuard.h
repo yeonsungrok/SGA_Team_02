@@ -7,7 +7,7 @@
 #include "ShoulderGuard.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API AShoulderGuard : public AEquipItem
@@ -16,6 +16,6 @@ class PROTOTYPE_API AShoulderGuard : public AEquipItem
 
 public:
 	AShoulderGuard();
-	
+
 	virtual void BeginPlay() override;
 };

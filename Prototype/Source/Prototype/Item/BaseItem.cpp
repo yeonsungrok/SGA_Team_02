@@ -1,7 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
-
 #include "Item/BaseItem.h"
 
 #include "Player/MyPlayer.h"
@@ -10,7 +8,6 @@
 #include "Base/MyGameInstance.h"
 #include "Base/Managers/EffectManager.h"
 #include "Component/InventoryComponent.h"
-
 
 #include "Components/StaticMeshComponent.h"
 #include "Components/SphereComponent.h"
@@ -40,7 +37,7 @@ void ABaseItem::SetItemWithCode(int32 itemCode)
 	auto gameinstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
 	if (gameinstance != nullptr)
 	{
-		FItemData* data = gameinstance->GetConsumeItemData(itemCode);
+		FItemData *data = gameinstance->GetConsumeItemData(itemCode);
 		if (data == nullptr || data->_Name == TEXT(""))
 		{
 			return;
@@ -68,7 +65,6 @@ void ABaseItem::Init()
 	SetActorHiddenInGame(false);
 	SetActorEnableCollision(true);
 	PrimaryActorTick.bCanEverTick = true;
-	//EffectManager->Play(TEXT("I_ItemAura"), GetActorLocation(), FRotator::ZeroRotator);
 }
 
 void ABaseItem::Disable()
@@ -79,28 +75,26 @@ void ABaseItem::Disable()
 }
 
 // Called when the game starts or when spawned
- void ABaseItem::BeginPlay()
- {
+void ABaseItem::BeginPlay()
+{
 	Super::BeginPlay();
 	SetPlayer();
- }
+}
 
- void ABaseItem::PostInitializeComponents()
- {
-	 Super::PostInitializeComponents();
+void ABaseItem::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
 
-	 _trigger->OnComponentBeginOverlap.AddDynamic(this, &ABaseItem::OnOverlapBegin);
- }
+	_trigger->OnComponentBeginOverlap.AddDynamic(this, &ABaseItem::OnOverlapBegin);
+}
 
 // Called every frame
 void ABaseItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	
 }
 
-void ABaseItem::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void ABaseItem::OnOverlapBegin(UPrimitiveComponent *OverlappedComp, AActor *OtherActor, UPrimitiveComponent *OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult &SweepResult)
 {
 	_player = Cast<AMyPlayer>(OtherActor);
 	if (_player == nullptr)
@@ -111,7 +105,6 @@ void ABaseItem::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Othe
 
 void ABaseItem::GetItem()
 {
-
 }
 
 void ABaseItem::UseItem()
@@ -130,13 +123,13 @@ void ABaseItem::DropItem(FVector location, FRotator rotation)
 
 void ABaseItem::SetPlayer()
 {
-	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
-    if (PlayerController)
-    {
-        AMyPlayer* CurrentPlayer = Cast<AMyPlayer>(PlayerController->GetPawn());
-        if (CurrentPlayer)
-        {
-            _player = CurrentPlayer;
-        }
-    }
+	APlayerController *PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+	if (PlayerController)
+	{
+		AMyPlayer *CurrentPlayer = Cast<AMyPlayer>(PlayerController->GetPawn());
+		if (CurrentPlayer)
+		{
+			_player = CurrentPlayer;
+		}
+	}
 }

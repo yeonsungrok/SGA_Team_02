@@ -7,7 +7,6 @@
 #include "Monster.h"
 #include "NormalMonster.generated.h"
 
-
 UCLASS()
 class PROTOTYPE_API ANormalMonster : public AMonster
 {
@@ -23,7 +22,6 @@ public:
 
 	void PlayFindEffect();
 
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -32,7 +30,7 @@ protected:
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Animation", meta = (AllowPrivateAccess = "true"))
-	class UMonster_N_AnimInstance* _monster_N_AnimInstance;
+	class UMonster_N_AnimInstance *_monster_N_AnimInstance;
 
 	bool first = true;
 };

@@ -81,7 +81,7 @@ AUIManager::AUIManager()
 		_defaultTexture = defaultTexture.Object;
 	}
 
-	_uiList = {_inventoryUI,_statUI, _bossUI, _boss2UI, _shopUI, _startUI, _loadUI, _options};
+	_uiList = {_inventoryUI, _statUI, _bossUI, _boss2UI, _shopUI, _startUI, _loadUI, _options};
 	_uiIsOpen.Init(false, _uiList.Num());
 	_isPauseWhenOpen.Init(true, _uiList.Num());
 }
@@ -125,8 +125,8 @@ void AUIManager::OpenUI(UI_LIST ui)
 
 	_uiList[UIindex]->SetVisibility(ESlateVisibility::Visible);
 	static int32 LastZOrder = 0;
-    LastZOrder++;
-    _uiList[UIindex]->AddToViewport(LastZOrder);
+	LastZOrder++;
+	_uiList[UIindex]->AddToViewport(LastZOrder);
 
 	_uiIsOpen[UIindex] = true;
 }

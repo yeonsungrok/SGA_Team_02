@@ -29,12 +29,6 @@ ABossObstacle::ABossObstacle()
 void ABossObstacle::BeginPlay()
 {
 	Super::BeginPlay();
-
-	// for (TActorIterator<AEffectManager> It(GetWorld()); It; ++It)
-    // {
-    //     EffectManager = *It;
-    //     break;
-    // }	
 }
 
 // Called every frame
@@ -49,10 +43,6 @@ void ABossObstacle::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor,
 	ABossMonster* boss = Cast<ABossMonster>(OtherActor);
 	if(boss != nullptr &&(boss->GetIsJumping() || boss->GetIsDashing()))
 	{
-		// if (EffectManager)
-		// {
-		// 	EffectManager->Play(TEXT("P_BossObstacleDestroy"), GetActorLocation(), GetActorRotation());
-		// }
 		boss->DashEnd();
 		boss->DestroyObstacle();
 		boss->_StatCom->SetStun(true);

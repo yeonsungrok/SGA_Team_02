@@ -31,8 +31,6 @@ ABoss2Monster::ABoss2Monster()
 		_fireball = BF.Class;
 	}
 
-
-
 	GetCapsuleComponent()->SetCapsuleHalfHeight(310.0f);
 	GetCapsuleComponent()->SetCapsuleRadius(100.0f);
 
@@ -44,7 +42,6 @@ void ABoss2Monster::BeginPlay()
 {
 	Super::BeginPlay();
 	InitializeFireballPool();
-
 }
 
 void ABoss2Monster::PostInitializeComponents()
@@ -59,60 +56,58 @@ void ABoss2Monster::PostInitializeComponents()
 		_bossMonster02_AnimInstance->_deathDelegate.AddUObject(this, &AMonster::Disable);
 		_bossMonster02_AnimInstance->_skillDelegate.AddDynamic(this, &ABoss2Monster::FireballAttack);
 	}
-	 _StatCom->SetBossLevelInit(1);
-
+	_StatCom->SetBossLevelInit(1);
 }
 
 void ABoss2Monster::FireballAttack(FVector Location)
 {
 	Isfire = true;
-    float FireballSpacing = 200.0f;
-    FVector InitialLocation = GetActorLocation() + FVector(0, 0, 300.0f);
-    FRotator SpawnRotation = FRotator::ZeroRotator;
+	float FireballSpacing = 200.0f;
+	FVector InitialLocation = GetActorLocation() + FVector(0, 0, 300.0f);
+	FRotator SpawnRotation = FRotator::ZeroRotator;
 
-    int FireballCount = 5;
-    float MiddleIndex = (FireballCount - 1) / 2.0f;
+	int FireballCount = 5;
+	float MiddleIndex = (FireballCount - 1) / 2.0f;
 
-    TArray<class ABossFireball*> Fireballs;
+	TArray<class ABossFireball *> Fireballs;
 
-    FVector ForwardVector = GetActorForwardVector();
-    FVector RightVector = GetActorRightVector();
+	FVector ForwardVector = GetActorForwardVector();
+	FVector RightVector = GetActorRightVector();
 
-    for (int i = 0; i < FireballCount; i++)
-    {
-        FVector Offset = RightVector * (i - MiddleIndex) * FireballSpacing;
-        FVector SpawnLocation = InitialLocation + Offset;
+	for (int i = 0; i < FireballCount; i++)
+	{
+		FVector Offset = RightVector * (i - MiddleIndex) * FireballSpacing;
+		FVector SpawnLocation = InitialLocation + Offset;
 
-        ABossFireball* Fireball = FireballPool[i];
-        if (Fireball)
-        {
-            Fireball->SetActorLocation(SpawnLocation);
-            Fireball->SetActorHiddenInGame(false);
-            Fireball->SetActorEnableCollision(true);
-            Fireballs.Add(Fireball);
-        }
-    }
-	
+		ABossFireball *Fireball = FireballPool[i];
+		if (Fireball)
+		{
+			Fireball->SetActorLocation(SpawnLocation);
+			Fireball->SetActorHiddenInGame(false);
+			Fireball->SetActorEnableCollision(true);
+			Fireballs.Add(Fireball);
+		}
+	}
+
 	if (Fireballs.IsValidIndex(0))
-    {
-        Fireballs[0]->LaunchTowards(Location);
-    }
+	{
+		Fireballs[0]->LaunchTowards(Location);
+	}
 
-    for (int i = 1; i < Fireballs.Num(); i++)
-    {
-        FTimerHandle TimerHandle;
+	for (int i = 1; i < Fireballs.Num(); i++)
+	{
+		FTimerHandle TimerHandle;
 
-        GetWorldTimerManager().SetTimer(TimerHandle, [this, Fireballs, i, Location]()
-        {
+		GetWorldTimerManager().SetTimer(TimerHandle, [this, Fireballs, i, Location]()
+										{
             if (Fireballs.IsValidIndex(i) && Fireballs[i])
             {
                 FVector TargetLocation = UpdatedLocation();
                 Fireballs[i]->LaunchTowards(TargetLocation);
-            }
-        }, i * 0.5f, false);
-    }
+            } }, i * 0.5f, false);
+	}
 
-    Isfire = false;
+	Isfire = false;
 }
 
 FVector ABoss2Monster::UpdatedLocation()
@@ -120,26 +115,27 @@ FVector ABoss2Monster::UpdatedLocation()
 	auto AIController = Cast<AAIController_Boss2>(GetController());
 	FVector LastVector;
 
-    if (AIController && AIController->GetBlackboardComponent())
-    {
-        AActor* TargetActor = Cast<AActor>(AIController->GetBlackboardComponent()->GetValueAsObject("Target"));
-        if (TargetActor)
-        {
+	if (AIController && AIController->GetBlackboardComponent())
+	{
+		AActor *TargetActor = Cast<AActor>(AIController->GetBlackboardComponent()->GetValueAsObject("Target"));
+		if (TargetActor)
+		{
 			LastVector = TargetActor->GetActorLocation();
-            return LastVector;
-        }
-    }
-    return LastVector;
+			return LastVector;
+		}
+	}
+	return LastVector;
 }
 
-float ABoss2Monster::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+float ABoss2Monster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent, AController *EventInstigator, AActor *DamageCauser)
 {
 	UBaseAnimInstance *AnimInstance = Cast<UBaseAnimInstance>(GetMesh()->GetAnimInstance());
 
-	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-    if (!PlayerController) return 0.0f;
+	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
+	if (!PlayerController)
+		return 0.0f;
 
-    AMyPlayer* player = Cast<AMyPlayer>(PlayerController->GetPawn());
+	AMyPlayer *player = Cast<AMyPlayer>(PlayerController->GetPawn());
 
 	if (AnimInstance)
 	{
@@ -149,7 +145,6 @@ float ABoss2Monster::TakeDamage(float Damage, struct FDamageEvent const& DamageE
 	SoundManager->PlaySound(*GetGuardOff(), _hitPoint);
 
 	_StatCom->AddCurHp(-Damage);
-
 
 	if (_StatCom->IsDead())
 	{
@@ -167,8 +162,6 @@ float ABoss2Monster::TakeDamage(float Damage, struct FDamageEvent const& DamageE
 	return 0.0f;
 }
 
-
-
 void ABoss2Monster::Attack_AI()
 {
 	if (_isAttacking == false && _bossMonster02_AnimInstance != nullptr)
@@ -176,7 +169,6 @@ void ABoss2Monster::Attack_AI()
 		_isAttacking = true;
 		_bossMonster02_AnimInstance->PlayAttackMontage();
 	}
-
 }
 
 void ABoss2Monster::AttackHit()
@@ -204,7 +196,7 @@ void ABoss2Monster::AttackHit()
 	if (bResult)
 	{
 		drawColor = FColor::Red;
-		
+
 		for (auto &hitResult : hitResults)
 		{
 
@@ -218,7 +210,7 @@ void ABoss2Monster::AttackHit()
 				EffectManager->Play(*GetPlayerAttackHitEffect(), _hitPoint);
 
 				EffectManager->Play(*GetBoss2AttackEffect(), _hitPoint);
-				
+
 				break;
 			}
 		}
@@ -227,51 +219,48 @@ void ABoss2Monster::AttackHit()
 	{
 		FVector missLocation = GetActorLocation();
 		SoundManager->PlaySound(*GetSwingSoundName(), missLocation);
-
-		
 	}
-
-
 }
 
 void ABoss2Monster::InitializeFireballPool()
 {
-	if (!_fireball) return;
+	if (!_fireball)
+		return;
 
-    for (int32 i = 0; i < PoolSize; ++i)
-    {
-        ABossFireball* Fireball = GetWorld()->SpawnActor<ABossFireball>(_fireball, FVector::ZeroVector, FRotator::ZeroRotator);
-        if (Fireball)
-        {
-            Fireball->SetActorEnableCollision(false);
-            Fireball->SetActorHiddenInGame(true);
-            FireballPool.Add(Fireball);
-        }
-    }
+	for (int32 i = 0; i < PoolSize; ++i)
+	{
+		ABossFireball *Fireball = GetWorld()->SpawnActor<ABossFireball>(_fireball, FVector::ZeroVector, FRotator::ZeroRotator);
+		if (Fireball)
+		{
+			Fireball->SetActorEnableCollision(false);
+			Fireball->SetActorHiddenInGame(true);
+			FireballPool.Add(Fireball);
+		}
+	}
 }
 
-ABossFireball* ABoss2Monster::GetPooledFireball()
+ABossFireball *ABoss2Monster::GetPooledFireball()
 {
-	for (ABossFireball* Fireball : FireballPool)
-    {
-        if (!Fireball->IsActive())
-        {
-            return Fireball;
-        }
+	for (ABossFireball *Fireball : FireballPool)
+	{
+		if (!Fireball->IsActive())
+		{
+			return Fireball;
+		}
 		else
 		{
 			continue;
 		}
-    }
+	}
 
-    ABossFireball* NewFireball = GetWorld()->SpawnActor<ABossFireball>(_fireball, FVector::ZeroVector, FRotator::ZeroRotator);
-    if (NewFireball)
-    {
-        NewFireball->SetActorEnableCollision(false);
-        NewFireball->SetActorHiddenInGame(true);
-        FireballPool.Add(NewFireball);
-    }
-    return NewFireball;
+	ABossFireball *NewFireball = GetWorld()->SpawnActor<ABossFireball>(_fireball, FVector::ZeroVector, FRotator::ZeroRotator);
+	if (NewFireball)
+	{
+		NewFireball->SetActorEnableCollision(false);
+		NewFireball->SetActorHiddenInGame(true);
+		FireballPool.Add(NewFireball);
+	}
+	return NewFireball;
 }
 
 void ABoss2Monster::Skill_AI(FVector location)
@@ -285,36 +274,34 @@ void ABoss2Monster::Skill_AI(FVector location)
 
 void ABoss2Monster::Teleport(FVector location)
 {
-    float OriginalZ = location.Z;
+	float OriginalZ = location.Z;
 
-    FVector TeleportLocation = location + FMath::VRand() * FMath::FRandRange(100.0f, 600.0f);
-    TeleportLocation.Z = OriginalZ;
+	FVector TeleportLocation = location + FMath::VRand() * FMath::FRandRange(100.0f, 600.0f);
+	TeleportLocation.Z = OriginalZ;
 
+	FVector MinBounds(-1710.0f, -3790.0f, 460.0f);
+	FVector MaxBounds(2190.0f, -1270.0f, 460.0f);
 
-    FVector MinBounds(-1710.0f, -3790.0f, 460.0f);
-    FVector MaxBounds(2190.0f, -1270.0f, 460.0f);
+	TeleportLocation.X = FMath::Clamp(TeleportLocation.X, MinBounds.X, MaxBounds.X);
+	TeleportLocation.Y = FMath::Clamp(TeleportLocation.Y, MinBounds.Y, MaxBounds.Y);
+	TeleportLocation.Z = MinBounds.Z;
 
-    TeleportLocation.X = FMath::Clamp(TeleportLocation.X, MinBounds.X, MaxBounds.X);
-    TeleportLocation.Y = FMath::Clamp(TeleportLocation.Y, MinBounds.Y, MaxBounds.Y);
-    TeleportLocation.Z = MinBounds.Z; 
+	SetActorLocation(TeleportLocation, false, nullptr, ETeleportType::TeleportPhysics);
 
+	FRotator CurrentRotation = GetActorRotation();
+	FVector DirectionToLocation = location - TeleportLocation;
+	FRotator LookAtRotation = DirectionToLocation.Rotation();
+	FRotator NewRotation = FRotator(CurrentRotation.Pitch, LookAtRotation.Yaw, CurrentRotation.Roll);
 
-    SetActorLocation(TeleportLocation, false, nullptr, ETeleportType::TeleportPhysics);
-
-    FRotator CurrentRotation = GetActorRotation();
-    FVector DirectionToLocation = location - TeleportLocation;
-    FRotator LookAtRotation = DirectionToLocation.Rotation();
-    FRotator NewRotation = FRotator(CurrentRotation.Pitch, LookAtRotation.Yaw, CurrentRotation.Roll);
-
-    SetActorRotation(NewRotation);
+	SetActorRotation(NewRotation);
 
 	FVector EffectLocation = GetActorLocation();
 	EffectLocation.Z -= 300.0f;
 
-    EffectManager->Play(*GetBoss2TeleportEffect(), EffectLocation);
-    SoundManager->PlaySound(*GetBoss2TeleportSound(), GetActorLocation());
+	EffectManager->Play(*GetBoss2TeleportEffect(), EffectLocation);
+	SoundManager->PlaySound(*GetBoss2TeleportSound(), GetActorLocation());
 
-    Attack_AI();
+	Attack_AI();
 }
 
 FString ABoss2Monster::GetBoss2AttackEffect() const
@@ -331,4 +318,3 @@ FString ABoss2Monster::GetBoss2TeleportSound() const
 {
 	return "Boss_02_Teleport_Cue";
 }
-

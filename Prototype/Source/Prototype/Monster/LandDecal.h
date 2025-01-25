@@ -7,7 +7,7 @@
 #include "LandDecal.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API ALandDecal : public AMyDecal
@@ -15,6 +15,5 @@ class PROTOTYPE_API ALandDecal : public AMyDecal
 	GENERATED_BODY()
 
 public:
-	virtual void DeActiveEvent(FVector location) override;	
-	
+	virtual void DeActiveEvent(FVector location) override;
 };

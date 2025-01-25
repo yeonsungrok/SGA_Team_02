@@ -7,7 +7,7 @@
 #include "Helmet.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API AHelmet : public AEquipItem
@@ -16,7 +16,6 @@ class PROTOTYPE_API AHelmet : public AEquipItem
 
 public:
 	AHelmet();
-	
-	virtual void BeginPlay() override;
 
+	virtual void BeginPlay() override;
 };

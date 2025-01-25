@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "UI/SkillWidget.h"
 #include "Components/Image.h"
 #include "../Player/MyPlayer.h"
@@ -33,11 +32,9 @@ void USkillWidget::NativeConstruct()
     }
 }
 
-
-
 void USkillWidget::StartCooldown(int32 SkillIndex, float InMaxCooldownTime)
 {
-    if (SkillIndex < 0 || SkillIndex >= CooldownOverlays.Num()|| SkillLocked[SkillIndex])
+    if (SkillIndex < 0 || SkillIndex >= CooldownOverlays.Num() || SkillLocked[SkillIndex])
         return;
 
     MaxCooldownTimes[SkillIndex] = InMaxCooldownTime;
@@ -70,12 +67,12 @@ void USkillWidget::StartCooldown(int32 SkillIndex, float InMaxCooldownTime)
         {
             Player->SetSkillOnCooldown(SkillIndex, false);
         }
-    } }, GetWorld()->GetDeltaSeconds(), true); 
+    } }, GetWorld()->GetDeltaSeconds(), true);
 }
 
 void USkillWidget::ClearAll()
 {
-     for (int32 i = 0; i < CooldownTimerHandles.Num(); ++i)
+    for (int32 i = 0; i < CooldownTimerHandles.Num(); ++i)
     {
         if (GetWorld() && GetWorld()->GetTimerManager().IsTimerActive(CooldownTimerHandles[i]))
         {
@@ -95,7 +92,6 @@ void USkillWidget::LockAllSkill()
             CooldownOverlays[i]->SetOpacity(0.8f);
         }
     }
-
 }
 
 void USkillWidget::UnLockAllSkill()
@@ -153,5 +149,4 @@ void USkillWidget::UpdateCooldown(int32 SkillIndex)
             CooldownOverlays[SkillIndex]->SetOpacity(0.5f);
         }
     }
-
 }

@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "UI/MainStartWidget.h"
 #include "Kismet/GameplayStatics.h"
 #include "Components/Button.h"
@@ -10,13 +9,10 @@
 #include "Blueprint/UserWidget.h"
 #include "UObject/ConstructorHelpers.h"
 
-
-
-UMainStartWidget::UMainStartWidget(const FObjectInitializer& ObjectInitializer)
+UMainStartWidget::UMainStartWidget(const FObjectInitializer &ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	static ConstructorHelpers::FClassFinder<UUserWidget> Options
-	(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/options_UITEST.options_UITEST_C'"));
+	static ConstructorHelpers::FClassFinder<UUserWidget> Options(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/options_UITEST.options_UITEST_C'"));
 	if (Options.Succeeded())
 	{
 		_OptionsButton = Options.Class;
@@ -41,15 +37,13 @@ void UMainStartWidget::NativeConstruct()
 	{
 		OptionsButton->OnClicked.AddDynamic(this, &UMainStartWidget::OptionsButtonClick);
 	}
-
 }
 
 void UMainStartWidget::StartButtonClick()
 {
 	UIManager->OpenUI(UI_LIST::Load);
-	
-	OpenLevel(); 
 
+	OpenLevel();
 }
 
 void UMainStartWidget::QuitButtonClick()
@@ -61,7 +55,7 @@ void UMainStartWidget::OptionsButtonClick()
 {
 	if (_OptionsButton)
 	{
-		UUserWidget* Optionss = CreateWidget<UUserWidget>(GetWorld(), _OptionsButton);
+		UUserWidget *Optionss = CreateWidget<UUserWidget>(GetWorld(), _OptionsButton);
 		if (Optionss)
 		{
 			Optionss->AddToViewport();
@@ -71,6 +65,5 @@ void UMainStartWidget::OptionsButtonClick()
 
 void UMainStartWidget::OpenLevel()
 {
-	 UGameplayStatics::OpenLevel(GetWorld(), TEXT("NewMap"));
+	UGameplayStatics::OpenLevel(GetWorld(), TEXT("NewMap"));
 }
-

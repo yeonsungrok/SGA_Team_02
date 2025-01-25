@@ -23,111 +23,110 @@ UCLASS()
 class PROTOTYPE_API UMyGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
-	
+
 public:
 	UMyGameInstance();
-	void SavePlayerStats(class UStatComponent* StatComponent);
-	void LoadPlayerStats(class UStatComponent* StatComponent);
+	void SavePlayerStats(class UStatComponent *StatComponent);
+	void LoadPlayerStats(class UStatComponent *StatComponent);
 
-	void SaveInventory(class UInventoryComponent* InventoryComponent);
-	void LoadInventory(class UInventoryComponent* InventoryComponent);
+	void SaveInventory(class UInventoryComponent *InventoryComponent);
+	void LoadInventory(class UInventoryComponent *InventoryComponent);
 
-	void SavePlayerSkeletal(class AMyPlayer* player);
-	void LoadPlayerSkeletal(class AMyPlayer* player);
-
-    UPROPERTY()
-    TArray<FItemData> SavedInventoryData;
+	void SavePlayerSkeletal(class AMyPlayer *player);
+	void LoadPlayerSkeletal(class AMyPlayer *player);
 
 	UPROPERTY()
-	TMap<FString,FItemData> SavedEquipData;
-    
+	TArray<FItemData> SavedInventoryData;
 
-	bool GetFirst(){return _firstIn;}
-	void SetFirst(bool first){_firstIn = first;}
+	UPROPERTY()
+	TMap<FString, FItemData> SavedEquipData;
 
-	bool GetStage1Clear(){return _stage1Clear;}
-	void SetStage1Clear(bool clear){_stage1Clear = clear;}
+	bool GetFirst() { return _firstIn; }
+	void SetFirst(bool first) { _firstIn = first; }
 
-	bool GetStage2Clear(){return _stage2Clear;}
-	void SetStage2Clear(bool clear){_stage2Clear = clear;}
+	bool GetStage1Clear() { return _stage1Clear; }
+	void SetStage1Clear(bool clear) { _stage1Clear = clear; }
 
-	TArray<ABaseItem*> GetInvenItemList();
+	bool GetStage2Clear() { return _stage2Clear; }
+	void SetStage2Clear(bool clear) { _stage2Clear = clear; }
+
+	TArray<ABaseItem *> GetInvenItemList();
 
 public:
 	virtual void Init() override;
 
 	UFUNCTION()
 	void InitializeManagers();
-	
-	class AUIManager* GetUIManager() { return _UIManager; }
 
-	FMyStatData* GetStatDataByLevel(int level);
-	FMyStatData* GetMonsterDataByLevel(int level);
-	FMyStatData* GetEpicDataByLevel(int level);
-	FMyStatData* GetBossDataByLevel(int level);
-	FMyStatData* GetDragonDataByLevel(int level);
+	class AUIManager *GetUIManager() { return _UIManager; }
 
-	FItemData* GetConsumeItemData(int code);
-	FItemData* GetEquipItemData(int code);
+	FMyStatData *GetStatDataByLevel(int level);
+	FMyStatData *GetMonsterDataByLevel(int level);
+	FMyStatData *GetEpicDataByLevel(int level);
+	FMyStatData *GetBossDataByLevel(int level);
+	FMyStatData *GetDragonDataByLevel(int level);
 
-	TArray<FSellings*> GetSellingData(int32 shop);
+	FItemData *GetConsumeItemData(int code);
+	FItemData *GetEquipItemData(int code);
 
-	ABaseItem* SellDataToItemData(FSellings* data);
+	TArray<FSellings *> GetSellingData(int32 shop);
 
-	ASoundManager* GetSoundManager() { return _soundManager; }
-	AEffectManager* GetEffectManager() { return _effectManager; }
+	ABaseItem *SellDataToItemData(FSellings *data);
+
+	ASoundManager *GetSoundManager() { return _soundManager; }
+	AEffectManager *GetEffectManager() { return _effectManager; }
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Audio")
 	float MasterVolume = 1.0f;
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	class AUIManager* _UIManager;
+	class AUIManager *_UIManager;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	ASoundManager* _soundManager;
-	
+	ASoundManager *_soundManager;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	AEffectManager* _effectManager;
+	AEffectManager *_effectManager;
 
 	UPROPERTY()
-	UDataTable* _statTable;
+	UDataTable *_statTable;
 
 	UPROPERTY()
-	UDataTable* _EpicstatTable;
+	UDataTable *_EpicstatTable;
 
 	UPROPERTY()
-	UDataTable* _BossstatTable;
-	
-	UPROPERTY()
-	UDataTable* _MonsterstatTable;
+	UDataTable *_BossstatTable;
 
 	UPROPERTY()
-	UDataTable* _ConsItemTable;
-	UPROPERTY()
-	UDataTable* _EquipItemTable;
+	UDataTable *_MonsterstatTable;
 
 	UPROPERTY()
-	UDataTable* _ShopList;
+	UDataTable *_ConsItemTable;
+	UPROPERTY()
+	UDataTable *_EquipItemTable;
 
 	UPROPERTY()
-	TArray<UDataTable*> _ShopLists;
+	UDataTable *_ShopList;
 
 	UPROPERTY()
-	UDataTable* _DragonStatTable;
+	TArray<UDataTable *> _ShopLists;
+
+	UPROPERTY()
+	UDataTable *_DragonStatTable;
 
 	UPROPERTY()
 	TArray<int32> SavedPlayerStats;
 
 	UPROPERTY()
-	TArray<class USkeletalMesh*> SavedSkeletalMeshes;
+	TArray<class USkeletalMesh *> SavedSkeletalMeshes;
 
 	UPROPERTY()
 	float _savedAttackRadius;
 
 	UPROPERTY()
 	float _savedAttackRange;
-	
+
 	UPROPERTY()
 	bool _firstIn = true;
 
@@ -136,7 +135,4 @@ private:
 
 	UPROPERTY()
 	bool _stage2Clear = false;
-
-
-
 };

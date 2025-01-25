@@ -13,10 +13,9 @@
 AMeteorDecal::AMeteorDecal()
 {
     PrimaryActorTick.bCanEverTick = true;
-    _fallDuration = 3.0f;  // Default fall duration
+    _fallDuration = 3.0f;
     _elapsedTime = 0.0f;
 
-    // Initialize Static Mesh for Meteor
     _niagaraCom = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NiagaraComponent"));
     _niagaraCom->SetupAttachment(RootComponent);
 
@@ -34,7 +33,6 @@ void AMeteorDecal::BeginPlay()
 
     SetActorScale3D(FVector(1.0f, 20.0f, 20.0f));
 
-    // Niagara 크기 설정
     if (_niagaraCom)
     {
         _niagaraCom->SetWorldScale3D(FVector(1.0f, 1.0f, 1.0f));
@@ -71,7 +69,7 @@ void AMeteorDecal::StartMeteor(FVector startLocation, FVector endLocation, float
     _elapsedTime = 0.0f;
     _niagaraCom->SetWorldLocation(startLocation);
 
-    SetActorLocation(endLocation); 
+    SetActorLocation(endLocation);
     _bIsPlay = true;
 }
 
@@ -86,21 +84,19 @@ void AMeteorDecal::OnMeteorImpact()
         UNiagaraFunctionLibrary::SpawnSystemAtLocation(
             GetWorld(),
             _additionalEffect,
-            GetActorLocation(), 
+            GetActorLocation(),
             FRotator::ZeroRotator,
-            FVector(10.0f)
-        );
+            FVector(10.0f));
     }
 
-   
     float DamageAmount = 500.0f;
     FVector DecalSize = GetDecal()->DecalSize;
     float Size = DecalSize.Y;
     float DamageRadius = _areaRadius * Size;
 
-    TArray<AActor*> IgnoredActors;
+    TArray<AActor *> IgnoredActors;
 
-    AMyPlayer* Player = Cast<AMyPlayer>(GetWorld()->GetFirstPlayerController()->GetPawn());
+    AMyPlayer *Player = Cast<AMyPlayer>(GetWorld()->GetFirstPlayerController()->GetPawn());
     if (Player)
     {
         IgnoredActors.Add(Player);
@@ -115,10 +111,8 @@ void AMeteorDecal::OnMeteorImpact()
         IgnoredActors,
         this,
         GetInstigatorController(),
-        true
-    );
+        true);
 
-    // 데칼 폭발 처리
     DeActiveEvent(GetActorLocation());
 }
 
@@ -126,10 +120,4 @@ void AMeteorDecal::UpdateMeteorPosition(float DeltaTime)
 {
     FVector currentLocation = FMath::Lerp(_startLocation, _endLocation, _elapsedTime / _fallDuration);
     _niagaraCom->SetWorldLocation(currentLocation);
-}
-
-void AMeteorDecal::DeActiveEvent(FVector location)
-{
-
-
 }

@@ -45,21 +45,21 @@ struct FItemData : public FTableRowBase
 	int _Value;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UStaticMesh* _Mesh;
+	UStaticMesh *_Mesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UTexture2D* _Texture;
+	UTexture2D *_Texture;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USkeletalMesh* _Skeletal;
+	USkeletalMesh *_Skeletal;
 };
 
 UCLASS()
 class PROTOTYPE_API ABaseItem : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	ABaseItem();
 
@@ -72,41 +72,40 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	virtual void PostInitializeComponents() override;
-public:	
+
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION()
-	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	virtual void OnOverlapBegin(UPrimitiveComponent *OverlappedComp, AActor *OtherActor, UPrimitiveComponent *OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult &SweepResult);
 
 	virtual void GetItem();
 	virtual void UseItem();
 	virtual void DropItem(FVector location, FRotator rotation = FRotator::ZeroRotator);
 
-	virtual void SetPlayer(); 
-	
+	virtual void SetPlayer();
 
-	//Item Data Getter
-	int GetCode(){return _Code;}
+	int GetCode() { return _Code; }
 	FString GetName() { return _Name; }
 	ItemType GetType() { return _Type; }
 	StatType GetModStat() { return _ModStatType; }
 	FString GetDesc() { return _Description; }
 	int32 GetPrice() { return _Price; }
 	int32 GetValue() { return _Value; }
-	UStaticMesh* GetSkeletalMesh() {return _Mesh;}
-	UTexture2D* GetTexture() { return _Texture; }
-	int32 GetEquip() {return _Equip;}
+	UStaticMesh *GetSkeletalMesh() { return _Mesh; }
+	UTexture2D *GetTexture() { return _Texture; }
+	int32 GetEquip() { return _Equip; }
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components")
-	class UStaticMeshComponent* _meshComponent;
+	class UStaticMeshComponent *_meshComponent;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Collision")
-	class USphereComponent* _trigger;
+	class USphereComponent *_trigger;
 
 	UPROPERTY()
-	class AMyPlayer* _player;
+	class AMyPlayer *_player;
 
 	int _Code;
 	FString _Name;
@@ -115,7 +114,7 @@ protected:
 	FString _Description;
 	int32 _Price;
 	int32 _Value;
-	UStaticMesh* _Mesh;
-	UTexture2D* _Texture;
+	UStaticMesh *_Mesh;
+	UTexture2D *_Texture;
 	int _Equip;
 };

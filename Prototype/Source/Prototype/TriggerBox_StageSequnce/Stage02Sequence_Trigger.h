@@ -20,17 +20,14 @@ UCLASS()
 class PROTOTYPE_API AStage02Sequence_Trigger : public ASequenceBase_Trigger
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AStage02Sequence_Trigger();
-
-
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-    virtual void OnSequenceFinished() override;
-
+	virtual void OnSequenceFinished() override;
 };

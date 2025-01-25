@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Component/ShopComponent.h"
 #include "Base/MyGameInstance.h"
 #include "Base/Managers/UIManager.h"
@@ -14,10 +13,7 @@ UShopComponent::UShopComponent()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = false;
-
-	// ...
 }
-
 
 // Called when the game starts
 void UShopComponent::BeginPlay()
@@ -27,7 +23,7 @@ void UShopComponent::BeginPlay()
 	Init();
 }
 
-void UShopComponent::SetCustomer(AMyPlayer* target)
+void UShopComponent::SetCustomer(AMyPlayer *target)
 {
 	_customer = target;
 }
@@ -44,7 +40,7 @@ void UShopComponent::Init()
 void UShopComponent::SetSales(int32 code)
 {
 	auto data = GAMEINSTANCE->GetSellingData(code);
-	ABaseItem* item;
+	ABaseItem *item;
 	for (auto it : data)
 	{
 		if (it == nullptr)
@@ -63,10 +59,10 @@ void UShopComponent::Sale(int32 index)
 {
 	if (_customer == nullptr)
 		return;
-	
+
 	auto p_inventory = _customer->GetInventory();
 
-	ABaseItem* merch = nullptr;
+	ABaseItem *merch = nullptr;
 	if (_sallings[index]->GetType() == ItemType::Consume)
 	{
 		merch = GetWorld()->SpawnActor<ABaseItem>(ABaseItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
@@ -74,7 +70,7 @@ void UShopComponent::Sale(int32 index)
 	}
 	else if (_sallings[index]->GetType() == ItemType::Equipment)
 	{
-		AEquipItem* EquipItem = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+		AEquipItem *EquipItem = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
 		EquipItem->SetItemWithCode(_sallings[index]->GetCode());
 		EquipItem->SetEquipType(_sallings[index]->GetEquip());
 		merch = EquipItem;
@@ -97,4 +93,3 @@ void UShopComponent::SalePlayerItem(int32 index, int32 amount)
 	p_inventory->AddMoney(amount);
 	UIManager->GetShopUI()->ReflectInvenSlots(_customer);
 }
-

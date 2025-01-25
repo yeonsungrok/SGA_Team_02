@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Base/Stage2NormalGameModeBase.h"
 #include "Component/StatComponent.h"
 #include "Component/InventoryComponent.h"
@@ -22,27 +21,27 @@ void AStage2NormalGameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	AMyPlayer* player = Cast<AMyPlayer>(UGameplayStatics::GetPlayerCharacter(this, 0));
+	AMyPlayer *player = Cast<AMyPlayer>(UGameplayStatics::GetPlayerCharacter(this, 0));
 	if (player)
 	{
-		UMyGameInstance* GameInstance = Cast<UMyGameInstance>(GetGameInstance());
+		UMyGameInstance *GameInstance = Cast<UMyGameInstance>(GetGameInstance());
 		if (GameInstance)
 		{
 			GameInstance->InitializeManagers();
-			UStatComponent* StatComponent = player->FindComponentByClass<UStatComponent>();
+			UStatComponent *StatComponent = player->FindComponentByClass<UStatComponent>();
 			if (StatComponent)
 			{
 				GameInstance->LoadPlayerStats(StatComponent);
 			}
 
-			UInventoryComponent* InvenComponent = player->FindComponentByClass<UInventoryComponent>();
+			UInventoryComponent *InvenComponent = player->FindComponentByClass<UInventoryComponent>();
 			if (InvenComponent)
 			{
 				GameInstance->LoadInventory(InvenComponent);
 			}
 			GameInstance->LoadPlayerSkeletal(player);
 
-			APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+			APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
 			if (PlayerController)
 			{
 				PlayerController->bShowMouseCursor = false;
@@ -55,5 +54,4 @@ void AStage2NormalGameModeBase::BeginPlay()
 void AStage2NormalGameModeBase::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
-
 }

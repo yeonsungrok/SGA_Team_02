@@ -10,7 +10,7 @@ UCLASS()
 class PROTOTYPE_API AConsumeItem : public ABaseItem
 {
 	GENERATED_BODY()
-	
+
 public:
 	AConsumeItem();
 

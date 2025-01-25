@@ -5,10 +5,8 @@
 #include "MeteorDecal.h"
 #include "UI/SkillWidget.h"
 
-
 AMyPlayerController::AMyPlayerController()
 {
-
 }
 
 void AMyPlayerController::BeginPlay()
@@ -22,27 +20,13 @@ void AMyPlayerController::BeginPlay()
         subSystem->AddMappingContext(_inputMappingContext, 0);
     }
 
-
     if (SkillWidgetClass)
     {
         SkillWidgetInstance = CreateWidget<USkillWidget>(this, SkillWidgetClass);
         if (SkillWidgetInstance)
         {
-             SkillWidgetInstance->LockAllSkill();
+            SkillWidgetInstance->LockAllSkill();
             SkillWidgetInstance->AddToViewport();
         }
     }
-
-    MeteorDecalPool = GetWorld()->SpawnActor<AMeteorDecalPool>();
-	if (MeteorDecalPool)
-	{
-		MeteorDecalPool->MeteorClass = MeteorDecalClass;
-		MeteorDecalPool->InitializePool(20);
-	}
-
-
-
-
 }
-
-

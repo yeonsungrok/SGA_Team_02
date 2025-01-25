@@ -24,7 +24,7 @@ void AEquipItem::SetItemWithCode(int32 itemCode)
     auto gameinstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
     if (gameinstance != nullptr)
     {
-        FItemData* data = gameinstance->GetEquipItemData(itemCode);
+        FItemData *data = gameinstance->GetEquipItemData(itemCode);
         if (data == nullptr || data->_Name == TEXT(""))
         {
             return;
@@ -50,10 +50,9 @@ void AEquipItem::SetEquipType(int num)
 {
     if (num >= 0 && num < static_cast<int32>(EItemType::Shield) + 1)
     {
-        _equipItemType = static_cast<EItemType>(num); 
+        _equipItemType = static_cast<EItemType>(num);
 
         FString EnumValueAsString = UEnum::GetValueAsString(_equipItemType);
-
     }
     else
     {
@@ -112,10 +111,10 @@ void AEquipItem::UnEquip()
 {
     if (_player == nullptr)
     {
-        APlayerController* playerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+        APlayerController *playerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
         if (playerController)
         {
-            AMyPlayer* currentPlayer = Cast<AMyPlayer>(playerController->GetPawn());
+            AMyPlayer *currentPlayer = Cast<AMyPlayer>(playerController->GetPawn());
             if (currentPlayer)
                 _player = currentPlayer;
             else
@@ -123,7 +122,6 @@ void AEquipItem::UnEquip()
         }
     }
 
-    //TODO : if put DEFAULT, recover to default skeletal mesh
     switch (_equipItemType)
     {
     case EItemType::UpperArmor:
@@ -164,7 +162,6 @@ void AEquipItem::DropItem(FVector location, FRotator rotation)
 {
     Super::DropItem(location, rotation);
 
-    if(_isEquipped)
+    if (_isEquipped)
         UnEquip();
 }
-

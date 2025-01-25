@@ -62,7 +62,7 @@ void ABossMonster::PostInitializeComponents()
 		_bossMonster01_AnimInstance->_stunDelegate.AddUObject(this, &ABossMonster::StunEnd);
 	}
 
-	 _StatCom->SetBossLevelInit(1);
+	_StatCom->SetBossLevelInit(1);
 }
 
 void ABossMonster::Attack_AI()
@@ -92,8 +92,7 @@ void ABossMonster::Attack_AI()
 		{
 			FTimerHandle TimerHandle;
 			GetWorld()->GetTimerManager().SetTimer(TimerHandle, [this, soundKey]()
-												   {
-					SoundManager->PlaySound(soundKey, GetActorLocation()); }, 0.1f, false);
+												   { SoundManager->PlaySound(soundKey, GetActorLocation()); }, 0.1f, false);
 		}
 	}
 }
@@ -102,10 +101,11 @@ float ABossMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEv
 {
 	UBaseAnimInstance *AnimInstance = Cast<UBaseAnimInstance>(GetMesh()->GetAnimInstance());
 
-	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-    if (!PlayerController) return 0.0f;
+	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
+	if (!PlayerController)
+		return 0.0f;
 
-    AMyPlayer* player = Cast<AMyPlayer>(PlayerController->GetPawn());
+	AMyPlayer *player = Cast<AMyPlayer>(PlayerController->GetPawn());
 
 	if (AnimInstance)
 	{
@@ -140,7 +140,6 @@ float ABossMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEv
 	return 0.0f;
 }
 
-
 void ABossMonster::JumpAttack(FVector TargetLocation)
 {
 	if (IsJumping || IsStun || IsDashing)
@@ -173,33 +172,33 @@ void ABossMonster::JumpAttack(FVector TargetLocation)
 
 	if (_landDecal)
 	{
-		ALandDecal* Decal = GetWorld()->SpawnActor<ALandDecal>(_landDecal, LandingLocation, FRotator::ZeroRotator);
+		ALandDecal *Decal = GetWorld()->SpawnActor<ALandDecal>(_landDecal, LandingLocation, FRotator::ZeroRotator);
 	}
 }
 
 void ABossMonster::Landed(const FHitResult &Hit)
 {
 	float LandTime = GetWorld()->GetTimeSeconds();
-    JumpDuration = LandTime - JumpStartTime;
-    IsJumping = false;
+	JumpDuration = LandTime - JumpStartTime;
+	IsJumping = false;
 
-    FVector LandLocation = GetActorLocation();
-    TArray<AActor*> OverlappingActors;
-    GetOverlappingActors(OverlappingActors, AMyPlayer::StaticClass());
+	FVector LandLocation = GetActorLocation();
+	TArray<AActor *> OverlappingActors;
+	GetOverlappingActors(OverlappingActors, AMyPlayer::StaticClass());
 
-    for (AActor* Actor : OverlappingActors)
-    {
-        AMyPlayer* Player = Cast<AMyPlayer>(Actor);
-        if (Player)
-        {
-            float Distance = FVector::Dist(LandLocation, Player->GetActorLocation());
+	for (AActor *Actor : OverlappingActors)
+	{
+		AMyPlayer *Player = Cast<AMyPlayer>(Actor);
+		if (Player)
+		{
+			float Distance = FVector::Dist(LandLocation, Player->GetActorLocation());
 
-            if (Distance <= 600.0f) 
-            {
-                Player->TakeDamage(_StatCom->GetStr(), FDamageEvent(), GetController(), this);
-            }
-        }
-    }
+			if (Distance <= 600.0f)
+			{
+				Player->TakeDamage(_StatCom->GetStr(), FDamageEvent(), GetController(), this);
+			}
+		}
+	}
 }
 
 void ABossMonster::Dash(FVector TargetLocation)
@@ -245,44 +244,43 @@ void ABossMonster::Dash(FVector TargetLocation)
 
 void ABossMonster::Tick(float DeltaTime)
 {
-    Super::Tick(DeltaTime);
+	Super::Tick(DeltaTime);
 
-    if (IsDashing)
-    {
-        FVector CurrentLocation = GetActorLocation();
-        FVector NewLocation = FMath::VInterpConstantTo(CurrentLocation, DashEndLocation, DeltaTime, DashSpeed);
+	if (IsDashing)
+	{
+		FVector CurrentLocation = GetActorLocation();
+		FVector NewLocation = FMath::VInterpConstantTo(CurrentLocation, DashEndLocation, DeltaTime, DashSpeed);
 
-        FHitResult HitResult;
-        SetActorLocation(NewLocation, true, &HitResult);
+		FHitResult HitResult;
+		SetActorLocation(NewLocation, true, &HitResult);
 
-        if (HitResult.bBlockingHit)
-        {
-            AMyPlayer* player = Cast<AMyPlayer>(HitResult.GetActor());
-            if (player != nullptr)
-            {
-                DashEnd();
-                if (_bossMonster01_AnimInstance)
-                {
-                    _bossMonster01_AnimInstance->PlayUpAttackMontage();
-                }
+		if (HitResult.bBlockingHit)
+		{
+			AMyPlayer *player = Cast<AMyPlayer>(HitResult.GetActor());
+			if (player != nullptr)
+			{
+				DashEnd();
+				if (_bossMonster01_AnimInstance)
+				{
+					_bossMonster01_AnimInstance->PlayUpAttackMontage();
+				}
 
-                player->TakeDamage(_StatCom->GetStr(), FDamageEvent(), GetController(), this);
-                FVector ThrowDirection = (player->GetActorLocation() - GetActorLocation()).GetSafeNormal();
-                ThrowDirection.Z = 1.f;
-                FVector ThrowForce = ThrowDirection * 1000.0f;
-                player->LaunchCharacter(ThrowForce, true, true);
-            }
-            else if (HitResult.ImpactPoint.Z >= GetActorLocation().Z)
-            {
-                if (FVector::DistSquared(NewLocation, DashEndLocation) <= KINDA_SMALL_NUMBER)
-                {
-                    DashEnd();
-                }
-            }
-        }
-    }
+				player->TakeDamage(_StatCom->GetStr(), FDamageEvent(), GetController(), this);
+				FVector ThrowDirection = (player->GetActorLocation() - GetActorLocation()).GetSafeNormal();
+				ThrowDirection.Z = 1.f;
+				FVector ThrowForce = ThrowDirection * 1000.0f;
+				player->LaunchCharacter(ThrowForce, true, true);
+			}
+			else if (HitResult.ImpactPoint.Z >= GetActorLocation().Z)
+			{
+				if (FVector::DistSquared(NewLocation, DashEndLocation) <= KINDA_SMALL_NUMBER)
+				{
+					DashEnd();
+				}
+			}
+		}
+	}
 }
-
 
 void ABossMonster::StartDash()
 {
@@ -318,7 +316,7 @@ void ABossMonster::DestroyObstacle()
 {
 	IsStun = true;
 	ObstacleDestroyCount++;
-	if(UIManager->GetBossUI())
+	if (UIManager->GetBossUI())
 	{
 		UIManager->GetBossUI()->UpdateObstacleIcons(ObstacleDestroyCount);
 		UIManager->GetBossUI()->UpdateHPBarColor(ObstacleDestroyCount);

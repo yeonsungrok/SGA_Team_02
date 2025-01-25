@@ -7,7 +7,7 @@
 #include "EpicMonster2.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API AEpicMonster2 : public AMonster
@@ -16,8 +16,6 @@ class PROTOTYPE_API AEpicMonster2 : public AMonster
 
 public:
 	AEpicMonster2();
-
-	
 
 protected:
 	virtual void BeginPlay() override;

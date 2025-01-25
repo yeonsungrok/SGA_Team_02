@@ -7,7 +7,7 @@
 #include "Portal_Stage1_Normal.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API APortal_Stage1_Normal : public APortal
@@ -16,5 +16,4 @@ class PROTOTYPE_API APortal_Stage1_Normal : public APortal
 
 public:
 	APortal_Stage1_Normal();
-	
 };

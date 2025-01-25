@@ -16,13 +16,12 @@ class PROTOTYPE_API UBoss1Widget : public UUserWidget
 
 public:
 	virtual void NativeConstruct() override;
-	
+
 	void UpdateBossHPBar(float Ratio);
 
 	void UpdateHPBarColor(int32 DestroyCount);
 
 	void UpdateObstacleIcons(int32 DestroyCount);
-
 
 private:
 	UPROPERTY(meta = (BindWidget))
@@ -38,7 +37,4 @@ private:
 	class UImage *ObstacleIcon2;
 	class UImage *ObstacleIcon3;
 	class UImage *ObstacleIcon4;
-
-
-
 };

@@ -7,7 +7,7 @@
 #include "Stage1NormalGameModeBase.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API AStage1NormalGameModeBase : public AGameModeBase
@@ -20,5 +20,4 @@ public:
 	virtual void BeginPlay() override;
 
 	virtual void PostInitializeComponents() override;
-
 };

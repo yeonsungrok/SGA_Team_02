@@ -35,8 +35,8 @@ UCLASS()
 class PROTOTYPE_API AUIManager : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AUIManager();
 
@@ -44,7 +44,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -53,15 +53,14 @@ public:
 	void CloseAll();
 	void ToggleUI(UI_LIST ui);
 
-	UInventoryWidget* GetInventoryUI() { return _inventoryUI; }
-	UStatWidget* GetStatUI(){return _statUI;}
-	UBoss1Widget* GetBossUI() {return _bossUI;}
-	UBoss2Widget* GetBoss2UI() {return _boss2UI;}
-	UShopWidget* GetShopUI() { return _shopUI; }
-	UMainStartWidget* GetStartUI() { return _startUI; }
-	UUserWidget* GetOptionsUI() { return _options; }
-	UTexture2D* GetDefaultTexture() { return _defaultTexture; }
-
+	UInventoryWidget *GetInventoryUI() { return _inventoryUI; }
+	UStatWidget *GetStatUI() { return _statUI; }
+	UBoss1Widget *GetBossUI() { return _bossUI; }
+	UBoss2Widget *GetBoss2UI() { return _boss2UI; }
+	UShopWidget *GetShopUI() { return _shopUI; }
+	UMainStartWidget *GetStartUI() { return _startUI; }
+	UUserWidget *GetOptionsUI() { return _options; }
+	UTexture2D *GetDefaultTexture() { return _defaultTexture; }
 
 	PAUSE_GAME pauseGame;
 	RESUM_GAME resumGame;
@@ -72,7 +71,7 @@ private:
 
 private:
 	UPROPERTY()
-	TArray<UUserWidget*> _uiList;
+	TArray<UUserWidget *> _uiList;
 
 	UPROPERTY()
 	TArray<bool> _uiIsOpen;
@@ -81,34 +80,34 @@ private:
 	TArray<bool> _isPauseWhenOpen;
 
 	UPROPERTY()
-	UInventoryWidget* _inventoryUI;
+	UInventoryWidget *_inventoryUI;
 
 	UPROPERTY()
-	UInventoryWidget* _statusUI;
+	UInventoryWidget *_statusUI;
 
 	UPROPERTY()
-	UStatWidget* _statUI;
+	UStatWidget *_statUI;
 
 	UPROPERTY()
-	UTexture2D* _defaultTexture;
+	UTexture2D *_defaultTexture;
 
 	UPROPERTY()
-	UBoss1Widget* _bossUI;
+	UBoss1Widget *_bossUI;
 
 	UPROPERTY()
-	UBoss2Widget* _boss2UI;
+	UBoss2Widget *_boss2UI;
 
 	UPROPERTY()
-	UShopWidget* _shopUI;
+	UShopWidget *_shopUI;
 
 	UPROPERTY()
-	UMainStartWidget* _startUI;
+	UMainStartWidget *_startUI;
 
 	UPROPERTY()
-	UUserWidget* _loadUI;
+	UUserWidget *_loadUI;
 
 	UPROPERTY()
-	UUserWidget* _options;
+	UUserWidget *_options;
 
 	UPROPERTY()
 	int32 cnt = 0;

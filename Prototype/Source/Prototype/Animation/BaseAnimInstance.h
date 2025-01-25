@@ -6,17 +6,15 @@
 #include "Animation/AnimInstance.h"
 #include "BaseAnimInstance.generated.h"
 
-
 DECLARE_MULTICAST_DELEGATE(AttackDelegate);
 DECLARE_MULTICAST_DELEGATE(DeathDelegate);
 DECLARE_MULTICAST_DELEGATE(ComboDelegate);
-
 
 UCLASS()
 class PROTOTYPE_API UBaseAnimInstance : public UAnimInstance
 {
 	GENERATED_BODY()
-	
+
 public:
 	UBaseAnimInstance();
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
@@ -36,10 +34,7 @@ public:
 
 	virtual void AnimNotify_Death();
 
-
-
 protected:
-
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player", meta = (AllowPrivateAccess = true))
 	float _speed;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player", Meta = (AllowPrivateAccess = true))
@@ -54,28 +49,20 @@ protected:
 	bool _isDead;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", Meta = (AllowPrivateAccess = true))
-	class UAnimMontage* _myAnimMontage;
+	class UAnimMontage *_myAnimMontage;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animations", meta = (AllowPrivateAccess = "true"))
-	UAnimMontage* HitReactionMontage;
-
-
-	// BossMonster
+	UAnimMontage *HitReactionMontage;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stun", Meta = (AllowPrivateAccess = true))
-	class UAnimMontage* _myStunMontage;
+	class UAnimMontage *_myStunMontage;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stun", Meta = (AllowPrivateAccess = true))
-	class UAnimMontage* _myDashingMontage;
-
-
-	// EpicMonster
+	class UAnimMontage *_myDashingMontage;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animations", meta = (AllowPrivateAccess = true))
-	class UAnimMontage* _attackFarMontage;
+	class UAnimMontage *_attackFarMontage;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animations", meta = (AllowPrivateAccess = true))
-	class UAnimMontage* _attackMagicMontage;
-
-	
+	class UAnimMontage *_attackMagicMontage;
 };

@@ -7,10 +7,9 @@
 #include "Stage1BossGameModeBase.generated.h"
 
 /**
- * 
- * 
+ *
+ *
  */
-
 
 UCLASS()
 class PROTOTYPE_API AStage1BossGameModeBase : public AGameModeBase
@@ -36,5 +35,4 @@ private:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class APortal_Home> _portal;
-	
 };

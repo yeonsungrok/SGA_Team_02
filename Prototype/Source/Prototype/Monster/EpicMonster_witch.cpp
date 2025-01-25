@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Monster/EpicMonster_witch.h"
 #include "Base/MyGameInstance.h"
 #include "Components/CapsuleComponent.h"
@@ -17,28 +16,23 @@
 
 #include "Animation/Monster_Epic01_Anim.h"
 
-
 AEpicMonster_witch::AEpicMonster_witch()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	static ConstructorHelpers::FObjectFinder<USkeletalMesh> witch
-	(TEXT("/Script/Engine.SkeletalMesh'/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Meshes/Morigesh.Morigesh'"));
+	static ConstructorHelpers::FObjectFinder<USkeletalMesh> witch(TEXT("/Script/Engine.SkeletalMesh'/Game/ParagonMorigesh/Characters/Heroes/Morigesh/Meshes/Morigesh.Morigesh'"));
 
 	if (witch.Succeeded())
 	{
 		GetMesh()->SetSkeletalMesh(witch.Object);
 	}
 
-	static ConstructorHelpers::FClassFinder<AMagicDecal> Wide
-	(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/VFX/MagicDecal_BP.MagicDecal_BP_C''"));
+	static ConstructorHelpers::FClassFinder<AMagicDecal> Wide(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/VFX/MagicDecal_BP.MagicDecal_BP_C''"));
 
 	if (Wide.Succeeded())
 	{
 		_tedecal = Wide.Class;
 	}
-
-
 
 	_exp = 170;
 
@@ -49,7 +43,6 @@ AEpicMonster_witch::AEpicMonster_witch()
 void AEpicMonster_witch::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
 void AEpicMonster_witch::PostInitializeComponents()
@@ -67,21 +60,18 @@ void AEpicMonster_witch::PostInitializeComponents()
 		_monster_Epic_AnimInstance->OnMontageEnded.AddDynamic(this, &ACreature::OnAttackEnded);
 		_monster_Epic_AnimInstance->_attackDelegate.AddUObject(this, &ACreature::AttackHit);
 		_monster_Epic_AnimInstance->_deathDelegate.AddUObject(this, &AMonster::Disable);
-
 	}
 }
 
 void AEpicMonster_witch::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
-void AEpicMonster_witch::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void AEpicMonster_witch::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);\
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
-
 
 void AEpicMonster_witch::MeleeAttackhit()
 {
@@ -91,30 +81,25 @@ void AEpicMonster_witch::MeleeAttackhit()
 	float attackRange = 500.0f;
 	float attackRadius = 150.0f;
 
-	bool bResult = GetWorld()->SweepSingleByChannel
-	(
+	bool bResult = GetWorld()->SweepSingleByChannel(
 		hitResult,
 		GetActorLocation(),
 		GetActorLocation() + GetActorForwardVector() * attackRange,
 		FQuat::Identity,
 		ECollisionChannel::ECC_GameTraceChannel2,
 		FCollisionShape::MakeSphere(attackRadius),
-		params
-	);
+		params);
 
 	FVector vec = GetActorForwardVector() * attackRange;
 	FVector center = GetActorLocation() + vec * 0.5f;
 
 	FColor drawColor = FColor::Green;
 
-
 	if (bResult && hitResult.GetActor()->IsValidLowLevel())
 	{
 		drawColor = FColor::Red;
 
 		FDamageEvent DamageEvent;
-		//hitResult.GetActor()->TakeDamage(_statCom->GetAttackDamage(), DamageEvent, GetController(), this);
-
 	}
 
 	DrawDebugSphere(GetWorld(), center, attackRadius, 12, drawColor, false, 2.0f);
@@ -133,8 +118,6 @@ void AEpicMonster_witch::Attack_AI()
 
 		_monster_Epic_AnimInstance->JumpToSection(_curAttackIndex);
 	}
-
-	
 }
 
 FString AEpicMonster_witch::GetEpicAttackFarSound() const
@@ -162,36 +145,31 @@ FString AEpicMonster_witch::GetEpicSpawnSound() const
 	return "SpawnSound_Cue";
 }
 
-
-
 void AEpicMonster_witch::MagicShot()
 {
-	
-		if (_projectileClass)
+
+	if (_projectileClass)
+	{
+		_monster_Epic_AnimInstance->PlayAttackFarMontage();
+		_curAttackIndex = 1;
+
+		FVector forward = GetActorForwardVector();
+		FName HandSocketName = TEXT("Magic_hand");
+
+		FVector fireLocation = GetMesh()->GetSocketLocation(HandSocketName);
+
+		FRotator fireRotation = forward.Rotation();
+
+		auto projectile = GetWorld()->SpawnActor<AEpicProjectile>(_projectileClass, fireLocation, fireRotation);
+		if (projectile)
 		{
-			_monster_Epic_AnimInstance->PlayAttackFarMontage();
-			_curAttackIndex = 1;
-
-			FVector forward = GetActorForwardVector();
-			FName HandSocketName = TEXT("Magic_hand");
-		
-
-			FVector fireLocation = GetMesh()->GetSocketLocation(HandSocketName);
-
-			FRotator fireRotation = forward.Rotation();
-
-			auto projectile = GetWorld()->SpawnActor<AEpicProjectile>(_projectileClass, fireLocation, fireRotation);
-			if (projectile)
-			{
-				projectile->WitchMa(this);
-				projectile->SetDamage(_StatCom->GetInt());
-				projectile->FireInDirection(forward);
-			}
-			
-			
-			SoundManager->PlaySound(*GetEpicAttackFarSound(),projectile->GetActorLocation());
+			projectile->WitchMa(this);
+			projectile->SetDamage(_StatCom->GetInt());
+			projectile->FireInDirection(forward);
 		}
 
+		SoundManager->PlaySound(*GetEpicAttackFarSound(), projectile->GetActorLocation());
+	}
 }
 
 void AEpicMonster_witch::SumonedMonster()
@@ -204,11 +182,11 @@ void AEpicMonster_witch::SumonedMonster()
 			FVector SpawLocation = GetActorLocation() + FMath::VRand() * 200.0f;
 			FRotator SpawRotation = FRotator::ZeroRotator;
 
-			ANormalMonster* Noram = GetWorld()->SpawnActor<ANormalMonster>(_SumonedMonster, SpawLocation, SpawRotation);
+			ANormalMonster *Noram = GetWorld()->SpawnActor<ANormalMonster>(_SumonedMonster, SpawLocation, SpawRotation);
 
 			if (Noram)
 			{
-				USkeletalMeshComponent* MeshComponent = Noram->GetMesh();  
+				USkeletalMeshComponent *MeshComponent = Noram->GetMesh();
 				if (MeshComponent)
 				{
 					FName SocketName = FName("head");
@@ -217,8 +195,6 @@ void AEpicMonster_witch::SumonedMonster()
 				}
 				Noram->SpawnDefaultController();
 			}
-
-			
 		}
 	}
 }
@@ -240,19 +216,16 @@ void AEpicMonster_witch::testDecalSkill()
 		playerPos.Z = 0.0f;
 		FVector DecalPos = playerPos + FVector(X, Y, 0.0f);
 
-		
+		AMagicDecal *decal = GetWorld()->SpawnActor<AMagicDecal>(_tedecal, fireLocation, FRotator::ZeroRotator);
 
-
-		AMagicDecal* decal = GetWorld()->SpawnActor<AMagicDecal>(_tedecal, fireLocation, FRotator::ZeroRotator);
-		
 		if (decal)
 		{
 			SoundManager->PlaySound(*GetEpicAttackMagicDotSound(), this->GetActorLocation());
-			
+
 			_monster_Epic_AnimInstance->PlayAttackDotrMontage();
 			_curAttackIndex = 0;
 
-			decal->Active(DecalPos);  
+			decal->Active(DecalPos);
 			decal->SetLifeSpan(10.0f);
 		}
 	}

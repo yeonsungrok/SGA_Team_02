@@ -7,15 +7,15 @@
 #include "UpperArmor.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API AUpperArmor : public AEquipItem
 {
 	GENERATED_BODY()
-	
+
 public:
 	AUpperArmor();
-	
+
 	virtual void BeginPlay() override;
 };

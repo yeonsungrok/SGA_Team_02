@@ -7,7 +7,7 @@
 #include "Boss2Monster.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API ABoss2Monster : public AMonster
@@ -22,36 +22,33 @@ public:
 	virtual FString GetBoss2TeleportEffect() const;
 	virtual FString GetBoss2TeleportSound() const;
 
-	bool GetIsfire(){return Isfire;}
+	bool GetIsfire() { return Isfire; }
 
 private:
 	virtual void BeginPlay() override;
-	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser);
+	virtual float TakeDamage(float Damage, struct FDamageEvent const &DamageEvent, AController *EventInstigator, AActor *DamageCauser);
 	virtual void PostInitializeComponents() override;
 	virtual void Attack_AI() override;
 	virtual void AttackHit() override;
-	
-	void InitializeFireballPool();
-	class ABossFireball* GetPooledFireball();
 
-	
+	void InitializeFireballPool();
+	class ABossFireball *GetPooledFireball();
 
 	UFUNCTION()
 	void FireballAttack(FVector Location);
 
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Animation", meta = (AllowPrivateAccess = "true"))
-	class UMonster_Boss2_AnimInstance* _bossMonster02_AnimInstance;
+	class UMonster_Boss2_AnimInstance *_bossMonster02_AnimInstance;
 
 	FVector UpdatedLocation();
-	
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Fireball", meta = (AllowPrivateAccess = "true"))
-	TSubclassOf<class ABossFireball> _fireball;	
+	TSubclassOf<class ABossFireball> _fireball;
 
 	UPROPERTY()
-    TArray<class ABossFireball*> FireballPool;
+	TArray<class ABossFireball *> FireballPool;
 
-    int32 PoolSize = 10;
+	int32 PoolSize = 10;
 
 	bool Isfire;
 };

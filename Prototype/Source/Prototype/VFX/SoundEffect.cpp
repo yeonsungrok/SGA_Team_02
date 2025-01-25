@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "VFX/SoundEffect.h"
 #include "Components/AudioComponent.h"
 #include "Sound/SoundBase.h"
@@ -8,28 +7,24 @@
 // Sets default values
 ASoundEffect::ASoundEffect()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
 	_audioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("AudioComponent"));
 	RootComponent = _audioComponent;
 	_audioComponent->bAutoActivate = false;
-
-
 }
 
 // Called when the game starts or when spawned
 void ASoundEffect::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
 void ASoundEffect::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void ASoundEffect::Play(FVector location)
@@ -61,7 +56,3 @@ float ASoundEffect::GetDuration() const
 	float Duration = _soundCom ? _soundCom->GetDuration() : 0.1f;
 	return Duration;
 }
-
-
-
-

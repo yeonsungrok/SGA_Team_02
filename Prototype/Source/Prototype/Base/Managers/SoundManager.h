@@ -13,8 +13,8 @@ UCLASS()
 class PROTOTYPE_API ASoundManager : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	ASoundManager();
 
@@ -24,30 +24,28 @@ protected:
 	void Destroy();
 	void CreateSound(FString name, FString path);
 
-public:	
+public:
 	virtual void Tick(float DeltaTime) override;
 	void PlaySound(FString name, FVector location);
 	void PlaySoundWithDuration(FString name, FVector location, float duration);
 	void PlaySoundOnce(FString name, FVector location);
-	void HandleAudioFinished(UAudioComponent* AudioComponent);
+	void HandleAudioFinished(UAudioComponent *AudioComponent);
 
 private:
 	FTimerHandle SoundDurationTimerHandle;
 
-
 	UPROPERTY()
-	USceneComponent* _rootComponent;
+	USceneComponent *_rootComponent;
 	int32 _poolCount = 5;
 
 	UPROPERTY()
 	TMap<FString, TSubclassOf<ASoundEffect>> _soundTable;
-	
-	TMap<FString, TArray<ASoundEffect*>> _soundEffectTable;
+
+	TMap<FString, TArray<ASoundEffect *>> _soundEffectTable;
 
 	void CreateSoundEffect();
 
 	FTimerHandle SoundEffectTimerHandle;
 
-	TMap<FString, ASoundEffect*> ActiveSounds;
-
+	TMap<FString, ASoundEffect *> ActiveSounds;
 };

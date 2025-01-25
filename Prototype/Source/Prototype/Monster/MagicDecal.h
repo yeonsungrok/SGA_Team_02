@@ -7,16 +7,16 @@
 #include "MagicDecal.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API AMagicDecal : public ADecalActor
 {
-	GENERATED_BODY()
-	
+    GENERATED_BODY()
+
 public:
     AMagicDecal();
- 
+
     virtual void BeginPlay() override;
 
     virtual void Tick(float DeltaTime) override;
@@ -27,7 +27,6 @@ public:
 
     void DeActiveEvent(FVector location);
 
-
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = DECAL, meta = (AllowPrivateAccess = "true"))
     float _damageInterval = 1.0f;
 
@@ -36,9 +35,9 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = DECAL, meta = (AllowPrivateAccess = "true"))
     float _damageRadius = 300.0f;
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = DECAL, meta = (AllowPrivateAccess = "true"))
-    class UNiagaraComponent* _MagicDecalNiargar;
-private:
+    class UNiagaraComponent *_MagicDecalNiargar;
 
+private:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = DECAL, meta = (AllowPrivateAccess = "true"))
     float _areaRadius;
 
@@ -54,9 +53,5 @@ private:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = DECAL, meta = (AllowPrivateAccess = "true"))
     bool _bLoop;
 
- 
-
     FTimerHandle _damageTimerHandle;
-
-
 };

@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "UI/ShopWidget.h"
 #include "Base/MyGameInstance.h"
 #include "Base/Managers/UIManager.h"
@@ -52,7 +51,7 @@ bool UShopWidget::Initialize()
 	return result;
 }
 
-void UShopWidget::UpdateShopList(TArray<ABaseItem*> list)
+void UShopWidget::UpdateShopList(TArray<ABaseItem *> list)
 {
 	for (int i = 0; i < list.Num(); i++)
 	{
@@ -68,10 +67,10 @@ void UShopWidget::UpdateShopList(TArray<ABaseItem*> list)
 	}
 }
 
-void UShopWidget::ReflectInvenSlots(AMyPlayer* player)
+void UShopWidget::ReflectInvenSlots(AMyPlayer *player)
 {
 	_isSlotFull = true;
-	TArray<ABaseItem*> itemList = player->GetInventory()->GetItemSlots();
+	TArray<ABaseItem *> itemList = player->GetInventory()->GetItemSlots();
 	for (int i = 0; i < Button_.Num(); i++)
 	{
 		Button_[i]->SetItem(itemList[i]);
@@ -79,8 +78,6 @@ void UShopWidget::ReflectInvenSlots(AMyPlayer* player)
 		if (_isSlotFull && itemList[i] == nullptr)
 			_isSlotFull = false;
 	}
-
-	//TODO : Get Wallet too & Call this every opening
 	int32 Gold = player->GetInventory()->GetMoney();
 	p_gold = Gold;
 	GoldAmount->SetText(FText::FromString(FString::FromInt(Gold)));
@@ -88,13 +85,13 @@ void UShopWidget::ReflectInvenSlots(AMyPlayer* player)
 
 void UShopWidget::SetInvenButtons()
 {
-	TArray<UWidget*> widgets;
+	TArray<UWidget *> widgets;
 	widgets = ItemSlots->GetAllChildren();
 
 	int32 index = 0;
-	for (UWidget* widget : widgets)
+	for (UWidget *widget : widgets)
 	{
-		UIndexedButton* button = Cast<UIndexedButton>(widget);
+		UIndexedButton *button = Cast<UIndexedButton>(widget);
 		if (button)
 		{
 			button->SetIndex(index);
@@ -206,8 +203,9 @@ void UShopWidget::SetTargetItem(int32 slotIndex)
 	if (Button_[slotIndex] == nullptr)
 		return;
 
-	ABaseItem* item = Button_[slotIndex]->GetItem();
-	if (item == nullptr) return;
+	ABaseItem *item = Button_[slotIndex]->GetItem();
+	if (item == nullptr)
+		return;
 
 	_targetItem = item;
 	_targetIndex = slotIndex;

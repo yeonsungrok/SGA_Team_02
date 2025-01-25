@@ -7,7 +7,7 @@
 #include "StartGameModeBase.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROTOTYPE_API AStartGameModeBase : public AGameModeBase
@@ -21,5 +21,5 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<UUserWidget> StartLevelWidgetClass;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = "true"))
-	class UMainStartWidget* StartLevelWidget;
+	class UMainStartWidget *StartLevelWidget;
 };
