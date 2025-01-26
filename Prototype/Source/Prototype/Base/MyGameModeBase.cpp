@@ -3,6 +3,7 @@
 #include "MyGameModeBase.h"
 #include "../Component/StatComponent.h"
 #include "MyGameInstance.h"
+#include "Base/Managers/UIManager.h"
 #include "../Player/MyPlayerController.h"
 #include "Blueprint/UserWidget.h"
 #include "UI/SkillWidget_test.h"
@@ -118,11 +119,7 @@ void AMyGameModeBase::PostInitializeComponents()
 
 void AMyGameModeBase::LockSkill()
 {
-	AMyPlayerController *PlayerController = Cast<AMyPlayerController>(GetWorld()->GetFirstPlayerController());
-	if (PlayerController && PlayerController->SkillWidgetInstance)
-	{
-		PlayerController->SkillWidgetInstance->LockAllSkill();
-	}
+	UIManager->GetSkillUI()->LockAllSkill();
 }
 
 void AMyGameModeBase::ShowDragonUI()

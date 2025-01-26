@@ -36,7 +36,7 @@ void APortal::OnOverlapBegin(UPrimitiveComponent *OverlappedComp, AActor *OtherA
     AMyPlayer *player = Cast<AMyPlayer>(OtherActor);
     if (player)
     {
-        player->ClearSkillTimer();
+        //player->ClearSkillTimer();
         UMyGameInstance *GameInstance = Cast<UMyGameInstance>(GetGameInstance());
         if (GameInstance)
         {

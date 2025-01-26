@@ -96,7 +96,6 @@ public:
 	USkeletalMeshComponent *GetShieldBodyMesh() { return _shieldBodyMesh; }
 
 	class UInventoryComponent *GetInventory() { return _inventoryComponent; }
-	class USkillWidget *GetSkillWidgetInstance() { return _skillWidgetInstance; }
 
 private:
 	void Move(const FInputActionValue &value);
@@ -209,9 +208,6 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent *_camera;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = UI, meta = (AllowPrivateAccess = "true"))
-	class USkillWidget *_skillWidgetInstance;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction *_Change;

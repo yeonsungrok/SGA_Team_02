@@ -8,6 +8,7 @@
 #include "UI/Boss2Widget.h"
 #include "UI/ShopWidget.h"
 #include "UI/MainStartWidget.h"
+#include "UI/SkillWidget.h"
 #include "Kismet/GameplayStatics.h"
 
 #include "TriggerBox_StageSequnce/StageSequence_Trigger.h"
@@ -81,7 +82,14 @@ AUIManager::AUIManager()
 		_defaultTexture = defaultTexture.Object;
 	}
 
-	_uiList = {_inventoryUI, _statUI, _bossUI, _boss2UI, _shopUI, _startUI, _loadUI, _options};
+	static ConstructorHelpers::FClassFinder<UUserWidget> SkillWidget(
+		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Skill_UI.Skill_UI_C'"));
+	if (SkillWidget.Succeeded())
+	{
+		_skillUI = CreateWidget<USkillWidget>(GetWorld(), SkillWidget.Class);
+	}
+
+	_uiList = {_inventoryUI, _statUI, _bossUI, _boss2UI, _shopUI, _startUI, _loadUI, _options, _skillUI};
 	_uiIsOpen.Init(false, _uiList.Num());
 	_isPauseWhenOpen.Init(true, _uiList.Num());
 }
@@ -116,7 +124,7 @@ void AUIManager::OpenUI(UI_LIST ui)
 	}
 
 	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
-	if (PlayerController)
+	if (PlayerController && cnt >0)
 	{
 		bool bIsCursorVisible = PlayerController->bShowMouseCursor;
 		PlayerController->bShowMouseCursor = true;
@@ -128,7 +136,7 @@ void AUIManager::OpenUI(UI_LIST ui)
 	LastZOrder++;
 	_uiList[UIindex]->AddToViewport(LastZOrder);
 
-	_uiIsOpen[UIindex] = true;
+	_uiIsOpen[UIindex] = true; 
 }
 
 void AUIManager::CloseUI(UI_LIST ui)

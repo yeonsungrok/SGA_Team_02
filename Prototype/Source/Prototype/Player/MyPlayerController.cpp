@@ -2,7 +2,6 @@
 
 #include "MyPlayerController.h"
 #include "EnhancedInputSubsystems.h"
-#include "MeteorDecal.h"
 #include "UI/SkillWidget.h"
 
 AMyPlayerController::AMyPlayerController()
@@ -17,16 +16,6 @@ void AMyPlayerController::BeginPlay()
     UEnhancedInputLocalPlayerSubsystem *subSystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
     if (subSystem)
     {
-        subSystem->AddMappingContext(_inputMappingContext, 0);
-    }
-
-    if (SkillWidgetClass)
-    {
-        SkillWidgetInstance = CreateWidget<USkillWidget>(this, SkillWidgetClass);
-        if (SkillWidgetInstance)
-        {
-            SkillWidgetInstance->LockAllSkill();
-            SkillWidgetInstance->AddToViewport();
-        }
+         subSystem->AddMappingContext(_inputMappingContext, 0);
     }
 }

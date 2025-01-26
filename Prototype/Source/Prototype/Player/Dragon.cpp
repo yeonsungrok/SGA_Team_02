@@ -103,7 +103,7 @@ void ADragon::BeginPlay()
     }
     SetActorHiddenInGame(true);
     SetActorEnableCollision(false);
-    _isTransformed = false;
+    bIsTransformed = false;
 
 }
 
@@ -125,9 +125,8 @@ void ADragon::TransformToHuman()
 
         PC->Possess(_knightInstance);
 
-        // 상태 업데이트
-        _isTransformed = false;
-        _knightInstance->_isTransformed = false;
+        bIsTransformed = false;
+        _knightInstance->bIsTransformed = false;
 
         UE_LOG(LogTemp, Warning, TEXT("Transformed back to MyPlayer!"));
     }
@@ -136,17 +135,16 @@ void ADragon::TransformToHuman()
 
 void ADragon::TransformToDragon()
 {
-    // MyPlayer에서 Dragon으로 복귀
     _knightInstance->TransformToDragon();
 }
 
 void ADragon::ToggleTransformation()
 {
-    if (_isTransformed) // 현재 변환된 상태이면 인간으로 복귀
+    if (bIsTransformed)
     {
         TransformToHuman();
     }
-    else // 그렇지 않으면 드래곤으로 변환
+    else 
     {
         TransformToDragon();
     }
@@ -178,20 +176,18 @@ void ADragon::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void ADragon::Move(const FInputActionValue& value)
 {
-    // fly할때 isFalling 통해서 생각해볼것..
     FVector2D MovementVector = value.Get<FVector2D>();
            
     if (Controller && MovementVector.Size() > 0.0f)
     {
-        // 이동 방향 벡터 계산
         const FRotator ControlRotation = Controller->GetControlRotation();
         const FRotator YawRotation(0, ControlRotation.Yaw, 0);
 
         const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
         const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 
-        AddMovementInput(ForwardDirection, MovementVector.Y); // 전진/후진
-        AddMovementInput(RightDirection, MovementVector.X);   // 좌우 이동
+        AddMovementInput(ForwardDirection, MovementVector.Y); 
+        AddMovementInput(RightDirection, MovementVector.X); 
     }
 }
 
@@ -199,8 +195,8 @@ void ADragon::Look(const FInputActionValue& value)
 {
     FVector2D LookAxisVector = value.Get<FVector2D>();
 
-    AddControllerYawInput(LookAxisVector.X); // 좌우 회전
-    AddControllerPitchInput(LookAxisVector.Y); // 상하 회전
+    AddControllerYawInput(LookAxisVector.X); 
+    AddControllerPitchInput(LookAxisVector.Y); 
 
 }
 
@@ -212,7 +208,6 @@ void ADragon::JumpA(const FInputActionValue& value)
     {
         if (GetCharacterMovement()->IsFalling())
         {
-            // 공중에서 추가 비행 (날갯짓)
             FVector ForwardInput = GetActorForwardVector() * GetInputAxisValue("MoveForward");
             FVector RightInput = GetActorRightVector() * GetInputAxisValue("MoveRight");
             FVector JumpImpulse = ForwardInput * 300.0f + RightInput * 300.0f + FVector(0.0f, 0.0f, 500.0f);
@@ -221,28 +216,20 @@ void ADragon::JumpA(const FInputActionValue& value)
         }
         else
         {
-            // 지상에서 점프
             ACharacter::Jump();
-
-            // 공중 제어 및 중력 설정
-            GetCharacterMovement()->GravityScale = 0.5f; // 느린 하강
-            GetCharacterMovement()->AirControl = 0.8f;    // 공중 제어 강화
-            GetCharacterMovement()->MaxFlySpeed = 800.0f; // 공중 속도 증가
+            GetCharacterMovement()->GravityScale = 0.5f;
+            GetCharacterMovement()->AirControl = 0.8f;   
+            GetCharacterMovement()->MaxFlySpeed = 800.0f; 
          }
-
-        // 애니메이션 상태 업데이트: 점프 시작
         _dragonAnimInstance->SetJumping(true);
     }
     else
     {
         if (!GetCharacterMovement()->IsFalling())
         {
-            // 착지 시 중력 및 이동 속도 복원
             GetCharacterMovement()->GravityScale = 1.0f;
-            GetCharacterMovement()->AirControl = 0.2f; // 기본 공중 제어 값
-            GetCharacterMovement()->MaxFlySpeed = 600.0f; // 기본 속도 복원
-            
-            // 애니메이션 상태 업데이트: 착지
+            GetCharacterMovement()->AirControl = 0.2f;
+            GetCharacterMovement()->MaxFlySpeed = 600.0f;
             _dragonAnimInstance->SetJumping(false);
         }
     }
@@ -257,16 +244,13 @@ void ADragon::AttackA(const FInputActionValue& value)
         _isAttacking = true;
 
         _curAttackIndex %= 2;
-       // _curAttackIndex++;
-
-
-        if (GetCharacterMovement()->IsFalling())  // 점프 중이면 IsFalling()이 true를 반환
+        if (GetCharacterMovement()->IsFalling()) 
         {
-            _dragonAnimInstance->JumpToSection(2);  // 점프 상태일 때 섹션 2
+            _dragonAnimInstance->JumpToSection(2); 
         }
         else
         {
-            _dragonAnimInstance->JumpToSection(1);  // 점프 상태가 아닐 때 섹션 1
+            _dragonAnimInstance->JumpToSection(1);
         }
     }
 
@@ -276,8 +260,6 @@ void ADragon::AttackA(const FInputActionValue& value)
 void ADragon::PostInitializeComponents()
 {
     Super::PostInitializeComponents();
-
-      // 애니메이션 인스턴스 클래스를 설정
     if (DragonAnimInstanceClass)
     {
         USkeletalMeshComponent* MeshComp = GetMesh();
@@ -287,31 +269,25 @@ void ADragon::PostInitializeComponents()
         }
     }
 
-    // 애니메이션 인스턴스 캐스팅
     _dragonAnimInstance = Cast<UDragonAnimInstance>(GetMesh()->GetAnimInstance());
     if ( _dragonAnimInstance->IsValidLowLevelFast())
     {
-        // 애니메이션 몽타주 끝났을 때 처리할 델리게이트 연결
         _dragonAnimInstance->OnMontageEnded.AddDynamic(this, &ADragon::OnAttackEnded);
 
 
         _dragonAnimInstance->_attackDelegate.AddUObject(this, &ACreature::AttackHit);
-        // 드래곤 사망 델리게이트 연결
+  
         _dragonAnimInstance->_deathDelegate.AddUObject(this, &ADragon::Disable);
     }
     else
     {
         UE_LOG(LogTemp, Warning, TEXT("Failed to initialize _dragonAnimInstance for ADragon!"));
     }
-
-    // TODO
-    //----------------------------------------------임시 dragon state으로 일단세팅----------------------
     if (_StatCom)
     {
         _StatCom->SetDragonLevelInit(1);
     }
-    //------------------------------------------------------------------------------------------
-
+   
 }
 
 void ADragon::Tick(float DeltaTime)
@@ -326,8 +302,8 @@ void ADragon::Tick(float DeltaTime)
     if (GetVelocity().Size() > 0.0f)
     {
         FRotator NewRotation = GetActorRotation();
-        NewRotation.Yaw = FMath::Atan2(GetVelocity().Y, GetVelocity().X) * 180.0f / PI;  // 이동 방향에 맞게 회전
-        SetActorRotation(NewRotation); // 회전 적용
+        NewRotation.Yaw = FMath::Atan2(GetVelocity().Y, GetVelocity().X) * 180.0f / PI; 
+        SetActorRotation(NewRotation);
     }
 
 }

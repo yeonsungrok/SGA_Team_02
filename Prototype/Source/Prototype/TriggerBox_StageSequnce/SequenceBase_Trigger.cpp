@@ -81,15 +81,6 @@ void ASequenceBase_Trigger::OnTriggerEnter(UPrimitiveComponent *OverlappedCompon
     ACreature *Creature = Cast<ACreature>(OtherActor);
     if (Creature)
     {
-        UUserWidget *Widget = Creature->GetWidget();
-        if (Widget)
-        {
-            Widget->SetVisibility(ESlateVisibility::Hidden);
-        }
-
-        TriggeredActor = OtherActor;
-
-        HideSkillWidget();
         OnHideMinimap.Broadcast();
 
         if (OtherActor && OtherActor->IsA(ACharacter::StaticClass()))
@@ -115,42 +106,16 @@ void ASequenceBase_Trigger::OnSequenceFinished()
 {
     if (TriggeredActor && TriggeredActor->IsA(ACreature::StaticClass()))
     {
-        ACreature *Creature = Cast<ACreature>(TriggeredActor);
-        if (Creature && Creature->_Widget)
-        {
-            Creature->_Widget->SetVisibility(ESlateVisibility::Visible);
-        }
+        // ACreature *Creature = Cast<ACreature>(TriggeredActor);
+        // if (Creature && Creature->_Widget)
+        // {
+        //     Creature->_Widget->SetVisibility(ESlateVisibility::Visible);
+        // }
     }
-
-    ShowSkillWidget();
+    UIManager->OpenUI(UI_LIST::Skill);
 
     OnShowMinimap.Broadcast();
 
     Destroy();
 }
 
-void ASequenceBase_Trigger::HideSkillWidget()
-{
-    APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
-    if (PlayerController)
-    {
-        AMyPlayerController *MyPlayerController = Cast<AMyPlayerController>(PlayerController);
-        if (MyPlayerController && MyPlayerController->SkillWidgetInstance)
-        {
-            MyPlayerController->SkillWidgetInstance->SetVisibility(ESlateVisibility::Hidden);
-        }
-    }
-}
-
-void ASequenceBase_Trigger::ShowSkillWidget()
-{
-    APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
-    if (PlayerController)
-    {
-        AMyPlayerController *MyPlayerController = Cast<AMyPlayerController>(PlayerController);
-        if (MyPlayerController && MyPlayerController->SkillWidgetInstance)
-        {
-            MyPlayerController->SkillWidgetInstance->SetVisibility(ESlateVisibility::Visible);
-        }
-    }
-}

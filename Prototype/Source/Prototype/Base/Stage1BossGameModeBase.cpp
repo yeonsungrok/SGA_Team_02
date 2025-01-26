@@ -100,7 +100,7 @@ void AStage1BossGameModeBase::BossStart()
 			PlayerController->bShowMouseCursor = false;
 			PlayerController->SetInputMode(FInputModeGameOnly());
 		}
-		player->GetSkillWidgetInstance()->UnLockAllSkill();
+		UIManager->GetSkillUI()->UnLockAllSkill();
 		player->SetActorLocationAndRotation(NewLocation, NewRotation);
 	}
 
@@ -131,9 +131,5 @@ void AStage1BossGameModeBase::BossStart()
 
 void AStage1BossGameModeBase::LockSkill()
 {
-	AMyPlayerController *PlayerController = Cast<AMyPlayerController>(GetWorld()->GetFirstPlayerController());
-	if (PlayerController && PlayerController->SkillWidgetInstance)
-	{
-		PlayerController->SkillWidgetInstance->LockAllSkill();
-	}
+	UIManager->GetSkillUI()->LockAllSkill();
 }

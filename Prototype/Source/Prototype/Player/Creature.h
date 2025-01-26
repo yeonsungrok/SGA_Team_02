@@ -66,12 +66,17 @@ public:
 
 	float GetVertical() { return _vertical; }
 	float GetHorizontal() { return _horizontal; }
+	UFUNCTION(BlueprintCallable, Category = "UI")
+	UUserWidget *GetWidget() const { return _Widget; }
 	int32 GetCurHp() { return _StatCom->GetCurHp(); }
 
 	FTimerHandle TimerHandle_Destroy;
 
 	UFUNCTION()
 	void DelayedDestroy();
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Dragon, meta = (AllowPrivateAccess = "true"))
+	bool bIsTransformed;
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
@@ -98,7 +103,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stat, meta = (AllowPrivateAccess = "true"))
 	UStatComponent *_StatCom;
 
-public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = "true"))
 	class UWidgetComponent *_WidgetCom;
 
@@ -107,9 +111,4 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<UUserWidget> WidgetClass;
-
-	bool _isTransformed;
-
-	UFUNCTION(BlueprintCallable, Category = "UI")
-	UUserWidget *GetWidget() const { return _Widget; }
 };

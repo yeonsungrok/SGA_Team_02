@@ -17,19 +17,9 @@ class PROTOTYPE_API AMyPlayerController : public APlayerController
 public:
 	AMyPlayerController();
 
-	UPROPERTY()
-	USkillWidget *SkillWidgetInstance;
-
 protected:
 	UPROPERTY(EditAnyWhere, BlueprintReadOnly, Category = Input)
 	class UInputMappingContext *_inputMappingContext;
 
 	virtual void BeginPlay() override;
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<class AMeteorDecal> MeteorDecalClass;
-
-public:
-	UPROPERTY(EditAnywhere, Category = "UI")
-	TSubclassOf<USkillWidget> SkillWidgetClass;
 };

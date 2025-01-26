@@ -59,7 +59,4 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Actor", meta = (AllowPrivateAccess = "true"))
 	AActor *TriggeredActor;
-
-	void HideSkillWidget();
-	void ShowSkillWidget();
 };

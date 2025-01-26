@@ -22,7 +22,7 @@ ACreature::ACreature()
 	bIsGuarding = false;
 	_StatCom = CreateDefaultSubobject<UStatComponent>(TEXT("StatCom"));
 
-	_isTransformed = false;
+	bIsTransformed = false;
 }
 
 // Called when the game starts or when spawned

@@ -17,6 +17,7 @@ enum class UI_LIST
 	StartUI,
 	Load,
 	Options,
+	Skill,
 	Status
 };
 
@@ -30,6 +31,7 @@ class UBoss1Widget;
 class UBoss2Widget;
 class UShopWidget;
 class UMainStartWidget;
+class USkillWidget;
 
 UCLASS()
 class PROTOTYPE_API AUIManager : public AActor
@@ -61,6 +63,7 @@ public:
 	UMainStartWidget *GetStartUI() { return _startUI; }
 	UUserWidget *GetOptionsUI() { return _options; }
 	UTexture2D *GetDefaultTexture() { return _defaultTexture; }
+	USkillWidget *GetSkillUI() {return _skillUI;}
 
 	PAUSE_GAME pauseGame;
 	RESUM_GAME resumGame;
@@ -108,6 +111,9 @@ private:
 
 	UPROPERTY()
 	UUserWidget *_options;
+
+	UPROPERTY()
+	USkillWidget *_skillUI;
 
 	UPROPERTY()
 	int32 cnt = 0;

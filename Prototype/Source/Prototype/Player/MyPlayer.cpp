@@ -14,7 +14,6 @@
 #include "InputActionValue.h"
 #include "Kismet/GameplayStatics.h"
 #include "MyPlayerController.h"
-#include "UI/SkillWidget_test.h"
 #include "UI/SkillWidget.h"
 #include "MeteorDecal.h"
 #include "Fireball.h"
@@ -171,11 +170,7 @@ void AMyPlayer::BeginPlay()
 		_statWidget->SetVisibility(ESlateVisibility::Hidden);
 	}
 
-	AMyPlayerController *MyController = Cast<AMyPlayerController>(GetController());
-	if (MyController != nullptr)
-	{
-		_skillWidgetInstance = MyController->SkillWidgetInstance;
-	}
+	UIManager->OpenUI(UI_LIST::Skill);
 	SkillOnCooldown.Init(false, 4);
 
 	if (DragonClass)
@@ -376,12 +371,12 @@ void AMyPlayer::Silent()
 
 void AMyPlayer::LockAllSkill()
 {
-	_skillWidgetInstance->LockAllSkill();
+	UIManager->GetSkillUI()->LockAllSkill();
 }
 
 void AMyPlayer::UnLockAllSkill()
 {
-	_skillWidgetInstance->UnLockAllSkill();
+	UIManager->GetSkillUI()->UnLockAllSkill();
 }
 
 void AMyPlayer::OnAttackEnded(UAnimMontage *Montage, bool bInterrupted)
@@ -601,9 +596,9 @@ void AMyPlayer::Skill1(const FInputActionValue &value)
 {
 	bool isPressed = value.Get<bool>();
 
-	if (isPressed && _skillWidgetInstance != nullptr)
+	if (isPressed && UIManager->GetSkillUI() != nullptr)
 	{
-		if (SkillOnCooldown[0] || _skillWidgetInstance->IsSkillLocked(0) || _StatCom->GetCurMp() < 10)
+		if (SkillOnCooldown[0] || UIManager->GetSkillUI()->IsSkillLocked(0) || _StatCom->GetCurMp() < 10)
 			return;
 		else
 		{
@@ -661,7 +656,7 @@ void AMyPlayer::Skill1(const FInputActionValue &value)
 				}
 
 				DashTimeElapsed = 0.f;
-				_skillWidgetInstance->StartCooldown(0, 5.0f);
+				UIManager->GetSkillUI()->StartCooldown(0, 5.0f);
 
 				UPlayerAnimInstance *PlayerAnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 				if (PlayerAnimInstance)
@@ -715,9 +710,9 @@ void AMyPlayer::ConfirmTeleportLocation()
 
 		GetWorld()->GetTimerManager().ClearTimer(TimerHandle_UpdateTeleprotDecal);
 
-		if (_skillWidgetInstance)
+		if (UIManager->GetSkillUI())
 		{
-			_skillWidgetInstance->StartCooldown(0, 5.0f);
+			UIManager->GetSkillUI()->StartCooldown(0, 5.0f);
 		}
 	}
 }
@@ -728,10 +723,10 @@ void AMyPlayer::Skill2(const FInputActionValue &value)
 
 	if (isPressed)
 	{
-		if (SkillOnCooldown[1] || _skillWidgetInstance->IsSkillLocked(1) || _StatCom->GetCurMp() < 10)
+		if (SkillOnCooldown[1] || UIManager->GetSkillUI()->IsSkillLocked(1) || _StatCom->GetCurMp() < 10)
 			return;
 
-		if (_skillWidgetInstance != nullptr)
+		if (UIManager->GetSkillUI() != nullptr)
 		{
 			APlayerController *PlayerController = Cast<APlayerController>(GetController());
 
@@ -840,7 +835,7 @@ void AMyPlayer::ConfirmSkillLocation()
 		}
 	}
 
-	_skillWidgetInstance->StartCooldown(1, 5.0f);
+	UIManager->GetSkillUI()->StartCooldown(1, 5.0f);
 
 	UPlayerAnimInstance *PlayerAnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 	if (PlayerAnimInstance)
@@ -855,15 +850,15 @@ void AMyPlayer::Skill3(const FInputActionValue &value)
 {
 	bool isPressed = value.Get<bool>();
 
-	if (isPressed && _skillWidgetInstance != nullptr)
+	if (isPressed && UIManager->GetSkillUI() != nullptr)
 	{
-		if (SkillOnCooldown[2] || _skillWidgetInstance->IsSkillLocked(2) || _StatCom->GetCurMp() < 10)
+		if (SkillOnCooldown[2] || UIManager->GetSkillUI()->IsSkillLocked(2) || _StatCom->GetCurMp() < 10)
 			return;
 		else
 		{
 			_StatCom->AddCurMp(-10);
 			SkillOnCooldown[2] = true;
-			_skillWidgetInstance->StartCooldown(2, 5.0f);
+			UIManager->GetSkillUI()->StartCooldown(2, 5.0f);
 			if (_fireball != nullptr)
 			{
 				SoundManager->PlaySound(*GetSkillSound03(), this->GetActorLocation());
@@ -902,9 +897,9 @@ void AMyPlayer::Skill4(const FInputActionValue &value)
 {
 	bool isPressed = value.Get<bool>();
 
-	if (isPressed && _skillWidgetInstance != nullptr)
+	if (isPressed && UIManager->GetSkillUI() != nullptr)
 	{
-		if (SkillOnCooldown[3] || _skillWidgetInstance->IsSkillLocked(3) || _StatCom->GetCurMp() < 10)
+		if (SkillOnCooldown[3] || UIManager->GetSkillUI()->IsSkillLocked(3) || _StatCom->GetCurMp() < 10)
 			return;
 		else
 		{
@@ -912,7 +907,7 @@ void AMyPlayer::Skill4(const FInputActionValue &value)
 			_StatCom->SetStatBoost(_StatCom->GetInt());
 
 			SkillOnCooldown[3] = true;
-			_skillWidgetInstance->StartCooldown(3, 10.0f);
+			UIManager->GetSkillUI()->StartCooldown(3, 10.0f);
 
 			EffectManager->Play(*GetPlayerSkillEffect04_Start(), GetActorLocation());
 			SoundManager->PlaySound(*GetSkillSound04Start(), GetActorLocation());
@@ -1108,7 +1103,7 @@ void AMyPlayer::StartScreenShake()
 
 void AMyPlayer::ClearSkillTimer()
 {
-	_skillWidgetInstance->ClearAll();
+	UIManager->GetSkillUI()->ClearAll();
 }
 
 void AMyPlayer::TransformToDragon()
@@ -1143,8 +1138,8 @@ void AMyPlayer::TransformToDragon()
 
 		PC->Possess(_dragonInstance);
 
-		_isTransformed = true;
-		_dragonInstance->_isTransformed = true;
+		bIsTransformed = true;
+		_dragonInstance->bIsTransformed = true;
 	}
 }
 
@@ -1160,7 +1155,7 @@ void AMyPlayer::ToggleTransformation()
 		return;
 	}
 
-	if (_isTransformed)
+	if (bIsTransformed)
 	{
 		TransformToHuman();
 	}
@@ -1182,7 +1177,7 @@ void AMyPlayer::HandleMontageEnd(UAnimMontage *Montage, bool bInterrupted)
 	UPlayerAnimInstance *AnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 	if (AnimInstance && Montage == AnimInstance->GetChangeMontage())
 	{
-		if (!bInterrupted && !_isTransformed)
+		if (!bInterrupted && !bIsTransformed)
 		{
 			TransformToDragon();
 		}
