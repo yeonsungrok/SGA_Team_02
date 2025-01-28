@@ -37,7 +37,14 @@ void AStage1BossGameModeBase::BeginPlay()
 	if (player)
 	{
 		FTimerHandle TimerHandle;
-		GetWorldTimerManager().SetTimer(TimerHandle, this, &AStage1BossGameModeBase::LockSkill, 0.1f, false);
+        GetWorldTimerManager().SetTimer(TimerHandle, FTimerDelegate::CreateLambda([this]()
+        {
+            if (UIManager && UIManager->GetSkillUI())
+            {
+                UIManager->GetSkillUI()->LockAllSkill();
+            }
+        }), 0.1f, false);
+
 		UMyGameInstance *GameInstance = Cast<UMyGameInstance>(GetGameInstance());
 		if (GameInstance)
 		{
@@ -127,9 +134,4 @@ void AStage1BossGameModeBase::BossStart()
 		Boss->GetStatComponent()->_PlHPDelegate.AddUObject(UIManager->GetBossUI(), &UBoss1Widget::UpdateBossHPBar);
 		Boss->GetStatComponent()->_deathDelegate.AddUObject(this, &AStage1BossGameModeBase::BossClear);
 	}
-}
-
-void AStage1BossGameModeBase::LockSkill()
-{
-	UIManager->GetSkillUI()->LockAllSkill();
 }

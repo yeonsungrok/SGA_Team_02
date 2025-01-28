@@ -21,7 +21,7 @@ public:
 
 	void MagicShot();
 	void SumonedMonster();
-	void testDecalSkill();
+	void DecalSKill();
 	void MeleeAttackhit();
 
 	virtual void Attack_AI() override;

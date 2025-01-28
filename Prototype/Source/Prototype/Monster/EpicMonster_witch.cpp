@@ -33,9 +33,6 @@ AEpicMonster_witch::AEpicMonster_witch()
 	{
 		_tedecal = Wide.Class;
 	}
-
-	_exp = 170;
-
 	AIControllerClass = AAIController_Epic::StaticClass();
 	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 }
@@ -199,7 +196,7 @@ void AEpicMonster_witch::SumonedMonster()
 	}
 }
 
-void AEpicMonster_witch::testDecalSkill()
+void AEpicMonster_witch::DecalSKill()
 {
 
 	if (_tedecal)

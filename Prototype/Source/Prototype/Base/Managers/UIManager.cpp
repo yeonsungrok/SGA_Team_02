@@ -9,6 +9,7 @@
 #include "UI/ShopWidget.h"
 #include "UI/MainStartWidget.h"
 #include "UI/SkillWidget.h"
+#include "UI/PlayerBarWidget.h"
 #include "Kismet/GameplayStatics.h"
 
 #include "TriggerBox_StageSequnce/StageSequence_Trigger.h"
@@ -89,7 +90,14 @@ AUIManager::AUIManager()
 		_skillUI = CreateWidget<USkillWidget>(GetWorld(), SkillWidget.Class);
 	}
 
-	_uiList = {_inventoryUI, _statUI, _bossUI, _boss2UI, _shopUI, _startUI, _loadUI, _options, _skillUI};
+	static ConstructorHelpers::FClassFinder<UUserWidget> PlBar(
+		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/PlayerBar_UI.PlayerBar_UI_C'"));
+	if (PlBar.Succeeded())
+	{
+		_playerBarUI = CreateWidget<UPlayerBarWidget>(GetWorld(), PlBar.Class);
+	}
+
+	_uiList = {_inventoryUI, _statUI, _bossUI, _boss2UI, _shopUI, _startUI, _loadUI, _options, _skillUI, _playerBarUI};
 	_uiIsOpen.Init(false, _uiList.Num());
 	_isPauseWhenOpen.Init(true, _uiList.Num());
 }
@@ -124,7 +132,7 @@ void AUIManager::OpenUI(UI_LIST ui)
 	}
 
 	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
-	if (PlayerController && cnt >0)
+	if (PlayerController && cnt > 0)
 	{
 		bool bIsCursorVisible = PlayerController->bShowMouseCursor;
 		PlayerController->bShowMouseCursor = true;
@@ -136,7 +144,7 @@ void AUIManager::OpenUI(UI_LIST ui)
 	LastZOrder++;
 	_uiList[UIindex]->AddToViewport(LastZOrder);
 
-	_uiIsOpen[UIindex] = true; 
+	_uiIsOpen[UIindex] = true;
 }
 
 void AUIManager::CloseUI(UI_LIST ui)
@@ -195,6 +203,23 @@ void AUIManager::ToggleUI(UI_LIST ui)
 		CloseUI(ui);
 	else
 		OpenUI(ui);
+}
+
+void AUIManager::SetPlayerUI(UStatComponent* StatCom)
+{
+	if(StatCom == nullptr)
+		return;
+	
+	float CurrentHP = StatCom->GetCurHp();
+	float CurrentMP = StatCom->GetCurMp();
+	float CurrentEXP = StatCom->GetExp();
+
+	StatCom->_PlHPDelegate.AddUObject(_playerBarUI, &UPlayerBarWidget::SetPlHPBar);
+	StatCom->_PlMPDelegate.AddUObject(_playerBarUI, &UPlayerBarWidget::SetPlMPBar);
+	StatCom->_PlEXPDelegate.AddUObject(_playerBarUI, &UPlayerBarWidget::SetPlExpBar);
+	StatCom->_PlMaxHPDelegate.AddUObject(_playerBarUI, &UPlayerBarWidget::SetMaxHpBar);
+	StatCom->_PlMaxMPDelegate.AddUObject(_playerBarUI, &UPlayerBarWidget::SetMaxMpBar);
+
 }
 
 bool AUIManager::InventoryMutual(UI_LIST invenUI)

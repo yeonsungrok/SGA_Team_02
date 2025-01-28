@@ -12,7 +12,6 @@
 #include "../Monster/Boss2Monster.h"
 #include "../Monster/AI/AIController_Boss2.h"
 #include "UI/Boss2Widget.h"
-#include "UI/SkillWidget_test.h"
 #include "Kismet/GameplayStatics.h"
 
 
@@ -39,7 +38,14 @@ void AStage2BossGameModeBase::BeginPlay()
 	if (player)
 	{
 		FTimerHandle TimerHandle;
-		GetWorldTimerManager().SetTimer(TimerHandle, this, &AStage2BossGameModeBase::LockSkill, 0.1f, false);
+        GetWorldTimerManager().SetTimer(TimerHandle, FTimerDelegate::CreateLambda([this]()
+        {
+            if (UIManager && UIManager->GetSkillUI())
+            {
+                UIManager->GetSkillUI()->LockAllSkill();
+            }
+        }), 0.1f, false);
+
 		UMyGameInstance *GameInstance = Cast<UMyGameInstance>(GetGameInstance());
 		if (GameInstance)
 		{
@@ -106,7 +112,6 @@ void AStage2BossGameModeBase::BossStart()
 			PlayerController->bShowMouseCursor = false;
 			PlayerController->SetInputMode(FInputModeGameOnly());
 		}
-		//player->GetSkillWidgetInstance()->UnLockAllSkill();
 		player->SetActorLocationAndRotation(NewLocation, NewRotation);
 	}
 
@@ -136,13 +141,5 @@ void AStage2BossGameModeBase::BossStart()
 
 }
 
-void AStage2BossGameModeBase::LockSkill()
-{
-	// AMyPlayerController* PlayerController = Cast<AMyPlayerController>(GetWorld()->GetFirstPlayerController());
-	// if (PlayerController && PlayerController->SkillWidgetInstance)
-	// {
-	// 	PlayerController->SkillWidgetInstance->LockAllSkill(); 
-	// }
-}
 
 

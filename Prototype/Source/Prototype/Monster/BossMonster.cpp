@@ -40,8 +40,6 @@ ABossMonster::ABossMonster()
 	DashDistance = 2000.f;
 	DashSpeed = 2000.f;
 	_dashDecal = nullptr;
-
-	_exp = 1;
 }
 
 void ABossMonster::BeginPlay()

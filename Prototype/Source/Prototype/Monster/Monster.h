@@ -44,8 +44,6 @@ protected:
 
 
 public:
-	int32 GetExp() { return _exp; }
-	
 	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
 	void LaunchFromPlayer(FVector LaunchDirection);
@@ -58,9 +56,6 @@ public:
 
 
 protected:
-	UPROPERTY(VisibleAnywhere)
-	int32 _exp;
-
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Physics", meta = (AllowPrivateAccess = "true"))
     float _launchLength;
 
@@ -68,6 +63,6 @@ protected:
 	FVector _upVector;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Physics", meta = (AllowPrivateAccess = "true"))
-	class ABaseItem *NewItem = nullptr;
-	
+	class ABaseItem *_newItem = nullptr;
+
 };

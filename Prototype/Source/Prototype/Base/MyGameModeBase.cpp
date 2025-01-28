@@ -6,7 +6,6 @@
 #include "Base/Managers/UIManager.h"
 #include "../Player/MyPlayerController.h"
 #include "Blueprint/UserWidget.h"
-#include "UI/SkillWidget_test.h"
 #include "../Player/MyPlayer.h"
 #include "../Player/Portal/Portal_Stage2_Normal.h"
 #include "../Monster/NormalMonster.h"
@@ -52,7 +51,13 @@ void AMyGameModeBase::BeginPlay()
 			PlayerController->SetInputMode(FInputModeGameOnly());
 		}
 		FTimerHandle TimerHandle;
-		GetWorldTimerManager().SetTimer(TimerHandle, this, &AMyGameModeBase::LockSkill, 0.1f, false);
+        GetWorldTimerManager().SetTimer(TimerHandle, FTimerDelegate::CreateLambda([this]()
+        {
+            if (UIManager && UIManager->GetSkillUI())
+            {
+                UIManager->GetSkillUI()->LockAllSkill();
+            }
+        }), 0.1f, false);
 
 		if (GameInstance)
 		{
@@ -115,11 +120,6 @@ void AMyGameModeBase::BeginPlay()
 void AMyGameModeBase::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
-}
-
-void AMyGameModeBase::LockSkill()
-{
-	UIManager->GetSkillUI()->LockAllSkill();
 }
 
 void AMyGameModeBase::ShowDragonUI()

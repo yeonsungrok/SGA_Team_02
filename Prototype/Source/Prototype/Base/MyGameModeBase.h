@@ -21,7 +21,6 @@ public:
 
 	virtual void PostInitializeComponents() override;
 
-	void LockSkill();
 	void ShowDragonUI();
 
 	void SpawnMonster(FVector BaseLocation, FVector AddLocation);

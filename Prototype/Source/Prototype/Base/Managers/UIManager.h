@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "UI/SkillWidget.h" 
 #include "UIManager.generated.h"
 
 UENUM()
@@ -18,6 +19,7 @@ enum class UI_LIST
 	Load,
 	Options,
 	Skill,
+	PlayerBar,
 	Status
 };
 
@@ -31,7 +33,8 @@ class UBoss1Widget;
 class UBoss2Widget;
 class UShopWidget;
 class UMainStartWidget;
-class USkillWidget;
+class UPlayerBarWidget;
+
 
 UCLASS()
 class PROTOTYPE_API AUIManager : public AActor
@@ -54,6 +57,7 @@ public:
 	void CloseUI(UI_LIST ui);
 	void CloseAll();
 	void ToggleUI(UI_LIST ui);
+	void SetPlayerUI(class UStatComponent* StatCom);
 
 	UInventoryWidget *GetInventoryUI() { return _inventoryUI; }
 	UStatWidget *GetStatUI() { return _statUI; }
@@ -64,6 +68,8 @@ public:
 	UUserWidget *GetOptionsUI() { return _options; }
 	UTexture2D *GetDefaultTexture() { return _defaultTexture; }
 	USkillWidget *GetSkillUI() {return _skillUI;}
+	UPlayerBarWidget *GetPlayerBarUI() { return _playerBarUI; }
+	
 
 	PAUSE_GAME pauseGame;
 	RESUM_GAME resumGame;
@@ -72,7 +78,6 @@ private:
 	bool InventoryMutual(UI_LIST invenUI);
 	bool InterectMutual(UI_LIST interectUI);
 
-private:
 	UPROPERTY()
 	TArray<UUserWidget *> _uiList;
 
@@ -114,6 +119,9 @@ private:
 
 	UPROPERTY()
 	USkillWidget *_skillUI;
+
+	UPROPERTY()
+	UPlayerBarWidget *_playerBarUI;
 
 	UPROPERTY()
 	int32 cnt = 0;

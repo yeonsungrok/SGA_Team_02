@@ -21,7 +21,6 @@
 
 #include "Base/Managers/UIManager.h"
 #include "UI/InventoryWidget.h"
-#include "UI/StatWidget.h"
 #include "Components/WidgetComponent.h"
 
 #include "GameFramework/Actor.h"
@@ -46,8 +45,6 @@
 #include "Components/DecalComponent.h"
 
 #include "Player/Dragon.h"
-
-#include "UI/StatWidget.h"
 #include "UI/PlayerBarWidget.h"
 
 // Sets default values
@@ -99,13 +96,6 @@ AMyPlayer::AMyPlayer()
 
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
 
-	static ConstructorHelpers::FClassFinder<UStatWidget> StatClass(
-		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/PlayerStat_UI.PlayerStat_UI_C'"));
-	if (StatClass.Succeeded())
-	{
-		_statWidget = CreateWidget<UStatWidget>(GetWorld(), StatClass.Class);
-	}
-
 	static ConstructorHelpers::FClassFinder<UCameraShakeBase> CS(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/Player/CamerShake_BP.CamerShake_BP_C'"));
 	if (CS.Succeeded())
 	{
@@ -123,13 +113,6 @@ AMyPlayer::AMyPlayer()
 	{
 		_fireball = FB.Class;
 	}
-
-	static ConstructorHelpers::FClassFinder<UUserWidget> PlBar(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/PlayerBar_UI.PlayerBar_UI_C'"));
-	if (PlBar.Succeeded())
-	{
-		WidgetClass = PlBar.Class;
-	}
-
 	static ConstructorHelpers::FClassFinder<ADecalActor> DA(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/VFX/SkillRangeDecal_BP.SkillRangeDecal_BP_C'"));
 	if (DA.Succeeded())
 	{
@@ -140,15 +123,6 @@ AMyPlayer::AMyPlayer()
 	if (TA.Succeeded())
 	{
 		_teleportDecal = TA.Class;
-	}
-
-	if (WidgetClass)
-	{
-		_Widget = CreateWidget<UPlayerBarWidget>(GetWorld(), WidgetClass);
-		if (_Widget)
-		{
-			_Widget->AddToViewport();
-		}
 	}
 
 	_dashDistance = 1000.f;
@@ -163,14 +137,10 @@ void AMyPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (_statWidget)
-	{
-		_statWidget->AddToViewport(10);
-
-		_statWidget->SetVisibility(ESlateVisibility::Hidden);
-	}
-
+	UIManager->OpenUI(UI_LIST::PlayerBar);
 	UIManager->OpenUI(UI_LIST::Skill);
+	UIManager->SetPlayerUI(_StatCom);
+
 	SkillOnCooldown.Init(false, 4);
 
 	if (DragonClass)
@@ -186,23 +156,6 @@ void AMyPlayer::BeginPlay()
 void AMyPlayer::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
-
-	if (_Widget)
-	{
-		auto PlWidget = Cast<UPlayerBarWidget>(_Widget);
-		if (PlWidget)
-		{
-			float CurrentHP = _StatCom->GetCurHp();
-			float CurrentMP = _StatCom->GetCurMp();
-			float CurrentEXP = _StatCom->GetExp();
-
-			_StatCom->_PlHPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetPlHPBar);
-			_StatCom->_PlMPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetPlMPBar);
-			_StatCom->_PlEXPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetPlExpBar);
-			_StatCom->_PlMaxHPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetMaxHpBar);
-			_StatCom->_PlMaxMPDelegate.AddUObject(PlWidget, &UPlayerBarWidget::SetMaxMpBar);
-		}
-	}
 
 	_KnightanimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 	if (_KnightanimInstance->IsValidLowLevelFast())
@@ -223,11 +176,6 @@ void AMyPlayer::Tick(float DeltaTime)
 		return;
 
 	UpdateCamera(DeltaTime);
-
-	if (bIsDashing)
-	{
-		PerformDash(DeltaTime);
-	}
 }
 
 float AMyPlayer::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent, AController *EventInstigator, AActor *DamageCauser)
@@ -603,6 +551,8 @@ void AMyPlayer::Skill1(const FInputActionValue &value)
 		else
 		{
 			SkillOnCooldown[0] = true;
+			_StatCom->SetMp(_StatCom->GetCurMp() - 10);
+
 			if (_StatCom->GetInt() >= 40)
 			{
 				APlayerController *PlayerController = Cast<APlayerController>(GetController());
@@ -639,34 +589,46 @@ void AMyPlayer::Skill1(const FInputActionValue &value)
 			}
 			else
 			{
-				_StatCom->SetMp(_StatCom->GetCurMp() - 10);
-				bIsDashing = true;
-
 				FVector2D MovementInput = _moveVector;
 
-				if (GetVelocity().Size() > 300.f)
+				if (MovementInput.IsNearlyZero())
+				{
+					DashDirection = GetActorForwardVector();
+				}
+				else
 				{
 					FVector Forward = GetActorForwardVector() * MovementInput.Y;
 					FVector Right = GetActorRightVector() * MovementInput.X;
 					DashDirection = (Forward + Right).GetSafeNormal();
 				}
-				else
-				{
-					DashDirection = GetActorForwardVector();
-				}
 
 				DashTimeElapsed = 0.f;
-				UIManager->GetSkillUI()->StartCooldown(0, 5.0f);
 
-				UPlayerAnimInstance *PlayerAnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
-				if (PlayerAnimInstance)
-				{
-					PlayerAnimInstance->PlaySkill01Montage();
-				}
 				SoundManager->PlaySound(*GetSkillSound01(), _hitPoint);
+				DefaultGroundFriction = GetCharacterMovement()->GroundFriction;
+				DefaultBrakingDecelerationWalking = GetCharacterMovement()->BrakingDecelerationWalking;
+
+				GetCharacterMovement()->GroundFriction = 0.f;
+				GetCharacterMovement()->BrakingDecelerationWalking = 0.f;
+
+				const float DashPower = 1500.f;
+				bIsDashing = true;
+				LaunchCharacter(DashDirection * DashPower, true, true);
+
+				FTimerHandle DashResetTimerHandle;
+				GetWorldTimerManager().SetTimer(DashResetTimerHandle, this, &AMyPlayer::ResetDashFriction, 0.5f, false);
+				UIManager->GetSkillUI()->StartCooldown(0, 5.0f);
 			}
 		}
 	}
+}
+
+void AMyPlayer::ResetDashFriction()
+{
+	GetCharacterMovement()->GroundFriction = DefaultGroundFriction;
+	GetCharacterMovement()->BrakingDecelerationWalking = DefaultBrakingDecelerationWalking;
+
+	bIsDashing = false;
 }
 
 void AMyPlayer::UpdateTeleportLocation()
@@ -1057,21 +1019,6 @@ void AMyPlayer::OptionsOpen(const FInputActionValue &value)
 	}
 }
 
-void AMyPlayer::PerformDash(float DeltaTime)
-{
-	if (DashTimeElapsed < DashDuration)
-	{
-		FVector DashVelocity = DashDirection * _dashSpeed * DeltaTime;
-		AddActorWorldOffset(DashVelocity, true);
-
-		DashTimeElapsed += DeltaTime;
-	}
-	else
-	{
-		bIsDashing = false;
-	}
-}
-
 void AMyPlayer::StartScreenShake()
 {
 	static float InitialShakeStrength = 0.1f;
@@ -1099,11 +1046,6 @@ void AMyPlayer::StartScreenShake()
 		GetWorld()->GetTimerManager().ClearTimer(ScreenShakeTimerHandle);
 		ElapsedTime = 0.0f;
 	}
-}
-
-void AMyPlayer::ClearSkillTimer()
-{
-	UIManager->GetSkillUI()->ClearAll();
 }
 
 void AMyPlayer::TransformToDragon()

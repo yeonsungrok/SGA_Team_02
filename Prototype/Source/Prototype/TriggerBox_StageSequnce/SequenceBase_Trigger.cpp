@@ -10,7 +10,6 @@
 #include "../Base/Managers/UIManager.h"
 
 #include "UI/PlayerBarWidget.h"
-#include "UI/SkillWidget_test.h"
 #include "UI/MiniMapWidget.h"
 #include "UI/StatWidget.h"
 #include "Component/StatComponent.h"
@@ -104,15 +103,8 @@ void ASequenceBase_Trigger::PlaySequence()
 
 void ASequenceBase_Trigger::OnSequenceFinished()
 {
-    if (TriggeredActor && TriggeredActor->IsA(ACreature::StaticClass()))
-    {
-        // ACreature *Creature = Cast<ACreature>(TriggeredActor);
-        // if (Creature && Creature->_Widget)
-        // {
-        //     Creature->_Widget->SetVisibility(ESlateVisibility::Visible);
-        // }
-    }
     UIManager->OpenUI(UI_LIST::Skill);
+    UIManager->OpenUI(UI_LIST::PlayerBar);
 
     OnShowMinimap.Broadcast();
 

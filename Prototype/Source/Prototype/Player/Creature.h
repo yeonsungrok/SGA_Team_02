@@ -104,11 +104,6 @@ protected:
 	UStatComponent *_StatCom;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = "true"))
-	class UWidgetComponent *_WidgetCom;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = "true"))
 	class UUserWidget *_Widget;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = "true"))
-	TSubclassOf<UUserWidget> WidgetClass;
 };

@@ -118,7 +118,7 @@ float AMonster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent,
 
             if (FMath::FRand() <= RewardChance)
             {
-                Player->GetInventory()->AddItemToSlot(NewItem);
+                Player->GetInventory()->AddItemToSlot(_newItem);
             }
         }
     }
@@ -137,7 +137,7 @@ void AMonster::Reward()
         if (ConsumeItem)
         {
             ConsumeItem->SetItemWithCode(RandomItemValue);
-            NewItem = ConsumeItem;
+            _newItem = ConsumeItem;
         }
     }
     else
@@ -149,9 +149,9 @@ void AMonster::Reward()
             EquipItem->SetItemWithCode(RandomEquipValue);
             int32 EquipType = EquipItem->GetEquip();
             EquipItem->SetEquipType(EquipType);
-            NewItem = EquipItem;
+            _newItem = EquipItem;
         }
-        NewItem->SetPlayer();
+        _newItem->SetPlayer();
     }
 }
 

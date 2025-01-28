@@ -224,30 +224,30 @@ void UMyGameInstance::LoadInventory(class UInventoryComponent *InventoryComponen
 
 		for (const FItemData &ItemData : SavedInventoryData)
 		{
-			ABaseItem *NewItem = nullptr;
+			ABaseItem *_newItem = nullptr;
 
 			if (ItemData._Type == ItemType::Consume)
 			{
-				NewItem = GetWorld()->SpawnActor<AConsumeItem>(AConsumeItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
-				NewItem->SetItemWithCode(ItemData._Code);
+				_newItem = GetWorld()->SpawnActor<AConsumeItem>(AConsumeItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+				_newItem->SetItemWithCode(ItemData._Code);
 			}
 			else if (ItemData._Type == ItemType::Equipment)
 			{
 				AEquipItem *EquipItem = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
 				EquipItem->SetItemWithCode(ItemData._Code);
 				EquipItem->SetEquipType(ItemData._Equip);
-				NewItem = EquipItem;
+				_newItem = EquipItem;
 			}
 
-			if (NewItem)
+			if (_newItem)
 			{
-				InventoryComponent->AddItemToSlot(NewItem);
+				InventoryComponent->AddItemToSlot(_newItem);
 			}
 		}
 
 		for (const auto &Item : SavedEquipData)
 		{
-			AEquipItem *NewItem = nullptr;
+			AEquipItem *_newItem = nullptr;
 			FString EquipType = Item.Key;
 			const FItemData &ItemData = Item.Value;
 
@@ -258,9 +258,9 @@ void UMyGameInstance::LoadInventory(class UInventoryComponent *InventoryComponen
 				{
 					EquipItem->SetItemWithCode(ItemData._Code);
 					EquipItem->SetEquipType(ItemData._Equip);
-					NewItem = EquipItem;
+					_newItem = EquipItem;
 
-					InventoryComponent->AddItemToEquip(EquipType, NewItem);
+					InventoryComponent->AddItemToEquip(EquipType, _newItem);
 				}
 			}
 		}

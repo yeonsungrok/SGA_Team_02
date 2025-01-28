@@ -86,8 +86,6 @@ public:
 	virtual FString GetUIBaseSound() const override;
 	virtual FString GetLevelUpSound() const override;
 
-	void ClearSkillTimer();
-
 	FINTERECT interectNPC;
 
 	USkeletalMeshComponent *GetLowerBodyMesh() { return _lowerBodyMesh; }
@@ -153,8 +151,8 @@ private:
 	FVector DashDirection;
 	float DashTimeElapsed;
 	float DashDuration;
-
-	void PerformDash(float DeltaTime);
+	
+	void ResetDashFriction();
 	void StartScreenShake();
 
 private:
@@ -230,9 +228,6 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Decal, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class AMyDecal> _decal;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = UI, meta = (AllowPrivateAccess = "true"))
-	class UStatWidget *_statWidget;
-
 	UPROPERTY(EditAnywhere, Category = "Dash")
 	float _dashDistance;
 
@@ -259,6 +254,9 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Skills")
 	TSubclassOf<class AFireball> _fireball;
+
+    float DefaultGroundFriction;
+    float DefaultBrakingDecelerationWalking;
 
 	//------- Dragon 변신 -------
 

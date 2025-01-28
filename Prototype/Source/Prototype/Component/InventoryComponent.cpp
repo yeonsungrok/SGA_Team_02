@@ -292,9 +292,9 @@ void UInventoryComponent::AddItemToSlot(ABaseItem *Item)
 	}
 }
 
-void UInventoryComponent::AddItemToEquip(FString EquipSlot, class ABaseItem *NewItem)
+void UInventoryComponent::AddItemToEquip(FString EquipSlot, class ABaseItem *_newItem)
 {
-	AEquipItem *EquipItem = Cast<AEquipItem>(NewItem);
+	AEquipItem *EquipItem = Cast<AEquipItem>(_newItem);
 	if (EquipItem)
 	{
 		_EquipSlots.Add(EquipSlot, EquipItem);

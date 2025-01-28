@@ -32,7 +32,7 @@ public:
 	void AddItem(int32 slot = 0, ABaseItem *item = nullptr);
 	virtual void InitializeComponent() override;
 	void AddItemToSlot(class ABaseItem *Item);
-	void AddItemToEquip(FString EquipSlot, class ABaseItem *NewItem);
+	void AddItemToEquip(FString EquipSlot, class ABaseItem *_newItem);
 
 	void ShowItemSlots();
 

@@ -2,6 +2,7 @@
 
 #include "Portal.h"
 #include "Components/BoxComponent.h"
+#include "Base/Managers/UIManager.h"
 #include "NiagaraSystem.h"
 #include "NiagaraFunctionLibrary.h"
 #include "NiagaraComponent.h"
@@ -36,10 +37,10 @@ void APortal::OnOverlapBegin(UPrimitiveComponent *OverlappedComp, AActor *OtherA
     AMyPlayer *player = Cast<AMyPlayer>(OtherActor);
     if (player)
     {
-        //player->ClearSkillTimer();
         UMyGameInstance *GameInstance = Cast<UMyGameInstance>(GetGameInstance());
         if (GameInstance)
         {
+            UIManager->GetSkillUI()->ClearAll();
             UIManager->CloseAll();
             UIManager->OpenUI(UI_LIST::Load);
             GameInstance->SavePlayerStats(player->GetStatComponent());
