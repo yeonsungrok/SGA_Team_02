@@ -20,4 +20,18 @@ public:
 	virtual void BeginPlay() override;
 
 	virtual void PostInitializeComponents() override;
+
+	void SpawnMonster(FVector BaseLocation,int size);
+
+	void InitializeMonsterPool();
+
+	void RespawnMonster(class ANormalMonster* Monster);
+
+private:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<class ANormalMonster> _monster;
+
+	UPROPERTY()
+	TArray<ANormalMonster*> _monsterPool;
+
 };

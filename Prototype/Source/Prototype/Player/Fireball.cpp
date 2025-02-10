@@ -157,7 +157,6 @@ FString AFireball::GetSkill_03_HitSound() const
 
 void AFireball::HideFireball()
 { 
-    UE_LOG(LogTemp, Warning, TEXT("Fireball Hide"));
     SetActorHiddenInGame(true);
     SetActorEnableCollision(false);
 }

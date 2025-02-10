@@ -7,7 +7,11 @@
 #include "GameFramework/CharacterMovementComponent.h"
 
 #include "Base/MyGameInstance.h"
+#include "Base/Stage1NormalGameModeBase.h"
+#include "Base/Stage2NormalGameModeBase.h"
 #include "../Base/Managers/EffectManager.h"
+
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ANormalMonster::ANormalMonster()
@@ -54,6 +58,21 @@ void ANormalMonster::PostInitializeComponents()
 	
 }
 
+void ANormalMonster::Disable()
+{
+	Super::Disable();
+	AStage1NormalGameModeBase* GameMode = Cast<AStage1NormalGameModeBase>(UGameplayStatics::GetGameMode(this));
+	if (GameMode)
+	{
+		GameMode->RespawnMonster(this);
+	}
+	// AStage2NormalGameModeBase* GameMode2 = Cast<AStage2NormalGameModeBase>(UGameplayStatics::GetGameMode(this));
+	// if (GameMode2)
+	// {
+	// 	GameMode2->RespawnMonster(this);
+	// }
+}
+
 void ANormalMonster::Attack_AI()
 {
 	if (_isAttacking == false && _monster_N_AnimInstance != nullptr)
@@ -67,3 +86,5 @@ void ANormalMonster::Attack_AI()
 		_monster_N_AnimInstance->JumpToSection(_curAttackIndex);
 	}
 }
+
+

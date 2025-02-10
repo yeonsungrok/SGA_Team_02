@@ -21,16 +21,9 @@ public:
 
 	virtual void PostInitializeComponents() override;
 
-	void ShowDragonUI();
-
-	void SpawnMonster(FVector BaseLocation, FVector AddLocation);
-
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class APortal_Stage2_Normal> _portal2;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	TSubclassOf<class ANormalMonster> _monster;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class UUserWidget> _dragonUI;
