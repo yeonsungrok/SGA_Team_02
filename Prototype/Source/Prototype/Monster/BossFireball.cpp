@@ -54,13 +54,15 @@ void ABossFireball::LaunchTowards(FVector TargetLocation)
 {
     FVector Direction = (TargetLocation - GetActorLocation()).GetSafeNormal();
     ProjectileMovement->Velocity = Direction * 2000.f;
+    SetActorHiddenInGame(false);
+    SetActorEnableCollision(true);
     bIsInactive = false;
 
     FTimerHandle TimerHandle;
     GetWorldTimerManager().SetTimer(TimerHandle, [this]()
                                     {
-        SetActorHiddenInGame(false);
-        SetActorEnableCollision(true);
+        SetActorHiddenInGame(true);
+        SetActorEnableCollision(false);
         bIsInactive = true; }, 3.0f, false);
 }
 

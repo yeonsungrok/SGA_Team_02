@@ -3,14 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/GameModeBase.h"
+#include "BossGameModeBase.h"
 #include "Stage2BossGameModeBase.generated.h"
+
 
 /**
  *
  */
 UCLASS()
-class PROTOTYPE_API AStage2BossGameModeBase : public AGameModeBase
+class PROTOTYPE_API AStage2BossGameModeBase : public ABossGameModeBase
 {
 	GENERATED_BODY()
 
@@ -25,10 +26,9 @@ public:
 
 	void BossStart();
 
+	virtual void SpawnBoss() override;
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class ABoss2Monster> _boss;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	TSubclassOf<class APortal_Home> _portal;
 };

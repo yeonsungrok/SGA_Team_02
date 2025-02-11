@@ -2,17 +2,11 @@
 
 
 #include "Base/Stage2BossGameModeBase.h"
-#include "Component/StatComponent.h"
-#include "Component/InventoryComponent.h"
-#include "../Player/Portal/Portal_Home.h"
 #include "MyGameInstance.h"
-#include "../Player/MyPlayer.h"
-#include "../Player/MyPlayerController.h"
-#include "Base/Managers/UIManager.h"
+#include "../Base/Managers/UIManager.h"
 #include "../Monster/Boss2Monster.h"
 #include "../Monster/AI/AIController_Boss2.h"
 #include "UI/Boss2Widget.h"
-#include "Kismet/GameplayStatics.h"
 
 
 AStage2BossGameModeBase::AStage2BossGameModeBase()
@@ -23,58 +17,16 @@ AStage2BossGameModeBase::AStage2BossGameModeBase()
 		_boss = BM.Class;
 	}
 
-	static ConstructorHelpers::FClassFinder<APortal_Home> PH(TEXT("/Script/Engine.Blueprint'/Game/Blueprint/Player/Portal/HomePortal_BP.HomePortal_BP_C'"));
-	if (PH.Succeeded())
-	{
-		_portal = PH.Class;
-	}
+	_portalLocation = FVector(40.0f, -3230.1f, 190.9f);
+	_portalRotation = FRotator::ZeroRotator;
+	_playerLocation = FVector(50.0f, -1420.f, 226.f);
+	_playerRotation = FRotator::ZeroRotator;
+
 }
 
 void AStage2BossGameModeBase::BeginPlay()
 {
     Super::BeginPlay();
-
-	AMyPlayer *player = Cast<AMyPlayer>(UGameplayStatics::GetPlayerCharacter(this, 0));
-	if (player)
-	{
-		FTimerHandle TimerHandle;
-        GetWorldTimerManager().SetTimer(TimerHandle, FTimerDelegate::CreateLambda([this]()
-        {
-            if (UIManager && UIManager->GetSkillUI())
-            {
-                UIManager->GetSkillUI()->LockAllSkill();
-            }
-        }), 0.1f, false);
-
-		UMyGameInstance *GameInstance = Cast<UMyGameInstance>(GetGameInstance());
-		if (GameInstance)
-		{
-			GameInstance->InitializeManagers();
-			UStatComponent *StatComponent = player->FindComponentByClass<UStatComponent>();
-			if (StatComponent)
-			{
-				GameInstance->LoadPlayerStats(StatComponent);
-			}
-
-			UInventoryComponent *InvenComponent = player->FindComponentByClass<UInventoryComponent>();
-			if (InvenComponent)
-			{
-				GameInstance->LoadInventory(InvenComponent);
-			}
-			GameInstance->LoadPlayerSkeletal(player);
-
-			APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
-			if (PlayerController)
-			{
-				PlayerController->bShowMouseCursor = false;
-				PlayerController->SetInputMode(FInputModeGameOnly());
-			}
-		}
-	}
-
-	
-
-
 }
 
 void AStage2BossGameModeBase::PostInitializeComponents()
@@ -84,40 +36,20 @@ void AStage2BossGameModeBase::PostInitializeComponents()
 
 void AStage2BossGameModeBase::BossClear()
 {
-	if (_portal)
-	{
-		GAMEINSTANCE->SetStage2Clear(true);
-		FActorSpawnParameters SpawnParams;
-		SpawnParams.Name = TEXT("PortalHome");
-
-		FVector PortalLocation = FVector(40.0f, -3230.1f, 190.9f);
-		FRotator PortalRotation = FRotator::ZeroRotator;
-
-		APortal_Home *Portal = GetWorld()->SpawnActor<APortal_Home>(_portal, PortalLocation, PortalRotation, SpawnParams);
-	}
+	Super::BossClear();
+	GAMEINSTANCE->SetStage2Clear(true);
 }
 
 void AStage2BossGameModeBase::BossStart()
 {
+	Super::BossStart();
 	UIManager->OpenUI(UI_LIST::Boss2);
-	AMyPlayer *player = Cast<AMyPlayer>(UGameplayStatics::GetPlayerCharacter(this, 0));
-	if (player)
-	{
-		FVector NewLocation = FVector(50.0f, -1420.f, 226.f);
-		FRotator NewRotation = FRotator::ZeroRotator;
+}
 
-		APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
-		if (PlayerController)
-		{
-			PlayerController->bShowMouseCursor = false;
-			PlayerController->SetInputMode(FInputModeGameOnly());
-		}
-		player->SetActorLocationAndRotation(NewLocation, NewRotation);
-	}
-
+void AStage2BossGameModeBase::SpawnBoss()
+{
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.Name = TEXT("Boss2");
-
 	ABoss2Monster* Boss = GetWorld()->SpawnActor<ABoss2Monster>(_boss, FVector(141.0f, -3893.1f, 429.9f), FRotator::ZeroRotator, SpawnParams);
 	if (Boss)
 	{
@@ -126,13 +58,6 @@ void AStage2BossGameModeBase::BossStart()
 		if (BossAI)
 		{
 			BossAI->OnPossess(Boss);
-		}
-
-		APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-		if (PlayerController)
-		{
-			PlayerController->bShowMouseCursor = false;
-			PlayerController->SetInputMode(FInputModeGameOnly());
 		}
 
 		Boss->GetStatComponent()->_PlHPDelegate.AddUObject(UIManager->GetBoss2UI(), &UBoss2Widget::UpdateBossHPBar);

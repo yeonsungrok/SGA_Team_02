@@ -111,18 +111,17 @@ void ABoss2Monster::FireballAttack(FVector Location)
 FVector ABoss2Monster::UpdatedLocation()
 {
 	auto AIController = Cast<AAIController_Boss2>(GetController());
-	FVector LastVector;
+    FVector LastVector = GetActorLocation(); 
 
-	if (AIController && AIController->GetBlackboardComponent())
-	{
-		AActor *TargetActor = Cast<AActor>(AIController->GetBlackboardComponent()->GetValueAsObject("Target"));
-		if (TargetActor)
-		{
-			LastVector = TargetActor->GetActorLocation();
-			return LastVector;
-		}
-	}
-	return LastVector;
+    if (AIController && AIController->GetBlackboardComponent())
+    {
+        AActor *TargetActor = Cast<AActor>(AIController->GetBlackboardComponent()->GetValueAsObject("Target"));
+        if (TargetActor)
+        {
+            LastVector = TargetActor->GetActorLocation();
+        }
+    }
+    return LastVector;
 }
 
 float ABoss2Monster::TakeDamage(float Damage, struct FDamageEvent const &DamageEvent, AController *EventInstigator, AActor *DamageCauser)

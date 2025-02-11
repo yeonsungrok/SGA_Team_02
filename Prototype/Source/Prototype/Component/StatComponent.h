@@ -7,15 +7,6 @@
 #include "Engine/DataTable.h"
 #include "StatComponent.generated.h"
 
-DECLARE_MULTICAST_DELEGATE(DeathDelegate)
-
-DECLARE_MULTICAST_DELEGATE_OneParam(PlHP, float);
-DECLARE_MULTICAST_DELEGATE_OneParam(PlMP, float);
-DECLARE_MULTICAST_DELEGATE_OneParam(PlMaxHP, int32);
-DECLARE_MULTICAST_DELEGATE_OneParam(PlMaxMP, int32);
-DECLARE_MULTICAST_DELEGATE_OneParam(PIEXP, float);
-DECLARE_MULTICAST_DELEGATE_OneParam(PILevel, int32);
-
 UENUM()
 enum class StatType
 {
@@ -58,6 +49,18 @@ struct FMyStatData : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 EXP;
 };
+
+DECLARE_MULTICAST_DELEGATE(DeathDelegate)
+
+DECLARE_MULTICAST_DELEGATE_OneParam(PlHP, float);
+DECLARE_MULTICAST_DELEGATE_OneParam(PlMP, float);
+DECLARE_MULTICAST_DELEGATE_OneParam(PlMaxHP, int32);
+DECLARE_MULTICAST_DELEGATE_OneParam(PlMaxMP, int32);
+DECLARE_MULTICAST_DELEGATE_OneParam(PIEXP, float);
+DECLARE_MULTICAST_DELEGATE_OneParam(PILevel, int32);
+DECLARE_MULTICAST_DELEGATE_OneParam(OnStatChanged, StatType);
+
+
 
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class PROTOTYPE_API UStatComponent : public UActorComponent
