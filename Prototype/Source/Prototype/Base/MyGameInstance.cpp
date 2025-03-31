@@ -14,6 +14,7 @@
 #include "Base/Managers/UIManager.h"
 #include "Base/Managers/SoundManager.h"
 
+
 UMyGameInstance::UMyGameInstance()
 {
 	static ConstructorHelpers::FObjectFinder<UDataTable> StatData(TEXT("/Script/Engine.DataTable'/Game/Data/StatDataTable.StatDataTable'"));
@@ -257,6 +258,62 @@ void UMyGameInstance::LoadPlayerSkeletal(class AMyPlayer *player)
 		player->GetSwordBodyMesh()->SetSkeletalMesh(SavedSkeletalMeshes[3]);
 		player->GetShieldBodyMesh()->SetSkeletalMesh(SavedSkeletalMeshes[4]);
 	}
+}
+
+void UMyGameInstance::Login(FString Username, FString Password)
+{
+	TSharedRef<IHttpRequest> Request = FHttpModule::Get().CreateRequest();
+    Request->SetURL("http://127.0.0.1:5000/login"); // Flask 서버 주소
+    Request->SetVerb("POST");
+    Request->SetHeader("Content-Type", "application/json");
+
+    // JSON 데이터 만들기
+    TSharedPtr<FJsonObject> JsonObject = MakeShareable(new FJsonObject());
+    JsonObject->SetStringField("username", Username);
+    JsonObject->SetStringField("password", Password);
+
+    FString OutputString;
+    TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutputString);
+    FJsonSerializer::Serialize(JsonObject.ToSharedRef(), Writer);
+
+    Request->SetContentAsString(OutputString);
+    Request->OnProcessRequestComplete().BindUObject(this, &UMyGameInstance::OnLoginResponseReceived);
+    Request->ProcessRequest();
+}
+
+void UMyGameInstance::OnLoginResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bWasSuccessful)
+{
+	if (!bWasSuccessful || !Response.IsValid())
+    {
+        UE_LOG(LogTemp, Error, TEXT("로그인 요청 실패"));
+        return;
+    }
+
+    FString ResponseString = Response->GetContentAsString();
+    UE_LOG(LogTemp, Log, TEXT("서버 응답: %s"), *ResponseString);
+
+    TSharedPtr<FJsonObject> JsonObject;
+    TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(ResponseString);
+
+    if (FJsonSerializer::Deserialize(Reader, JsonObject))
+    {
+        bool bSuccess = JsonObject->GetBoolField("success");
+        FString Message = JsonObject->GetStringField("message");
+
+        if (bSuccess)
+        {
+            UE_LOG(LogTemp, Log, TEXT("로그인 성공: %s"), *Message);
+			OnLoginSuccess.Broadcast();
+        }
+        else
+        {
+            UE_LOG(LogTemp, Warning, TEXT("로그인 실패: %s"), *Message);
+        }
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("JSON 파싱 실패"));
+    }
 }
 
 TArray<ABaseItem *> UMyGameInstance::GetInvenItemList()

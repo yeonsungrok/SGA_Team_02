@@ -10,6 +10,7 @@
 #include "UI/MainStartWidget.h"
 #include "UI/SkillWidget.h"
 #include "UI/PlayerBarWidget.h"
+#include "UI/LoginWidget.h"
 #include "Kismet/GameplayStatics.h"
 
 #include "TriggerBox_StageSequnce/StageSequence_Trigger.h"
@@ -97,7 +98,14 @@ AUIManager::AUIManager()
 		_playerBarUI = CreateWidget<UPlayerBarWidget>(GetWorld(), PlBar.Class);
 	}
 
-	_uiList = {_inventoryUI, _statUI, _bossUI, _boss2UI, _shopUI, _startUI, _loadUI, _options, _skillUI, _playerBarUI};
+	static ConstructorHelpers::FClassFinder<ULoginWidget> LW(
+		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Blueprint/UI/Login_UI.Login_UI_C'"));
+	if(LW.Succeeded())
+	{
+		_loginUI = CreateWidget<ULoginWidget>(GetWorld(), LW.Class);
+	}
+
+	_uiList = {_inventoryUI, _statUI, _bossUI, _boss2UI, _shopUI, _startUI, _loadUI, _options, _skillUI, _playerBarUI, _loginUI};
 	_uiIsOpen.Init(false, _uiList.Num());
 	_isPauseWhenOpen.Init(true, _uiList.Num());
 }

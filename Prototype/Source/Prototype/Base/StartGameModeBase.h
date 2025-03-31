@@ -20,6 +20,11 @@ public:
 	virtual void PostInitializeComponents() override;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<UUserWidget> StartLevelWidgetClass;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = "true"))
 	class UMainStartWidget *StartLevelWidget;
+
+	UFUNCTION()
+	void OnLoginSuccess();
+
 };

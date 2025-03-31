@@ -20,7 +20,7 @@ enum class UI_LIST
 	Options,
 	Skill,
 	PlayerBar,
-	Status
+	Login
 };
 
 DECLARE_MULTICAST_DELEGATE(PAUSE_GAME);
@@ -34,6 +34,7 @@ class UBoss2Widget;
 class UShopWidget;
 class UMainStartWidget;
 class UPlayerBarWidget;
+class ULoginWidget;
 
 
 UCLASS()
@@ -69,6 +70,7 @@ public:
 	UTexture2D *GetDefaultTexture() { return _defaultTexture; }
 	USkillWidget *GetSkillUI() {return _skillUI;}
 	UPlayerBarWidget *GetPlayerBarUI() { return _playerBarUI; }
+	ULoginWidget *GetLoginUI() { return _loginUI; }
 	
 
 	PAUSE_GAME pauseGame;
@@ -122,6 +124,9 @@ private:
 
 	UPROPERTY()
 	UPlayerBarWidget *_playerBarUI;
+
+	UPROPERTY()
+	ULoginWidget *_loginUI;
 
 	UPROPERTY()
 	int32 cnt = 0;
