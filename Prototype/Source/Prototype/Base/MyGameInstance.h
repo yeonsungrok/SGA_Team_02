@@ -167,4 +167,7 @@ private:
 
 	UPROPERTY()
 	bool _stage2Clear = false;
+
+	UPROPERTY()
+	FString CurrentUsername;
 };

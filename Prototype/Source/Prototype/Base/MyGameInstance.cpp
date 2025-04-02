@@ -89,176 +89,353 @@ UMyGameInstance::UMyGameInstance()
 	SavedSkeletalMeshes.SetNum(6);
 }
 
-void UMyGameInstance::SavePlayerStats(class UStatComponent *StatComponent)
+void UMyGameInstance::SavePlayerStats(UStatComponent* StatComponent)
 {
-	if (StatComponent)
-	{
-		SavedPlayerStats.Level = StatComponent->GetLevel();
-		SavedPlayerStats.MaxHp = StatComponent->GetMaxHp();
-		SavedPlayerStats.CurHp = StatComponent->GetCurHp();
-		SavedPlayerStats.MaxMp = StatComponent->GetMaxMp();
-		SavedPlayerStats.CurMp = StatComponent->GetCurMp();
-		SavedPlayerStats.Str = StatComponent->GetStr();
-		SavedPlayerStats.Dex = StatComponent->GetDex();
-		SavedPlayerStats.Int = StatComponent->GetInt();
-		SavedPlayerStats.Exp = StatComponent->GetExp();
-		SavedPlayerStats.NextExp = StatComponent->GetNextExp();
-		SavedPlayerStats.BonusPoint = StatComponent->GetBonusPoint();
-		SavedPlayerStats.AttackRadius = StatComponent->GetAttackRadius();
-		SavedPlayerStats.AttackRange = StatComponent->GetAttackRadius();
-	}
+	if (!StatComponent || CurrentUsername.IsEmpty()) return;
+
+	TSharedPtr<FJsonObject> StatsData = MakeShareable(new FJsonObject());
+	StatsData->SetStringField(TEXT("username"), CurrentUsername);
+
+	TSharedPtr<FJsonObject> Stats = MakeShareable(new FJsonObject());
+	Stats->SetNumberField(TEXT("level"), StatComponent->GetLevel());
+	Stats->SetNumberField(TEXT("maxHp"), StatComponent->GetMaxHp());
+	Stats->SetNumberField(TEXT("curHp"), StatComponent->GetCurHp());
+	Stats->SetNumberField(TEXT("maxMp"), StatComponent->GetMaxMp());
+	Stats->SetNumberField(TEXT("curMp"), StatComponent->GetCurMp());
+	Stats->SetNumberField(TEXT("str_"), StatComponent->GetStr());
+	Stats->SetNumberField(TEXT("dex"), StatComponent->GetDex());
+	Stats->SetNumberField(TEXT("int_"), StatComponent->GetInt());
+	Stats->SetNumberField(TEXT("exp"), StatComponent->GetExp());
+	Stats->SetNumberField(TEXT("nextExp"), StatComponent->GetNextExp());
+	Stats->SetNumberField(TEXT("bonusPoint"), StatComponent->GetBonusPoint());
+	Stats->SetNumberField(TEXT("attackRadius"), StatComponent->GetAttackRadius());
+	Stats->SetNumberField(TEXT("attackRange"), StatComponent->GetAttackRange());
+
+	StatsData->SetObjectField(TEXT("stats"), Stats);
+
+	FString Output;
+	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&Output);
+	FJsonSerializer::Serialize(StatsData.ToSharedRef(), Writer);
+
+	TSharedRef<IHttpRequest> Request = FHttpModule::Get().CreateRequest();
+	Request->SetURL("http://127.0.0.1:5000/save_stats");
+	Request->SetVerb("POST");
+	Request->SetHeader("Content-Type", "application/json");
+	Request->SetContentAsString(Output);
+	Request->ProcessRequest();
 }
 
-void UMyGameInstance::LoadPlayerStats(class UStatComponent *StatComponent)
-{
-	if (StatComponent)
-	{
-		StatComponent->SetLevel(SavedPlayerStats.Level);
-		StatComponent->SetMaxHp(SavedPlayerStats.MaxHp);
-		StatComponent->SetHp(SavedPlayerStats.CurHp);
-		StatComponent->SetMaxMp(SavedPlayerStats.MaxMp);
-		StatComponent->SetMp(SavedPlayerStats.CurMp);
-		StatComponent->SetStr(SavedPlayerStats.Str);
-		StatComponent->SetDex(SavedPlayerStats.Dex);
-		StatComponent->SetInt(SavedPlayerStats.Int);
-		StatComponent->SetExp(SavedPlayerStats.Exp);
-		StatComponent->SetNextExp(SavedPlayerStats.NextExp);
-		StatComponent->SetBonusPoint(SavedPlayerStats.BonusPoint);
-		StatComponent->SetAttackRange(SavedPlayerStats.AttackRange);
-		StatComponent->SetAttackRadius(SavedPlayerStats.AttackRadius);
 
-		StatComponent->UpdateUI();
-	}
+void UMyGameInstance::LoadPlayerStats(UStatComponent* StatComponent)
+{
+    if (!StatComponent || CurrentUsername.IsEmpty()) return;
+
+    FString Url = FString::Printf(TEXT("http://127.0.0.1:5000/load_stats?username=%s"), *CurrentUsername);
+
+    TSharedRef<IHttpRequest> Request = FHttpModule::Get().CreateRequest();
+    Request->SetURL(Url);
+    Request->SetVerb("GET");
+
+    Request->OnProcessRequestComplete().BindLambda([StatComponent](FHttpRequestPtr Req, FHttpResponsePtr Res, bool bSuccess)
+    {
+        if (!bSuccess || !Res.IsValid())
+        {
+            UE_LOG(LogTemp, Error, TEXT("LoadPlayerStats - Request failed"));
+            return;
+        }
+
+        TSharedPtr<FJsonObject> Json;
+        TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(Res->GetContentAsString());
+
+        if (FJsonSerializer::Deserialize(Reader, Json) && Json.IsValid())
+        {
+            // 로그 출력 (선택)
+            for (auto& Pair : Json->Values)
+            {
+                FString Key = Pair.Key;
+                FString Value;
+
+                if (Pair.Value->Type == EJson::Number)
+                    Value = FString::SanitizeFloat(Pair.Value->AsNumber());
+                else if (Pair.Value->Type == EJson::String)
+                    Value = Pair.Value->AsString();
+
+                UE_LOG(LogTemp, Warning, TEXT("[Stats] %s: %s"), *Key, *Value);
+            }
+
+            // 값 적용
+            StatComponent->SetLevel(Json->GetIntegerField(TEXT("level")));
+            StatComponent->SetMaxHp(Json->GetIntegerField(TEXT("maxHp")));
+            StatComponent->SetHp(Json->GetIntegerField(TEXT("curHp")));
+            StatComponent->SetMaxMp(Json->GetIntegerField(TEXT("maxMp")));
+            StatComponent->SetMp(Json->GetIntegerField(TEXT("curMp")));
+            StatComponent->SetStr(Json->GetIntegerField(TEXT("str_")));
+            StatComponent->SetDex(Json->GetIntegerField(TEXT("dex")));
+            StatComponent->SetInt(Json->GetIntegerField(TEXT("int_")));
+            StatComponent->SetExp(Json->GetIntegerField(TEXT("exp")));
+            StatComponent->SetNextExp(Json->GetIntegerField(TEXT("nextExp")));
+            StatComponent->SetBonusPoint(Json->GetIntegerField(TEXT("bonusPoint")));
+            StatComponent->SetAttackRadius(Json->GetNumberField(TEXT("attackRadius")));
+            StatComponent->SetAttackRange(Json->GetNumberField(TEXT("attackRange")));
+            StatComponent->UpdateUI();
+        }
+        else
+        {
+            UE_LOG(LogTemp, Error, TEXT("LoadPlayerStats - JSON 파싱 실패 또는 응답이 유효하지 않음"));
+        }
+    });
+
+    Request->ProcessRequest();
 }
 
-void UMyGameInstance::SaveInventory(class UInventoryComponent *InventoryComponent)
+
+void UMyGameInstance::SaveInventory(UInventoryComponent* InventoryComponent)
 {
-	if (InventoryComponent)
+	if (!InventoryComponent || CurrentUsername.IsEmpty()) return;
+
+	TArray<TSharedPtr<FJsonValue>> InventoryArray;
+	for (ABaseItem* Item : InventoryComponent->GetItemSlots())
 	{
-		SavedInventoryData.Empty();
-		SavedEquipData.Empty();
+		if (!Item) continue;
 
-		TArray<ABaseItem *> Items = InventoryComponent->GetItemSlots();
-		TMap<FString, AEquipItem *> EquipItems = InventoryComponent->GetEquipSlots();
-
-		for (ABaseItem *Item : Items)
-		{
-			if (Item)
-			{
-				FItemData ItemData;
-				ItemData._Code = Item->GetCode();
-				ItemData._Name = Item->GetName();
-				ItemData._Type = Item->GetType();
-				ItemData._ModTarget = Item->GetModStat();
-				ItemData._Description = Item->GetDesc();
-				ItemData._Price = Item->GetPrice();
-				ItemData._Value = Item->GetValue();
-				ItemData._Mesh = Item->GetSkeletalMesh();
-				ItemData._Texture = Item->GetTexture();
-				ItemData._Equip = Item->GetEquip();
-
-				SavedInventoryData.Add(ItemData);
-			}
-		}
-
-		for (auto &Item : EquipItems)
-		{
-			if (Item.Value)
-			{
-				FItemData ItemData;
-				ItemData._Code = Item.Value->GetCode();
-				ItemData._Name = Item.Value->GetName();
-				ItemData._Type = Item.Value->GetType();
-				ItemData._ModTarget = Item.Value->GetModStat();
-				ItemData._Description = Item.Value->GetDesc();
-				ItemData._Price = Item.Value->GetPrice();
-				ItemData._Value = Item.Value->GetValue();
-				ItemData._Mesh = Item.Value->GetSkeletalMesh();
-				ItemData._Texture = Item.Value->GetTexture();
-				ItemData._Equip = static_cast<int>(Item.Value->GetEquipType());
-
-				SavedEquipData.Add(Item.Key, ItemData);
-			}
-		}
-		SavedPlayerStats.Money = InventoryComponent->GetMoney();
+		TSharedPtr<FJsonObject> ItemJson = MakeShareable(new FJsonObject());
+		ItemJson->SetNumberField(TEXT("code"), Item->GetCode());
+		ItemJson->SetStringField(TEXT("name"), Item->GetName());
+		ItemJson->SetStringField(TEXT("type"), FString::FromInt((int)Item->GetType()));
+		ItemJson->SetStringField(TEXT("modTarget"), StaticEnum<StatType>()->GetNameStringByValue((int64)Item->GetModStat()));
+		ItemJson->SetStringField(TEXT("description"), Item->GetDesc());
+		ItemJson->SetNumberField(TEXT("price"), Item->GetPrice());
+		ItemJson->SetNumberField(TEXT("value"), Item->GetValue());
+		ItemJson->SetNumberField(TEXT("equip"), Item->GetEquip());
+		InventoryArray.Add(MakeShareable(new FJsonValueObject(ItemJson)));
 	}
+
+	TSharedPtr<FJsonObject> EquipJson = MakeShareable(new FJsonObject());
+	for (const auto& Pair : InventoryComponent->GetEquipSlots())
+	{
+		if (!Pair.Value) continue;
+		TSharedPtr<FJsonObject> ItemData = MakeShareable(new FJsonObject());
+		ItemData->SetNumberField(TEXT("code"), Pair.Value->GetCode());
+		ItemData->SetStringField(TEXT("name"), Pair.Value->GetName());
+		ItemData->SetStringField(TEXT("type"), FString::FromInt((int)Pair.Value->GetType()));
+		ItemData->SetStringField(TEXT("modTarget"), StaticEnum<StatType>()->GetNameStringByValue((int64)Pair.Value->GetModStat()));
+		ItemData->SetStringField(TEXT("description"), Pair.Value->GetDesc());
+		ItemData->SetNumberField(TEXT("price"), Pair.Value->GetPrice());
+		ItemData->SetNumberField(TEXT("value"), Pair.Value->GetValue());
+		ItemData->SetNumberField(TEXT("equip"), (int)Pair.Value->GetEquipType());
+		EquipJson->SetObjectField(Pair.Key, ItemData);
+	}
+
+	TSharedPtr<FJsonObject> Root = MakeShareable(new FJsonObject());
+	Root->SetStringField(TEXT("username"), CurrentUsername);
+	Root->SetArrayField(TEXT("inventory"), InventoryArray);
+	Root->SetObjectField(TEXT("equip"), EquipJson);
+	Root->SetNumberField(TEXT("money"), InventoryComponent->GetMoney());
+
+	FString Output;
+	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&Output);
+	FJsonSerializer::Serialize(Root.ToSharedRef(), Writer);
+
+	TSharedRef<IHttpRequest> Request = FHttpModule::Get().CreateRequest();
+	Request->SetURL("http://127.0.0.1:5000/save_inventory");
+	Request->SetVerb("POST");
+	Request->SetHeader("Content-Type", "application/json");
+	Request->SetContentAsString(Output);
+	Request->ProcessRequest();
 }
 
-void UMyGameInstance::LoadInventory(class UInventoryComponent *InventoryComponent)
+void UMyGameInstance::LoadInventory(UInventoryComponent* InventoryComponent)
 {
-	if (InventoryComponent)
+	if (!InventoryComponent || CurrentUsername.IsEmpty()) return;
+
+	FString Url = FString::Printf(TEXT("http://127.0.0.1:5000/load_inventory?username=%s"), *CurrentUsername);
+	TSharedRef<IHttpRequest> Request = FHttpModule::Get().CreateRequest();
+	Request->SetURL(Url);
+	Request->SetVerb("GET");
+
+	Request->OnProcessRequestComplete().BindLambda([this, InventoryComponent](FHttpRequestPtr Req, FHttpResponsePtr Res, bool bSuccess)
 	{
-		InventoryComponent->InitSlot();
+		if (!bSuccess || !Res.IsValid()) return;
 
-		for (const FItemData &ItemData : SavedInventoryData)
+		TSharedPtr<FJsonObject> Json;
+		TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(Res->GetContentAsString());
+		if (FJsonSerializer::Deserialize(Reader, Json))
 		{
-			ABaseItem *_newItem = nullptr;
+			InventoryComponent->InitSlot();
 
-			if (ItemData._Type == ItemType::Consume)
-			{
-				_newItem = GetWorld()->SpawnActor<AConsumeItem>(AConsumeItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
-				_newItem->SetItemWithCode(ItemData._Code);
-			}
-			else if (ItemData._Type == ItemType::Equipment)
-			{
-				AEquipItem *EquipItem = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
-				EquipItem->SetItemWithCode(ItemData._Code);
-				EquipItem->SetEquipType(ItemData._Equip);
-				_newItem = EquipItem;
-			}
+			TSet<int32> EquippedItemCodes;
 
-			if (_newItem)
+			// 1. 장착된 아이템 먼저 처리
+			const TSharedPtr<FJsonObject>* EquipMap;
+			if (Json->TryGetObjectField(TEXT("equip"), EquipMap))
 			{
-				InventoryComponent->AddItemToSlot(_newItem);
-			}
-		}
-
-		for (const auto &Item : SavedEquipData)
-		{
-			AEquipItem *_newItem = nullptr;
-			FString EquipType = Item.Key;
-			const FItemData &ItemData = Item.Value;
-
-			if (ItemData._Type == ItemType::Equipment)
-			{
-				AEquipItem *EquipItem = GetWorld()->SpawnActor<AEquipItem>(AEquipItem::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
-				if (EquipItem)
+				for (const auto& Pair : (*EquipMap)->Values)
 				{
-					EquipItem->SetItemWithCode(ItemData._Code);
-					EquipItem->SetEquipType(ItemData._Equip);
-					_newItem = EquipItem;
+					TSharedPtr<FJsonObject> ItemObj = Pair.Value->AsObject();
+					if (!ItemObj.IsValid()) continue;
 
-					InventoryComponent->AddItemToEquip(EquipType, _newItem);
+					int32 Code = ItemObj->GetIntegerField(TEXT("code"));
+					int32 EquipType = ItemObj->GetIntegerField(TEXT("equip"));
+
+					AEquipItem* EquipItem = GetWorld()->SpawnActor<AEquipItem>();
+					if (EquipItem)
+					{
+						EquipItem->SetItemWithCode(Code);
+						EquipItem->SetEquipType(EquipType);
+						InventoryComponent->AddItemToEquip(Pair.Key, EquipItem);
+						EquippedItemCodes.Add(Code);
+					}
 				}
 			}
+
+			// 2. 인벤토리 아이템 처리
+			const TArray<TSharedPtr<FJsonValue>> Items = Json->GetArrayField(TEXT("inventory"));
+			for (const auto& Val : Items)
+			{
+				TSharedPtr<FJsonObject> ItemObj = Val->AsObject();
+				if (!ItemObj.IsValid()) continue;
+
+				int32 Code = ItemObj->GetIntegerField(TEXT("code"));
+				if (EquippedItemCodes.Contains(Code)) continue; // 이미 장착한 아이템은 패스
+
+				int Type = FCString::Atoi(*ItemObj->GetStringField(TEXT("type")));
+				ABaseItem* NewItem = nullptr;
+
+				if (Type == (int)ItemType::Consume)
+					NewItem = GetWorld()->SpawnActor<AConsumeItem>();
+				else if (Type == (int)ItemType::Equipment)
+				{
+					AEquipItem* Equip = GetWorld()->SpawnActor<AEquipItem>();
+					Equip->SetEquipType(ItemObj->GetIntegerField(TEXT("equip")));
+					NewItem = Equip;
+				}
+
+				if (NewItem)
+				{
+					NewItem->SetItemWithCode(Code);
+					InventoryComponent->AddItemToSlot(NewItem);
+				}
+			}
+
+			// 3. 돈 처리
+			if (Json->HasTypedField<EJson::Number>("money"))
+			{
+				InventoryComponent->AddMoney(Json->GetIntegerField(TEXT("money")));
+			}
 		}
-		InventoryComponent->AddMoney(SavedPlayerStats.Money);
-	}
+	});
+	Request->ProcessRequest();
 }
 
-void UMyGameInstance::SavePlayerSkeletal(class AMyPlayer *player)
+
+
+void UMyGameInstance::SavePlayerSkeletal(AMyPlayer* Player)
 {
-	if (player)
-	{
-		SavedSkeletalMeshes[0] = Cast<USkeletalMesh>(player->GetMesh()->GetSkinnedAsset());
-		SavedSkeletalMeshes[1] = Cast<USkeletalMesh>(player->GetLowerBodyMesh()->GetSkinnedAsset());
-		SavedSkeletalMeshes[2] = Cast<USkeletalMesh>(player->GetShoulderBodyMesh()->GetSkinnedAsset());
-		SavedSkeletalMeshes[3] = Cast<USkeletalMesh>(player->GetSwordBodyMesh()->GetSkinnedAsset());
-		SavedSkeletalMeshes[4] = Cast<USkeletalMesh>(player->GetShieldBodyMesh()->GetSkinnedAsset());
-	}
+    if (!Player || CurrentUsername.IsEmpty()) return;
+
+    TArray<TSharedPtr<FJsonValue>> Meshes;
+
+    // Helper lambda for safe mesh name extraction
+    auto GetMeshName = [](USkeletalMeshComponent* MeshComp) -> FString
+    {
+        if (!MeshComp) return TEXT("None");
+
+        USkinnedAsset* Skinned = MeshComp->GetSkinnedAsset();
+        if (!Skinned) return TEXT("None");
+
+        return Skinned->GetName();
+    };
+
+    // Get 5 skeletal meshes with null safety
+    Meshes.Add(MakeShareable(new FJsonValueString(GetMeshName(Player->GetMesh()))));
+    Meshes.Add(MakeShareable(new FJsonValueString(GetMeshName(Player->GetLowerBodyMesh()))));
+    Meshes.Add(MakeShareable(new FJsonValueString(GetMeshName(Player->GetShoulderBodyMesh()))));
+    Meshes.Add(MakeShareable(new FJsonValueString(GetMeshName(Player->GetSwordBodyMesh()))));
+    Meshes.Add(MakeShareable(new FJsonValueString(GetMeshName(Player->GetShieldBodyMesh()))));
+
+    // JSON 구성
+    TSharedPtr<FJsonObject> Json = MakeShareable(new FJsonObject());
+    Json->SetStringField(TEXT("username"), CurrentUsername);
+    Json->SetArrayField(TEXT("skeletal"), Meshes);
+
+    FString Output;
+    TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&Output);
+    FJsonSerializer::Serialize(Json.ToSharedRef(), Writer);
+
+    // HTTP 요청
+    TSharedRef<IHttpRequest> Request = FHttpModule::Get().CreateRequest();
+    Request->SetURL("http://127.0.0.1:5000/save_skeletal");
+    Request->SetVerb("POST");
+    Request->SetHeader("Content-Type", "application/json");
+    Request->SetContentAsString(Output);
+    Request->ProcessRequest();
 }
 
-void UMyGameInstance::LoadPlayerSkeletal(class AMyPlayer *player)
+void UMyGameInstance::LoadPlayerSkeletal(AMyPlayer* Player)
 {
-	if (player && SavedSkeletalMeshes.Num() > 0)
+	if (!Player || CurrentUsername.IsEmpty()) return;
+
+	FString Url = FString::Printf(TEXT("http://127.0.0.1:5000/load_skeletal?username=%s"), *CurrentUsername);
+
+	TSharedRef<IHttpRequest> Request = FHttpModule::Get().CreateRequest();
+	Request->SetURL(Url);
+	Request->SetVerb("GET");
+
+	Request->OnProcessRequestComplete().BindLambda([Player](FHttpRequestPtr Req, FHttpResponsePtr Res, bool bSuccess)
 	{
-		player->GetMesh()->SetSkeletalMesh(SavedSkeletalMeshes[0]);
-		player->GetLowerBodyMesh()->SetSkeletalMesh(SavedSkeletalMeshes[1]);
-		player->GetShoulderBodyMesh()->SetSkeletalMesh(SavedSkeletalMeshes[2]);
-		player->GetSwordBodyMesh()->SetSkeletalMesh(SavedSkeletalMeshes[3]);
-		player->GetShieldBodyMesh()->SetSkeletalMesh(SavedSkeletalMeshes[4]);
-	}
+		if (!bSuccess || !Res.IsValid()) return;
+
+		TSharedPtr<FJsonObject> Json;
+		TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(Res->GetContentAsString());
+
+		if (FJsonSerializer::Deserialize(Reader, Json))
+		{
+			const TArray<TSharedPtr<FJsonValue>>* MeshArray;
+			if (Json->TryGetArrayField(TEXT("skeletal"), MeshArray))
+			{
+				if (MeshArray->Num() >= 5)
+				{
+					auto TrySetMesh = [](USkeletalMeshComponent* Comp, const FString& MeshName)
+					{
+						if (!Comp || MeshName.Equals(TEXT("None"), ESearchCase::IgnoreCase)) return;
+
+						FString Path = FString::Printf(TEXT("SkeletalMesh'/Game/Mesh/%s.%s'"), *MeshName, *MeshName);
+						USkeletalMesh* Mesh = Cast<USkeletalMesh>(StaticLoadObject(USkeletalMesh::StaticClass(), nullptr, *Path));
+
+						UE_LOG(LogTemp, Warning, TEXT("[Skeletal] Loading mesh: %s"), *Path);
+
+						if (Mesh)
+						{
+							Comp->SetSkeletalMesh(Mesh);
+						}
+						else
+						{
+							UE_LOG(LogTemp, Error, TEXT("[Skeletal] Failed to load: %s"), *Path);
+						}
+					};
+
+					TrySetMesh(Player->GetMesh(), (*MeshArray)[0]->AsString());
+					TrySetMesh(Player->GetLowerBodyMesh(), (*MeshArray)[1]->AsString());
+					TrySetMesh(Player->GetShoulderBodyMesh(), (*MeshArray)[2]->AsString());
+					TrySetMesh(Player->GetSwordBodyMesh(), (*MeshArray)[3]->AsString());
+					TrySetMesh(Player->GetShieldBodyMesh(), (*MeshArray)[4]->AsString());
+				}
+			}
+			else
+			{
+				UE_LOG(LogTemp, Error, TEXT("[Skeletal] Skeletal field not found in JSON"));
+			}
+		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("[Skeletal] Failed to parse skeletal JSON"));
+		}
+	});
+
+	Request->ProcessRequest();
 }
+
+
 
 void UMyGameInstance::Login(FString Username, FString Password)
 {
@@ -279,6 +456,7 @@ void UMyGameInstance::Login(FString Username, FString Password)
     Request->SetContentAsString(OutputString);
     Request->OnProcessRequestComplete().BindUObject(this, &UMyGameInstance::OnLoginResponseReceived);
     Request->ProcessRequest();
+
 }
 
 void UMyGameInstance::OnLoginResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bWasSuccessful)
@@ -300,11 +478,21 @@ void UMyGameInstance::OnLoginResponseReceived(FHttpRequestPtr Request, FHttpResp
         bool bSuccess = JsonObject->GetBoolField("success");
         FString Message = JsonObject->GetStringField("message");
 
-        if (bSuccess)
+        if (JsonObject->HasField("is_new"))
         {
-            UE_LOG(LogTemp, Log, TEXT("로그인 성공: %s"), *Message);
-			OnLoginSuccess.Broadcast();
+            bool bIsNew = JsonObject->GetBoolField("is_new");
+            _firstIn = bIsNew; 
         }
+
+		if (bSuccess)
+		{
+			CurrentUsername = JsonObject->GetStringField("username");
+			bool bFirstIn = JsonObject->GetBoolField("first_in");
+			SetFirst(bFirstIn);  
+		
+			UE_LOG(LogTemp, Log, TEXT("로그인 성공: %s (first_in: %s)"), *Message, bFirstIn ? TEXT("true") : TEXT("false"));
+			OnLoginSuccess.Broadcast();
+		}
         else
         {
             UE_LOG(LogTemp, Warning, TEXT("로그인 실패: %s"), *Message);
@@ -315,6 +503,7 @@ void UMyGameInstance::OnLoginResponseReceived(FHttpRequestPtr Request, FHttpResp
         UE_LOG(LogTemp, Error, TEXT("JSON 파싱 실패"));
     }
 }
+
 
 TArray<ABaseItem *> UMyGameInstance::GetInvenItemList()
 {

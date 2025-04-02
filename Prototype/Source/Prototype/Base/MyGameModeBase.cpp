@@ -11,7 +11,6 @@ void AMyGameModeBase::BeginPlay()
     Super::BeginPlay();
     InitializeGameInstance();
     InitializePlayer();
-   
 }
 
 void AMyGameModeBase::InitializePlayer()
@@ -25,18 +24,17 @@ void AMyGameModeBase::InitializePlayer()
 
         if (GameInstance)
         {
-            if(GameInstance->GetFirst())
+            if (GameInstance->GetFirst())
             {
                 GameInstance->SetFirst(false);
                 if (StatComponent)
-				{
-					Player->GetStatComponent()->SetLevelInit(1);
-				}
-				if (InvenComponent)
-				{
-					Player->GetInventory()->InitSlot();
-				}
-
+                {
+                    Player->GetStatComponent()->SetLevelInit(1);
+                }
+                if (InvenComponent)
+                {
+                    Player->GetInventory()->InitSlot();
+                }
             }
             else
             {
@@ -46,14 +44,14 @@ void AMyGameModeBase::InitializePlayer()
                 {
                     GameInstance->LoadPlayerStats(StatComponent);
                 }
-           
+
                 if (InvenComponent)
                 {
                     GameInstance->LoadInventory(InvenComponent);
                 }
 
                 Player->GetStatComponent()->Reset();
-            }   
+            }
         }
 
         APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
